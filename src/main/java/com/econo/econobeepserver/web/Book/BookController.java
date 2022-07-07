@@ -20,13 +20,13 @@ public class BookController {
     }
 
     @GetMapping("/book/list/all")
-    public ResponseEntity<List<BookElementDto>> getBookElementDtosByCreatedDateDescByPaging(@RequestParam(value = "lastBookId", required = false) Long lastBookId,
+    public ResponseEntity<List<BookElementDto>> getBookElementDtosByPaging(@RequestParam(value = "lastBookId", required = false) Long lastBookId,
                                                                                             @RequestParam(value = "pageSize") int pageSize) {
         return ResponseEntity.ok(null);
     }
 
     @GetMapping("/book/list/{type}")
-    public ResponseEntity<List<BookElementDto>> getBookElementDtosByTypeByCreatedDateDescByPaging(@PathVariable(value = "type")BookType bookType,
+    public ResponseEntity<List<BookElementDto>> getBookElementDtosByTypeByPaging(@PathVariable(value = "type")BookType bookType,
                                                                                                   @RequestParam(value = "lastBookId", required = false) Long lastBookId,
                                                                                                   @RequestParam(value = "pageSize") int pageSize) {
         return ResponseEntity.ok(null);

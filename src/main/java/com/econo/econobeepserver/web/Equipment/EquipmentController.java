@@ -1,8 +1,6 @@
 package com.econo.econobeepserver.web.Equipment;
 
-import com.econo.econobeepserver.domain.Book.BookType;
 import com.econo.econobeepserver.domain.Equipment.EquipmentType;
-import com.econo.econobeepserver.dto.Book.BookElementDto;
 import com.econo.econobeepserver.dto.Equipment.EquipmentElementDto;
 import com.econo.econobeepserver.dto.Equipment.EquipmentInfoDto;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +15,7 @@ import java.util.List;
 public class EquipmentController {
 
     @GetMapping("/equipment/{id}")
-    public ResponseEntity<EquipmentInfoDto> getBookInfoDtoByEquipmentId(@PathVariable(value = "id") Long equipmentId) {
+    public ResponseEntity<EquipmentInfoDto> getEquipmentInfoDtoByEquipmentId(@PathVariable(value = "id") Long equipmentId) {
         return ResponseEntity.ok(null);
     }
 
@@ -29,7 +27,7 @@ public class EquipmentController {
 
     @GetMapping("/equipment/list/{type}")
     public ResponseEntity<List<EquipmentElementDto>> getEquipmentElementDtosByTypeByPaging(@PathVariable(value = "type") EquipmentType equipmentType,
-                                                                                           @RequestParam(value = "lastBookId", required = false) Long lastEquipmentId,
+                                                                                           @RequestParam(value = "lastEquipmentId", required = false) Long lastEquipmentId,
                                                                                            @RequestParam(value = "pageSize") int pageSize) {
         return ResponseEntity.ok(null);
     }
