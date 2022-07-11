@@ -21,7 +21,7 @@ public class EquipmentManagementController {
     }
 
     @GetMapping("/management/equipment/list/all")
-    public ResponseEntity<List<EquipmentManagementInfoDto>> getEquipmentManagementInfoDtosByEquipmentIdAscByPaging(@RequestParam(value = "lastEquipmentId", required = false) Long lastEquipmentId,
+    public ResponseEntity<List<EquipmentManagementInfoDto>> getEquipmentManagementInfoDtosByEquipmentIdAscWithPaging(@RequestParam(value = "lastEquipmentId", required = false, defaultValue = "0") Long lastEquipmentId,
                                                                                                     @RequestParam(value = "pageSize") int pageSize) {
         return ResponseEntity.ok(null);
     }

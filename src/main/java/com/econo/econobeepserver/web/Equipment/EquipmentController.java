@@ -25,14 +25,14 @@ public class EquipmentController {
     }
 
     @GetMapping("/equipment/list/all")
-    public ResponseEntity<List<EquipmentElementDto>> getEquipmentElementDtosByCreatedDateDescByPaging(@RequestParam(value = "lastEquipmentId", required = false) Long lastEquipmentId,
+    public ResponseEntity<List<EquipmentElementDto>> getEquipmentElementDtosByCreatedDateDescWithPaging(@RequestParam(value = "lastEquipmentId", required = false, defaultValue = "0") Long lastEquipmentId,
                                                                                                       @RequestParam(value = "pageSize") int pageSize) {
         return ResponseEntity.ok(null);
     }
 
     @GetMapping("/equipment/list/{type}")
-    public ResponseEntity<List<EquipmentElementDto>> getEquipmentElementDtosByTypeByPaging(@PathVariable(value = "type") EquipmentType equipmentType,
-                                                                                           @RequestParam(value = "lastEquipmentId", required = false) Long lastEquipmentId,
+    public ResponseEntity<List<EquipmentElementDto>> getEquipmentElementDtosByTypeWithPaging(@PathVariable(value = "type") EquipmentType equipmentType,
+                                                                                           @RequestParam(value = "lastEquipmentId", required = false, defaultValue = "0") Long lastEquipmentId,
                                                                                            @RequestParam(value = "pageSize") int pageSize) {
         return ResponseEntity.ok(null);
     }

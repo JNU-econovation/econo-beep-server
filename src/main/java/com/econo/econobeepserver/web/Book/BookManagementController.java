@@ -17,29 +17,34 @@ public class BookManagementController {
 
     @PostMapping("/management/book")
     public ResponseEntity<Void> createBook(@RequestBody BookSaveDto bookSaveDto) {
-        return ResponseEntity.ok(null);
+        bookService.createBook(bookSaveDto);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/management/book/list/all")
-    public ResponseEntity<List<BookManagementInfoDto>> getBookManagementInfoDtosByBookIdAscByPaging(@RequestParam(value = "lastBookId", required = false) Long lastBookId,
-                                                                                                    @RequestParam(value = "pageSize") int pageSize) {
-        return ResponseEntity.ok(null);
+    public ResponseEntity<List<BookManagementInfoDto>> getBookManagementInfoDtosByBookIdAscWithPaging(@RequestParam(value = "pageSize") int pageSize,
+                                                                                                      @RequestParam(value = "lastBookId", required = false, defaultValue = "0") Long lastBookId) {
+        List<BookManagementInfoDto> bookManagementInfoDtos = bookService.getBookManagementInfoDtosByBookIdAscWithPaging(pageSize, lastBookId);
+        return ResponseEntity.ok(bookManagementInfoDtos);
     }
 
     @GetMapping("/management/book/search")
     public ResponseEntity<List<BookManagementInfoDto>> searchBookManagementInfoDtosByKeyword(@RequestParam(value = "keyword") String keyword) {
-        return ResponseEntity.ok(null);
+        List<BookManagementInfoDto> bookManagementInfoDtos = bookService.searchBookManagementInfoDtosByKeyword(keyword);
+        return ResponseEntity.ok(bookManagementInfoDtos);
     }
 
     @PutMapping("/management/book/{id}")
     public ResponseEntity<Void> updateBookByBookId(@PathVariable(value = "id") Long bookId,
                                                    @RequestBody BookSaveDto bookSaveDto) {
-        return ResponseEntity.ok(null);
+        bookService.updateBookByBookId(bookId, bookSaveDto);
+        return ResponseEntity.ok().build();
     }
 
 
     @DeleteMapping("/management/book/{id}")
     public ResponseEntity<Void> deleteBookByBookId(@PathVariable(value = "id") Long bookId) {
-        return ResponseEntity.ok(null);
+        bookService.deleteBookByBookId(bookId);
+        return ResponseEntity.ok().build();
     }
 }
