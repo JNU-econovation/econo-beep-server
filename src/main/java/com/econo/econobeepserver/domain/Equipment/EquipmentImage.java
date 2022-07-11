@@ -24,13 +24,10 @@ public class EquipmentImage {
     @NotNull
     private String filePath;
 
-    @NotNull
-    private Long fileSize;
 
     @Builder
-    public EquipmentImage(Equipment equipment, String filePath, Long fileSize) {
+    public EquipmentImage(Equipment equipment, Long fileSize) {
         this.equipment = equipment;
         this.filePath = filePath;
-        this.fileSize = fileSize;
     }
 }

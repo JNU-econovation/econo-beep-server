@@ -24,14 +24,10 @@ public class BookCoverImage {
     @NotNull
     private String filePath;
 
-    @NotNull
-    private Long fileSize;
-
 
     @Builder
-    public BookCoverImage(String filePath, Long fileSize, Book book) {
+    public BookCoverImage(String filePath, Book book) {
         this.filePath = filePath;
-        this.fileSize = fileSize;
         this.book = book;
     }
 }

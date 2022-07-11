@@ -51,13 +51,16 @@ public class Book {
     @NotNull
     private int rentCount = 0;
 
+    private String note;
+
     @Builder
-    public Book(BookCoverImage bookCoverImage, String title, BookType type, String authorName, String publisherName, LocalDate publishedDate) {
+    public Book(BookCoverImage bookCoverImage, String title, BookType type, String authorName, String publisherName, LocalDate publishedDate, String note) {
         this.bookCoverImage = bookCoverImage;
         this.title = title;
         this.type = type;
         this.authorName = authorName;
         this.publisherName = publisherName;
         this.publishedDate = publishedDate;
+        this.note = note;
     }
 }
