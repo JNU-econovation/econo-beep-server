@@ -3,6 +3,8 @@ package com.econo.econobeepserver.web.Book;
 import com.econo.econobeepserver.domain.Book.BookType;
 import com.econo.econobeepserver.dto.Book.BookElementDto;
 import com.econo.econobeepserver.dto.Book.BookInfoDto;
+import com.econo.econobeepserver.service.Book.BookService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class BookController {
+
+    private final BookService bookService;
 
     @GetMapping("/book/{id}")
     public ResponseEntity<BookInfoDto> getBookInfoDtoByBookId(@PathVariable(value = "id") Long bookId) {

@@ -2,13 +2,18 @@ package com.econo.econobeepserver.web.Book;
 
 import com.econo.econobeepserver.dto.Book.BookManagementInfoDto;
 import com.econo.econobeepserver.dto.Book.BookSaveDto;
+import com.econo.econobeepserver.service.Book.BookService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class BookManagementController {
+
+    private final BookService bookService;
 
     @PostMapping("/management/book")
     public ResponseEntity<Void> createBook(@RequestBody BookSaveDto bookSaveDto) {

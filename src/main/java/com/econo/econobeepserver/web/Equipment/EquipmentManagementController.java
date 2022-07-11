@@ -2,13 +2,18 @@ package com.econo.econobeepserver.web.Equipment;
 
 import com.econo.econobeepserver.dto.Equipment.EquipmentManagementInfoDto;
 import com.econo.econobeepserver.dto.Equipment.EquipmentSaveDto;
+import com.econo.econobeepserver.service.Equipment.EquipmentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class EquipmentManagementController {
+
+    private final EquipmentService equipmentService;
 
     @PostMapping("/management/equipment")
     public ResponseEntity<Void> createEquipment(@RequestBody EquipmentSaveDto equipmentSaveDto) {

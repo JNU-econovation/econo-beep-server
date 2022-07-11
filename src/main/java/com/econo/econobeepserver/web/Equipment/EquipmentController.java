@@ -3,6 +3,8 @@ package com.econo.econobeepserver.web.Equipment;
 import com.econo.econobeepserver.domain.Equipment.EquipmentType;
 import com.econo.econobeepserver.dto.Equipment.EquipmentElementDto;
 import com.econo.econobeepserver.dto.Equipment.EquipmentInfoDto;
+import com.econo.econobeepserver.service.Equipment.EquipmentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class EquipmentController {
+
+    private final EquipmentService equipmentService;
 
     @GetMapping("/equipment/{id}")
     public ResponseEntity<EquipmentInfoDto> getEquipmentInfoDtoByEquipmentId(@PathVariable(value = "id") Long equipmentId) {
