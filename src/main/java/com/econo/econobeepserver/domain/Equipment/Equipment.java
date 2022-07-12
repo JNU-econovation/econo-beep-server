@@ -1,6 +1,8 @@
 package com.econo.econobeepserver.domain.Equipment;
 
 import com.econo.econobeepserver.domain.EquipmentRental.EquipmentRental;
+import com.econo.econobeepserver.domain.RentState;
+import com.econo.econobeepserver.domain.RenteeType;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.Builder;
@@ -33,16 +35,17 @@ public class Equipment {
     private String name;
 
     @NotNull
-    private EquipmentType type;
+    @Enumerated(EnumType.STRING)
+    private RenteeType type;
 
     @NotNull
-    private boolean isRented = false;
+    private RentState rentState = RentState.RENTABLE;
 
     @NotNull
     private int rentCount = 0;
 
     @Builder
-    public Equipment(EquipmentImage equipmentImage, String name, EquipmentType type) {
+    public Equipment(EquipmentImage equipmentImage, String name, RenteeType type) {
         this.equipmentImage = equipmentImage;
         this.name = name;
         this.type = type;

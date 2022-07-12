@@ -1,6 +1,6 @@
 package com.econo.econobeepserver.web.Book;
 
-import com.econo.econobeepserver.domain.Book.BookType;
+import com.econo.econobeepserver.domain.RenteeType;
 import com.econo.econobeepserver.dto.Book.BookElementDto;
 import com.econo.econobeepserver.dto.Book.BookInfoDto;
 import com.econo.econobeepserver.service.Book.BookService;
@@ -38,7 +38,7 @@ public class BookController {
     }
 
     @GetMapping("/book/list/{type}")
-    public ResponseEntity<List<BookElementDto>> getBookElementDtosByBookTypeWithPaging(@PathVariable(value = "type") BookType bookType,
+    public ResponseEntity<List<BookElementDto>> getBookElementDtosByBookTypeWithPaging(@PathVariable(value = "type") RenteeType bookType,
                                                                                        @RequestParam(value = "pageSize") int pageSize,
                                                                                        @RequestParam(value = "lastBookId", required = false, defaultValue = "0") Long lastId) {
         List<BookElementDto> bookElementDtos = bookService.getBookElementDtosByBookTypeWithPaging(bookType, pageSize, lastId);

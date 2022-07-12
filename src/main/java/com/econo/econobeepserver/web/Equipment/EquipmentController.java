@@ -1,6 +1,5 @@
 package com.econo.econobeepserver.web.Equipment;
 
-import com.econo.econobeepserver.domain.Equipment.EquipmentType;
 import com.econo.econobeepserver.dto.Equipment.EquipmentElementDto;
 import com.econo.econobeepserver.dto.Equipment.EquipmentInfoDto;
 import com.econo.econobeepserver.service.Equipment.EquipmentService;

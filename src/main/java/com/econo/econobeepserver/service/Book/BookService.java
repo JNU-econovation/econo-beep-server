@@ -2,7 +2,7 @@ package com.econo.econobeepserver.service.Book;
 
 import com.econo.econobeepserver.domain.Book.Book;
 import com.econo.econobeepserver.domain.Book.BookRepository;
-import com.econo.econobeepserver.domain.Book.BookType;
+import com.econo.econobeepserver.domain.RenteeType;
 import com.econo.econobeepserver.dto.Book.BookElementDto;
 import com.econo.econobeepserver.dto.Book.BookInfoDto;
 import com.econo.econobeepserver.dto.Book.BookManagementInfoDto;
@@ -38,7 +38,7 @@ public class BookService {
         return null;
     }
     
-    public List<BookElementDto> getBookElementDtosByBookTypeWithPaging(BookType bookType, int pageSize, Long lastId) {
+    public List<BookElementDto> getBookElementDtosByBookTypeWithPaging(RenteeType bookType, int pageSize, Long lastId) {
         return null;
     }
 
