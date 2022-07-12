@@ -22,9 +22,9 @@ public class BookManagementController {
     }
 
     @GetMapping("/management/book/list/all")
-    public ResponseEntity<List<BookManagementInfoDto>> getBookManagementInfoDtosByBookIdAscWithPaging(@RequestParam(value = "pageSize") int pageSize,
-                                                                                                      @RequestParam(value = "lastBookId", required = false, defaultValue = "0") Long lastBookId) {
-        List<BookManagementInfoDto> bookManagementInfoDtos = bookService.getBookManagementInfoDtosByBookIdAscWithPaging(pageSize, lastBookId);
+    public ResponseEntity<List<BookManagementInfoDto>> getBookManagementInfoDtosByIdAscWithPaging(@RequestParam(value = "pageSize") int pageSize,
+                                                                                                      @RequestParam(value = "lastBookId", required = false, defaultValue = "0") Long lastId) {
+        List<BookManagementInfoDto> bookManagementInfoDtos = bookService.getBookManagementInfoDtosByIdAscWithPaging(pageSize, lastId);
         return ResponseEntity.ok(bookManagementInfoDtos);
     }
 
@@ -35,16 +35,16 @@ public class BookManagementController {
     }
 
     @PutMapping("/management/book/{id}")
-    public ResponseEntity<Void> updateBookByBookId(@PathVariable(value = "id") Long bookId,
+    public ResponseEntity<Void> updateBookById(@PathVariable(value = "id") Long id,
                                                    @RequestBody BookSaveDto bookSaveDto) {
-        bookService.updateBookByBookId(bookId, bookSaveDto);
+        bookService.updateBookById(id, bookSaveDto);
         return ResponseEntity.ok().build();
     }
 
 
     @DeleteMapping("/management/book/{id}")
-    public ResponseEntity<Void> deleteBookByBookId(@PathVariable(value = "id") Long bookId) {
-        bookService.deleteBookByBookId(bookId);
+    public ResponseEntity<Void> deleteBookById(@PathVariable(value = "id") Long id) {
+        bookService.deleteBookById(id);
         return ResponseEntity.ok().build();
     }
 }

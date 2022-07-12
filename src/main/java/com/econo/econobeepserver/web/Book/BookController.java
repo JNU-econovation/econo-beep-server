@@ -21,8 +21,8 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping("/book/{id}")
-    public ResponseEntity<BookInfoDto> getBookInfoDtoByBookId(@PathVariable(value = "id") Long bookId) {
-        Optional<BookInfoDto> bookInfoDto = bookService.getBookInfoDtoByBookId(bookId);
+    public ResponseEntity<BookInfoDto> getBookInfoDtoById(@PathVariable(value = "id") Long id) {
+        Optional<BookInfoDto> bookInfoDto = bookService.getBookInfoDtoById(id);
         if (bookInfoDto.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
@@ -32,16 +32,16 @@ public class BookController {
 
     @GetMapping("/book/list/all")
     public ResponseEntity<List<BookElementDto>> getBookElementDtosWithPaging(@RequestParam(value = "pageSize") int pageSize,
-                                                                             @RequestParam(value = "lastBookId", required = false, defaultValue = "0") Long lastBookId) {
-        List<BookElementDto> bookElementDtos = bookService.getBookElementDtosWithPaging(pageSize, lastBookId);
+                                                                             @RequestParam(value = "lastBookId", required = false, defaultValue = "0") Long lastId) {
+        List<BookElementDto> bookElementDtos = bookService.getBookElementDtosWithPaging(pageSize, lastId);
         return ResponseEntity.ok(bookElementDtos);
     }
 
     @GetMapping("/book/list/{type}")
     public ResponseEntity<List<BookElementDto>> getBookElementDtosByBookTypeWithPaging(@PathVariable(value = "type") BookType bookType,
                                                                                        @RequestParam(value = "pageSize") int pageSize,
-                                                                                       @RequestParam(value = "lastBookId", required = false, defaultValue = "0") Long lastBookId) {
-        List<BookElementDto> bookElementDtos = bookService.getBookElementDtosByBookTypeWithPaging(bookType, pageSize, lastBookId);
+                                                                                       @RequestParam(value = "lastBookId", required = false, defaultValue = "0") Long lastId) {
+        List<BookElementDto> bookElementDtos = bookService.getBookElementDtosByBookTypeWithPaging(bookType, pageSize, lastId);
         return ResponseEntity.ok(bookElementDtos);
     }
 
@@ -52,8 +52,8 @@ public class BookController {
     }
 
     @GetMapping("/book/search/suggestion")
-    public ResponseEntity<List<String>> getSearchSuggestionsByKeyword(@RequestParam(value = "keyword") String keyword) {
-        List<String> suggestions = bookService.getSearchSuggestionsByKeyword(keyword);
+    public ResponseEntity<List<String>> getBookSearchSuggestionsByKeyword(@RequestParam(value = "keyword") String keyword) {
+        List<String> suggestions = bookService.getBookSearchSuggestionsByKeyword(keyword);
         return ResponseEntity.ok(suggestions);
     }
 }

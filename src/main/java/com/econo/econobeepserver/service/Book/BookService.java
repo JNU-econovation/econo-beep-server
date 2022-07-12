@@ -26,19 +26,19 @@ public class BookService {
     }
 
 
-    public Optional<Book> getBookByBookId(Long bookId) {
+    public Optional<Book> getBookById(Long id) {
         return null;
     }
 
-    public Optional<BookInfoDto> getBookInfoDtoByBookId(Long bookId) {
+    public Optional<BookInfoDto> getBookInfoDtoById(Long id) {
         return null;
     }
     
-    public List<BookElementDto> getBookElementDtosWithPaging(int pageSize, Long lastBookId) {
+    public List<BookElementDto> getBookElementDtosWithPaging(int pageSize, Long lastId) {
         return null;
     }
     
-    public List<BookElementDto> getBookElementDtosByBookTypeWithPaging(BookType bookType, int pageSize, Long lastBookId) {
+    public List<BookElementDto> getBookElementDtosByBookTypeWithPaging(BookType bookType, int pageSize, Long lastId) {
         return null;
     }
 
@@ -46,11 +46,11 @@ public class BookService {
         return null;
     }
 
-    public List<String> getSearchSuggestionsByKeyword(String keyword) {
+    public List<String> getBookSearchSuggestionsByKeyword(String keyword) {
         return null;
     }
 
-    public List<BookManagementInfoDto> getBookManagementInfoDtosByBookIdAscWithPaging(int pageSize, Long lastBookId) {
+    public List<BookManagementInfoDto> getBookManagementInfoDtosByIdAscWithPaging(int pageSize, Long lastId) {
         return null;
     }
 
@@ -60,10 +60,11 @@ public class BookService {
 
 
     @Transactional
-    public void updateBookByBookId(Long bookId, BookSaveDto bookSaveDto) {
+    public void updateBookById(Long id, BookSaveDto bookSaveDto) {
     }
 
 
-    public void deleteBookByBookId(Long bookId) {
+    @Transactional
+    public void deleteBookById(Long id) {
     }
 }

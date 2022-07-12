@@ -1,7 +1,7 @@
 package com.econo.econobeepserver.web.Book;
 
 import com.econo.econobeepserver.exception.AlreadyRentedException;
-import com.econo.econobeepserver.exception.NotFoundBookException;
+import com.econo.econobeepserver.exception.NotFoundRenteeException;
 import com.econo.econobeepserver.exception.NotRenterException;
 import com.econo.econobeepserver.exception.UnrentableException;
 import com.econo.econobeepserver.service.Book.BookRentalService;
@@ -19,12 +19,12 @@ public class BookRentalController {
     private final BookRentalService bookRentalService;
 
     @PutMapping("/book/{id}/rent")
-    public ResponseEntity<String> rentBookByBookId(@PathVariable(value = "id") Long bookId) {
+    public ResponseEntity<String> rentBookById(@PathVariable(value = "id") Long id) {
         try {
-            bookRentalService.rentBookByBookId(bookId);
+            bookRentalService.rentBookById(id);
             return ResponseEntity.ok().build();
 
-        } catch (NotFoundBookException e) {
+        } catch (NotFoundRenteeException e) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(e.getMessage());
@@ -37,12 +37,12 @@ public class BookRentalController {
     }
 
     @PutMapping("/book/{id}/return")
-    public ResponseEntity<String> returnBookByBookId(@PathVariable(value = "id") Long bookId) {
+    public ResponseEntity<String> returnBookById(@PathVariable(value = "id") Long id) {
         try {
-            bookRentalService.returnBookByBookId(bookId);
+            bookRentalService.returnBookById(id);
             return ResponseEntity.ok().build();
 
-        } catch (NotFoundBookException e) {
+        } catch (NotFoundRenteeException e) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(e.getMessage());

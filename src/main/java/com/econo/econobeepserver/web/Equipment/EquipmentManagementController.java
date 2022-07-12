@@ -15,31 +15,37 @@ public class EquipmentManagementController {
 
     private final EquipmentService equipmentService;
 
+
     @PostMapping("/management/equipment")
     public ResponseEntity<Void> createEquipment(@RequestBody EquipmentSaveDto equipmentSaveDto) {
-        return ResponseEntity.ok(null);
+        equipmentService.createEquipment(equipmentSaveDto);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/management/equipment/list/all")
-    public ResponseEntity<List<EquipmentManagementInfoDto>> getEquipmentManagementInfoDtosByEquipmentIdAscWithPaging(@RequestParam(value = "lastEquipmentId", required = false, defaultValue = "0") Long lastEquipmentId,
-                                                                                                    @RequestParam(value = "pageSize") int pageSize) {
-        return ResponseEntity.ok(null);
+    public ResponseEntity<List<EquipmentManagementInfoDto>> getEquipmentManagementInfoDtosByIdAscWithPaging(@RequestParam(value = "pageSize") int pageSize,
+                                                                                                            @RequestParam(value = "lastEquipmentId", required = false, defaultValue = "0") Long lastId) {
+        List<EquipmentManagementInfoDto> equipmentManagementInfoDtos = equipmentService.getEquipmentManagementInfoDtosByIdAscWithPaging(pageSize, lastId);
+        return ResponseEntity.ok(equipmentManagementInfoDtos);
     }
 
     @GetMapping("/management/equipment/search")
     public ResponseEntity<List<EquipmentManagementInfoDto>> searchEquipmentManagementInfoDtosByKeyword(@RequestParam(value = "keyword") String keyword) {
-        return ResponseEntity.ok(null);
+        List<EquipmentManagementInfoDto> equipmentManagementInfoDtos = equipmentService.searchEquipmentManagementInfoDtosByKeyword(keyword);
+        return ResponseEntity.ok(equipmentManagementInfoDtos);
     }
 
     @PutMapping("/management/equipment/{id}")
-    public ResponseEntity<Void> updateEquipmentByEquipmentId(@PathVariable(value = "id") Long equipmentId,
-                                                   @RequestBody EquipmentSaveDto equipmentSaveDto) {
-        return ResponseEntity.ok(null);
+    public ResponseEntity<Void> updateEquipmentById(@PathVariable(value = "id") Long id,
+                                                    @RequestBody EquipmentSaveDto equipmentSaveDto) {
+        equipmentService.updateEquipmentById(id, equipmentSaveDto);
+        return ResponseEntity.ok().build();
     }
 
 
     @DeleteMapping("/management/equipment/{id}")
-    public ResponseEntity<Void> deleteEquipmentByEquipmentId(@PathVariable(value = "id") Long equipmentId) {
-        return ResponseEntity.ok(null);
+    public ResponseEntity<Void> deleteEquipmentById(@PathVariable(value = "id") Long id) {
+        equipmentService.deleteEquipmentById(id);
+        return ResponseEntity.ok().build();
     }
 }

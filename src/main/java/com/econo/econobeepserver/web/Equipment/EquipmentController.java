@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,30 +21,33 @@ public class EquipmentController {
     private final EquipmentService equipmentService;
 
     @GetMapping("/equipment/{id}")
-    public ResponseEntity<EquipmentInfoDto> getEquipmentInfoDtoByEquipmentId(@PathVariable(value = "id") Long equipmentId) {
-        return ResponseEntity.ok(null);
+    public ResponseEntity<EquipmentInfoDto> getEquipmentInfoDtoById(@PathVariable(value = "id") Long id) {
+        Optional<EquipmentInfoDto> equipmentInfoDto = equipmentService.getEquipmentInfoDtoById(id);
+
+        if (equipmentInfoDto.isEmpty()) {
+            return ResponseEntity.noContent().build();
+
+        } else {
+            return ResponseEntity.ok(equipmentInfoDto.get());
+        }
     }
 
     @GetMapping("/equipment/list/all")
-    public ResponseEntity<List<EquipmentElementDto>> getEquipmentElementDtosByCreatedDateDescWithPaging(@RequestParam(value = "lastEquipmentId", required = false, defaultValue = "0") Long lastEquipmentId,
-                                                                                                      @RequestParam(value = "pageSize") int pageSize) {
-        return ResponseEntity.ok(null);
-    }
-
-    @GetMapping("/equipment/list/{type}")
-    public ResponseEntity<List<EquipmentElementDto>> getEquipmentElementDtosByTypeWithPaging(@PathVariable(value = "type") EquipmentType equipmentType,
-                                                                                           @RequestParam(value = "lastEquipmentId", required = false, defaultValue = "0") Long lastEquipmentId,
-                                                                                           @RequestParam(value = "pageSize") int pageSize) {
-        return ResponseEntity.ok(null);
+    public ResponseEntity<List<EquipmentElementDto>> getEquipmentElementDtosByCreatedDateDescWithPaging(@RequestParam(value = "pageSize") int pageSize,
+                                                                                                        @RequestParam(value = "lastEquipmentId", required = false, defaultValue = "0") Long lastId) {
+        List<EquipmentElementDto> equipmentElementDtos = equipmentService.getEquipmentElementDtosByCreatedDateDescWithPaging(pageSize, lastId);
+        return ResponseEntity.ok(equipmentElementDtos);
     }
 
     @GetMapping("/equipment/search")
     public ResponseEntity<List<EquipmentElementDto>> searchEquipmentElementDtosByKeyword(@RequestParam(value = "keyword") String keyword) {
-        return ResponseEntity.ok(null);
+        List<EquipmentElementDto> equipmentElementDtos = equipmentService.searchEquipmentElementDtosByKeyword(keyword);
+        return ResponseEntity.ok(equipmentElementDtos);
     }
 
     @GetMapping("/equipment/search/recommendation")
-    public ResponseEntity<List<String>> getEquipmentRecommendationsByKeyword(@RequestParam(value = "keyword") String keyword) {
-        return ResponseEntity.ok(null);
+    public ResponseEntity<List<String>> getEquipmentSearchSuggestionsByKeyword(@RequestParam(value = "keyword") String keyword) {
+        List<String> suggestions = equipmentService.getEquipmentSearchSuggestionsByKeyword(keyword);
+        return ResponseEntity.ok(suggestions);
     }
 }
