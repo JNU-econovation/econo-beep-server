@@ -22,17 +22,13 @@ public class BookController {
 
     @GetMapping("/book/{id}")
     public ResponseEntity<BookInfoDto> getBookInfoDtoById(@PathVariable(value = "id") Long id) {
-        Optional<BookInfoDto> bookInfoDto = bookService.getBookInfoDtoById(id);
-        if (bookInfoDto.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.ok(bookInfoDto.get());
+        BookInfoDto bookInfoDto = bookService.getBookInfoDtoById(id);
+        return ResponseEntity.ok(bookInfoDto);
     }
 
     @GetMapping("/book/list/all")
     public ResponseEntity<List<BookElementDto>> getBookElementDtosWithPaging(@RequestParam(value = "pageSize") int pageSize,
-                                                                             @RequestParam(value = "lastBookId", required = false, defaultValue = "0") Long lastId) {
+                                                                             @RequestParam(value = "lastBookId", required = false) Long lastId) {
         List<BookElementDto> bookElementDtos = bookService.getBookElementDtosWithPaging(pageSize, lastId);
         return ResponseEntity.ok(bookElementDtos);
     }
@@ -40,7 +36,7 @@ public class BookController {
     @GetMapping("/book/list/{type}")
     public ResponseEntity<List<BookElementDto>> getBookElementDtosByBookTypeWithPaging(@PathVariable(value = "type") RenteeType bookType,
                                                                                        @RequestParam(value = "pageSize") int pageSize,
-                                                                                       @RequestParam(value = "lastBookId", required = false, defaultValue = "0") Long lastId) {
+                                                                                       @RequestParam(value = "lastBookId", required = false) Long lastId) {
         List<BookElementDto> bookElementDtos = bookService.getBookElementDtosByBookTypeWithPaging(bookType, pageSize, lastId);
         return ResponseEntity.ok(bookElementDtos);
     }

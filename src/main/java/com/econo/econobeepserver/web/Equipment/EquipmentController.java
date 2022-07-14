@@ -33,7 +33,7 @@ public class EquipmentController {
 
     @GetMapping("/equipment/list/all")
     public ResponseEntity<List<EquipmentElementDto>> getEquipmentElementDtosByCreatedDateDescWithPaging(@RequestParam(value = "pageSize") int pageSize,
-                                                                                                        @RequestParam(value = "lastEquipmentId", required = false, defaultValue = "0") Long lastId) {
+                                                                                                        @RequestParam(value = "lastEquipmentId", required = false) Long lastId) {
         List<EquipmentElementDto> equipmentElementDtos = equipmentService.getEquipmentElementDtosByCreatedDateDescWithPaging(pageSize, lastId);
         return ResponseEntity.ok(equipmentElementDtos);
     }

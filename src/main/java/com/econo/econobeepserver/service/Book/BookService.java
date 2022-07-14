@@ -1,12 +1,14 @@
 package com.econo.econobeepserver.service.Book;
 
 import com.econo.econobeepserver.domain.Book.Book;
+import com.econo.econobeepserver.domain.Book.BookQueryRepository;
 import com.econo.econobeepserver.domain.Book.BookRepository;
 import com.econo.econobeepserver.domain.RenteeType;
 import com.econo.econobeepserver.dto.Book.BookElementDto;
 import com.econo.econobeepserver.dto.Book.BookInfoDto;
 import com.econo.econobeepserver.dto.Book.BookManagementInfoDto;
 import com.econo.econobeepserver.dto.Book.BookSaveDto;
+import com.econo.econobeepserver.exception.NotFoundRenteeException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,25 +21,26 @@ import java.util.Optional;
 public class BookService {
 
     private final BookRepository bookRepository;
+    private final BookQueryRepository bookQueryRepository;
 
 
+    @Transactional
     public void createBook(BookSaveDto bookSaveDto) {
-        bookRepository.save(bookSaveDto.toEntity());
     }
 
 
-    public Optional<Book> getBookById(Long id) {
+    private Optional<Book> getBookById(Long id) {
         return null;
     }
 
-    public Optional<BookInfoDto> getBookInfoDtoById(Long id) {
+    public BookInfoDto getBookInfoDtoById(Long id) {
         return null;
     }
     
     public List<BookElementDto> getBookElementDtosWithPaging(int pageSize, Long lastId) {
         return null;
     }
-    
+
     public List<BookElementDto> getBookElementDtosByBookTypeWithPaging(RenteeType bookType, int pageSize, Long lastId) {
         return null;
     }
@@ -50,7 +53,7 @@ public class BookService {
         return null;
     }
 
-    public List<BookManagementInfoDto> getBookManagementInfoDtosByIdAscWithPaging(int pageSize, Long lastId) {
+    public List<BookManagementInfoDto> getBookManagementInfoDtosByIdDescWithPaging(int pageSize, Long lastId) {
         return null;
     }
 

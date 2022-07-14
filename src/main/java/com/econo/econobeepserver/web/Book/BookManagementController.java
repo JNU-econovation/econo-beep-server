@@ -22,9 +22,9 @@ public class BookManagementController {
     }
 
     @GetMapping("/management/book/list/all")
-    public ResponseEntity<List<BookManagementInfoDto>> getBookManagementInfoDtosByIdAscWithPaging(@RequestParam(value = "pageSize") int pageSize,
-                                                                                                      @RequestParam(value = "lastBookId", required = false, defaultValue = "0") Long lastId) {
-        List<BookManagementInfoDto> bookManagementInfoDtos = bookService.getBookManagementInfoDtosByIdAscWithPaging(pageSize, lastId);
+    public ResponseEntity<List<BookManagementInfoDto>> getBookManagementInfoDtosByIdDescWithPaging(@RequestParam(value = "pageSize") int pageSize,
+                                                                                                      @RequestParam(value = "lastBookId", required = false) Long lastId) {
+        List<BookManagementInfoDto> bookManagementInfoDtos = bookService.getBookManagementInfoDtosByIdDescWithPaging(pageSize, lastId);
         return ResponseEntity.ok(bookManagementInfoDtos);
     }
 

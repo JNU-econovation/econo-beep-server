@@ -23,7 +23,8 @@ public class Equipment {
     private long id;
 
     @NotNull
-    @OneToOne(mappedBy = "equipment")
+    @OneToOne
+    @JoinColumn(name = "equipment_image_id")
     private EquipmentImage equipmentImage;
 
     @NotNull

@@ -20,6 +20,7 @@ public class EquipmentService {
     private final EquipmentRepository equipmentRepository;
 
 
+    @Transactional
     public void createEquipment(EquipmentSaveDto equipmentSaveDto) {
     }
 
@@ -44,7 +45,7 @@ public class EquipmentService {
         return null;
     }
 
-    public List<EquipmentManagementInfoDto> getEquipmentManagementInfoDtosByIdAscWithPaging(int pageSize, Long lastId) {
+    public List<EquipmentManagementInfoDto> getEquipmentManagementInfoDtosByIdDescWithPaging(int pageSize, Long lastId) {
         return null;
     }
 

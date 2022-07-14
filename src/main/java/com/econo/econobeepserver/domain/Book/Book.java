@@ -24,7 +24,8 @@ public class Book {
     private Long id;
 
     @NotNull
-    @OneToOne(mappedBy = "book")
+    @OneToOne
+    @JoinColumn(name = "book_cover_image_id")
     private BookCoverImage bookCoverImage;
 
     @NotNull

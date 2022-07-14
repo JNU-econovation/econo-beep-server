@@ -27,11 +27,20 @@ dependencies {
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	implementation 'junit:junit:4.12'
+	implementation 'junit:junit:4.13.2'
 
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	implementation 'org.apache.tomcat:tomcat-jdbc'
+
+
+	implementation 'com.querydsl:querydsl-core'
+	implementation 'com.querydsl:querydsl-jpa'
+	implementation 'com.querydsl:querydsl-apt'
+	testImplementation 'com.querydsl:querydsl-core'
+	testImplementation 'com.querydsl:querydsl-jpa'
+	testImplementation 'com.querydsl:querydsl-apt'
+
 
 	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.5.0'
 	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.5.0'
@@ -39,4 +48,17 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+def generated = 'src/main/generated'
+sourceSets {
+	main.java.srcDirs += [generated]
+}
+
+tasks.withType(JavaCompile) {
+	options.annotationProcessorGeneratedSourcesDirectory = file(generated)
+}
+
+clean.doLast {
+	file(generated).deleteDir()
 }

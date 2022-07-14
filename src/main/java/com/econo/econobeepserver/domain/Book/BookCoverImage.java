@@ -16,9 +16,7 @@ public class BookCoverImage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @OneToOne
-    @JoinColumn(name = "book_id")
+    @OneToOne(mappedBy = "book_cover_image")
     private Book book;
 
     @NotNull

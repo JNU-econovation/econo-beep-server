@@ -16,9 +16,7 @@ public class EquipmentImage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotNull
-    @OneToOne
-    @JoinColumn(name = "equipment_id")
+    @OneToOne(mappedBy = "equipment_image")
     private Equipment equipment;
 
     @NotNull
