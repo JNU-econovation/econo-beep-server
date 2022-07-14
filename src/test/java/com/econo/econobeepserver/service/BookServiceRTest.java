@@ -8,6 +8,8 @@ import com.econo.econobeepserver.domain.RenteeType;
 import com.econo.econobeepserver.dto.Book.BookElementDto;
 import com.econo.econobeepserver.dto.Book.BookInfoDto;
 import com.econo.econobeepserver.dto.Book.BookManagementInfoDto;
+import com.econo.econobeepserver.exception.ExceptionMessage;
+import com.econo.econobeepserver.exception.NotFoundRenteeException;
 import com.econo.econobeepserver.service.Book.BookService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -88,10 +90,9 @@ class BookServiceRTest {
         doReturn(failedResponse).when(bookRepository)
                 .findById(any(Long.class));
 
-        // when
-        BookInfoDto result = bookService.getBookInfoDtoById(-1L);
-
-        // then
+        // when & then
+        Exception exception = assertThrows(NotFoundRenteeException.class, () -> {bookService.getBookInfoDtoById(-1L);});
+        assertEquals(ExceptionMessage.NOT_FOUND_RENTEE_EXCEPTION.getMessage(), exception.getMessage());
     }
 
 
