@@ -16,7 +16,8 @@ public class EquipmentImage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(mappedBy = "equipment_image")
+    @NotNull
+    @OneToOne(mappedBy = "equipmentImage")
     private Equipment equipment;
 
     @NotNull
@@ -24,7 +25,7 @@ public class EquipmentImage {
 
 
     @Builder
-    public EquipmentImage(Equipment equipment, Long fileSize) {
+    public EquipmentImage(Equipment equipment, String filePath) {
         this.equipment = equipment;
         this.filePath = filePath;
     }

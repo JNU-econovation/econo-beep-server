@@ -23,7 +23,6 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     @OneToOne
     @JoinColumn(name = "book_cover_image_id")
     private BookCoverImage bookCoverImage;

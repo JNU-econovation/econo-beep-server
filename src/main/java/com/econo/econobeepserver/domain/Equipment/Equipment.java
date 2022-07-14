@@ -22,7 +22,6 @@ public class Equipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotNull
     @OneToOne
     @JoinColumn(name = "equipment_image_id")
     private EquipmentImage equipmentImage;
