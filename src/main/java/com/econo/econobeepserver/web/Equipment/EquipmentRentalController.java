@@ -1,13 +1,7 @@
 package com.econo.econobeepserver.web.Equipment;
 
-import com.econo.econobeepserver.domain.EquipmentRental.EquipmentRentalRepository;
-import com.econo.econobeepserver.exception.AlreadyRentedException;
-import com.econo.econobeepserver.exception.NotFoundRenteeException;
-import com.econo.econobeepserver.exception.NotRenterException;
-import com.econo.econobeepserver.exception.UnrentableException;
 import com.econo.econobeepserver.service.Equipment.EquipmentRentalService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;

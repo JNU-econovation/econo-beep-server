@@ -11,4 +11,7 @@ public class BookSaveDto {
     public Book toEntity() {
         return null;
     }
+
+    public BookSaveDto(Book book) {
+    }
 }

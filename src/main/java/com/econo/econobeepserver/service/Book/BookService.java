@@ -69,5 +69,6 @@ public class BookService {
 
     @Transactional
     public void deleteBookById(Long id) {
+        bookRepository.deleteById(id);
     }
 }

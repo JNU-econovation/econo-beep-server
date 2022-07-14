@@ -19,11 +19,11 @@ public class EquipmentRentalService {
 
 
     @Transactional
-    public void rentEquipmentById(Long id)  throws NotFoundRenteeException, AlreadyRentedException, UnrentableException {
+    public void rentEquipmentById(Long id) {
     }
 
     @Transactional
-    public void returnEquipmentById(Long id) throws NotFoundRenteeException, NotRenterException {
+    public void returnEquipmentById(Long id) {
 
     }
 }

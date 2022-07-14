@@ -27,7 +27,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 
 @ExtendWith(MockitoExtension.class)
@@ -41,6 +40,7 @@ class BookServiceRTest {
 
     @Mock
     private BookQueryRepository bookQueryRepository;
+
 
 
     private Optional<Book> successfulResponseOfFindById() {
@@ -71,7 +71,7 @@ class BookServiceRTest {
         // given
         Optional<Book> successfulResponse = successfulResponseOfFindById();
         doReturn(successfulResponse).when(bookRepository)
-                .findById(any(Long.class));
+                .findById(1L);
 
         BookInfoDto wantedResult = new BookInfoDto(successfulResponse.get());
 
@@ -82,13 +82,13 @@ class BookServiceRTest {
         assertTrue(new ReflectionEquals(wantedResult).matches(result));
     }
 
-    @DisplayName("getBookInfoDtoById 오류 반응 테스트 (wrong id params)")
+    @DisplayName("getBookInfoDtoById 오류 반응 테스트 (not exist id params)")
     @Test
-    void test_getBookInfoDtoById_wrongIdParams() {
+    void test_getBookInfoDtoById_notExistIdParams() {
         // given
         Optional<Book> failedResponse = failedResponseOfFindById();
         doReturn(failedResponse).when(bookRepository)
-                .findById(any(Long.class));
+                .findById(-1L);
 
         // when & then
         Exception exception = assertThrows(NotFoundRenteeException.class, () -> {bookService.getBookInfoDtoById(-1L);});
