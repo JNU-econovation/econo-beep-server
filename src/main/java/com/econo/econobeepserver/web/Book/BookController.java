@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,6 +22,7 @@ public class BookController {
     @GetMapping("/book/{id}")
     public ResponseEntity<BookInfoDto> getBookInfoDtoById(@PathVariable(value = "id") Long id) {
         BookInfoDto bookInfoDto = bookService.getBookInfoDtoById(id);
+
         return ResponseEntity.ok(bookInfoDto);
     }
 
@@ -30,6 +30,7 @@ public class BookController {
     public ResponseEntity<List<BookElementDto>> getBookElementDtosWithPaging(@RequestParam(value = "pageSize") int pageSize,
                                                                              @RequestParam(value = "lastBookId", required = false) Long lastId) {
         List<BookElementDto> bookElementDtos = bookService.getBookElementDtosWithPaging(pageSize, lastId);
+
         return ResponseEntity.ok(bookElementDtos);
     }
 
@@ -38,18 +39,21 @@ public class BookController {
                                                                                        @RequestParam(value = "pageSize") int pageSize,
                                                                                        @RequestParam(value = "lastBookId", required = false) Long lastId) {
         List<BookElementDto> bookElementDtos = bookService.getBookElementDtosByBookTypeWithPaging(bookType, pageSize, lastId);
+
         return ResponseEntity.ok(bookElementDtos);
     }
 
     @GetMapping("/book/search")
     public ResponseEntity<List<BookElementDto>> searchBookElementDtosByKeyword(@RequestParam(value = "keyword") String keyword) {
         List<BookElementDto> bookElementDtos = bookService.searchBookElementDtosByKeyword(keyword);
+
         return ResponseEntity.ok(bookElementDtos);
     }
 
     @GetMapping("/book/search/suggestion")
     public ResponseEntity<List<String>> getBookSearchSuggestionsByKeyword(@RequestParam(value = "keyword") String keyword) {
         List<String> suggestions = bookService.getBookSearchSuggestionsByKeyword(keyword);
+
         return ResponseEntity.ok(suggestions);
     }
 }

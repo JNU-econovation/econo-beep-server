@@ -19,10 +19,10 @@ public class BookRentalService {
 
 
     @Transactional
-    public void rentBookById(Long id) throws NotFoundRenteeException, AlreadyRentedException, UnrentableException {
+    public void rentBookById(Long id) {
     }
 
     @Transactional
-    public void returnBookById(Long id) throws NotFoundRenteeException, NotRenterException {
+    public void returnBookById(Long id) {
     }
 }

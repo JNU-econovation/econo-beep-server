@@ -22,37 +22,15 @@ public class EquipmentRentalController {
 
     @PutMapping("/equipment/{id}/rent")
     public ResponseEntity<String> rentEquipmentById(@PathVariable(value = "id") Long id) {
-        try {
-            equipmentRentalService.rentEquipmentById(id);
-            return ResponseEntity.ok().build();
+        equipmentRentalService.rentEquipmentById(id);
 
-        } catch (NotFoundRenteeException e) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(e.getMessage());
-
-        } catch (AlreadyRentedException | UnrentableException e) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(e.getMessage());
-        }
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/equipment/{id}/return")
     public ResponseEntity<String> returnEquipmentById(@PathVariable(value = "id") Long id) {
-        try {
-            equipmentRentalService.returnEquipmentById(id);
-            return ResponseEntity.ok().build();
+        equipmentRentalService.returnEquipmentById(id);
 
-        } catch (NotFoundRenteeException e) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(e.getMessage());
-
-        } catch (NotRenterException e) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(e.getMessage());
-        }
+        return ResponseEntity.ok().build();
     }
 }
