@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -26,44 +27,65 @@ public class BookService {
 
     @Transactional
     public void createBook(BookSaveDto bookSaveDto) {
+        bookRepository.save(bookSaveDto.toEntity());
     }
 
 
-    private Optional<Book> getBookById(Long id) {
-        return null;
+    private Book getBookById(Long id) {
+        Optional<Book> book = bookRepository.findById(id);
+        if (book.isEmpty()) {
+            throw new NotFoundRenteeException();
+        }
+
+        return book.get();
     }
 
     public BookInfoDto getBookInfoDtoById(Long id) {
-        return null;
+        Book book = getBookById(id);
+
+        return new BookInfoDto(book);
     }
     
     public List<BookElementDto> getBookElementDtosWithPaging(int pageSize, Long lastId) {
-        return null;
+        List<Book> books = bookQueryRepository.getBookWithPaging(pageSize, lastId);
+
+        return books.stream().map(BookElementDto::new).collect(Collectors.toList());
     }
 
     public List<BookElementDto> getBookElementDtosByBookTypeWithPaging(RenteeType bookType, int pageSize, Long lastId) {
-        return null;
+        List<Book> books = bookQueryRepository.getBookByTypeWithPaging(bookType, pageSize, lastId);
+
+        return books.stream().map(BookElementDto::new).collect(Collectors.toList());
     }
 
     public List<BookElementDto> searchBookElementDtosByKeyword(String keyword) {
-        return null;
+        List<Book> books = bookQueryRepository.searchBookByKeyword(keyword);
+
+        return books.stream().map(BookElementDto::new).collect(Collectors.toList());
     }
 
     public List<String> getBookSearchSuggestionsByKeyword(String keyword) {
-        return null;
+        return bookQueryRepository.getSearchSuggestionsByKeyword(keyword);
     }
 
     public List<BookManagementInfoDto> getBookManagementInfoDtosByIdDescWithPaging(int pageSize, Long lastId) {
-        return null;
+        List<Book> books = bookQueryRepository.getBookByIdDescWithPaging(pageSize, lastId);
+
+        return books.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
     }
 
     public List<BookManagementInfoDto> searchBookManagementInfoDtosByKeyword(String keyword) {
-        return null;
+        List<Book> books = bookQueryRepository.searchBookByKeyword(keyword);
+
+        return books.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
     }
 
 
     @Transactional
     public void updateBookById(Long id, BookSaveDto bookSaveDto) {
+        Book book = getBookById(id);
+
+        book.updateBook(bookSaveDto);
     }
 
 

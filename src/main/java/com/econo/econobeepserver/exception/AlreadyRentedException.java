@@ -1,6 +1,6 @@
 package com.econo.econobeepserver.exception;
 
-public class AlreadyRentedException extends Exception{
+public class AlreadyRentedException extends RuntimeException{
     public AlreadyRentedException() {
     }
 

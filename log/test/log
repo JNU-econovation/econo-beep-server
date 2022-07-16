@@ -1514,3 +1514,8 @@ alter table equipment_rental drop foreign key FK2sb5938qpc3yat950jegeynpi [42102
 2022-07-14 22:38:45.323  INFO 84165 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
 2022-07-14 22:38:45.413  INFO 84165 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
 2022-07-14 22:38:45.424  INFO 84165 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 3.746 seconds (JVM running for 4.479)
+2022-07-14 22:39:15.612  INFO 84165 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-07-14 22:39:15.612  INFO 84165 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-07-14 22:39:16.035  INFO 84165 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-07-14 22:39:16.036  INFO 84165 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-07-14 22:39:16.044  INFO 84165 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

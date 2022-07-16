@@ -3,6 +3,7 @@ package com.econo.econobeepserver.domain.Book;
 import com.econo.econobeepserver.domain.BookRental.BookRental;
 import com.econo.econobeepserver.domain.RentState;
 import com.econo.econobeepserver.domain.RenteeType;
+import com.econo.econobeepserver.dto.Book.BookSaveDto;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.Builder;
@@ -65,5 +66,16 @@ public class Book {
         this.publisherName = publisherName;
         this.publishedDate = publishedDate;
         this.note = note;
+    }
+
+
+    public void updateBook(BookSaveDto bookSaveDto) {
+        this.title = bookSaveDto.getTitle();
+        this.type = bookSaveDto.getType();
+        this.authorName = bookSaveDto.getAuthorName();
+        this.publisherName = bookSaveDto.getPublisherName();
+        this.publishedDate = bookSaveDto.getPublishedDate();
+        this.note = bookSaveDto.getNote();
+        // TODO : code to update uploaded picture
     }
 }

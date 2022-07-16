@@ -2,10 +2,6 @@ package com.econo.econobeepserver.service.Book;
 
 import com.econo.econobeepserver.domain.Book.BookRepository;
 import com.econo.econobeepserver.domain.BookRental.BookRentalRepository;
-import com.econo.econobeepserver.exception.AlreadyRentedException;
-import com.econo.econobeepserver.exception.NotFoundRenteeException;
-import com.econo.econobeepserver.exception.NotRenterException;
-import com.econo.econobeepserver.exception.UnrentableException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

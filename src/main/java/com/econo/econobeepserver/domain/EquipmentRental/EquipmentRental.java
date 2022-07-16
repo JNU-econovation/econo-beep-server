@@ -27,14 +27,14 @@ public class EquipmentRental {
     private Long userId;
 
     @NotNull
-    private LocalDateTime rental_datetime;
+    private LocalDateTime rentalDateTime;
 
-    private LocalDateTime return_datetime;
+    private LocalDateTime returnDateTime;
 
     @Builder
     public EquipmentRental(Equipment equipment, Long userId) {
         this.equipment = equipment;
         this.userId = userId;
-        this.rental_datetime = LocalDateTime.now();
+        this.rentalDateTime = LocalDateTime.now();
     }
 }

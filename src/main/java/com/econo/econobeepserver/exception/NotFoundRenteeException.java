@@ -1,6 +1,6 @@
 package com.econo.econobeepserver.exception;
 
-public class NotFoundRenteeException extends Exception {
+public class NotFoundRenteeException extends RuntimeException {
     public NotFoundRenteeException() {
     }
 

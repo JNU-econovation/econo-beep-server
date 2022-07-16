@@ -1,6 +1,6 @@
 package com.econo.econobeepserver.exception;
 
-public class UnrentableException extends Exception {
+public class UnrentableException extends RuntimeException {
     public UnrentableException() {
     }
 

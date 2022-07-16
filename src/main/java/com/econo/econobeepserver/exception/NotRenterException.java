@@ -1,6 +1,6 @@
 package com.econo.econobeepserver.exception;
 
-public class NotRenterException extends Exception {
+public class NotRenterException extends RuntimeException {
     public NotRenterException() {
     }
 

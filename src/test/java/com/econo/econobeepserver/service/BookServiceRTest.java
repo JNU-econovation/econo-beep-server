@@ -42,7 +42,6 @@ class BookServiceRTest {
     private BookQueryRepository bookQueryRepository;
 
 
-
     private Optional<Book> successfulResponseOfFindById() {
         return Optional.of(
                 Book.builder()
@@ -75,11 +74,11 @@ class BookServiceRTest {
 
         BookInfoDto wantedResult = new BookInfoDto(successfulResponse.get());
 
-        // when
-        BookInfoDto result = bookService.getBookInfoDtoById(1L);
-
-        // then
-        assertTrue(new ReflectionEquals(wantedResult).matches(result));
+        // when & then
+        assertDoesNotThrow(() -> {
+            BookInfoDto result = bookService.getBookInfoDtoById(1L);
+            assertTrue(new ReflectionEquals(wantedResult).matches(result));
+        });
     }
 
     @DisplayName("getBookInfoDtoById 오류 반응 테스트 (not exist id params)")
@@ -91,10 +90,11 @@ class BookServiceRTest {
                 .findById(-1L);
 
         // when & then
-        Exception exception = assertThrows(NotFoundRenteeException.class, () -> {bookService.getBookInfoDtoById(-1L);});
+        Exception exception = assertThrows(NotFoundRenteeException.class, () -> {
+            bookService.getBookInfoDtoById(-1L);
+        });
         assertEquals(ExceptionMessage.NOT_FOUND_RENTEE_EXCEPTION.getMessage(), exception.getMessage());
     }
-
 
 
     private List<Book> successfulResponseOfGetBookWithPaging() {
@@ -203,7 +203,6 @@ class BookServiceRTest {
     }
 
 
-
     private List<Book> successfulResponseOfSearchBookByKeyword() {
         return Arrays.asList(
                 Book.builder()
@@ -275,7 +274,6 @@ class BookServiceRTest {
     }
 
 
-
     private List<String> successfulResponseOfGetSearchSuggestionsByKeyword() {
         return Arrays.asList("testBook1", "testBook2");
     }
@@ -313,7 +311,6 @@ class BookServiceRTest {
         // then
         assertIterableEquals(failedResponse, result);
     }
-
 
 
     private List<Book> successfulResponseOfGetBookByIdDescWithPaging() {

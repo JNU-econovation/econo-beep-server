@@ -27,14 +27,14 @@ public class BookRental {
     private Long userId;
 
     @NotNull
-    private LocalDateTime rental_datetime;
+    private LocalDateTime rentalDateTime;
 
-    private LocalDateTime return_datetime;
+    private LocalDateTime returnDateTime;
 
     @Builder
     public BookRental(Book book, Long userId) {
         this.book = book;
         this.userId = userId;
-        this.rental_datetime = LocalDateTime.now();
+        this.rentalDateTime = LocalDateTime.now();
     }
 }

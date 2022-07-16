@@ -26,9 +26,9 @@ public class QEquipmentRental extends EntityPathBase<EquipmentRental> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final DateTimePath<java.time.LocalDateTime> rental_datetime = createDateTime("rental_datetime", java.time.LocalDateTime.class);
+    public final DateTimePath<java.time.LocalDateTime> rentalDateTime = createDateTime("rentalDateTime", java.time.LocalDateTime.class);
 
-    public final DateTimePath<java.time.LocalDateTime> return_datetime = createDateTime("return_datetime", java.time.LocalDateTime.class);
+    public final DateTimePath<java.time.LocalDateTime> returnDateTime = createDateTime("returnDateTime", java.time.LocalDateTime.class);
 
     public final NumberPath<Long> userId = createNumber("userId", Long.class);
 
