@@ -30,7 +30,7 @@ public class BookInfoDto {
     public BookInfoDto(Book book) {
         this.id = book.getId();
         // TODO: code to generate BookCoverImageUrl
-//        this.bookCoverImageUrl =
+        this.bookCoverImageUrl = "TODO";
         this.rentalHistories = book.getRentalHistories().stream().map(BookRentalElementDto::new).collect(Collectors.toList());
         this.title = book.getTitle();
         this.type = book.getType();

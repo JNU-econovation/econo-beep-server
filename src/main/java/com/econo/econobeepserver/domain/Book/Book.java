@@ -58,7 +58,8 @@ public class Book {
     private String note;
 
     @Builder
-    public Book(BookCoverImage bookCoverImage, String title, RenteeType type, String authorName, String publisherName, LocalDate publishedDate, String note) {
+    public Book(Long id, BookCoverImage bookCoverImage, String title, RenteeType type, String authorName, String publisherName, LocalDate publishedDate, String note) {
+        this.id = id;
         this.bookCoverImage = bookCoverImage;
         this.title = title;
         this.type = type;

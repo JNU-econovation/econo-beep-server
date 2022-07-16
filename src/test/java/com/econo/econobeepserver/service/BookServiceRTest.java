@@ -45,6 +45,7 @@ class BookServiceRTest {
     private Optional<Book> successfulResponseOfFindById() {
         return Optional.of(
                 Book.builder()
+                        .id(1L)
                         .bookCoverImage(
                                 BookCoverImage.builder()
                                         .filePath("images/testImage.jpg")
@@ -100,6 +101,7 @@ class BookServiceRTest {
     private List<Book> successfulResponseOfGetBookWithPaging() {
         return Arrays.asList(
                 Book.builder()
+                        .id(1L)
                         .bookCoverImage(
                                 BookCoverImage.builder()
                                         .filePath("images/testImage.jpg")
@@ -114,6 +116,7 @@ class BookServiceRTest {
                         .build(),
 
                 Book.builder()
+                        .id(2L)
                         .bookCoverImage(
                                 BookCoverImage.builder()
                                         .filePath("images/testImage.jpg")
@@ -141,13 +144,13 @@ class BookServiceRTest {
         doReturn(successfulResponse).when(bookQueryRepository)
                 .getBookWithPaging(2, null);
 
-        List<BookElementDto> wantedResult = successfulResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
+        List<BookElementDto> wantedResults = successfulResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
 
         // when
-        List<BookElementDto> result = bookService.getBookElementDtosWithPaging(2, null);
+        List<BookElementDto> results = bookService.getBookElementDtosWithPaging(2, null);
 
         // then
-        assertIterableEquals(wantedResult, result);
+        assertIterableEquals(wantedResults, results);
     }
 
     @DisplayName("getBookElementDtosWithPaging 엣지케이스 테스트 (exceeded lastId params")
@@ -158,13 +161,13 @@ class BookServiceRTest {
         doReturn(failedResponse).when(bookQueryRepository)
                 .getBookWithPaging(2, 10L);
 
-        List<BookElementDto> wantedResult = failedResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
+        List<BookElementDto> wantedResults = failedResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
 
         // when
-        List<BookElementDto> result = bookService.getBookElementDtosWithPaging(2, 10L);
+        List<BookElementDto> results = bookService.getBookElementDtosWithPaging(2, 10L);
 
         // then
-        assertIterableEquals(wantedResult, result);
+        assertIterableEquals(wantedResults, results);
     }
 
 
@@ -176,13 +179,13 @@ class BookServiceRTest {
         doReturn(successfulResponse).when(bookQueryRepository)
                 .getBookByTypeWithPaging(RenteeType.WEB, 2, null);
 
-        List<BookElementDto> wantedResult = successfulResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
+        List<BookElementDto> wantedResults = successfulResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
 
         // when
-        List<BookElementDto> result = bookService.getBookElementDtosByBookTypeWithPaging(RenteeType.WEB, 2, null);
+        List<BookElementDto> results = bookService.getBookElementDtosByBookTypeWithPaging(RenteeType.WEB, 2, null);
 
         // then
-        assertIterableEquals(wantedResult, result);
+        assertIterableEquals(wantedResults, results);
     }
 
     @DisplayName("getBookElementDtosByBookTypeWithPaging 엣지케이스 테스트 (exceeded lastId params")
@@ -193,19 +196,20 @@ class BookServiceRTest {
         doReturn(failedResponse).when(bookQueryRepository)
                 .getBookByTypeWithPaging(RenteeType.WEB, 2, 10L);
 
-        List<BookElementDto> wantedResult = failedResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
+        List<BookElementDto> wantedResults = failedResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
 
         // when
-        List<BookElementDto> result = bookService.getBookElementDtosByBookTypeWithPaging(RenteeType.WEB, 2, 10L);
+        List<BookElementDto> results = bookService.getBookElementDtosByBookTypeWithPaging(RenteeType.WEB, 2, 10L);
 
         // then
-        assertIterableEquals(wantedResult, result);
+        assertIterableEquals(wantedResults, results);
     }
 
 
     private List<Book> successfulResponseOfSearchBookByKeyword() {
         return Arrays.asList(
                 Book.builder()
+                        .id(1L)
                         .bookCoverImage(
                                 BookCoverImage.builder()
                                         .filePath("images/testImage.jpg")
@@ -220,6 +224,7 @@ class BookServiceRTest {
                         .build(),
 
                 Book.builder()
+                        .id(2L)
                         .bookCoverImage(
                                 BookCoverImage.builder()
                                         .filePath("images/testImage.jpg")
@@ -247,13 +252,13 @@ class BookServiceRTest {
         doReturn(successfulResponse).when(bookQueryRepository)
                 .searchBookByKeyword("test");
 
-        List<BookElementDto> wantedResult = successfulResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
+        List<BookElementDto> wantedResults = successfulResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
 
         // when
-        List<BookElementDto> result = bookService.searchBookElementDtosByKeyword("test");
+        List<BookElementDto> results = bookService.searchBookElementDtosByKeyword("test");
 
         // then
-        assertIterableEquals(wantedResult, result);
+        assertIterableEquals(wantedResults, results);
     }
 
     @DisplayName("searchBookElementDtosByKeyword 엣지케이스 테스트 (not exist keyword")
@@ -264,13 +269,13 @@ class BookServiceRTest {
         doReturn(failedResponse).when(bookQueryRepository)
                 .searchBookByKeyword("real");
 
-        List<BookElementDto> wantedResult = failedResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
+        List<BookElementDto> wantedResults = failedResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
 
         // when
-        List<BookElementDto> result = bookService.searchBookElementDtosByKeyword("real");
+        List<BookElementDto> results = bookService.searchBookElementDtosByKeyword("real");
 
         // then
-        assertIterableEquals(wantedResult, result);
+        assertIterableEquals(wantedResults, results);
     }
 
 
@@ -291,10 +296,10 @@ class BookServiceRTest {
                 .getSearchSuggestionsByKeyword("test");
 
         // when
-        List<String> result = bookService.getBookSearchSuggestionsByKeyword("test");
+        List<String> results = bookService.getBookSearchSuggestionsByKeyword("test");
 
         // then
-        assertIterableEquals(successfulResponse, result);
+        assertIterableEquals(successfulResponse, results);
     }
 
     @DisplayName("getBookSearchSuggestionsByKeyword 엣지케이 테스트 (not exist keyword)")
@@ -306,16 +311,17 @@ class BookServiceRTest {
                 .getSearchSuggestionsByKeyword("real");
 
         // when
-        List<String> result = bookService.getBookSearchSuggestionsByKeyword("real");
+        List<String> results = bookService.getBookSearchSuggestionsByKeyword("real");
 
         // then
-        assertIterableEquals(failedResponse, result);
+        assertIterableEquals(failedResponse, results);
     }
 
 
     private List<Book> successfulResponseOfGetBookByIdDescWithPaging() {
         return Arrays.asList(
                 Book.builder()
+                        .id(1L)
                         .bookCoverImage(
                                 BookCoverImage.builder()
                                         .filePath("images/testImage.jpg")
@@ -330,6 +336,7 @@ class BookServiceRTest {
                         .build(),
 
                 Book.builder()
+                        .id(2L)
                         .bookCoverImage(
                                 BookCoverImage.builder()
                                         .filePath("images/testImage.jpg")
@@ -357,13 +364,13 @@ class BookServiceRTest {
         doReturn(successfulResponse).when(bookQueryRepository)
                 .getBookByIdDescWithPaging(2, null);
 
-        List<BookManagementInfoDto> wantedResult = successfulResponse.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
+        List<BookManagementInfoDto> wantedResults = successfulResponse.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
 
         // when
-        List<BookManagementInfoDto> result = bookService.getBookManagementInfoDtosByIdDescWithPaging(2, null);
+        List<BookManagementInfoDto> results = bookService.getBookManagementInfoDtosByIdDescWithPaging(2, null);
 
         // then
-        assertIterableEquals(wantedResult, result);
+        assertIterableEquals(wantedResults, results);
     }
 
     @DisplayName("getBookManagementInfoDtosByIdDescWithPaging 엣지케이스 테스트 (exceeded lastId params)")
@@ -374,13 +381,13 @@ class BookServiceRTest {
         doReturn(failedResponse).when(bookQueryRepository)
                 .getBookByIdDescWithPaging(2, 10L);
 
-        List<BookManagementInfoDto> wantedResult = failedResponse.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
+        List<BookManagementInfoDto> wantedResults = failedResponse.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
 
         // when
-        List<BookManagementInfoDto> result = bookService.getBookManagementInfoDtosByIdDescWithPaging(2, 10L);
+        List<BookManagementInfoDto> results = bookService.getBookManagementInfoDtosByIdDescWithPaging(2, 10L);
 
         // then
-        assertIterableEquals(wantedResult, result);
+        assertIterableEquals(wantedResults, results);
     }
 
     @DisplayName("searchBookManagementInfoDtosByKeyword 작동 테스트")
@@ -391,13 +398,13 @@ class BookServiceRTest {
         doReturn(successfulResponse).when(bookQueryRepository)
                 .searchBookByKeyword("test");
 
-        List<BookManagementInfoDto> wantedResult = successfulResponse.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
+        List<BookManagementInfoDto> wantedResults = successfulResponse.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
 
         // when
-        List<BookManagementInfoDto> result = bookService.searchBookManagementInfoDtosByKeyword("test");
+        List<BookManagementInfoDto> results = bookService.searchBookManagementInfoDtosByKeyword("test");
 
         // then
-        assertIterableEquals(wantedResult, result);
+        assertIterableEquals(wantedResults, results);
     }
 
     @DisplayName("searchBookManagementInfoDtosByKeyword 엣지케이스 테스트 (not exist keyword)")
@@ -408,12 +415,12 @@ class BookServiceRTest {
         doReturn(failedResponse).when(bookQueryRepository)
                 .searchBookByKeyword("real");
 
-        List<BookManagementInfoDto> wantedResult = failedResponse.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
+        List<BookManagementInfoDto> wantedResults = failedResponse.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
 
         // when
-        List<BookManagementInfoDto> result = bookService.searchBookManagementInfoDtosByKeyword("real");
+        List<BookManagementInfoDto> results = bookService.searchBookManagementInfoDtosByKeyword("real");
 
         // then
-        assertIterableEquals(wantedResult, result);
+        assertIterableEquals(wantedResults, results);
     }
 }
