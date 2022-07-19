@@ -2,7 +2,6 @@ package com.econo.econobeepserver.service;
 
 import com.econo.econobeepserver.domain.Book.Book;
 import com.econo.econobeepserver.domain.Book.BookCoverImage;
-import com.econo.econobeepserver.domain.Book.BookQueryRepository;
 import com.econo.econobeepserver.domain.Book.BookRepository;
 import com.econo.econobeepserver.domain.RenteeType;
 import com.econo.econobeepserver.dto.Book.BookSaveDto;

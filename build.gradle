@@ -52,6 +52,10 @@ dependencies {
 	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.5.0'
 }
 
+test {
+	useJUnitPlatform()
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }

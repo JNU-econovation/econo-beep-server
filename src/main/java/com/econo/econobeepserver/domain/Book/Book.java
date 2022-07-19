@@ -24,7 +24,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "book_cover_image_id")
     private BookCoverImage bookCoverImage;
 

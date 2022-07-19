@@ -1,7 +1,6 @@
 package com.econo.econobeepserver.service.Book;
 
 import com.econo.econobeepserver.domain.Book.Book;
-import com.econo.econobeepserver.domain.Book.BookQueryRepository;
 import com.econo.econobeepserver.domain.Book.BookRepository;
 import com.econo.econobeepserver.domain.RenteeType;
 import com.econo.econobeepserver.dto.Book.BookElementDto;
@@ -22,7 +21,6 @@ import java.util.stream.Collectors;
 public class BookService {
 
     private final BookRepository bookRepository;
-    private final BookQueryRepository bookQueryRepository;
 
 
     @Transactional
@@ -47,35 +45,35 @@ public class BookService {
     }
     
     public List<BookElementDto> getBookElementDtosWithPaging(int pageSize, Long lastId) {
-        List<Book> books = bookQueryRepository.getBookWithPaging(pageSize, lastId);
+        List<Book> books = bookRepository.getBookWithPaging(pageSize, lastId);
 
         return books.stream().map(BookElementDto::new).collect(Collectors.toList());
     }
 
     public List<BookElementDto> getBookElementDtosByBookTypeWithPaging(RenteeType bookType, int pageSize, Long lastId) {
-        List<Book> books = bookQueryRepository.getBookByTypeWithPaging(bookType, pageSize, lastId);
+        List<Book> books = bookRepository.getBookByTypeWithPaging(bookType, pageSize, lastId);
 
         return books.stream().map(BookElementDto::new).collect(Collectors.toList());
     }
 
     public List<BookElementDto> searchBookElementDtosByKeyword(String keyword) {
-        List<Book> books = bookQueryRepository.searchBookByKeyword(keyword);
+        List<Book> books = bookRepository.searchBookByKeyword(keyword);
 
         return books.stream().map(BookElementDto::new).collect(Collectors.toList());
     }
 
     public List<String> getBookSearchSuggestionsByKeyword(String keyword) {
-        return bookQueryRepository.getSearchSuggestionsByKeyword(keyword);
+        return bookRepository.getSearchSuggestionsByKeyword(keyword);
     }
 
     public List<BookManagementInfoDto> getBookManagementInfoDtosByIdDescWithPaging(int pageSize, Long lastId) {
-        List<Book> books = bookQueryRepository.getBookByIdDescWithPaging(pageSize, lastId);
+        List<Book> books = bookRepository.getBookByIdDescWithPaging(pageSize, lastId);
 
         return books.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
     }
 
     public List<BookManagementInfoDto> searchBookManagementInfoDtosByKeyword(String keyword) {
-        List<Book> books = bookQueryRepository.searchBookByKeyword(keyword);
+        List<Book> books = bookRepository.searchBookByKeyword(keyword);
 
         return books.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
     }

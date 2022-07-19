@@ -2,20 +2,14 @@ package com.econo.econobeepserver.domain.Book;
 
 import com.econo.econobeepserver.domain.RenteeType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
-import org.springframework.stereotype.Repository;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-@Repository
-public class BookQueryRepository extends QuerydslRepositorySupport {
+@RequiredArgsConstructor
+public class BookCustomRepositoryImpl implements BookCustomRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
-
-    public BookQueryRepository(JPAQueryFactory jpaQueryFactory) {
-        super(Book.class);
-        this.jpaQueryFactory = jpaQueryFactory;
-    }
 
 
     public List<Book> getBookWithPaging(int pageSize, Long lastId) {

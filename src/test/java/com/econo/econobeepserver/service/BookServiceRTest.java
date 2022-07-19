@@ -2,7 +2,6 @@ package com.econo.econobeepserver.service;
 
 import com.econo.econobeepserver.domain.Book.Book;
 import com.econo.econobeepserver.domain.Book.BookCoverImage;
-import com.econo.econobeepserver.domain.Book.BookQueryRepository;
 import com.econo.econobeepserver.domain.Book.BookRepository;
 import com.econo.econobeepserver.domain.RenteeType;
 import com.econo.econobeepserver.dto.Book.BookElementDto;
@@ -37,9 +36,6 @@ class BookServiceRTest {
 
     @Mock
     private BookRepository bookRepository;
-
-    @Mock
-    private BookQueryRepository bookQueryRepository;
 
 
     private Optional<Book> successfulResponseOfFindById() {
@@ -141,7 +137,7 @@ class BookServiceRTest {
     void test_getBookElementDtosWithPaging() {
         // given
         List<Book> successfulResponse = successfulResponseOfGetBookWithPaging();
-        doReturn(successfulResponse).when(bookQueryRepository)
+        doReturn(successfulResponse).when(bookRepository)
                 .getBookWithPaging(2, null);
 
         List<BookElementDto> wantedResults = successfulResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
@@ -158,7 +154,7 @@ class BookServiceRTest {
     void test_getBookElementDtosWithPaging_exceededLastIdParams() {
         // given
         List<Book> failedResponse = failedResponseOfGetBookWithPaging();
-        doReturn(failedResponse).when(bookQueryRepository)
+        doReturn(failedResponse).when(bookRepository)
                 .getBookWithPaging(2, 10L);
 
         List<BookElementDto> wantedResults = failedResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
@@ -176,7 +172,7 @@ class BookServiceRTest {
     void test_getBookElementDtosByBookTypeWithPaging() {
         // given
         List<Book> successfulResponse = successfulResponseOfGetBookWithPaging();
-        doReturn(successfulResponse).when(bookQueryRepository)
+        doReturn(successfulResponse).when(bookRepository)
                 .getBookByTypeWithPaging(RenteeType.WEB, 2, null);
 
         List<BookElementDto> wantedResults = successfulResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
@@ -193,7 +189,7 @@ class BookServiceRTest {
     void test_getBookElementDtosByBookTypeWithPaging_exceededLastIdParams() {
         // given
         List<Book> failedResponse = failedResponseOfGetBookWithPaging();
-        doReturn(failedResponse).when(bookQueryRepository)
+        doReturn(failedResponse).when(bookRepository)
                 .getBookByTypeWithPaging(RenteeType.WEB, 2, 10L);
 
         List<BookElementDto> wantedResults = failedResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
@@ -249,7 +245,7 @@ class BookServiceRTest {
     void test_searchBookElementDtosByKeyword() {
         // given
         List<Book> successfulResponse = successfulResponseOfSearchBookByKeyword();
-        doReturn(successfulResponse).when(bookQueryRepository)
+        doReturn(successfulResponse).when(bookRepository)
                 .searchBookByKeyword("test");
 
         List<BookElementDto> wantedResults = successfulResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
@@ -266,7 +262,7 @@ class BookServiceRTest {
     void test_searchBookElementDtosByKeyword_notExistKeyword() {
         // given
         List<Book> failedResponse = failedResponseOfSearchBookByKeyword();
-        doReturn(failedResponse).when(bookQueryRepository)
+        doReturn(failedResponse).when(bookRepository)
                 .searchBookByKeyword("real");
 
         List<BookElementDto> wantedResults = failedResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
@@ -292,7 +288,7 @@ class BookServiceRTest {
     void test_getBookSearchSuggestionsByKeyword() {
         // given
         List<String> successfulResponse = successfulResponseOfGetSearchSuggestionsByKeyword();
-        doReturn(successfulResponse).when(bookQueryRepository)
+        doReturn(successfulResponse).when(bookRepository)
                 .getSearchSuggestionsByKeyword("test");
 
         // when
@@ -307,7 +303,7 @@ class BookServiceRTest {
     void test_getBookSearchSuggestionsByKeyword_notExistKeyword() {
         // given
         List<String> failedResponse = failedResponseOfGetSearchSuggestionsByKeyword();
-        doReturn(failedResponse).when(bookQueryRepository)
+        doReturn(failedResponse).when(bookRepository)
                 .getSearchSuggestionsByKeyword("real");
 
         // when
@@ -361,7 +357,7 @@ class BookServiceRTest {
     void test_getBookManagementInfoDtosByIdDescWithPaging() {
         // given
         List<Book> successfulResponse = successfulResponseOfGetBookByIdDescWithPaging();
-        doReturn(successfulResponse).when(bookQueryRepository)
+        doReturn(successfulResponse).when(bookRepository)
                 .getBookByIdDescWithPaging(2, null);
 
         List<BookManagementInfoDto> wantedResults = successfulResponse.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
@@ -378,7 +374,7 @@ class BookServiceRTest {
     void test_getBookManagementInfoDtosByIdDescWithPaging_exceededLastIdParams() {
         // given
         List<Book> failedResponse = failedResponseOfGetBookByIdDescWithPaging();
-        doReturn(failedResponse).when(bookQueryRepository)
+        doReturn(failedResponse).when(bookRepository)
                 .getBookByIdDescWithPaging(2, 10L);
 
         List<BookManagementInfoDto> wantedResults = failedResponse.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
@@ -395,7 +391,7 @@ class BookServiceRTest {
     void test_searchBookManagementInfoDtosByKeyword() {
         // given
         List<Book> successfulResponse = successfulResponseOfSearchBookByKeyword();
-        doReturn(successfulResponse).when(bookQueryRepository)
+        doReturn(successfulResponse).when(bookRepository)
                 .searchBookByKeyword("test");
 
         List<BookManagementInfoDto> wantedResults = successfulResponse.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
@@ -412,7 +408,7 @@ class BookServiceRTest {
     void test_searchBookManagementInfoDtosByKeyword_notExistKeyword() {
         // given
         List<Book> failedResponse = failedResponseOfSearchBookByKeyword();
-        doReturn(failedResponse).when(bookQueryRepository)
+        doReturn(failedResponse).when(bookRepository)
                 .searchBookByKeyword("real");
 
         List<BookManagementInfoDto> wantedResults = failedResponse.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
