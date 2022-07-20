@@ -275,45 +275,6 @@ class BookServiceRTest {
     }
 
 
-    private List<String> successfulResponseOfGetSearchSuggestionsByKeyword() {
-        return Arrays.asList("testBook1", "testBook2");
-    }
-
-    private List<String> failedResponseOfGetSearchSuggestionsByKeyword() {
-        return Collections.emptyList();
-    }
-
-    @DisplayName("getBookSearchSuggestionsByKeyword 작동 테스트")
-    @Test
-    void test_getBookSearchSuggestionsByKeyword() {
-        // given
-        List<String> successfulResponse = successfulResponseOfGetSearchSuggestionsByKeyword();
-        doReturn(successfulResponse).when(bookRepository)
-                .getSearchSuggestionsByKeyword("test");
-
-        // when
-        List<String> results = bookService.getBookSearchSuggestionsByKeyword("test");
-
-        // then
-        assertIterableEquals(successfulResponse, results);
-    }
-
-    @DisplayName("getBookSearchSuggestionsByKeyword 엣지케이 테스트 (not exist keyword)")
-    @Test
-    void test_getBookSearchSuggestionsByKeyword_notExistKeyword() {
-        // given
-        List<String> failedResponse = failedResponseOfGetSearchSuggestionsByKeyword();
-        doReturn(failedResponse).when(bookRepository)
-                .getSearchSuggestionsByKeyword("real");
-
-        // when
-        List<String> results = bookService.getBookSearchSuggestionsByKeyword("real");
-
-        // then
-        assertIterableEquals(failedResponse, results);
-    }
-
-
     private List<Book> successfulResponseOfGetBookByIdDescWithPaging() {
         return Arrays.asList(
                 Book.builder()

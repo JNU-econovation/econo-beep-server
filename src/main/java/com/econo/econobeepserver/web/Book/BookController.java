@@ -50,10 +50,4 @@ public class BookController {
         return ResponseEntity.ok(bookElementDtos);
     }
 
-    @GetMapping("/book/search/suggestion")
-    public ResponseEntity<List<String>> getBookSearchSuggestionsByKeyword(@RequestParam(value = "keyword") String keyword) {
-        List<String> suggestions = bookService.getBookSearchSuggestionsByKeyword(keyword);
-
-        return ResponseEntity.ok(suggestions);
-    }
 }

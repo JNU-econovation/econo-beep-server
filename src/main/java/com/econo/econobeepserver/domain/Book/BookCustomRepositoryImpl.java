@@ -54,8 +54,4 @@ public class BookCustomRepositoryImpl implements BookCustomRepository {
                 .where(book.title.contains(keyword))
                 .fetch();
     }
-
-    public List<String> getSearchSuggestionsByKeyword(String keyword) {
-        return null;
-    }
 }

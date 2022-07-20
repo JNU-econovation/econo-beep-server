@@ -12,5 +12,4 @@ public interface BookCustomRepository {
 
     List<Book> searchBookByKeyword(String keyword);
 
-    List<String> getSearchSuggestionsByKeyword(String keyword);
 }

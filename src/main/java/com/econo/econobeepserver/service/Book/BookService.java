@@ -62,10 +62,6 @@ public class BookService {
         return books.stream().map(BookElementDto::new).collect(Collectors.toList());
     }
 
-    public List<String> getBookSearchSuggestionsByKeyword(String keyword) {
-        return bookRepository.getSearchSuggestionsByKeyword(keyword);
-    }
-
     public List<BookManagementInfoDto> getBookManagementInfoDtosByIdDescWithPaging(int pageSize, Long lastId) {
         List<Book> books = bookRepository.getRecentBookWithPaging(pageSize, lastId);
 
