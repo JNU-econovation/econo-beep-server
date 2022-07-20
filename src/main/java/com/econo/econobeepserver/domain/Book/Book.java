@@ -15,6 +15,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.econo.econobeepserver.util.EpochTime.toLocalDate;
+
 @NoArgsConstructor
 @Getter
 @Entity
@@ -75,7 +77,7 @@ public class Book {
         this.type = bookSaveDto.getType();
         this.authorName = bookSaveDto.getAuthorName();
         this.publisherName = bookSaveDto.getPublisherName();
-        this.publishedDate = bookSaveDto.getPublishedDate();
+        this.publishedDate = toLocalDate(bookSaveDto.getPublishedDateEpochSecond());
         this.note = bookSaveDto.getNote();
         // TODO : code to update uploaded picture
     }

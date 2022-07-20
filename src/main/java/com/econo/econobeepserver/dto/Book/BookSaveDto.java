@@ -5,18 +5,32 @@ import com.econo.econobeepserver.domain.RenteeType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import javax.validation.constraints.NotNull;
+
+import static com.econo.econobeepserver.util.EpochTime.toEpochSecond;
+import static com.econo.econobeepserver.util.EpochTime.toLocalDate;
 
 @Getter
 @NoArgsConstructor
 public class BookSaveDto {
 
+    @NotNull
     private String title;
+
+    @NotNull
     private RenteeType type;
+
+    @NotNull
     private String authorName;
+
+    @NotNull
     private String publisherName;
-    private LocalDate publishedDate;
+
+    @NotNull
+    private Long publishedDateEpochSecond;
+
     private String note;
+
     // TODO : code to receive uploaded picture
 
 
@@ -26,7 +40,7 @@ public class BookSaveDto {
                 .type(type)
                 .authorName(authorName)
                 .publisherName(publisherName)
-                .publishedDate(publishedDate)
+                .publishedDate(toLocalDate(publishedDateEpochSecond))
                 .note(note)
                 .build();
     }
@@ -36,7 +50,7 @@ public class BookSaveDto {
         this.type = book.getType();
         this.authorName = book.getAuthorName();
         this.publisherName = book.getPublisherName();
-        this.publishedDate = book.getPublishedDate();
+        this.publishedDateEpochSecond = toEpochSecond(book.getPublishedDate());
         this.note = book.getNote();
     }
 }
