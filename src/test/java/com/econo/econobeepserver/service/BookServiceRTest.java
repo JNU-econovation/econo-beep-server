@@ -138,7 +138,7 @@ class BookServiceRTest {
         // given
         List<Book> successfulResponse = successfulResponseOfGetBookWithPaging();
         doReturn(successfulResponse).when(bookRepository)
-                .getBookWithPaging(2, null);
+                .getRecentBookWithPaging(2, null);
 
         List<BookElementDto> wantedResults = successfulResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
 
@@ -155,7 +155,7 @@ class BookServiceRTest {
         // given
         List<Book> failedResponse = failedResponseOfGetBookWithPaging();
         doReturn(failedResponse).when(bookRepository)
-                .getBookWithPaging(2, 10L);
+                .getRecentBookWithPaging(2, 10L);
 
         List<BookElementDto> wantedResults = failedResponse.stream().map(BookElementDto::new).collect(Collectors.toList());
 
@@ -358,7 +358,7 @@ class BookServiceRTest {
         // given
         List<Book> successfulResponse = successfulResponseOfGetBookByIdDescWithPaging();
         doReturn(successfulResponse).when(bookRepository)
-                .getBookByIdDescWithPaging(2, null);
+                .getRecentBookWithPaging(2, null);
 
         List<BookManagementInfoDto> wantedResults = successfulResponse.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
 
@@ -375,7 +375,7 @@ class BookServiceRTest {
         // given
         List<Book> failedResponse = failedResponseOfGetBookByIdDescWithPaging();
         doReturn(failedResponse).when(bookRepository)
-                .getBookByIdDescWithPaging(2, 10L);
+                .getRecentBookWithPaging(2, 10L);
 
         List<BookManagementInfoDto> wantedResults = failedResponse.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
 

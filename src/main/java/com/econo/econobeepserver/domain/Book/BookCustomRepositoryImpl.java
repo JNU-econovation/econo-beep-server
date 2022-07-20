@@ -1,10 +1,13 @@
 package com.econo.econobeepserver.domain.Book;
 
 import com.econo.econobeepserver.domain.RenteeType;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+
+import static com.econo.econobeepserver.domain.Book.QBook.book;
 
 @RequiredArgsConstructor
 public class BookCustomRepositoryImpl implements BookCustomRepository {
@@ -12,23 +15,47 @@ public class BookCustomRepositoryImpl implements BookCustomRepository {
     private final JPAQueryFactory jpaQueryFactory;
 
 
-    public List<Book> getBookWithPaging(int pageSize, Long lastId) {
-        return null;
+    private BooleanExpression ltBookId(Long bookId) {
+        if(bookId == null) {
+            return null;
+        }
+
+        return book.id.lt(bookId);
+    }
+
+    public List<Book> getRecentBookWithPaging(int pageSize, Long lastId) {
+        return jpaQueryFactory
+                .select(book)
+                .from(book)
+                .where(ltBookId(lastId))
+                .orderBy(book.id.desc())
+                .limit(pageSize)
+                .fetch();
     }
 
     public List<Book> getBookByTypeWithPaging(RenteeType renteeType, int pageSize, Long lastId) {
-        return null;
+        return jpaQueryFactory
+                .select(book)
+                .from(book)
+                .where(
+                        ltBookId(lastId),
+                        book.type.eq(renteeType)
+                )
+                .orderBy(book.id.desc())
+                .limit(pageSize)
+                .fetch();
     }
 
+
     public List<Book> searchBookByKeyword(String keyword) {
-        return null;
+        return jpaQueryFactory
+                .select(book)
+                .from(book)
+                .where(book.title.contains(keyword))
+                .fetch();
     }
 
     public List<String> getSearchSuggestionsByKeyword(String keyword) {
-        return null;
-    }
-
-    public List<Book> getBookByIdDescWithPaging(int pageSize, Long lastId) {
         return null;
     }
 }

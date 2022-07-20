@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -122,30 +122,36 @@ class BookRepositoryTest {
 
 
 
-    @DisplayName("getBookWithPaging 작동 테스트 (기본, 1페이지)")
+    @DisplayName("getRecentBookWithPaging 작동 테스트 (기본, 1페이지)")
     @Test
-    void test_getBookWithPaging_firstPage() {
+    void test_getRecentBookWithPaging_firstPage() {
         // given
         final Long lastId = null;
 
         // when
-        List<Book> books = bookRepository.getBookWithPaging(pageSize, lastId);
+        List<Book> books = bookRepository.getRecentBookWithPaging(pageSize, lastId);
 
         // then
-        assertEquals(2, books.size());
+        assertThat(books)
+                .hasSize(2)
+                .extracting(Book::getTitle)
+                .containsExactly("testBook3", "testBook2");
     }
 
-    @DisplayName("getBookWithPaging 작동 테스트 (마지막, 3페이지)")
+    @DisplayName("getRecentBookWithPaging 작동 테스트 (마지막, 3페이지)")
     @Test
-    void test_getBookWithPaging_lastPage() {
+    void test_getRecentBookWithPaging_lastPage() {
         // given
-        final Long lastId = 4L;
+        final Long lastId = 2L;
 
         // when
-        List<Book> books = bookRepository.getBookWithPaging(pageSize, lastId);
+        List<Book> books = bookRepository.getRecentBookWithPaging(pageSize, lastId);
 
         // then
-        assertEquals(1, books.size());
+        assertThat(books)
+                .hasSize(1)
+                .extracting(Book::getTitle)
+                .containsExactly("testBook4");
     }
 
     @DisplayName("getBookByTypeWithPaging 작동 테스트 (기본, 1페이지)")
@@ -211,37 +217,5 @@ class BookRepositoryTest {
                 .hasSize(1)
                 .extracting(Book::getTitle)
                 .containsExactlyInAnyOrder("testBook1");
-    }
-
-    @DisplayName("getBookByIdDescWithPaging 작동 테스트 (기본, 1페이지)")
-    @Test
-    void test_getBookByIdDescWithPaging_firstPage() {
-        // given
-        final Long lastId = null;
-
-        // when
-        List<Book> books = bookRepository.getBookByIdDescWithPaging(pageSize, lastId);
-
-        // then
-        assertThat(books)
-                .hasSize(2)
-                .extracting(Book::getTitle)
-                .containsExactly("testBook5", "testBook4");
-    }
-
-    @DisplayName("getBookByIdDescWithPaging 작동 테스트 (마지막, 3페이지)")
-    @Test
-    void test_getBookByIdDescWithPaging_lastPage() {
-        // given
-        final Long lastId = 2L;
-
-        // when
-        List<Book> books = bookRepository.getBookByIdDescWithPaging(pageSize, lastId);
-
-        // then
-        assertThat(books)
-                .hasSize(1)
-                .extracting(Book::getTitle)
-                .containsExactly("testBook1");
     }
 }

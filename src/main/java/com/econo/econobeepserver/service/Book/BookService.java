@@ -45,7 +45,7 @@ public class BookService {
     }
     
     public List<BookElementDto> getBookElementDtosWithPaging(int pageSize, Long lastId) {
-        List<Book> books = bookRepository.getBookWithPaging(pageSize, lastId);
+        List<Book> books = bookRepository.getRecentBookWithPaging(pageSize, lastId);
 
         return books.stream().map(BookElementDto::new).collect(Collectors.toList());
     }
@@ -67,7 +67,7 @@ public class BookService {
     }
 
     public List<BookManagementInfoDto> getBookManagementInfoDtosByIdDescWithPaging(int pageSize, Long lastId) {
-        List<Book> books = bookRepository.getBookByIdDescWithPaging(pageSize, lastId);
+        List<Book> books = bookRepository.getRecentBookWithPaging(pageSize, lastId);
 
         return books.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
     }
