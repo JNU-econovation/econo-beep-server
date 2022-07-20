@@ -25,7 +25,7 @@ public class BookManagementController {
 
     @GetMapping("/management/book/list/all")
     public ResponseEntity<List<BookManagementInfoDto>> getBookManagementInfoDtosByIdDescWithPaging(@RequestParam(value = "pageSize") int pageSize,
-                                                                                                      @RequestParam(value = "lastBookId", required = false) Long lastId) {
+                                                                                                   @RequestParam(value = "lastBookId", required = false) Long lastId) {
         List<BookManagementInfoDto> bookManagementInfoDtos = bookService.getBookManagementInfoDtosByIdDescWithPaging(pageSize, lastId);
 
         return ResponseEntity.ok(bookManagementInfoDtos);
@@ -40,7 +40,7 @@ public class BookManagementController {
 
     @PutMapping("/management/book/{id}")
     public ResponseEntity<Void> updateBookById(@PathVariable(value = "id") Long id,
-                                                   @RequestBody BookSaveDto bookSaveDto) {
+                                               @RequestBody BookSaveDto bookSaveDto) {
         bookService.updateBookById(id, bookSaveDto);
 
         return ResponseEntity.ok().build();

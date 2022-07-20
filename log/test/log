@@ -1654,3 +1654,35 @@ com.econo.econobeepserver.exception.NotFoundRenteeException: NOT_FOUND_RENTEE_EX
 	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
 
 2022-07-20 16:38:16.771  WARN 456 --- [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required int parameter 'pageSize' is not present]
+2022-07-20 16:42:22.242  INFO 456 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-07-20 16:42:22.253  INFO 456 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-07-20 16:42:22.434  INFO 456 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-07-20 16:42:22.435  INFO 456 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-07-20 16:42:22.437  INFO 456 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-07-20 16:42:26.343  INFO 1449 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.8 on Chanui-MacBookPro.local with PID 1449 (/Users/chan/code/java/econo-beep-server/build/classes/java/main started by chan in /Users/chan/code/java/econo-beep-server)
+2022-07-20 16:42:26.346  INFO 1449 --- [main] c.e.e.EconoBeepServerApplication         : No active profile set, falling back to default profiles: default
+2022-07-20 16:42:26.954  INFO 1449 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-07-20 16:42:27.023  INFO 1449 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 6 JPA repository interfaces.
+2022-07-20 16:42:27.502  INFO 1449 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-07-20 16:42:27.513  INFO 1449 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-07-20 16:42:27.513  INFO 1449 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-07-20 16:42:27.614  INFO 1449 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-07-20 16:42:27.615  INFO 1449 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1208 ms
+2022-07-20 16:42:27.661  INFO 1449 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-07-20 16:42:27.817  INFO 1449 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-07-20 16:42:27.822  INFO 1449 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-07-20 16:42:27.894  INFO 1449 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-07-20 16:42:27.936  INFO 1449 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-07-20 16:42:27.983  INFO 1449 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-07-20 16:42:28.058  WARN 1449 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-07-20 16:42:28.105  INFO 1449 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-07-20 16:42:28.193  INFO 1449 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-07-20 16:42:28.902  INFO 1449 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-07-20 16:42:28.911  INFO 1449 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-07-20 16:42:29.320  INFO 1449 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-07-20 16:42:29.339  INFO 1449 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-07-20 16:42:29.441  INFO 1449 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-07-20 16:42:29.449  INFO 1449 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 3.424 seconds (JVM running for 4.23)
+2022-07-20 16:42:34.533  INFO 1449 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-07-20 16:42:34.533  INFO 1449 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-07-20 16:42:34.534  INFO 1449 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
