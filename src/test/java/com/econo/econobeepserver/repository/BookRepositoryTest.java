@@ -28,7 +28,7 @@ class BookRepositoryTest {
     @Autowired
     private BookRepository bookRepository;
 
-    private final int pageSize = 2;
+    private final int PAGE_SIZE = 2;
 
 
     private Book sampleBook1() {
@@ -129,7 +129,7 @@ class BookRepositoryTest {
         final Long lastId = null;
 
         // when
-        List<Book> books = bookRepository.getRecentBookWithPaging(pageSize, lastId);
+        List<Book> books = bookRepository.getRecentBookWithPaging(PAGE_SIZE, lastId);
 
         // then
         assertThat(books)
@@ -145,7 +145,7 @@ class BookRepositoryTest {
         final Long lastId = 2L;
 
         // when
-        List<Book> books = bookRepository.getRecentBookWithPaging(pageSize, lastId);
+        List<Book> books = bookRepository.getRecentBookWithPaging(PAGE_SIZE, lastId);
 
         // then
         assertThat(books)
@@ -162,7 +162,7 @@ class BookRepositoryTest {
         final RenteeType renteeType = RenteeType.WEB;
 
         // when
-        List<Book> books = bookRepository.getBookByTypeWithPaging(renteeType, pageSize, lastId);
+        List<Book> books = bookRepository.getBookByTypeWithPaging(renteeType, PAGE_SIZE, lastId);
 
         // then
         assertThat(books)
@@ -179,7 +179,7 @@ class BookRepositoryTest {
         final RenteeType renteeType = RenteeType.WEB;
 
         // when
-        List<Book> books = bookRepository.getBookByTypeWithPaging(renteeType, pageSize, lastId);
+        List<Book> books = bookRepository.getBookByTypeWithPaging(renteeType, PAGE_SIZE, lastId);
 
         // then
         assertThat(books)
