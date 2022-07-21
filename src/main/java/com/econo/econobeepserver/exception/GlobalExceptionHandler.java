@@ -16,21 +16,30 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(NotFoundRenteeException.class)
-    public ResponseEntity<String> handleNotFoundRenteeException(NotFoundRenteeException e) {
-        log.error("handleNotFoundRenteeException", e);
-
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .body(e.getMessage());
-    }
-
     @ExceptionHandler(AlreadyRentedException.class)
     public ResponseEntity<String> handleAlreadyRentedException(AlreadyRentedException e) {
         log.error("handleAlreadyRentedException", e);
 
         return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
+                .status(HttpStatus.BAD_REQUEST)
+                .body(e.getMessage());
+    }
+
+    @ExceptionHandler(NotFoundPinCodeException.class)
+    public ResponseEntity<String> handleNotFoundPinCodeException(NotFoundPinCodeException e) {
+        log.error("handleNotFoundPinCodeException", e);
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(e.getMessage());
+    }
+
+    @ExceptionHandler(NotFoundRenteeException.class)
+    public ResponseEntity<String> handleNotFoundRenteeException(NotFoundRenteeException e) {
+        log.error("handleNotFoundRenteeException", e);
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
                 .body(e.getMessage());
     }
 
@@ -39,7 +48,7 @@ public class GlobalExceptionHandler {
         log.error("handleUnrentableException", e);
 
         return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
+                .status(HttpStatus.BAD_REQUEST)
                 .body(e.getMessage());
     }
 
@@ -48,26 +57,37 @@ public class GlobalExceptionHandler {
         log.error("handleNotRenterException", e);
 
         return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
+                .status(HttpStatus.BAD_REQUEST)
+                .body(e.getMessage());
+    }
+
+    @ExceptionHandler(WrongFormatPinCodeException.class)
+    public ResponseEntity<String> handleWrongFormatPinCodeException(WrongFormatPinCodeException e) {
+        log.error("handleWrongFormatPinCodeException", e);
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
                 .body(e.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleRequestBodyValidException(MethodArgumentNotValidException e) {
+        log.error("handleRequestBodyValidException", e);
         Map<String, String> errors = new HashMap<>();
         e.getBindingResult().getAllErrors()
                 .forEach(c -> errors.put(((FieldError) c).getField(), c.getDefaultMessage()));
 
         return ResponseEntity
-                .badRequest()
+                .status(HttpStatus.BAD_REQUEST)
                 .body(errors);
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<String> handleMissingParamsException(MissingServletRequestParameterException e) {
+        log.error("handleMissingParamsException", e);
 
         return ResponseEntity
-                .badRequest()
+                .status(HttpStatus.BAD_REQUEST)
                 .body(e.getMessage());
     }
 }

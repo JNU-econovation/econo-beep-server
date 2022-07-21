@@ -29,7 +29,7 @@ public class BookService {
     }
 
 
-    private Book getBookById(Long id) {
+    public Book getBookById(Long id) {
         Optional<Book> book = bookRepository.findById(id);
         if (book.isEmpty()) {
             throw new NotFoundRenteeException();

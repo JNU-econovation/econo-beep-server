@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.util.Deque;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,7 +46,7 @@ public class BookManagementInfoDto {
         if (!bookRentals.isEmpty()) {
             final BookRental recentBookRental = bookRentals.get(bookRentals.size() - 1);
             // TODO: userId가 반환되고 있음. 차후에 userApiServer 연결필요.
-            this.recentRenter = recentBookRental.getUserId().toString();
+            this.recentRenter = recentBookRental.getRenterName().toString();
             this.recentRentalEpochSecond = toEpochSecond(recentBookRental.getRentalDateTime());
         }
         this.note = book.getNote();

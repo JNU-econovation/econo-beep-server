@@ -4,6 +4,7 @@ import com.econo.econobeepserver.domain.Book.Book;
 import com.econo.econobeepserver.domain.RenteeType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 
@@ -11,6 +12,7 @@ import static com.econo.econobeepserver.util.EpochTime.toEpochSecond;
 import static com.econo.econobeepserver.util.EpochTime.toLocalDate;
 
 @Getter
+@Setter
 @NoArgsConstructor
 public class BookSaveDto {
 

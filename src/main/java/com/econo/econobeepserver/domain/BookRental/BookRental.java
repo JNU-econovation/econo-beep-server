@@ -18,13 +18,15 @@ public class BookRental {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
 
     @NotNull
-    private Long userId;
+    private Long renterId;
+
+    @NotNull
+    private String renterName;
 
     @NotNull
     private LocalDateTime rentalDateTime;
@@ -32,9 +34,14 @@ public class BookRental {
     private LocalDateTime returnDateTime;
 
     @Builder
-    public BookRental(Book book, Long userId) {
-        this.book = book;
-        this.userId = userId;
+    public BookRental(Long renterId, String renterName) {
+        this.renterId = renterId;
+        this.renterName = renterName;
         this.rentalDateTime = LocalDateTime.now();
+    }
+
+
+    public void returnBook() {
+        returnDateTime = LocalDateTime.now();
     }
 }

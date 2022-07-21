@@ -81,4 +81,18 @@ public class Book {
         this.note = bookSaveDto.getNote();
         // TODO : code to update uploaded picture
     }
+
+    public void rentBook(BookRental bookRental) {
+        rentState = RentState.RENTED;
+        rentCount++;
+        rentalHistories.add(bookRental);
+    }
+
+    public void returnBook() {
+        this.rentState = RentState.RENTABLE;
+    }
+
+    public void disableBook() {
+        this.rentState = RentState.UNRENTABLE;
+    }
 }

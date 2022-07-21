@@ -28,9 +28,11 @@ public class QBookRental extends EntityPathBase<BookRental> {
 
     public final DateTimePath<java.time.LocalDateTime> rentalDateTime = createDateTime("rentalDateTime", java.time.LocalDateTime.class);
 
-    public final DateTimePath<java.time.LocalDateTime> returnDateTime = createDateTime("returnDateTime", java.time.LocalDateTime.class);
+    public final NumberPath<Long> renterId = createNumber("renterId", Long.class);
 
-    public final NumberPath<Long> userId = createNumber("userId", Long.class);
+    public final StringPath renterName = createString("renterName");
+
+    public final DateTimePath<java.time.LocalDateTime> returnDateTime = createDateTime("returnDateTime", java.time.LocalDateTime.class);
 
     public QBookRental(String variable) {
         this(BookRental.class, forVariable(variable), INITS);

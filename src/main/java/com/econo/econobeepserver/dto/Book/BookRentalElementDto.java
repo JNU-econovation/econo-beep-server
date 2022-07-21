@@ -16,7 +16,7 @@ public class BookRentalElementDto {
     private Long returnEpochSecond;
 
     public BookRentalElementDto(BookRental bookRental) {
-        this.userName = bookRental.getUserId().toString();
+        this.userName = bookRental.getRenterName().toString();
         this.rentalEpochSecond = bookRental.getRentalDateTime().toEpochSecond(ZoneOffset.of("+09:00"));
     }
 }

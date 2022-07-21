@@ -23,6 +23,7 @@ public class BookCustomRepositoryImpl implements BookCustomRepository {
         return book.id.lt(bookId);
     }
 
+    @Override
     public List<Book> getRecentBookWithPaging(int pageSize, Long lastId) {
         return jpaQueryFactory
                 .select(book)
@@ -33,6 +34,7 @@ public class BookCustomRepositoryImpl implements BookCustomRepository {
                 .fetch();
     }
 
+    @Override
     public List<Book> getBookByTypeWithPaging(RenteeType renteeType, int pageSize, Long lastId) {
         return jpaQueryFactory
                 .select(book)
@@ -47,6 +49,7 @@ public class BookCustomRepositoryImpl implements BookCustomRepository {
     }
 
 
+    @Override
     public List<Book> searchBookByKeyword(String keyword) {
         return jpaQueryFactory
                 .select(book)
