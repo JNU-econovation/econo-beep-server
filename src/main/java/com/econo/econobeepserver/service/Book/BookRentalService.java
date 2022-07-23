@@ -20,7 +20,6 @@ import java.util.Objects;
 @AllArgsConstructor
 public class BookRentalService {
 
-    private final BookRentalRepository bookRentalRepository;
     private final BookService bookService;
     private UserApi userApi;
 
@@ -54,7 +53,6 @@ public class BookRentalService {
                 .renterId(userInfoDto.getUid())
                 .renterName(userInfoDto.getName())
                 .build();
-        bookRentalRepository.save(bookRental);
 
         book.rentBook(bookRental);
     }

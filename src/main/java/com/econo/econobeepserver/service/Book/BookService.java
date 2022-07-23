@@ -9,6 +9,7 @@ import com.econo.econobeepserver.dto.Book.BookManagementInfoDto;
 import com.econo.econobeepserver.dto.Book.BookSaveDto;
 import com.econo.econobeepserver.exception.NotFoundRenteeException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,8 +25,8 @@ public class BookService {
 
 
     @Transactional
-    public void createBook(BookSaveDto bookSaveDto) {
-        bookRepository.save(bookSaveDto.toEntity());
+    public Long createBook(BookSaveDto bookSaveDto) {
+        return bookRepository.save(bookSaveDto.toEntity()).getId();
     }
 
 
@@ -85,6 +86,13 @@ public class BookService {
 
     @Transactional
     public void deleteBookById(Long id) {
-        bookRepository.deleteById(id);
+        try {
+            Book book = getBookById(id);
+            book.delete();
+            bookRepository.deleteById(id);
+
+        } catch (EmptyResultDataAccessException e) {
+            throw new NotFoundRenteeException();
+        }
     }
 }

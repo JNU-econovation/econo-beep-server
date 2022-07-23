@@ -25,7 +25,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doReturn;
@@ -107,11 +106,12 @@ class BookRentalServiceTest {
 
         assertDoesNotThrow(() -> bookRentalService.rentBookById(bookId, SAMPLE_PINCODE));
         assertEquals(RentState.RENTED, book.getRentState());
-
-        assertEquals(1L, bookRentalRepository.count());
-
         assertEquals(1, book.getRentalHistories().size());
         assertEquals(1, book.getRentCount());
+
+        assertEquals(1L, bookRentalRepository.count());
+        BookRental bookRental = bookRentalRepository.findByBook_Id(bookId).get();
+        assertEquals(bookId, bookRental.getBook().getId());
     }
 
 

@@ -31,7 +31,7 @@ public class Book {
     private BookCoverImage bookCoverImage;
 
     @NotNull
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<BookRental> rentalHistories = new ArrayList<>();
 
@@ -85,7 +85,9 @@ public class Book {
     public void rentBook(BookRental bookRental) {
         rentState = RentState.RENTED;
         rentCount++;
+
         rentalHistories.add(bookRental);
+        bookRental.setBook(this);
     }
 
     public void returnBook() {
@@ -94,5 +96,9 @@ public class Book {
 
     public void disableBook() {
         this.rentState = RentState.UNRENTABLE;
+    }
+
+    public void delete() {
+        rentalHistories.clear();
     }
 }

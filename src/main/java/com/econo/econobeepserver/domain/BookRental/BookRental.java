@@ -18,7 +18,7 @@ public class BookRental {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
     private Book book;
 
@@ -40,6 +40,9 @@ public class BookRental {
         this.rentalDateTime = LocalDateTime.now();
     }
 
+    public void setBook(Book book) {
+        this.book = book;
+    }
 
     public void returnBook() {
         returnDateTime = LocalDateTime.now();
