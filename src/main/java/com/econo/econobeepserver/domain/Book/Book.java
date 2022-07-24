@@ -20,10 +20,11 @@ import static com.econo.econobeepserver.util.EpochTime.toLocalDate;
 @NoArgsConstructor
 @Getter
 @Entity
+@SequenceGenerator(name = "RENTEE_SEQ_GENERATOR", sequenceName = "RENTEE_SEQ")
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RENTEE_SEQ_GENERATOR")
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
