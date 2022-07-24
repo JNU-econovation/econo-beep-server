@@ -1,6 +1,8 @@
 package com.econo.econobeepserver.service.Book;
 
 import com.econo.econobeepserver.domain.Book.Book;
+import com.econo.econobeepserver.domain.Book.BookCoverImage;
+import com.econo.econobeepserver.domain.Book.BookCoverImageRepository;
 import com.econo.econobeepserver.domain.Book.BookRepository;
 import com.econo.econobeepserver.domain.RenteeType;
 import com.econo.econobeepserver.dto.Book.BookElementDto;
@@ -8,6 +10,7 @@ import com.econo.econobeepserver.dto.Book.BookInfoDto;
 import com.econo.econobeepserver.dto.Book.BookManagementInfoDto;
 import com.econo.econobeepserver.dto.Book.BookSaveDto;
 import com.econo.econobeepserver.exception.NotFoundRenteeException;
+import com.econo.econobeepserver.service.ImageHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -22,11 +25,23 @@ import java.util.stream.Collectors;
 public class BookService {
 
     private final BookRepository bookRepository;
+    private final BookCoverImageRepository bookCoverImageRepository;
 
+    private final ImageHandler imageHandler;
 
     @Transactional
     public Long createBook(BookSaveDto bookSaveDto) {
-        return bookRepository.save(bookSaveDto.toEntity()).getId();
+        Book book = bookSaveDto.toEntity();
+        BookCoverImage bookCoverImage = imageHandler.parseBookCoverImage(bookSaveDto.getBookCoverImage());
+        book.setBookCoverImage(bookCoverImage);
+        bookCoverImage.setBook(book);
+
+        imageHandler.downloadImage(bookSaveDto.getBookCoverImage(), bookCoverImage.getFilePath());
+        bookRepository.save(book);
+        bookCoverImageRepository.save(bookCoverImage);
+
+
+        return book.getId();
     }
 
 
@@ -75,12 +90,26 @@ public class BookService {
         return books.stream().map(BookManagementInfoDto::new).collect(Collectors.toList());
     }
 
+    public String getBookCoverImageFilePathByBookId(long bookId) {
+        Book book = getBookById(bookId);
+        return book.getBookCoverImage().getFilePath();
+    }
 
     @Transactional
     public void updateBookById(Long id, BookSaveDto bookSaveDto) {
         Book book = getBookById(id);
+        BookCoverImage oldBookCoverImage = book.getBookCoverImage();
+        BookCoverImage newBookCoverImage = imageHandler.parseBookCoverImage(bookSaveDto.getBookCoverImage());
+
+        imageHandler.deleteImage(oldBookCoverImage.getFilePath());
+        bookCoverImageRepository.deleteById(oldBookCoverImage.getId());
 
         book.updateBook(bookSaveDto);
+        book.setBookCoverImage(newBookCoverImage);
+        newBookCoverImage.setBook(book);
+
+        imageHandler.downloadImage(bookSaveDto.getBookCoverImage(), newBookCoverImage.getFilePath());
+        bookCoverImageRepository.save(newBookCoverImage);
     }
 
 
@@ -88,7 +117,8 @@ public class BookService {
     public void deleteBookById(Long id) {
         try {
             Book book = getBookById(id);
-            book.delete();
+            book.clearAttributes();
+
             bookRepository.deleteById(id);
 
         } catch (EmptyResultDataAccessException e) {

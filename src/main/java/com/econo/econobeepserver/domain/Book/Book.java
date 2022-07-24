@@ -79,7 +79,6 @@ public class Book {
         this.publisherName = bookSaveDto.getPublisherName();
         this.publishedDate = toLocalDate(bookSaveDto.getPublishedDateEpochSecond());
         this.note = bookSaveDto.getNote();
-        // TODO : code to update uploaded picture
     }
 
     public void rentBook(BookRental bookRental) {
@@ -98,7 +97,12 @@ public class Book {
         this.rentState = RentState.UNRENTABLE;
     }
 
-    public void delete() {
+    public void setBookCoverImage(BookCoverImage bookCoverImage) {
+        this.bookCoverImage = bookCoverImage;
+    }
+
+    public void clearAttributes() {
+        bookCoverImage = null;
         rentalHistories.clear();
     }
 }

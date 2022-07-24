@@ -11,7 +11,9 @@ public enum ExceptionMessage {
     UNRETURNABLE_EXCEPTION("UNRETURNABLE_EXCEPTION : 반납할 수 없는 상태의 비품입니다."),
 
     WRONG_FORMAT_PINCODE_EXCEPTION("WRONG_FORMAT_PINCODE_EXCEPTION : 잘못된 형태의 핀코드입니다."),
-    NOT_FOUND_PINCODE_EXCEPTION("NOT_FOUND_PINCODE_EXCEPTION : 존재하지 않는 핀코드입니다.");
+    NOT_FOUND_PINCODE_EXCEPTION("NOT_FOUND_PINCODE_EXCEPTION : 존재하지 않는 핀코드입니다."),
+
+    IMAGE_IO_EXCEPTION("IMAGE_IO_EXCEPTION : ");
 
     public final String message;
 

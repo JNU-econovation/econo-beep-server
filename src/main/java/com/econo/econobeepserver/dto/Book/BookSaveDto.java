@@ -2,9 +2,11 @@ package com.econo.econobeepserver.dto.Book;
 
 import com.econo.econobeepserver.domain.Book.Book;
 import com.econo.econobeepserver.domain.RenteeType;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 
@@ -31,9 +33,22 @@ public class BookSaveDto {
     @NotNull
     private Long publishedDateEpochSecond;
 
+    @NotNull
+    private MultipartFile bookCoverImage;
+
     private String note;
 
-    // TODO : code to receive uploaded picture
+
+    @Builder
+    public BookSaveDto(String title, RenteeType type, String authorName, String publisherName, Long publishedDateEpochSecond, MultipartFile bookCoverImage, String note) {
+        this.title = title;
+        this.type = type;
+        this.authorName = authorName;
+        this.publisherName = publisherName;
+        this.publishedDateEpochSecond = publishedDateEpochSecond;
+        this.bookCoverImage = bookCoverImage;
+        this.note = note;
+    }
 
 
     public Book toEntity() {

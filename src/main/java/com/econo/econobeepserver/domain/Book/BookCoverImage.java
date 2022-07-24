@@ -29,4 +29,9 @@ public class BookCoverImage {
         this.filePath = filePath;
         this.book = book;
     }
+
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
 }

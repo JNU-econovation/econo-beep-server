@@ -16,9 +16,20 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException e) {
+        log.error("IllegalArgumentException] ", e);
+        e.printStackTrace();
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(e.getMessage());
+    }
+
     @ExceptionHandler(AlreadyRentedException.class)
     public ResponseEntity<String> handleAlreadyRentedException(AlreadyRentedException e) {
-        log.error("handleAlreadyRentedException", e);
+        log.error("handleAlreadyRentedException] ", e);
+        e.printStackTrace();
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
@@ -27,7 +38,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotFoundPinCodeException.class)
     public ResponseEntity<String> handleNotFoundPinCodeException(NotFoundPinCodeException e) {
-        log.error("handleNotFoundPinCodeException", e);
+        log.error("handleNotFoundPinCodeException] ", e);
+        e.printStackTrace();
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
@@ -36,7 +48,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotFoundRenteeException.class)
     public ResponseEntity<String> handleNotFoundRenteeException(NotFoundRenteeException e) {
-        log.error("handleNotFoundRenteeException", e);
+        log.error("handleNotFoundRenteeException] ", e);
+        e.printStackTrace();
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
@@ -45,7 +58,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UnrentableException.class)
     public ResponseEntity<String> handleUnrentableException(UnrentableException e) {
-        log.error("handleUnrentableException", e);
+        log.error("handleUnrentableException] ", e);
+        e.printStackTrace();
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
@@ -54,7 +68,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotRenterException.class)
     public ResponseEntity<String> handleNotRenterException(NotRenterException e) {
-        log.error("handleNotRenterException", e);
+        log.error("handleNotRenterException] ", e);
+        e.printStackTrace();
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
@@ -63,7 +78,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(WrongFormatPinCodeException.class)
     public ResponseEntity<String> handleWrongFormatPinCodeException(WrongFormatPinCodeException e) {
-        log.error("handleWrongFormatPinCodeException", e);
+        log.error("handleWrongFormatPinCodeException] ", e);
+        e.printStackTrace();
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
@@ -72,7 +88,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleRequestBodyValidException(MethodArgumentNotValidException e) {
-        log.error("handleRequestBodyValidException", e);
+        log.error("handleRequestBodyValidException] ", e);
+        e.printStackTrace();
         Map<String, String> errors = new HashMap<>();
         e.getBindingResult().getAllErrors()
                 .forEach(c -> errors.put(((FieldError) c).getField(), c.getDefaultMessage()));
@@ -83,11 +100,23 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
-    public ResponseEntity<String> handleMissingParamsException(MissingServletRequestParameterException e) {
-        log.error("handleMissingParamsException", e);
+    public ResponseEntity<String> handleMissingServletRequestParameterException(MissingServletRequestParameterException e) {
+        log.error("handleMissingServletRequestParameterException] ", e);
+        e.printStackTrace();
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(e.getMessage());
     }
+
+    @ExceptionHandler(ImageIOException.class)
+    public ResponseEntity<String> handleImageIOException(ImageIOException e) {
+        log.error("handleImageIOException] ", e);
+        e.printStackTrace();
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(e.getMessage());
+    }
+
 }

@@ -17,7 +17,7 @@ public class BookManagementController {
     private final BookService bookService;
 
     @PostMapping("/management/book")
-    public ResponseEntity<Void> createBook(@Valid @RequestBody BookSaveDto bookSaveDto) {
+    public ResponseEntity<Void> createBook(@Valid @ModelAttribute BookSaveDto bookSaveDto) {
         bookService.createBook(bookSaveDto);
 
         return ResponseEntity.ok().build();
@@ -26,6 +26,7 @@ public class BookManagementController {
     @GetMapping("/management/book/list/all")
     public ResponseEntity<List<BookManagementInfoDto>> getBookManagementInfoDtosByIdDescWithPaging(@RequestParam(value = "pageSize") int pageSize,
                                                                                                    @RequestParam(value = "lastBookId", required = false) Long lastId) {
+
         List<BookManagementInfoDto> bookManagementInfoDtos = bookService.getBookManagementInfoDtosByIdDescWithPaging(pageSize, lastId);
 
         return ResponseEntity.ok(bookManagementInfoDtos);
@@ -40,7 +41,8 @@ public class BookManagementController {
 
     @PutMapping("/management/book/{id}")
     public ResponseEntity<Void> updateBookById(@PathVariable(value = "id") Long id,
-                                               @RequestBody BookSaveDto bookSaveDto) {
+                                               @Valid @ModelAttribute BookSaveDto bookSaveDto) {
+
         bookService.updateBookById(id, bookSaveDto);
 
         return ResponseEntity.ok().build();
