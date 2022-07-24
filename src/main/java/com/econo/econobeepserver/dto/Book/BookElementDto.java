@@ -13,20 +13,20 @@ import java.util.Objects;
 public class BookElementDto {
 
     private Long id;
-    private String bookCoverImageUrl;
     private String title;
     private RenteeType type;
     private String authorName;
+    private String bookCoverImageUrl;
     private RentState rentState;
 
 
     public BookElementDto(Book book) {
         this.id = book.getId();
-        // TODO: code to generate BookCoverImageUrl
         this.bookCoverImageUrl = "TODO";
         this.title = book.getTitle();
         this.type = book.getType();
         this.authorName = book.getAuthorName();
+        this.bookCoverImageUrl = "/book/" + book.getId() + "/image";
         this.rentState = book.getRentState();
     }
 

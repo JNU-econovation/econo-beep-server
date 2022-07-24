@@ -20,36 +20,35 @@ import static com.econo.econobeepserver.util.EpochTime.toEpochSecond;
 public class BookManagementInfoDto {
 
     private Long id;
-    private String bookCoverImageUrl;
     private String title;
     private RenteeType type;
     private String authorName;
     private String publisherName;
     private Long publishedDateEpochSecond;
+    private String bookCoverImageUrl;
+    private String note;
     private RentState rentState;
     private String recentRenter;
     private Long recentRentalEpochSecond;
-    private String note;
 
     public BookManagementInfoDto(Book book) {
         this.id = book.getId();
-        // TODO: code to generate BookCoverImageUrl
-        this.bookCoverImageUrl = "TODO";
         this.title = book.getTitle();
         this.type = book.getType();
         this.authorName = book.getAuthorName();
         this.publisherName = book.getPublisherName();
         this.publishedDateEpochSecond = toEpochSecond(book.getPublishedDate());
-        this.rentState = book.getRentState();
+        this.bookCoverImageUrl = "/book/" + book.getId() + "/image";
+        this.note = book.getNote();
 
+        this.rentState = book.getRentState();
         final List<BookRental> bookRentals = book.getRentalHistories();
         if (!bookRentals.isEmpty()) {
             final BookRental recentBookRental = bookRentals.get(bookRentals.size() - 1);
-            // TODO: userId가 반환되고 있음. 차후에 userApiServer 연결필요.
+            // TODO : userId가 반환되고 있음. 차후에 userApiServer 연결필요.
             this.recentRenter = recentBookRental.getRenterName().toString();
             this.recentRentalEpochSecond = toEpochSecond(recentBookRental.getRentalDateTime());
         }
-        this.note = book.getNote();
     }
 
     @Override
