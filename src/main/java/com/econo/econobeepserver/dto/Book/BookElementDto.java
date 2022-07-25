@@ -3,11 +3,13 @@ package com.econo.econobeepserver.dto.Book;
 import com.econo.econobeepserver.domain.Book.Book;
 import com.econo.econobeepserver.domain.RentState;
 import com.econo.econobeepserver.domain.RenteeType;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Objects;
 
+@Getter
 @Setter
 @NoArgsConstructor
 public class BookElementDto {

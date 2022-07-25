@@ -3,6 +3,7 @@ package com.econo.econobeepserver.dto.Book;
 import com.econo.econobeepserver.domain.Book.Book;
 import com.econo.econobeepserver.domain.RentState;
 import com.econo.econobeepserver.domain.RenteeType;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 
 import static com.econo.econobeepserver.util.EpochTime.toEpochSecond;
 
+@Getter
 @Setter
 @NoArgsConstructor
 public class BookInfoDto {
