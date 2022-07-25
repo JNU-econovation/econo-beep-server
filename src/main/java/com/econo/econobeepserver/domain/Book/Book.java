@@ -20,7 +20,7 @@ import static com.econo.econobeepserver.util.EpochTime.toLocalDate;
 @NoArgsConstructor
 @Getter
 @Entity
-@SequenceGenerator(name = "RENTEE_SEQ_GENERATOR", sequenceName = "RENTEE_SEQ")
+@SequenceGenerator(name = "RENTEE_SEQ_GENERATOR", sequenceName = "RENTEE_SEQ", initialValue = 1, allocationSize = 1)
 public class Book {
 
     @Id
