@@ -50,6 +50,15 @@ public class BookSaveDto {
         this.note = note;
     }
 
+    public BookSaveDto(Book book) {
+        this.title = book.getTitle();
+        this.type = book.getType();
+        this.authorName = book.getAuthorName();
+        this.publisherName = book.getPublisherName();
+        this.publishedDateEpochSecond = toEpochSecond(book.getPublishedDate());
+        this.note = book.getNote();
+    }
+
 
     public Book toEntity() {
         return Book.builder()
@@ -60,14 +69,5 @@ public class BookSaveDto {
                 .publishedDate(toLocalDate(publishedDateEpochSecond))
                 .note(note)
                 .build();
-    }
-
-    public BookSaveDto(Book book) {
-        this.title = book.getTitle();
-        this.type = book.getType();
-        this.authorName = book.getAuthorName();
-        this.publisherName = book.getPublisherName();
-        this.publishedDateEpochSecond = toEpochSecond(book.getPublishedDate());
-        this.note = book.getNote();
     }
 }

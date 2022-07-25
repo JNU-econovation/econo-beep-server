@@ -37,11 +37,11 @@ public class BookService {
         bookCoverImage.setBook(book);
 
         imageHandler.downloadImage(bookSaveDto.getBookCoverImage(), bookCoverImage.getFilePath());
-        bookRepository.save(book);
+        long bookId = bookRepository.save(book).getId();
         bookCoverImageRepository.save(bookCoverImage);
 
 
-        return book.getId();
+        return bookId;
     }
 
 

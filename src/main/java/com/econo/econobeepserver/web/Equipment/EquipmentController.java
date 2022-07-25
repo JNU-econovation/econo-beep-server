@@ -21,32 +21,23 @@ public class EquipmentController {
 
     @GetMapping("/equipment/{id}")
     public ResponseEntity<EquipmentInfoDto> getEquipmentInfoDtoById(@PathVariable(value = "id") Long id) {
-        Optional<EquipmentInfoDto> equipmentInfoDto = equipmentService.getEquipmentInfoDtoById(id);
+        EquipmentInfoDto equipmentInfoDto = equipmentService.getEquipmentInfoDtoById(id);
 
-        if (equipmentInfoDto.isEmpty()) {
-            return ResponseEntity.noContent().build();
-
-        } else {
-            return ResponseEntity.ok(equipmentInfoDto.get());
-        }
+        return ResponseEntity.ok(equipmentInfoDto);
     }
 
     @GetMapping("/equipment/list/all")
-    public ResponseEntity<List<EquipmentElementDto>> getEquipmentElementDtosByCreatedDateDescWithPaging(@RequestParam(value = "pageSize") int pageSize,
-                                                                                                        @RequestParam(value = "lastEquipmentId", required = false) Long lastId) {
-        List<EquipmentElementDto> equipmentElementDtos = equipmentService.getEquipmentElementDtosByCreatedDateDescWithPaging(pageSize, lastId);
+    public ResponseEntity<List<EquipmentElementDto>> getEquipmentElementDtosWithPaging(@RequestParam(value = "pageSize") int pageSize,
+                                                                                       @RequestParam(value = "lastEquipmentId", required = false) Long lastId) {
+        List<EquipmentElementDto> equipmentElementDtos = equipmentService.getEquipmentElementDtosWithPaging(pageSize, lastId);
+
         return ResponseEntity.ok(equipmentElementDtos);
     }
 
     @GetMapping("/equipment/search")
     public ResponseEntity<List<EquipmentElementDto>> searchEquipmentElementDtosByKeyword(@RequestParam(value = "keyword") String keyword) {
         List<EquipmentElementDto> equipmentElementDtos = equipmentService.searchEquipmentElementDtosByKeyword(keyword);
-        return ResponseEntity.ok(equipmentElementDtos);
-    }
 
-    @GetMapping("/equipment/search/recommendation")
-    public ResponseEntity<List<String>> getEquipmentSearchSuggestionsByKeyword(@RequestParam(value = "keyword") String keyword) {
-        List<String> suggestions = equipmentService.getEquipmentSearchSuggestionsByKeyword(keyword);
-        return ResponseEntity.ok(suggestions);
+        return ResponseEntity.ok(equipmentElementDtos);
     }
 }

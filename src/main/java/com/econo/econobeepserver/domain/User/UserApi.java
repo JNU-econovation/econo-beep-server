@@ -5,4 +5,6 @@ import com.econo.econobeepserver.dto.User.UserInfoDto;
 public interface UserApi {
 
     UserInfoDto getUserInfoDtoByPinCode(String pinCode);
+
+    void validatePinCode(String pinCode);
 }

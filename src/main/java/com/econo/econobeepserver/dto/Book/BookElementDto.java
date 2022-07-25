@@ -24,7 +24,6 @@ public class BookElementDto {
 
     public BookElementDto(Book book) {
         this.id = book.getId();
-        this.bookCoverImageUrl = "TODO";
         this.title = book.getTitle();
         this.type = book.getType();
         this.authorName = book.getAuthorName();

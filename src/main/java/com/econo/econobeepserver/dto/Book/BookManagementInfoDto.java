@@ -40,13 +40,13 @@ public class BookManagementInfoDto {
         this.publishedDateEpochSecond = toEpochSecond(book.getPublishedDate());
         this.bookCoverImageUrl = "/book/" + book.getId() + "/image";
         this.note = book.getNote();
-
         this.rentState = book.getRentState();
+
         final List<BookRental> bookRentals = book.getRentalHistories();
         if (!bookRentals.isEmpty()) {
             final BookRental recentBookRental = bookRentals.get(bookRentals.size() - 1);
-            // TODO : userId가 반환되고 있음. 차후에 userApiServer 연결필요.
-            this.recentRenter = recentBookRental.getRenterName().toString();
+
+            this.recentRenter = recentBookRental.getRenterName();
             this.recentRentalEpochSecond = toEpochSecond(recentBookRental.getRentalDateTime());
         }
     }

@@ -1,6 +1,7 @@
 package com.econo.econobeepserver.service;
 
 import com.econo.econobeepserver.domain.Book.BookCoverImage;
+import com.econo.econobeepserver.domain.Equipment.EquipmentImage;
 import com.econo.econobeepserver.exception.ImageIOException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -59,6 +60,17 @@ public class ImageHandler {
         String fileName = System.nanoTime() + multipartFile.getOriginalFilename();
         String filePath = BOOK_IMAGES_PATH + fileName;
         return BookCoverImage.builder()
+                .filePath(filePath)
+                .build();
+    }
+
+    public EquipmentImage parseEquipmentImage(MultipartFile multipartFile) {
+        validateSavingPath(EQUIPMENT_IMAGES_PATH);
+        validatePictureContentType(multipartFile.getContentType());
+
+        String fileName = System.nanoTime() + multipartFile.getOriginalFilename();
+        String filePath = EQUIPMENT_IMAGES_PATH + fileName;
+        return EquipmentImage.builder()
                 .filePath(filePath)
                 .build();
     }

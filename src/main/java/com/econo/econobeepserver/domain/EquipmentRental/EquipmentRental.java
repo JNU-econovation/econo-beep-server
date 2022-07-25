@@ -24,7 +24,10 @@ public class EquipmentRental {
     private Equipment equipment;
 
     @NotNull
-    private Long userId;
+    private Long renterId;
+
+    @NotNull
+    private String renterName;
 
     @NotNull
     private LocalDateTime rentalDateTime;
@@ -32,9 +35,18 @@ public class EquipmentRental {
     private LocalDateTime returnDateTime;
 
     @Builder
-    public EquipmentRental(Equipment equipment, Long userId) {
+    public EquipmentRental(Equipment equipment, Long renterId, String renterName) {
         this.equipment = equipment;
-        this.userId = userId;
+        this.renterId = renterId;
+        this.renterName = renterName;
         this.rentalDateTime = LocalDateTime.now();
+    }
+
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
+    }
+
+    public void returnEquipment() {
+        rentalDateTime = LocalDateTime.now();
     }
 }

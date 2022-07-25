@@ -29,4 +29,9 @@ public class EquipmentImage {
         this.equipment = equipment;
         this.filePath = filePath;
     }
+
+
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
+    }
 }
