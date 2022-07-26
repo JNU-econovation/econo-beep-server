@@ -34,7 +34,7 @@ public class Equipment {
     private List<EquipmentRental> rentalHistories = new ArrayList<>();
 
     @NotNull
-    private String name;
+    private String title;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -50,16 +50,16 @@ public class Equipment {
 
 
     @Builder
-    public Equipment(EquipmentImage equipmentImage, String name, RenteeType type, String note) {
+    public Equipment(EquipmentImage equipmentImage, String title, RenteeType type, String note) {
         this.equipmentImage = equipmentImage;
-        this.name = name;
+        this.title = title;
         this.type = type;
         this.note = note;
     }
 
 
     public void updateEquipment(EquipmentSaveDto equipmentSaveDto) {
-        this.name = equipmentSaveDto.getName();
+        this.title = equipmentSaveDto.getTitle();
         this.type = equipmentSaveDto.getType();
         this.note = equipmentSaveDto.getNote();
     }

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UserApiImpl implements UserApi {
 
+    // TODO : Tecono 서버로부터 핀코드 유효성 확인
+    // TODO : 유효하지 않은 핀코드면, 예외 던지기, 204 코드로
     @Override
     public UserInfoDto getUserInfoDtoByPinCode(String pinCode) {
         return UserInfoDto.builder()

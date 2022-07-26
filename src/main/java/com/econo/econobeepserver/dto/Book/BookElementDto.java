@@ -18,7 +18,7 @@ public class BookElementDto {
     private String title;
     private RenteeType type;
     private String authorName;
-    private String bookCoverImageUrl;
+    private String thumbnailUrl;
     private RentState rentState;
 
 
@@ -27,7 +27,7 @@ public class BookElementDto {
         this.title = book.getTitle();
         this.type = book.getType();
         this.authorName = book.getAuthorName();
-        this.bookCoverImageUrl = "/book/" + book.getId() + "/image";
+        this.thumbnailUrl = "/book/" + book.getId() + "/image";
         this.rentState = book.getRentState();
     }
 
@@ -36,7 +36,7 @@ public class BookElementDto {
         if (this == o) return true;
         if (!(o instanceof BookElementDto)) return false;
         BookElementDto that = (BookElementDto) o;
-        return id.equals(that.id) && bookCoverImageUrl.equals(that.bookCoverImageUrl) && title.equals(that.title) && type == that.type && authorName.equals(that.authorName) && rentState == that.rentState;
+        return id.equals(that.id) && thumbnailUrl.equals(that.thumbnailUrl) && title.equals(that.title) && type == that.type && authorName.equals(that.authorName) && rentState == that.rentState;
     }
 
     @Override

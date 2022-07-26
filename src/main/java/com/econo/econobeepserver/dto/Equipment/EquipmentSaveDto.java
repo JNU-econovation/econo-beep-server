@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 public class EquipmentSaveDto {
 
     @NotNull
-    private String name;
+    private String title;
 
     @NotNull
     private RenteeType type;
@@ -28,15 +28,15 @@ public class EquipmentSaveDto {
 
 
     @Builder
-    public EquipmentSaveDto(String name, RenteeType type, MultipartFile equipmentImage, String note) {
-        this.name = name;
+    public EquipmentSaveDto(String title, RenteeType type, MultipartFile equipmentImage, String note) {
+        this.title = title;
         this.type = type;
         this.equipmentImage = equipmentImage;
         this.note = note;
     }
 
     public EquipmentSaveDto(Equipment equipment) {
-        this.name = equipment.getName();
+        this.title = equipment.getTitle();
         this.type = equipment.getType();
         this.note = equipment.getNote();
     }
@@ -44,7 +44,7 @@ public class EquipmentSaveDto {
 
     public Equipment toEntity() {
         return Equipment.builder()
-                .name(name)
+                .title(title)
                 .type(type)
                 .note(note)
                 .build();

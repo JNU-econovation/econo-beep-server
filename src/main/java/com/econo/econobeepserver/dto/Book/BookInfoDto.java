@@ -18,7 +18,7 @@ import static com.econo.econobeepserver.util.EpochTime.toEpochSecond;
 public class BookInfoDto {
 
     private Long id;
-    private String bookCoverImageUrl;
+    private String thumbnailUrl;
     private List<BookRentalElementDto> rentalHistories;
     private String title;
     private RenteeType type;
@@ -32,7 +32,7 @@ public class BookInfoDto {
 
     public BookInfoDto(Book book) {
         this.id = book.getId();
-        this.bookCoverImageUrl = "/book/" + book.getId() + "/image";
+        this.thumbnailUrl = "/book/" + book.getId() + "/image";
         this.rentalHistories = book.getRentalHistories().stream().map(BookRentalElementDto::new).collect(Collectors.toList());
         this.title = book.getTitle();
         this.type = book.getType();

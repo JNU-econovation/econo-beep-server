@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
 public class EquipmentInfoDto {
 
     private Long id;
-    private String equipmentImageUrl;
+    private String thumbnailUrl;
     private List<EquipmentRentalElementDto> rentalHistories;
-    private String name;
+    private String title;
     private RenteeType type;
     private RentState rentState;
     private int rentCount;
@@ -28,9 +28,9 @@ public class EquipmentInfoDto {
 
     public EquipmentInfoDto(Equipment equipment) {
         this.id = equipment.getId();
-        this.equipmentImageUrl = "/equipment/" + equipment.getId() + "/image";
+        this.thumbnailUrl = "/equipment/" + equipment.getId() + "/image";
         this.rentalHistories = equipment.getRentalHistories().stream().map(EquipmentRentalElementDto::new).collect(Collectors.toList());
-        this.name = equipment.getName();
+        this.title = equipment.getTitle();
         this.type = equipment.getType();
         this.rentState = equipment.getRentState();
         this.rentCount = equipment.getRentCount();

@@ -19,9 +19,9 @@ import static com.econo.econobeepserver.util.EpochTime.toEpochSecond;
 public class EquipmentManagementInfoDto {
 
     private Long id;
-    private String name;
+    private String title;
     private RenteeType type;
-    private String equipmentImageUrl;
+    private String thumbnailUrl;
     private String note;
     private RentState rentState;
     private String recentRenter;
@@ -29,9 +29,9 @@ public class EquipmentManagementInfoDto {
 
     public EquipmentManagementInfoDto(Equipment equipment) {
         this.id = equipment.getId();
-        this.name = equipment.getName();
+        this.title = equipment.getTitle();
         this.type = equipment.getType();
-        this.equipmentImageUrl = "/equipment/" + equipment.getId() + "/image";
+        this.thumbnailUrl = "/equipment/" + equipment.getId() + "/image";
         this.note = equipment.getNote();
         this.rentState = equipment.getRentState();
 
@@ -49,7 +49,7 @@ public class EquipmentManagementInfoDto {
         if (this == o) return true;
         if (!(o instanceof EquipmentManagementInfoDto)) return false;
         EquipmentManagementInfoDto that = (EquipmentManagementInfoDto) o;
-        return getId().equals(that.getId()) && getName().equals(that.getName()) && getType() == that.getType() && getEquipmentImageUrl().equals(that.getEquipmentImageUrl()) && Objects.equals(getNote(), that.getNote()) && getRentState() == that.getRentState() && Objects.equals(getRecentRenter(), that.getRecentRenter()) && Objects.equals(getRecentRentalEpochSecond(), that.getRecentRentalEpochSecond());
+        return getId().equals(that.getId()) && getTitle().equals(that.getTitle()) && getType() == that.getType() && getThumbnailUrl().equals(that.getThumbnailUrl()) && Objects.equals(getNote(), that.getNote()) && getRentState() == that.getRentState() && Objects.equals(getRecentRenter(), that.getRecentRenter()) && Objects.equals(getRecentRentalEpochSecond(), that.getRecentRentalEpochSecond());
     }
 
     @Override

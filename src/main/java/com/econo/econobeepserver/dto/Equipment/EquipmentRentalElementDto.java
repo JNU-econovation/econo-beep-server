@@ -12,7 +12,6 @@ import static com.econo.econobeepserver.util.EpochTime.toEpochSecond;
 @NoArgsConstructor
 public class EquipmentRentalElementDto {
 
-    // TODO: userId가 반환되고 있음. 차후에 userApiServer와 연결필요.
     private String renterName;
     private Long rentalEpochSecond;
     private Long returnEpochSecond;

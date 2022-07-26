@@ -25,7 +25,7 @@ public class BookManagementInfoDto {
     private String authorName;
     private String publisherName;
     private Long publishedDateEpochSecond;
-    private String bookCoverImageUrl;
+    private String thumbnailUrl;
     private String note;
     private RentState rentState;
     private String recentRenter;
@@ -38,7 +38,7 @@ public class BookManagementInfoDto {
         this.authorName = book.getAuthorName();
         this.publisherName = book.getPublisherName();
         this.publishedDateEpochSecond = toEpochSecond(book.getPublishedDate());
-        this.bookCoverImageUrl = "/book/" + book.getId() + "/image";
+        this.thumbnailUrl = "/book/" + book.getId() + "/image";
         this.note = book.getNote();
         this.rentState = book.getRentState();
 
@@ -56,7 +56,7 @@ public class BookManagementInfoDto {
         if (this == o) return true;
         if (!(o instanceof BookManagementInfoDto)) return false;
         BookManagementInfoDto that = (BookManagementInfoDto) o;
-        return getId().equals(that.getId()) && getBookCoverImageUrl().equals(that.getBookCoverImageUrl()) && getTitle().equals(that.getTitle()) && getType() == that.getType() && getAuthorName().equals(that.getAuthorName()) && getPublisherName().equals(that.getPublisherName()) && getPublishedDateEpochSecond().equals(that.getPublishedDateEpochSecond()) && getRentState() == that.getRentState() &&
+        return getId().equals(that.getId()) && getThumbnailUrl().equals(that.getThumbnailUrl()) && getTitle().equals(that.getTitle()) && getType() == that.getType() && getAuthorName().equals(that.getAuthorName()) && getPublisherName().equals(that.getPublisherName()) && getPublishedDateEpochSecond().equals(that.getPublishedDateEpochSecond()) && getRentState() == that.getRentState() &&
                 Objects.equals(getRecentRenter(), that.getRecentRenter()) &&
                 Objects.equals(getRecentRentalEpochSecond(), that.getRecentRentalEpochSecond()) &&
                 Objects.equals(getNote(), that.getNote());
