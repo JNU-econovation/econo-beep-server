@@ -57,6 +57,7 @@ public class RenteeSaveDto {
     public RenteeSaveDto(EquipmentSaveDto equipmentSaveDto) {
         this.title = equipmentSaveDto.getTitle();
         this.type = equipmentSaveDto.getType();
+        this.thumbnail = equipmentSaveDto.getThumbnail();
         this.note = equipmentSaveDto.getNote();
     }
 
