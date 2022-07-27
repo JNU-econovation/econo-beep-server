@@ -50,6 +50,7 @@ public class RenteeSaveDto {
         this.authorName = bookSaveDto.getAuthorName();
         this.publisherName = bookSaveDto.getPublisherName();
         this.publishedDateEpochSecond = bookSaveDto.getPublishedDateEpochSecond();
+        this.thumbnail = bookSaveDto.getThumbnail();
         this.note = bookSaveDto.getNote();
     }
 

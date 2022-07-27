@@ -21,6 +21,7 @@ public class EquipmentSaveDto {
     @NotNull
     private RenteeType type;
 
+    @NotNull
     private MultipartFile thumbnail;
 
     private String note;

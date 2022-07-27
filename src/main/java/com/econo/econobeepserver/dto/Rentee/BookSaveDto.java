@@ -33,6 +33,7 @@ public class BookSaveDto {
     @NotNull
     private Long publishedDateEpochSecond;
 
+    @NotNull
     private MultipartFile thumbnail;
 
     private String note;
