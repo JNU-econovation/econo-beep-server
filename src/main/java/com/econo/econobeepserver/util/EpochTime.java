@@ -22,11 +22,19 @@ public class EpochTime {
         return localDate.toEpochSecond(LocalTime.parse("00:00:00"), ZoneOffset.of(KOREA_ZONE_OFFSET));
     }
 
-    public static LocalDate toLocalDate(long epochSecond) {
+    public static LocalDate toLocalDate(Long epochSecond) {
+        if (epochSecond == null) {
+            return null;
+        }
+
         return Instant.ofEpochSecond(epochSecond).atZone(ZoneOffset.of(KOREA_ZONE_OFFSET)).toLocalDate();
     }
 
-    public static LocalDateTime toLocalDateTime(long epochSecond) {
+    public static LocalDateTime toLocalDateTime(Long epochSecond) {
+        if (epochSecond == null) {
+            return null;
+        }
+
         return Instant.ofEpochSecond(epochSecond).atZone(ZoneOffset.of(KOREA_ZONE_OFFSET)).toLocalDateTime();
     }
 }
