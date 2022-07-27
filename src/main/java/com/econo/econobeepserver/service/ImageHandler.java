@@ -1,7 +1,6 @@
 package com.econo.econobeepserver.service;
 
-import com.econo.econobeepserver.domain.Book.BookCoverImage;
-import com.econo.econobeepserver.domain.Equipment.EquipmentImage;
+import com.econo.econobeepserver.domain.Rentee.RenteeThumbnail;
 import com.econo.econobeepserver.exception.ImageIOException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,8 +12,7 @@ import java.io.IOException;
 public class ImageHandler {
 
     private static final String ABSOLUTE_PATH = new File("").getAbsolutePath() + "/";
-    private static final String BOOK_IMAGES_PATH = ABSOLUTE_PATH + "images/book/";
-    private static final String EQUIPMENT_IMAGES_PATH = ABSOLUTE_PATH + "images/equipment/";
+    private static final String BOOK_IMAGES_PATH = ABSOLUTE_PATH + "images/rentee/";
 
 
     private void validateSavingPath(String path) {
@@ -53,24 +51,13 @@ public class ImageHandler {
         }
     }
 
-    public BookCoverImage parseBookCoverImage(MultipartFile multipartFile) {
+    public RenteeThumbnail parseThumbnail(MultipartFile multipartFile) {
         validateSavingPath(BOOK_IMAGES_PATH);
         validatePictureContentType(multipartFile.getContentType());
 
         String fileName = System.nanoTime() + multipartFile.getOriginalFilename();
         String filePath = BOOK_IMAGES_PATH + fileName;
-        return BookCoverImage.builder()
-                .filePath(filePath)
-                .build();
-    }
-
-    public EquipmentImage parseEquipmentImage(MultipartFile multipartFile) {
-        validateSavingPath(EQUIPMENT_IMAGES_PATH);
-        validatePictureContentType(multipartFile.getContentType());
-
-        String fileName = System.nanoTime() + multipartFile.getOriginalFilename();
-        String filePath = EQUIPMENT_IMAGES_PATH + fileName;
-        return EquipmentImage.builder()
+        return RenteeThumbnail.builder()
                 .filePath(filePath)
                 .build();
     }

@@ -6,11 +6,19 @@ public class EpochTime {
 
     private static final String KOREA_ZONE_OFFSET = "+09:00";
 
-    public static long toEpochSecond(LocalDateTime localDateTime) {
+    public static Long toEpochSecond(LocalDateTime localDateTime) {
+        if (localDateTime == null) {
+            return null;
+        }
+
         return localDateTime.toEpochSecond(ZoneOffset.of(KOREA_ZONE_OFFSET));
     }
 
-    public static long toEpochSecond(LocalDate localDate) {
+    public static Long toEpochSecond(LocalDate localDate) {
+        if (localDate == null) {
+            return null;
+        }
+
         return localDate.toEpochSecond(LocalTime.parse("00:00:00"), ZoneOffset.of(KOREA_ZONE_OFFSET));
     }
 

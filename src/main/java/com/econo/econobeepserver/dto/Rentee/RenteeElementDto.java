@@ -1,9 +1,8 @@
 package com.econo.econobeepserver.dto.Rentee;
 
-import com.econo.econobeepserver.domain.Book.Book;
-import com.econo.econobeepserver.domain.Equipment.Equipment;
-import com.econo.econobeepserver.domain.RentState;
-import com.econo.econobeepserver.domain.RenteeType;
+import com.econo.econobeepserver.domain.Rentee.Rentee;
+import com.econo.econobeepserver.domain.Rentee.RentState;
+import com.econo.econobeepserver.domain.Rentee.RenteeType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,21 +22,13 @@ public class RenteeElementDto {
     private RentState rentState;
 
 
-    public RenteeElementDto(Book book) {
-        this.id = book.getId();
-        this.title = book.getTitle();
-        this.type = book.getType();
-        this.authorName = book.getAuthorName();
-        this.thumbnailUrl = "/book/" + book.getId() + "/image";
-        this.rentState = book.getRentState();
-    }
-
-    public RenteeElementDto(Equipment equipment) {
-        this.id = equipment.getId();
-        this.title = equipment.getTitle();
-        this.type = equipment.getType();
-        this.thumbnailUrl = "/equipment/" + equipment.getId() + "/image";
-        this.rentState = equipment.getRentState();
+    public RenteeElementDto(Rentee rentee) {
+        this.id = rentee.getId();
+        this.title = rentee.getTitle();
+        this.type = rentee.getType();
+        this.authorName = rentee.getAuthorName();
+        this.thumbnailUrl = "/rentee/" + rentee.getId() + "/image";
+        this.rentState = rentee.getRentState();
     }
 
     @Override
@@ -45,11 +36,11 @@ public class RenteeElementDto {
         if (this == o) return true;
         if (!(o instanceof RenteeElementDto)) return false;
         RenteeElementDto that = (RenteeElementDto) o;
-        return id.equals(that.id) && thumbnailUrl.equals(that.thumbnailUrl) && title.equals(that.title) && type == that.type && authorName.equals(that.authorName) && rentState == that.rentState;
+        return getId().equals(that.getId()) && getTitle().equals(that.getTitle()) && getType() == that.getType() && Objects.equals(getAuthorName(), that.getAuthorName()) && getThumbnailUrl().equals(that.getThumbnailUrl()) && getRentState() == that.getRentState();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(getId());
     }
 }
