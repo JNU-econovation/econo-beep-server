@@ -12,7 +12,7 @@ import java.io.IOException;
 public class ImageHandler {
 
     private static final String ABSOLUTE_PATH = new File("").getAbsolutePath() + "/";
-    private static final String BOOK_IMAGES_PATH = ABSOLUTE_PATH + "images/rentee/";
+    private static final String RENTEE_THUMBNAIL_IMAGES_PATH = ABSOLUTE_PATH + "images/rentee/thumbnail";
 
 
     private void validateSavingPath(String path) {
@@ -52,11 +52,11 @@ public class ImageHandler {
     }
 
     public RenteeThumbnail parseThumbnail(MultipartFile multipartFile) {
-        validateSavingPath(BOOK_IMAGES_PATH);
+        validateSavingPath(RENTEE_THUMBNAIL_IMAGES_PATH);
         validatePictureContentType(multipartFile.getContentType());
 
         String fileName = System.nanoTime() + multipartFile.getOriginalFilename();
-        String filePath = BOOK_IMAGES_PATH + fileName;
+        String filePath = RENTEE_THUMBNAIL_IMAGES_PATH + fileName;
         return RenteeThumbnail.builder()
                 .filePath(filePath)
                 .build();
