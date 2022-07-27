@@ -38,7 +38,7 @@ public class RenteeManagementInfoDto {
         this.authorName = rentee.getAuthorName();
         this.publisherName = rentee.getPublisherName();
         this.publishedDateEpochSecond = toEpochSecond(rentee.getPublishedDate());
-        this.thumbnailUrl = "/rentee/" + rentee.getId() + "/image";
+        this.thumbnailUrl = "/rentee/" + rentee.getId() + "/thumbnail";
         this.note = rentee.getNote();
         this.rentState = rentee.getRentState();
 

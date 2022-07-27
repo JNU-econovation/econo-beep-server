@@ -32,7 +32,7 @@ public class RenteeInfoDto {
 
     public RenteeInfoDto(Rentee rentee) {
         this.id = rentee.getId();
-        this.thumbnailUrl = "/rentee/" + rentee.getId() + "/image";
+        this.thumbnailUrl = "/rentee/" + rentee.getId() + "/thumbnail";
         this.rentalHistories = rentee.getRentalHistories().stream().map(RenteeRentalElementDto::new).collect(Collectors.toList());
         this.title = rentee.getTitle();
         this.type = rentee.getType();
