@@ -144,7 +144,7 @@ class RenteeServiceRTest {
         List<Rentee> successfulResponse = successfulResponseOfGetRenteeWithPaging();
         doReturn(successfulResponse)
                 .when(renteeRepository)
-                .getRecentRenteeWithPaging(2, null);
+                .getRenteesWithPaging(2, null);
 
         List<RenteeElementDto> wantedResults = successfulResponse.stream().map(RenteeElementDto::new).collect(Collectors.toList());
 
@@ -163,7 +163,7 @@ class RenteeServiceRTest {
         List<Rentee> failedResponse = failedResponseOfGetRenteeWithPaging();
         doReturn(failedResponse)
                 .when(renteeRepository)
-                .getRecentRenteeWithPaging(2, 10L);
+                .getRenteesWithPaging(2, 10L);
 
         List<RenteeElementDto> wantedResults = failedResponse.stream().map(RenteeElementDto::new).collect(Collectors.toList());
 
@@ -183,7 +183,7 @@ class RenteeServiceRTest {
         List<Rentee> successfulResponse = successfulResponseOfGetRenteeWithPaging();
         doReturn(successfulResponse)
                 .when(renteeRepository)
-                .getRenteeByTypeEqualWithPaging(RenteeType.WEB, 2, null);
+                .getRenteesByTypeEqualWithPaging(RenteeType.WEB, 2, null);
 
         List<RenteeElementDto> wantedResults = successfulResponse.stream().map(RenteeElementDto::new).collect(Collectors.toList());
 
@@ -202,7 +202,7 @@ class RenteeServiceRTest {
         List<Rentee> failedResponse = failedResponseOfGetRenteeWithPaging();
         doReturn(failedResponse)
                 .when(renteeRepository)
-                .getRenteeByTypeEqualWithPaging(RenteeType.WEB, 2, 10L);
+                .getRenteesByTypeEqualWithPaging(RenteeType.WEB, 2, 10L);
 
         List<RenteeElementDto> wantedResults = failedResponse.stream().map(RenteeElementDto::new).collect(Collectors.toList());
 
@@ -260,7 +260,7 @@ class RenteeServiceRTest {
         List<Rentee> successfulResponse = successfulResponseOfSearchRenteeByKeyword();
         doReturn(successfulResponse)
                 .when(renteeRepository)
-                .searchRenteeByKeyword("test");
+                .searchRentee("test");
 
         List<RenteeElementDto> wantedResults = successfulResponse.stream().map(RenteeElementDto::new).collect(Collectors.toList());
 
@@ -279,7 +279,7 @@ class RenteeServiceRTest {
         List<Rentee> failedResponse = failedResponseOfSearchRenteeByKeyword();
         doReturn(failedResponse)
                 .when(renteeRepository)
-                .searchRenteeByKeyword("real");
+                .searchRentee("real");
 
         List<RenteeElementDto> wantedResults = failedResponse.stream().map(RenteeElementDto::new).collect(Collectors.toList());
 
@@ -337,7 +337,7 @@ class RenteeServiceRTest {
         List<Rentee> successfulResponse = successfulResponseOfGetRenteeByIdDescWithPaging();
         doReturn(successfulResponse)
                 .when(renteeRepository)
-                .getRecentRenteeWithPaging(2, null);
+                .getRenteesWithPaging(2, null);
 
         List<RenteeManagementInfoDto> wantedResults = successfulResponse.stream().map(RenteeManagementInfoDto::new).collect(Collectors.toList());
 
@@ -356,7 +356,7 @@ class RenteeServiceRTest {
         List<Rentee> failedResponse = failedResponseOfGetRenteeByIdDescWithPaging();
         doReturn(failedResponse)
                 .when(renteeRepository)
-                .getRecentRenteeWithPaging(2, 10L);
+                .getRenteesWithPaging(2, 10L);
 
         List<RenteeManagementInfoDto> wantedResults = failedResponse.stream().map(RenteeManagementInfoDto::new).collect(Collectors.toList());
 
@@ -375,7 +375,7 @@ class RenteeServiceRTest {
         List<Rentee> successfulResponse = successfulResponseOfSearchRenteeByKeyword();
         doReturn(successfulResponse)
                 .when(renteeRepository)
-                .searchRenteeByKeyword("test");
+                .searchRentee("test");
 
         List<RenteeManagementInfoDto> wantedResults = successfulResponse.stream().map(RenteeManagementInfoDto::new).collect(Collectors.toList());
 
@@ -394,7 +394,7 @@ class RenteeServiceRTest {
         List<Rentee> failedResponse = failedResponseOfSearchRenteeByKeyword();
         doReturn(failedResponse)
                 .when(renteeRepository)
-                .searchRenteeByKeyword("real");
+                .searchRentee("real");
 
         List<RenteeManagementInfoDto> wantedResults = failedResponse.stream().map(RenteeManagementInfoDto::new).collect(Collectors.toList());
 

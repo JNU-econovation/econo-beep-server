@@ -129,7 +129,7 @@ class RenteeRepositoryTest {
         final Long lastId = null;
 
         // when
-        List<Rentee> rentees = renteeRepository.getRecentRenteeWithPaging(PAGE_SIZE, lastId);
+        List<Rentee> rentees = renteeRepository.getRenteesWithPaging(PAGE_SIZE, lastId);
 
         // then
         assertThat(rentees)
@@ -145,7 +145,7 @@ class RenteeRepositoryTest {
         final Long lastId = 2L;
 
         // when
-        List<Rentee> rentees = renteeRepository.getRecentRenteeWithPaging(PAGE_SIZE, lastId);
+        List<Rentee> rentees = renteeRepository.getRenteesWithPaging(PAGE_SIZE, lastId);
 
         // then
         assertThat(rentees)
@@ -162,7 +162,7 @@ class RenteeRepositoryTest {
         final RenteeType renteeType = RenteeType.WEB;
 
         // when
-        List<Rentee> rentees = renteeRepository.getRenteeByTypeEqualWithPaging(renteeType, PAGE_SIZE, lastId);
+        List<Rentee> rentees = renteeRepository.getRenteesByTypeEqualWithPaging(renteeType, PAGE_SIZE, lastId);
 
         // then
         assertThat(rentees)
@@ -179,7 +179,7 @@ class RenteeRepositoryTest {
         final RenteeType renteeType = RenteeType.WEB;
 
         // when
-        List<Rentee> rentees = renteeRepository.getRenteeByTypeEqualWithPaging(renteeType, PAGE_SIZE, lastId);
+        List<Rentee> rentees = renteeRepository.getRenteesByTypeEqualWithPaging(renteeType, PAGE_SIZE, lastId);
 
         // then
         assertThat(rentees)
@@ -195,7 +195,7 @@ class RenteeRepositoryTest {
         final String keyword = "test";
 
         // when
-        List<Rentee> rentees = renteeRepository.searchRenteeByKeyword(keyword);
+        List<Rentee> rentees = renteeRepository.searchRentee(keyword);
 
         // then
         assertThat(rentees)
@@ -210,7 +210,7 @@ class RenteeRepositoryTest {
         final String keyword = "testRentee1";
 
         // when
-        List<Rentee> rentees = renteeRepository.searchRenteeByKeyword(keyword);
+        List<Rentee> rentees = renteeRepository.searchRentee(keyword);
 
         // then
         assertThat(rentees)

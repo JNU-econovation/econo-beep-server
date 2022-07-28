@@ -24,7 +24,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> getRecentRenteeWithPaging(int pageSize, Long lastId) {
+    public List<Rentee> getRenteesWithPaging(int pageSize, Long lastId) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
@@ -35,7 +35,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> getRenteeByTypeEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId) {
+    public List<Rentee> getRenteesByTypeEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
@@ -49,7 +49,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> getRenteeByTypeNotEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId) {
+    public List<Rentee> getRenteesByTypeNotEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
@@ -63,7 +63,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> searchRenteeByKeyword(String keyword) {
+    public List<Rentee> searchRentee(String keyword) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
@@ -72,7 +72,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> searchRenteeByRenteeTypeEqualByKeyword(RenteeType renteeType, String keyword) {
+    public List<Rentee> searchRenteeByRenteeTypeEqual(RenteeType renteeType, String keyword) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
@@ -84,7 +84,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> searchRenteeByRenteeTypeNotEqualByKeyword(RenteeType renteeType, String keyword) {
+    public List<Rentee> searchRenteeByRenteeTypeNotEqual(RenteeType renteeType, String keyword) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)

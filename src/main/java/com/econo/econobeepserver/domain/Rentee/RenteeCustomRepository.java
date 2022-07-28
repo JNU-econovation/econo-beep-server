@@ -4,15 +4,15 @@ import java.util.List;
 
 public interface RenteeCustomRepository {
 
-    List<Rentee> getRecentRenteeWithPaging(int pageSize, Long lastId);
+    List<Rentee> getRenteesWithPaging(int pageSize, Long lastId);
 
-    List<Rentee> getRenteeByTypeEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId);
+    List<Rentee> getRenteesByTypeEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId);
 
-    List<Rentee> getRenteeByTypeNotEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId);
+    List<Rentee> getRenteesByTypeNotEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId);
 
-    List<Rentee> searchRenteeByKeyword(String keyword);
+    List<Rentee> searchRentee(String keyword);
 
-    List<Rentee> searchRenteeByRenteeTypeEqualByKeyword(RenteeType renteeType, String keyword);
+    List<Rentee> searchRenteeByRenteeTypeEqual(RenteeType renteeType, String keyword);
 
-    List<Rentee> searchRenteeByRenteeTypeNotEqualByKeyword(RenteeType renteeType, String keyword);
+    List<Rentee> searchRenteeByRenteeTypeNotEqual(RenteeType renteeType, String keyword);
 }

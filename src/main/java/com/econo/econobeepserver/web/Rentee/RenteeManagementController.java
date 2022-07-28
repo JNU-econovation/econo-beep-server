@@ -1,5 +1,6 @@
 package com.econo.econobeepserver.web.Rentee;
 
+import com.econo.econobeepserver.domain.Rentee.RenteeType;
 import com.econo.econobeepserver.dto.Rentee.EquipmentSaveDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeManagementInfoDto;
 import com.econo.econobeepserver.dto.Rentee.BookSaveDto;
@@ -33,12 +34,21 @@ public class RenteeManagementController {
     }
 
     @GetMapping("/management/list/book")
-    public ResponseEntity<List<RenteeManagementInfoDto>> getBookManagementInfoDtosByIdDescWithPaging(@RequestParam(value = "pageSize") int pageSize,
-                                                                                                     @RequestParam(value = "lastBookId", required = false) Long lastId) {
+    public ResponseEntity<List<RenteeManagementInfoDto>> getBookManagementInfoDtosWithPaging(@RequestParam(value = "pageSize") int pageSize,
+                                                                                             @RequestParam(value = "lastRenteeId", required = false) Long lastId) {
 
-        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.getRenteeManagementInfoDtosByIdDescWithPaging(pageSize, lastId);
+        List<RenteeManagementInfoDto> bookManagementInfoDtos = renteeService.getRenteeManagementInfoDtosByTypeNotEqualWithPaging(RenteeType.EQUIPMENT, pageSize, lastId);
 
-        return ResponseEntity.ok(renteeManagementInfoDtos);
+        return ResponseEntity.ok(bookManagementInfoDtos);
+    }
+
+    @GetMapping("/management/list/equipment")
+    public ResponseEntity<List<RenteeManagementInfoDto>> getEquipmentManagementInfoDtosWithPaging(@RequestParam(value = "pageSize") int pageSize,
+                                                                                                  @RequestParam(value = "lastRenteeId", required = false) Long lastId) {
+
+        List<RenteeManagementInfoDto> equipmentManagementInfoDtos = renteeService.getRenteeManagementInfoDtosByTypeEqualWithPaging(RenteeType.EQUIPMENT, pageSize, lastId);
+
+        return ResponseEntity.ok(equipmentManagementInfoDtos);
     }
 
     @GetMapping("/management/search/book")
@@ -58,7 +68,7 @@ public class RenteeManagementController {
 
     @PutMapping("/management/equipment/{id}")
     public ResponseEntity<Void> updateEquipmentById(@PathVariable(value = "id") Long id,
-                                               @Valid @ModelAttribute EquipmentSaveDto equipmentSaveDto) {
+                                                    @Valid @ModelAttribute EquipmentSaveDto equipmentSaveDto) {
         renteeService.updateRenteeById(id, new RenteeSaveDto(equipmentSaveDto));
 
         return ResponseEntity.ok().build();
