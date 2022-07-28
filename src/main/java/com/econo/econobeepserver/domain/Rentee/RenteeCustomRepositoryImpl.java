@@ -113,14 +113,18 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
-                .where(
-                        rentee.rentalHistories.isNotEmpty(),
-                        rentee.type.eq(renteeType),
-                        rentee.title.contains(keyword)
-                )
-                .orderBy(rentee.rentalHistories.get(rentee.rentalHistories.size().subtract(1)).rentalDateTime.desc())
-                .offset(offset)
-                .limit(pageSize)
+                .where(rentee.id.in(
+                        JPAExpressions
+                                .select(rental.rentee.id)
+                                .from(rental)
+                                .where(
+                                        rental.rentee.type.eq(renteeType),
+                                        rental.rentee.title.contains(keyword)g
+                                )
+                                .orderBy(rental.rentalDateTime.desc())
+                                .offset(offset)
+                                .limit(pageSize)
+                ))
                 .fetch();
     }
 
