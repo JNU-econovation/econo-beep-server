@@ -33,7 +33,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     private BooleanExpression compareRenteeId(Long renteeId, Boolean isIdAsc, Boolean isIdDesc) {
-        if (isIdAsc) {
+        if (isIdAsc != null &&  isIdAsc) {
             return gtRenteeId(renteeId);
 
         } else {
@@ -42,7 +42,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     private OrderSpecifier sortRenteeId(Boolean isIdAsc, Boolean isIdDesc) {
-        if (isIdAsc) {
+        if (isIdAsc != null &&  isIdAsc) {
             return rentee.id.asc();
 
         } else {
@@ -106,7 +106,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> searchRenteeByRenteeTypeEqualByRecentRentDescWithPaging(RenteeType renteeType, String keyword, int pageSize, long offset, Boolean isRecentRentDesc) {
+    public List<Rentee> searchRenteeByRenteeTypeEqualByRecentRentDescWithPaging(RenteeType renteeType, String keyword, int pageSize, long offset) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
@@ -152,7 +152,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> searchRenteeByRenteeTypeNotEqualByRecentRentDescWithPaging(RenteeType renteeType, String keyword, int pageSize, long offset, Boolean isRecentRentDesc) {
+    public List<Rentee> searchRenteeByRenteeTypeNotEqualByRecentRentDescWithPaging(RenteeType renteeType, String keyword, int pageSize, long offset) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)

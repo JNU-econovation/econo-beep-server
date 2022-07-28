@@ -77,8 +77,8 @@ public class RenteeService {
 
     public List<RenteeManagementInfoDto> searchRenteeManagementInfoDtosFromBookWithPaging(String keyword, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc, Boolean isRecentRentDesc) {
         List<Rentee> rentees;
-        if (isRecentRentDesc != null) {
-            rentees = renteeRepository.searchRenteeByRenteeTypeNotEqualByRecentRentDescWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId, isRecentRentDesc);
+        if (isRecentRentDesc != null && isRecentRentDesc) {
+            rentees = renteeRepository.searchRenteeByRenteeTypeNotEqualByRecentRentDescWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId);
 
         } else {
             rentees = renteeRepository.searchRenteeByRenteeTypeNotEqualByIdSortPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId, isIdAsc, isIdDesc);
@@ -89,8 +89,8 @@ public class RenteeService {
 
     public List<RenteeManagementInfoDto> searchRenteeManagementInfoDtosFromEquipmentWithPaging(String keyword, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc, Boolean isRecentRentDesc) {
         List<Rentee> rentees;
-        if (isRecentRentDesc != null) {
-            rentees = renteeRepository.searchRenteeByRenteeTypeEqualByRecentRentDescWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId, isRecentRentDesc);
+        if (isRecentRentDesc != null && isRecentRentDesc) {
+            rentees = renteeRepository.searchRenteeByRenteeTypeEqualByRecentRentDescWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId);
 
         } else {
             rentees = renteeRepository.searchRenteeByRenteeTypeEqualByIdSortWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId, isIdAsc, isIdDesc);

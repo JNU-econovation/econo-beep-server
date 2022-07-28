@@ -12,11 +12,11 @@ public interface RenteeCustomRepository {
 
     List<Rentee> searchRenteeByRenteeTypeEqualByIdSortWithPaging(RenteeType renteeType, String keyword, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc);
 
-    List<Rentee> searchRenteeByRenteeTypeEqualByRecentRentDescWithPaging(RenteeType renteeType, String keyword, int pageSize, long offset, Boolean isRecentRentDesc);
+    List<Rentee> searchRenteeByRenteeTypeEqualByRecentRentDescWithPaging(RenteeType renteeType, String keyword, int pageSize, long offset);
 
     List<Rentee> searchRenteeByRenteeTypeNotEqualWithPaging(RenteeType renteeType, String keyword, int pageSize, Long lastId);
 
     List<Rentee> searchRenteeByRenteeTypeNotEqualByIdSortPaging(RenteeType renteeType, String keyword, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc);
 
-    List<Rentee> searchRenteeByRenteeTypeNotEqualByRecentRentDescWithPaging(RenteeType renteeType, String keyword, int pageSize, long offset, Boolean isRecentRentDesc);
+    List<Rentee> searchRenteeByRenteeTypeNotEqualByRecentRentDescWithPaging(RenteeType renteeType, String keyword, int pageSize, long offset);
 }
