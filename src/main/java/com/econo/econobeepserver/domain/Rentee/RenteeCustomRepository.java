@@ -8,7 +8,11 @@ public interface RenteeCustomRepository {
 
     List<Rentee> getRenteesByTypeEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId);
 
+    List<Rentee> getRenteesByTypeEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc);
+
     List<Rentee> getRenteesByTypeNotEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId);
+
+    List<Rentee> getRenteesByTypeNotEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc);
 
     List<Rentee> searchRentee(String keyword);
 

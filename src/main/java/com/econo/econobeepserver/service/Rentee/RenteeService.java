@@ -92,14 +92,14 @@ public class RenteeService {
         return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
     }
 
-    public List<RenteeManagementInfoDto> getRenteeManagementInfoDtosByTypeEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId) {
-        List<Rentee> rentees = renteeRepository.getRenteesByTypeEqualWithPaging(renteeType, pageSize, lastId);
+    public List<RenteeManagementInfoDto> getRenteeManagementInfoDtosByTypeEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc) {
+        List<Rentee> rentees = renteeRepository.getRenteesByTypeEqualWithPaging(renteeType, pageSize, lastId, isIdAsc, isIdDesc);
 
         return rentees.stream().map(RenteeManagementInfoDto::new).collect(Collectors.toList());
     }
 
-    public List<RenteeManagementInfoDto> getRenteeManagementInfoDtosByTypeNotEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId) {
-        List<Rentee> rentees = renteeRepository.getRenteesByTypeNotEqualWithPaging(renteeType, pageSize, lastId);
+    public List<RenteeManagementInfoDto> getRenteeManagementInfoDtosByTypeNotEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc) {
+        List<Rentee> rentees = renteeRepository.getRenteesByTypeNotEqualWithPaging(renteeType, pageSize, lastId, isIdAsc, isIdDesc);
 
         return rentees.stream().map(RenteeManagementInfoDto::new).collect(Collectors.toList());
     }

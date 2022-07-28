@@ -23,6 +23,23 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
         return rentee.id.lt(renteeId);
     }
 
+    private BooleanExpression gtRenteeId(Long renteeId) {
+        if(renteeId == null) {
+            return null;
+        }
+
+        return rentee.id.gt(renteeId);
+    }
+
+    private BooleanExpression compareRenteeId(Long renteeId, Boolean isIdAsc, Boolean isIdDesc) {
+        if (isIdAsc) {
+            return gtRenteeId(renteeId);
+
+        } else {
+            return ltRenteeId(renteeId);
+        }
+    }
+
     @Override
     public List<Rentee> getRenteesWithPaging(int pageSize, Long lastId) {
         return jpaQueryFactory
@@ -49,12 +66,40 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
+    public List<Rentee> getRenteesByTypeEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc) {
+        return jpaQueryFactory
+                .select(rentee)
+                .from(rentee)
+                .where(
+                        compareRenteeId(lastId, isIdAsc, isIdDesc),
+                        rentee.type.eq(renteeType)
+                )
+                .orderBy(rentee.id.desc())
+                .limit(pageSize)
+                .fetch();
+    }
+
+    @Override
     public List<Rentee> getRenteesByTypeNotEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
                         ltRenteeId(lastId),
+                        rentee.type.ne(renteeType)
+                )
+                .orderBy(rentee.id.desc())
+                .limit(pageSize)
+                .fetch();
+    }
+
+    @Override
+    public List<Rentee> getRenteesByTypeNotEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc) {
+        return jpaQueryFactory
+                .select(rentee)
+                .from(rentee)
+                .where(
+                        compareRenteeId(lastId, isIdAsc, isIdDesc),
                         rentee.type.ne(renteeType)
                 )
                 .orderBy(rentee.id.desc())

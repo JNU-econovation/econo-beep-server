@@ -34,19 +34,27 @@ public class RenteeManagementController {
     }
 
     @GetMapping("/management/list/book")
-    public ResponseEntity<List<RenteeManagementInfoDto>> getBookManagementInfoDtosWithPaging(@RequestParam(value = "pageSize") int pageSize,
-                                                                                             @RequestParam(value = "lastRenteeId", required = false) Long lastId) {
+    public ResponseEntity<List<RenteeManagementInfoDto>> getBookManagementInfoDtosBySortWithPaging(@RequestParam(value = "pageSize") int pageSize,
+                                                                                                   @RequestParam(value = "lastRenteeId", required = false) Long lastId,
+                                                                                                   @RequestParam(value = "idAsc", required = false) Boolean isIdAsc,
+                                                                                                   @RequestParam(value = "idDesc", required = false) Boolean isIdDesc
+    ) {
 
-        List<RenteeManagementInfoDto> bookManagementInfoDtos = renteeService.getRenteeManagementInfoDtosByTypeNotEqualWithPaging(RenteeType.EQUIPMENT, pageSize, lastId);
+        List<RenteeManagementInfoDto> bookManagementInfoDtos
+                = renteeService.getRenteeManagementInfoDtosByTypeNotEqualWithPaging(RenteeType.EQUIPMENT, pageSize, lastId, isIdAsc, isIdDesc);
 
         return ResponseEntity.ok(bookManagementInfoDtos);
     }
 
     @GetMapping("/management/list/equipment")
-    public ResponseEntity<List<RenteeManagementInfoDto>> getEquipmentManagementInfoDtosWithPaging(@RequestParam(value = "pageSize") int pageSize,
-                                                                                                  @RequestParam(value = "lastRenteeId", required = false) Long lastId) {
+    public ResponseEntity<List<RenteeManagementInfoDto>> getEquipmentManagementInfoDtosBySortWithPaging(@RequestParam(value = "pageSize") int pageSize,
+                                                                                                        @RequestParam(value = "lastRenteeId", required = false) Long lastId,
+                                                                                                        @RequestParam(value = "idAsc", required = false) Boolean isIdAsc,
+                                                                                                        @RequestParam(value = "idDesc", required = false) Boolean isIdDesc
+    ) {
 
-        List<RenteeManagementInfoDto> equipmentManagementInfoDtos = renteeService.getRenteeManagementInfoDtosByTypeEqualWithPaging(RenteeType.EQUIPMENT, pageSize, lastId);
+        List<RenteeManagementInfoDto> equipmentManagementInfoDtos
+                = renteeService.getRenteeManagementInfoDtosByTypeEqualWithPaging(RenteeType.EQUIPMENT, pageSize, lastId, isIdAsc, isIdDesc);
 
         return ResponseEntity.ok(equipmentManagementInfoDtos);
     }
