@@ -119,7 +119,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
                                 .from(rental)
                                 .where(
                                         rental.rentee.type.eq(renteeType),
-                                        rental.rentee.title.contains(keyword)g
+                                        rental.rentee.title.contains(keyword)
                                 )
                                 .orderBy(rental.rentalDateTime.desc())
                                 .offset(offset)
