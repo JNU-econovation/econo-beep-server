@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
         e.printStackTrace();
 
         return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
+                .status(HttpStatus.NO_CONTENT)
                 .body(e.getMessage());
     }
 

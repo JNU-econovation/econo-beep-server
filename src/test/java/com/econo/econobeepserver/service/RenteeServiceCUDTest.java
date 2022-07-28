@@ -175,8 +175,8 @@ class RenteeServiceCUDTest {
 
     private UserInfoDto sampleUser() {
         return UserInfoDto.builder()
-                .uid(1L)
-                .name("tester")
+                .id(1L)
+                .userName("tester")
                 .pinCode("1234")
                 .build();
     }

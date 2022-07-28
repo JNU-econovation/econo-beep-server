@@ -1,5 +1,7 @@
 package com.econo.econobeepserver.domain.Rentee;
 
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +16,13 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 
+    private BooleanExpression gtRenteeId(Long renteeId) {
+        if(renteeId == null) {
+            return null;
+        }
+
+        return rentee.id.gt(renteeId);
+    }
 
     private BooleanExpression ltRenteeId(Long renteeId) {
         if(renteeId == null) {
@@ -23,20 +32,21 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
         return rentee.id.lt(renteeId);
     }
 
-    private BooleanExpression gtRenteeId(Long renteeId) {
-        if(renteeId == null) {
-            return null;
-        }
-
-        return rentee.id.gt(renteeId);
-    }
-
     private BooleanExpression compareRenteeId(Long renteeId, Boolean isIdAsc, Boolean isIdDesc) {
         if (isIdAsc) {
             return gtRenteeId(renteeId);
 
         } else {
             return ltRenteeId(renteeId);
+        }
+    }
+
+    private OrderSpecifier sortRenteeId(Boolean isIdAsc, Boolean isIdDesc) {
+        if (isIdAsc) {
+            return rentee.id.asc();
+
+        } else {
+            return rentee.id.desc();
         }
     }
 
@@ -52,13 +62,13 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> getRenteesByTypeEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId) {
+    public List<Rentee> searchRenteeWithPaging(String keyword, int pageSize, Long lastId) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
                         ltRenteeId(lastId),
-                        rentee.type.eq(renteeType)
+                        rentee.title.contains(keyword)
                 )
                 .orderBy(rentee.id.desc())
                 .limit(pageSize)
@@ -66,77 +76,94 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> getRenteesByTypeEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc) {
-        return jpaQueryFactory
-                .select(rentee)
-                .from(rentee)
-                .where(
-                        compareRenteeId(lastId, isIdAsc, isIdDesc),
-                        rentee.type.eq(renteeType)
-                )
-                .orderBy(rentee.id.desc())
-                .limit(pageSize)
-                .fetch();
-    }
-
-    @Override
-    public List<Rentee> getRenteesByTypeNotEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId) {
+    public List<Rentee> searchRenteeByRenteeTypeEqualWithPaging(RenteeType renteeType, String keyword, int pageSize, Long lastId) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
                         ltRenteeId(lastId),
-                        rentee.type.ne(renteeType)
-                )
-                .orderBy(rentee.id.desc())
-                .limit(pageSize)
-                .fetch();
-    }
-
-    @Override
-    public List<Rentee> getRenteesByTypeNotEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc) {
-        return jpaQueryFactory
-                .select(rentee)
-                .from(rentee)
-                .where(
-                        compareRenteeId(lastId, isIdAsc, isIdDesc),
-                        rentee.type.ne(renteeType)
-                )
-                .orderBy(rentee.id.desc())
-                .limit(pageSize)
-                .fetch();
-    }
-
-    @Override
-    public List<Rentee> searchRentee(String keyword) {
-        return jpaQueryFactory
-                .select(rentee)
-                .from(rentee)
-                .where(rentee.title.contains(keyword))
-                .fetch();
-    }
-
-    @Override
-    public List<Rentee> searchRenteeByRenteeTypeEqual(RenteeType renteeType, String keyword) {
-        return jpaQueryFactory
-                .select(rentee)
-                .from(rentee)
-                .where(
                         rentee.type.eq(renteeType),
                         rentee.title.contains(keyword)
                 )
+                .orderBy(rentee.id.desc())
+                .limit(pageSize)
                 .fetch();
     }
 
     @Override
-    public List<Rentee> searchRenteeByRenteeTypeNotEqual(RenteeType renteeType, String keyword) {
+    public List<Rentee> searchRenteeByRenteeTypeEqualByIdSortWithPaging(RenteeType renteeType, String keyword, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
+                        compareRenteeId(lastId, isIdAsc, isIdDesc),
+                        rentee.type.eq(renteeType),
+                        rentee.title.contains(keyword)
+                )
+                .orderBy(sortRenteeId(isIdAsc, isIdDesc))
+                .limit(pageSize)
+                .fetch();
+    }
+
+    @Override
+    public List<Rentee> searchRenteeByRenteeTypeEqualByRecentRentDescWithPaging(RenteeType renteeType, String keyword, int pageSize, long offset, Boolean isRecentRentDesc) {
+        return jpaQueryFactory
+                .select(rentee)
+                .from(rentee)
+                .where(
+                        rentee.rentalHistories.isNotEmpty(),
+                        rentee.type.eq(renteeType),
+                        rentee.title.contains(keyword)
+                )
+                .orderBy(rentee.rentalHistories.get(rentee.rentalHistories.size().subtract(1)).rentalDateTime.desc())
+                .offset(offset)
+                .limit(pageSize)
+                .fetch();
+    }
+
+    @Override
+    public List<Rentee> searchRenteeByRenteeTypeNotEqualWithPaging(RenteeType renteeType, String keyword, int pageSize, Long lastId) {
+        return jpaQueryFactory
+                .select(rentee)
+                .from(rentee)
+                .where(
+                        ltRenteeId(lastId),
                         rentee.type.ne(renteeType),
                         rentee.title.contains(keyword)
                 )
+                .orderBy(rentee.id.desc())
+                .limit(pageSize)
+                .fetch();
+    }
+
+    @Override
+    public List<Rentee> searchRenteeByRenteeTypeNotEqualByIdSortPaging(RenteeType renteeType, String keyword, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc) {
+        return jpaQueryFactory
+                .select(rentee)
+                .from(rentee)
+                .where(
+                        compareRenteeId(lastId, isIdAsc, isIdDesc),
+                        rentee.type.ne(renteeType),
+                        rentee.title.contains(keyword)
+                )
+                .orderBy(sortRenteeId(isIdAsc, isIdDesc))
+                .limit(pageSize)
+                .fetch();
+    }
+
+    @Override
+    public List<Rentee> searchRenteeByRenteeTypeNotEqualByRecentRentDescWithPaging(RenteeType renteeType, String keyword, int pageSize, long offset, Boolean isRecentRentDesc) {
+        return jpaQueryFactory
+                .select(rentee)
+                .from(rentee)
+                .where(
+                        rentee.rentalHistories.isNotEmpty(),
+                        rentee.type.ne(renteeType),
+                        rentee.title.contains(keyword)
+                )
+                .orderBy(rentee.rentalHistories.get(rentee.rentalHistories.size().subtract(1)).rentalDateTime.desc())
+                .offset(offset)
+                .limit(pageSize)
                 .fetch();
     }
 }

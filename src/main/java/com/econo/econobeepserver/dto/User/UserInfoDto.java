@@ -10,14 +10,14 @@ import lombok.Setter;
 @Getter
 public class UserInfoDto {
 
-    private Long uid;
-    private String name;
+    private Long id;
+    private String userName;
     private String pinCode;
 
     @Builder
-    public UserInfoDto(Long uid, String name, String pinCode) {
-        this.uid = uid;
-        this.name = name;
+    public UserInfoDto(Long id, String userName, String pinCode) {
+        this.id = id;
+        this.userName = userName;
         this.pinCode = pinCode;
     }
 }

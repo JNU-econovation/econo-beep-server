@@ -13,6 +13,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -55,57 +56,45 @@ public class RenteeService {
 
         return new RenteeInfoDto(rentee);
     }
-    
-    public List<RenteeElementDto> getRenteeElementDtosWithPaging(int pageSize, Long lastId) {
-        List<Rentee> rentees = renteeRepository.getRenteesWithPaging(pageSize, lastId);
+
+    public List<RenteeElementDto> searchRenteeElementDtosByKeyword(String keyword, int pageSize, Long lastId) {
+        List<Rentee> rentees = renteeRepository.searchRenteeWithPaging(keyword, pageSize, lastId);
 
         return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
     }
 
-    public List<RenteeElementDto> getRenteeElementDtosByRenteeTypeEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId) {
-        List<Rentee> rentees = renteeRepository.getRenteesByTypeEqualWithPaging(renteeType, pageSize, lastId);
+    public List<RenteeElementDto> searchRenteeElementDtosByRenteeTypeEqualByKeywordWithPaging(RenteeType renteeType, String keyword, int pageSize, Long lastId) {
+        List<Rentee> rentees = renteeRepository.searchRenteeByRenteeTypeEqualWithPaging(renteeType, keyword, pageSize, lastId);
 
         return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
     }
 
-    public List<RenteeElementDto> getRenteeElementDtosByRenteeTypeNotEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId) {
-        List<Rentee> rentees = renteeRepository.getRenteesByTypeNotEqualWithPaging(renteeType, pageSize, lastId);
+    public List<RenteeElementDto> searchRenteeElementDtosByRenteeTypeNotEqualWithPaging(RenteeType renteeType, String keyword, int pageSize, Long lastId) {
+        List<Rentee> rentees = renteeRepository.searchRenteeByRenteeTypeNotEqualWithPaging(renteeType, keyword, pageSize, lastId);
 
         return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
     }
 
-    public List<RenteeElementDto> searchRenteeElementDtosByKeyword(String keyword) {
-        List<Rentee> rentees = renteeRepository.searchRentee(keyword);
+    public List<RenteeManagementInfoDto> searchRenteeManagementInfoDtosFromBookWithPaging(String keyword, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc, Boolean isRecentRentDesc) {
+        List<Rentee> rentees;
+        if (isRecentRentDesc != null) {
+            rentees = renteeRepository.searchRenteeByRenteeTypeNotEqualByRecentRentDescWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId, isRecentRentDesc);
 
-        return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
-    }
-
-    public List<RenteeElementDto> searchRenteeElementDtosByRenteeTypeEqualByKeyword(RenteeType renteeType, String keyword) {
-        List<Rentee> rentees = renteeRepository.searchRenteeByRenteeTypeEqual(renteeType, keyword);
-
-        return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
-    }
-
-    public List<RenteeElementDto> searchRenteeElementDtosByRenteeTypeNotEqualByKeyword(RenteeType renteeType, String keyword) {
-        List<Rentee> rentees = renteeRepository.searchRenteeByRenteeTypeNotEqual(renteeType, keyword);
-
-        return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
-    }
-
-    public List<RenteeManagementInfoDto> getRenteeManagementInfoDtosByTypeEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc) {
-        List<Rentee> rentees = renteeRepository.getRenteesByTypeEqualWithPaging(renteeType, pageSize, lastId, isIdAsc, isIdDesc);
+        } else {
+            rentees = renteeRepository.searchRenteeByRenteeTypeNotEqualByIdSortPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId, isIdAsc, isIdDesc);
+        }
 
         return rentees.stream().map(RenteeManagementInfoDto::new).collect(Collectors.toList());
     }
 
-    public List<RenteeManagementInfoDto> getRenteeManagementInfoDtosByTypeNotEqualWithPaging(RenteeType renteeType, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc) {
-        List<Rentee> rentees = renteeRepository.getRenteesByTypeNotEqualWithPaging(renteeType, pageSize, lastId, isIdAsc, isIdDesc);
+    public List<RenteeManagementInfoDto> searchRenteeManagementInfoDtosFromEquipmentWithPaging(String keyword, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc, Boolean isRecentRentDesc) {
+        List<Rentee> rentees;
+        if (isRecentRentDesc != null) {
+            rentees = renteeRepository.searchRenteeByRenteeTypeEqualByRecentRentDescWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId, isRecentRentDesc);
 
-        return rentees.stream().map(RenteeManagementInfoDto::new).collect(Collectors.toList());
-    }
-
-    public List<RenteeManagementInfoDto> searchRenteeManagementInfoDtosByKeyword(String keyword) {
-        List<Rentee> rentees = renteeRepository.searchRentee(keyword);
+        } else {
+            rentees = renteeRepository.searchRenteeByRenteeTypeEqualByIdSortWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId, isIdAsc, isIdDesc);
+        }
 
         return rentees.stream().map(RenteeManagementInfoDto::new).collect(Collectors.toList());
     }

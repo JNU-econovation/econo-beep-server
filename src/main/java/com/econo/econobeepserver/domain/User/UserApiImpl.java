@@ -1,23 +1,34 @@
 package com.econo.econobeepserver.domain.User;
 
 import com.econo.econobeepserver.dto.User.UserInfoDto;
+import com.econo.econobeepserver.exception.NotFoundPinCodeException;
 import com.econo.econobeepserver.exception.WrongFormatPinCodeException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Component
 @RequiredArgsConstructor
 public class UserApiImpl implements UserApi {
 
-    // TODO : Tecono 서버로부터 핀코드 유효성 확인
-    // TODO : 유효하지 않은 핀코드면, 예외 던지기, 204 코드로
+    @Value("${TECONO_API_URL}")
+    private String TECONO_API_URL;
+
+
     @Override
     public UserInfoDto getUserInfoDtoByPinCode(String pinCode) {
-        return UserInfoDto.builder()
-                .uid(1L)
-                .name("권순찬")
-                .pinCode("1234")
-                .build();
+        return WebClient.create(TECONO_API_URL + "user/pinCode/" + pinCode)
+                .get()
+                .retrieve()
+                .onStatus(
+                        HttpStatus.INTERNAL_SERVER_ERROR::equals,
+                        (response) -> {
+                            throw new NotFoundPinCodeException();
+                        })
+                .bodyToFlux(UserInfoDto.class)
+                .blockFirst();
     }
 
     private boolean isNumeric(String str) {

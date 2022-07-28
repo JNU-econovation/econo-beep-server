@@ -37,8 +37,8 @@ public class RenteeRentalService {
 
         UserInfoDto userInfoDto = userApi.getUserInfoDtoByPinCode(pinCode);
         Rental rental = Rental.builder()
-                .renterId(userInfoDto.getUid())
-                .renterName(userInfoDto.getName())
+                .renterId(userInfoDto.getId())
+                .renterName(userInfoDto.getUserName())
                 .build();
 
         rentee.rentRentee(rental);
@@ -68,7 +68,7 @@ public class RenteeRentalService {
 
         Rental rental = rentee.getRentalHistories().get(rentee.getRentalHistories().size() - 1);
         UserInfoDto userInfoDto = userApi.getUserInfoDtoByPinCode(pinCode);
-        validateRenter(rental, userInfoDto.getUid());
+        validateRenter(rental, userInfoDto.getId());
 
         rental.returnRentee();
         rentee.returnRentee();
