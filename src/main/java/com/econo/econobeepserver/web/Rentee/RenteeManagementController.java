@@ -34,7 +34,7 @@ public class RenteeManagementController {
     }
 
     @GetMapping("/management/search/book")
-    public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromBook(@RequestParam(value = "keyword") String keyword,
+    public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromBook(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                                                                                 @RequestParam(value = "pageSize") int pageSize,
                                                                                                 @RequestParam(value = "lastRenteeId", required = false) Long lastId,
                                                                                                 @RequestParam(value = "isIdAsc", required = false) Boolean isIdAsc,
@@ -47,7 +47,7 @@ public class RenteeManagementController {
     }
 
     @GetMapping("/management/search/equipment")
-    public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromEquipment(@RequestParam(value = "keyword") String keyword,
+    public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromEquipment(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                                                                                      @RequestParam(value = "pageSize") int pageSize,
                                                                                                      @RequestParam(value = "lastRenteeId", required = false) Long lastId,
                                                                                                      @RequestParam(value = "isIdAsc", required = false) Boolean isIdAsc,

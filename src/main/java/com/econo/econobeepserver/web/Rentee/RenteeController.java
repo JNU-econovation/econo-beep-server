@@ -27,7 +27,7 @@ public class RenteeController {
     }
 
     @GetMapping("/rentee/search")
-    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByKeyword(@RequestParam(value = "keyword") String keyword,
+    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByKeyword(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                                                                    @RequestParam(value = "pageSize") int pageSize,
                                                                                    @RequestParam(value = "lastRenteeId", required = false) Long lastId
     ) {
@@ -37,7 +37,7 @@ public class RenteeController {
     }
 
     @GetMapping("/rentee/search/book")
-    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosFromBookByKeywordWithPaging(@RequestParam(value = "keyword") String keyword,
+    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosFromBookByKeywordWithPaging(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                                                                                      @RequestParam(value = "pageSize") int pageSize,
                                                                                                      @RequestParam(value = "lastRenteeId", required = false) Long lastId
     ) {
@@ -47,7 +47,7 @@ public class RenteeController {
     }
 
     @GetMapping("/rentee/search/equipment")
-    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosFromEquipmentByKeywordWithPaging(@RequestParam(value = "keyword") String keyword,
+    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosFromEquipmentByKeywordWithPaging(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                                                                                           @RequestParam(value = "pageSize") int pageSize,
                                                                                                           @RequestParam(value = "lastRenteeId", required = false) Long lastId
     ) {
@@ -58,7 +58,7 @@ public class RenteeController {
 
     @GetMapping("/rentee/search/{type}")
     public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByRenteeTypeEqualByKeywordWithPaging(@PathVariable(value = "type") RenteeType renteeType,
-                                                                                                              @RequestParam(value = "keyword") String keyword,
+                                                                                                              @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                                                                                               @RequestParam(value = "pageSize") int pageSize,
                                                                                                               @RequestParam(value = "lastRenteeId", required = false) Long lastId
     ) {
