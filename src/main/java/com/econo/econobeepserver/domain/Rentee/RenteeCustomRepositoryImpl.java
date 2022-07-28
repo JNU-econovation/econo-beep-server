@@ -1,13 +1,16 @@
 package com.econo.econobeepserver.domain.Rentee;
 
+import com.econo.econobeepserver.domain.Rental.Rental;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+import static com.econo.econobeepserver.domain.Rental.QRental.rental;
 import static com.econo.econobeepserver.domain.Rentee.QRentee.rentee;
 
 
@@ -17,7 +20,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     private final JPAQueryFactory jpaQueryFactory;
 
     private BooleanExpression gtRenteeId(Long renteeId) {
-        if(renteeId == null) {
+        if (renteeId == null) {
             return null;
         }
 
@@ -25,7 +28,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     private BooleanExpression ltRenteeId(Long renteeId) {
-        if(renteeId == null) {
+        if (renteeId == null) {
             return null;
         }
 
@@ -33,7 +36,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     private BooleanExpression compareRenteeId(Long renteeId, Boolean isIdAsc, Boolean isIdDesc) {
-        if (isIdAsc != null &&  isIdAsc) {
+        if (isIdAsc != null && isIdAsc) {
             return gtRenteeId(renteeId);
 
         } else {
@@ -42,7 +45,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     private OrderSpecifier sortRenteeId(Boolean isIdAsc, Boolean isIdDesc) {
-        if (isIdAsc != null &&  isIdAsc) {
+        if (isIdAsc != null && isIdAsc) {
             return rentee.id.asc();
 
         } else {
@@ -156,14 +159,18 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
-                .where(
-                        rentee.rentalHistories.isNotEmpty(),
-                        rentee.type.ne(renteeType),
-                        rentee.title.contains(keyword)
-                )
-                .orderBy(rentee.rentalHistories.get(rentee.rentalHistories.size().subtract(1)).rentalDateTime.desc())
-                .offset(offset)
-                .limit(pageSize)
+                .where(rentee.id.in(
+                        JPAExpressions
+                                .select(rental.rentee.id)
+                                .from(rental)
+                                .where(
+                                        rental.rentee.type.ne(renteeType),
+                                        rental.rentee.title.contains(keyword)
+                                )
+                                .orderBy(rental.rentalDateTime.desc())
+                                .offset(offset)
+                                .limit(pageSize)
+                ))
                 .fetch();
     }
 }
