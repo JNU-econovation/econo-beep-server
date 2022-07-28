@@ -7,6 +7,7 @@ import com.econo.econobeepserver.dto.Rentee.BookSaveDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeSaveDto;
 import com.econo.econobeepserver.service.Rentee.RenteeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class RenteeManagementController {
 
     private final RenteeService renteeService;
@@ -42,6 +44,7 @@ public class RenteeManagementController {
                                                                                                 @RequestParam(value = "isIdDesc", required = false) Boolean isIdDesc,
                                                                                                 @RequestParam(value = "isRecentRentDesc", required = false) Boolean isRecentRentDesc
     ) {
+        log.info(keyword);
         List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosFromBookWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
 
         return ResponseEntity.ok(renteeManagementInfoDtos);
@@ -56,6 +59,7 @@ public class RenteeManagementController {
                                                                                                      @RequestParam(value = "isIdDesc", required = false) Boolean isIdDesc,
                                                                                                      @RequestParam(value = "isRecentRentDesc", required = false) Boolean isRecentRentDesc
     ) {
+        log.info(keyword);
         List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosFromEquipmentWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
 
         return ResponseEntity.ok(renteeManagementInfoDtos);
