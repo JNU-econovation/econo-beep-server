@@ -37,11 +37,12 @@ public class RenteeManagementController {
     public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromBook(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                                                                                 @RequestParam(value = "pageSize") int pageSize,
                                                                                                 @RequestParam(value = "lastRenteeId", required = false) Long lastId,
+                                                                                                @RequestParam(value = "offset", required = false) Long offset,
                                                                                                 @RequestParam(value = "isIdAsc", required = false) Boolean isIdAsc,
                                                                                                 @RequestParam(value = "isIdDesc", required = false) Boolean isIdDesc,
                                                                                                 @RequestParam(value = "isRecentRentDesc", required = false) Boolean isRecentRentDesc
     ) {
-        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosFromBookWithPaging(keyword, pageSize, lastId, isIdAsc, isIdDesc, isRecentRentDesc);
+        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosFromBookWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
 
         return ResponseEntity.ok(renteeManagementInfoDtos);
     }
@@ -50,11 +51,12 @@ public class RenteeManagementController {
     public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromEquipment(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                                                                                      @RequestParam(value = "pageSize") int pageSize,
                                                                                                      @RequestParam(value = "lastRenteeId", required = false) Long lastId,
+                                                                                                     @RequestParam(value = "offset", required = false) Long offset,
                                                                                                      @RequestParam(value = "isIdAsc", required = false) Boolean isIdAsc,
                                                                                                      @RequestParam(value = "isIdDesc", required = false) Boolean isIdDesc,
                                                                                                      @RequestParam(value = "isRecentRentDesc", required = false) Boolean isRecentRentDesc
     ) {
-        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosFromEquipmentWithPaging(keyword, pageSize, lastId, isIdAsc, isIdDesc, isRecentRentDesc);
+        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosFromEquipmentWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
 
         return ResponseEntity.ok(renteeManagementInfoDtos);
     }

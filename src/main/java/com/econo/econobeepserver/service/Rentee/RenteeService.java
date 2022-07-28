@@ -75,10 +75,10 @@ public class RenteeService {
         return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
     }
 
-    public List<RenteeManagementInfoDto> searchRenteeManagementInfoDtosFromBookWithPaging(String keyword, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc, Boolean isRecentRentDesc) {
+    public List<RenteeManagementInfoDto> searchRenteeManagementInfoDtosFromBookWithPaging(String keyword, int pageSize, Long lastId, Long offset, Boolean isIdAsc, Boolean isIdDesc, Boolean isRecentRentDesc) {
         List<Rentee> rentees;
         if (isRecentRentDesc != null && isRecentRentDesc) {
-            rentees = renteeRepository.searchRenteeByRenteeTypeNotEqualByRecentRentDescWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId);
+            rentees = renteeRepository.searchRenteeByRenteeTypeNotEqualByRecentRentDescWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, offset);
 
         } else {
             rentees = renteeRepository.searchRenteeByRenteeTypeNotEqualByIdSortPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId, isIdAsc, isIdDesc);
@@ -87,10 +87,10 @@ public class RenteeService {
         return rentees.stream().map(RenteeManagementInfoDto::new).collect(Collectors.toList());
     }
 
-    public List<RenteeManagementInfoDto> searchRenteeManagementInfoDtosFromEquipmentWithPaging(String keyword, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc, Boolean isRecentRentDesc) {
+    public List<RenteeManagementInfoDto> searchRenteeManagementInfoDtosFromEquipmentWithPaging(String keyword, int pageSize, Long lastId, Long offset, Boolean isIdAsc, Boolean isIdDesc, Boolean isRecentRentDesc) {
         List<Rentee> rentees;
         if (isRecentRentDesc != null && isRecentRentDesc) {
-            rentees = renteeRepository.searchRenteeByRenteeTypeEqualByRecentRentDescWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId);
+            rentees = renteeRepository.searchRenteeByRenteeTypeEqualByRecentRentDescWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, offset);
 
         } else {
             rentees = renteeRepository.searchRenteeByRenteeTypeEqualByIdSortWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId, isIdAsc, isIdDesc);
