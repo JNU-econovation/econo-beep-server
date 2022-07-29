@@ -19,5 +19,6 @@ public class RenteeRentalElementDto {
     public RenteeRentalElementDto(Rental rental) {
         this.renterName = rental.getRenterName();
         this.rentalEpochSecond = toEpochSecond(rental.getRentalDateTime());
+        this.returnEpochSecond = toEpochSecond(rental.getReturnDateTime());
     }
 }
