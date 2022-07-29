@@ -19,16 +19,22 @@ public class UserApiImpl implements UserApi {
 
     @Override
     public UserInfoDto getUserInfoDtoByPinCode(String pinCode) {
-        return WebClient.create(TECONO_API_URL + "user/pinCode/" + pinCode)
-                .get()
-                .retrieve()
-                .onStatus(
-                        HttpStatus.INTERNAL_SERVER_ERROR::equals,
-                        (response) -> {
-                            throw new NotFoundPinCodeException();
-                        })
-                .bodyToFlux(UserInfoDto.class)
-                .blockFirst();
+//        return WebClient.create(TECONO_API_URL + "user/pinCode/" + pinCode)
+//                .get()
+//                .retrieve()
+//                .onStatus(
+//                        HttpStatus.INTERNAL_SERVER_ERROR::equals,
+//                        (response) -> {
+//                            throw new NotFoundPinCodeException();
+//                        })
+//                .bodyToFlux(UserInfoDto.class)
+//                .blockFirst();
+
+        return UserInfoDto.builder()
+                .id(999L)
+                .userName("삡")
+                .pinCode("3677")
+                .build();
     }
 
     private boolean isNumeric(String str) {
