@@ -39,7 +39,7 @@ public class RenteeManagementController {
     public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromBook(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                                                                                 @RequestParam(value = "pageSize") int pageSize,
                                                                                                 @RequestParam(value = "lastRenteeId", required = false) Long lastId,
-                                                                                                @RequestParam(value = "offset", required = false) Long offset,
+                                                                                                @RequestParam(value = "offset", required = false, defaultValue = "0L") Long offset,
                                                                                                 @RequestParam(value = "isIdAsc", required = false) Boolean isIdAsc,
                                                                                                 @RequestParam(value = "isIdDesc", required = false) Boolean isIdDesc,
                                                                                                 @RequestParam(value = "isRecentRentDesc", required = false) Boolean isRecentRentDesc
@@ -54,7 +54,7 @@ public class RenteeManagementController {
     public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromEquipment(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                                                                                      @RequestParam(value = "pageSize") int pageSize,
                                                                                                      @RequestParam(value = "lastRenteeId", required = false) Long lastId,
-                                                                                                     @RequestParam(value = "offset", required = false) Long offset,
+                                                                                                     @RequestParam(value = "offset", required = false, defaultValue = "0L") Long offset,
                                                                                                      @RequestParam(value = "isIdAsc", required = false) Boolean isIdAsc,
                                                                                                      @RequestParam(value = "isIdDesc", required = false) Boolean isIdDesc,
                                                                                                      @RequestParam(value = "isRecentRentDesc", required = false) Boolean isRecentRentDesc

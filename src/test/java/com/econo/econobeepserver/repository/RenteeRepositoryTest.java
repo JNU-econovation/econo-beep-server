@@ -122,21 +122,21 @@ class RenteeRepositoryTest {
 
 
 
-//    @DisplayName("getRecentRenteeWithPaging 작동 테스트 (기본, 1페이지)")
-//    @Test
-//    void test_getRecentRenteeWithPaging_firstPage() {
-//        // given
-//        final Long lastId = null;
-//
-//        // when
-//        List<Rentee> rentees = renteeRepository.getRenteesWithPaging(PAGE_SIZE, lastId);
-//
-//        // then
-//        assertThat(rentees)
-//                .hasSize(2)
-//                .extracting(Rentee::getTitle)
-//                .containsExactly("testRentee3", "testRentee2");
-//    }
+    @DisplayName("getRecentRenteeWithPaging 작동 테스트 (기본, 1페이지)")
+    @Test
+    void test_getRecentRenteeWithPaging_firstPage() {
+        // given
+        final Long lastId = null;
+
+        // when
+        List<Rentee> rentees = renteeRepository.getRenteesWithPaging(PAGE_SIZE, lastId);
+
+        // then
+        assertThat(rentees)
+                .hasSize(2)
+                .extracting(Rentee::getTitle)
+                .containsExactly("testRentee3", "testRentee2");
+    }
 //
 //    @DisplayName("getRecentRenteeWithPaging 작동 테스트 (마지막, 3페이지)")
 //    @Test
