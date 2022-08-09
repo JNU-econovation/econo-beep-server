@@ -35,7 +35,7 @@ import static org.mockito.Mockito.doReturn;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class RenteeServiceCUDTest {
+class RenteeServiceSpringTest {
 
     @Autowired
     private RenteeService renteeService;
@@ -52,34 +52,46 @@ class RenteeServiceCUDTest {
     @Autowired
     @InjectMocks
     private RenteeRentalService renteeRentalService;
-    @MockBean private UserApi userApi;
+    @MockBean
+    private UserApi userApi;
 
 
     private final Long NOT_FOUND_BOOK_ID = 100L;
     private final String SAMPLE_PINCODE = "1234";
 
-    private static final String TEST_ABSOLUTE_PATH = new File("").getAbsolutePath() + "/src/test/java/com/econo/econobeepserver/";
-    private static final String TEST_THUMBNAIL_NAME = "testThumbnail.jpg";
-    private static final String UPDATE_TEST_THUMBNAIL_NAME = "updateTestThumbnail.jpg";
-    private static final String TEST_THUMBNAIL_PATH = TEST_ABSOLUTE_PATH + "images/" + TEST_THUMBNAIL_NAME;
-    private static final String UPDATE_TEST_THUMBNAIL_PATH = TEST_ABSOLUTE_PATH + "images/" + UPDATE_TEST_THUMBNAIL_NAME;
+    private static final String ABSOLUTE_PATH = new File("").getAbsolutePath();
+    private static final String TEST_IMAGES_PATH = ABSOLUTE_PATH + "/src/test/java/com/econo/econobeepserver/images/";
+    private static final String REAL_IMAGES_PATH = ABSOLUTE_PATH + "/images/rentee/thumbnail";
+    private static final String THUMBNAIL_NAME = "testThumbnail.jpg";
+    private static final String UPDATED_THUMBNAIL_NAME = "updateTestThumbnail.jpg";
+    private static final String THUMBNAIL_PATH = TEST_IMAGES_PATH + THUMBNAIL_NAME;
+    private static final String UPDATED_THUMBNAIL_PATH = TEST_IMAGES_PATH + UPDATED_THUMBNAIL_NAME;
 
 
     @AfterEach
     void reset() {
+        thumbnailRepository.deleteAll();
+        rentalRepository.deleteAll();
         renteeRepository.deleteAll();
+
+        File thumbnailPath = new File(REAL_IMAGES_PATH);
+        if (thumbnailPath.exists()) {
+            for (File thumbnail : thumbnailPath.listFiles()) {
+                thumbnail.delete();
+            }
+        }
     }
 
     private RenteeSaveDto newRenteeSaveDto() {
         try {
-            System.out.println(TEST_THUMBNAIL_PATH);
+            System.out.println(THUMBNAIL_PATH);
             return RenteeSaveDto.builder()
                     .title("testRentee")
                     .type(RenteeType.APP)
                     .authorName("testAuthor")
                     .publisherName("testPublisher")
                     .publishedDateEpochSecond(toEpochSecond(LocalDate.of(1999, 10, 18)))
-                    .thumbnail(new MockMultipartFile(TEST_THUMBNAIL_NAME, TEST_THUMBNAIL_NAME, "image/jpg", new FileInputStream(TEST_THUMBNAIL_PATH)))
+                    .thumbnail(new MockMultipartFile(THUMBNAIL_NAME, THUMBNAIL_NAME, "image/jpg", new FileInputStream(THUMBNAIL_PATH)))
                     .note("test")
                     .build();
         } catch (IOException e) {
@@ -97,7 +109,7 @@ class RenteeServiceCUDTest {
                     .authorName("testAuthorUpdate")
                     .publisherName("testPublisherUpdate")
                     .publishedDateEpochSecond(toEpochSecond(LocalDate.of(2022, 10, 18)))
-                    .thumbnail(new MockMultipartFile("testThumbnailUpdate.jpg", "testThumbnailUpdate.jpg", "image/jpg", new FileInputStream(UPDATE_TEST_THUMBNAIL_PATH)))
+                    .thumbnail(new MockMultipartFile("testThumbnailUpdate.jpg", "testThumbnailUpdate.jpg", "image/jpg", new FileInputStream(UPDATED_THUMBNAIL_PATH)))
                     .note("testUpdate")
                     .build();
         } catch (IOException e) {
@@ -169,7 +181,8 @@ class RenteeServiceCUDTest {
 
         // when & then
         assertThrows(NotFoundRenteeException.class, () -> {
-            renteeService.updateRenteeById(NOT_FOUND_BOOK_ID, updatedRenteeSaveDto());});
+            renteeService.updateRenteeById(NOT_FOUND_BOOK_ID, updatedRenteeSaveDto());
+        });
     }
 
 
@@ -187,17 +200,20 @@ class RenteeServiceCUDTest {
     void test_deleteRenteeById() {
         // given
         long renteeId = renteeService.createRentee(newRenteeSaveDto());
+        String thumbnailPath = renteeService.getThumbnailFilePathByRenteeId(renteeId);
         doReturn(sampleUser())
                 .when(userApi)
                 .getUserInfoDtoByPinCode(SAMPLE_PINCODE);
         renteeRentalService.rentRenteeById(renteeId, SAMPLE_PINCODE);
 
         // when
-        renteeService.deleteRenteeById(renteeId);;
+        renteeService.deleteRenteeById(renteeId);
+        ;
 
         // then
         assertTrue(renteeRepository.findById(renteeId).isEmpty());
         assertEquals(0L, thumbnailRepository.count());
+        assertFalse(new File(thumbnailPath).exists());
         assertEquals(0L, rentalRepository.count());
     }
 
@@ -206,6 +222,7 @@ class RenteeServiceCUDTest {
     void test_deleteRenteeById_notExistIdParams() {
         // when & then
         assertThrows(NotFoundRenteeException.class, () -> {
-            renteeService.deleteRenteeById(NOT_FOUND_BOOK_ID);});
+            renteeService.deleteRenteeById(NOT_FOUND_BOOK_ID);
+        });
     }
 }

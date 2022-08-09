@@ -13,6 +13,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -127,8 +128,9 @@ public class RenteeService {
     public void deleteRenteeById(Long id) {
         try {
             Rentee rentee = getRenteeById(id);
-            rentee.clearAttributes();
 
+            new File(rentee.getThumbnail().getFilePath()).delete();
+            rentee.clearAttributes();
             renteeRepository.deleteById(id);
 
         } catch (EmptyResultDataAccessException e) {
