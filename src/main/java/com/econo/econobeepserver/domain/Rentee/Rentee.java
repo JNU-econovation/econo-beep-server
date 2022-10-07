@@ -1,7 +1,6 @@
 package com.econo.econobeepserver.domain.Rentee;
 
 import com.econo.econobeepserver.domain.Rental.Rental;
-import com.econo.econobeepserver.dto.Rentee.BookSaveDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeSaveDto;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
@@ -32,14 +31,15 @@ public class Rentee {
     @NotNull
     @OneToMany(mappedBy = "rentee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<Rental> rentalHistories = new ArrayList<>();
+    private List<Rental> rentals = new ArrayList<>();
 
-    @NotNull
-    private String title;
 
     @NotNull
     @Enumerated(EnumType.STRING)
     private RenteeType type;
+
+    @NotNull
+    private String name;
 
     private String authorName;
 
@@ -56,10 +56,10 @@ public class Rentee {
     private String note;
 
     @Builder
-    public Rentee(Long id, RenteeThumbnail thumbnail, String title, RenteeType type, String authorName, String publisherName, LocalDate publishedDate, String note) {
+    public Rentee(Long id, RenteeThumbnail thumbnail, String name, RenteeType type, String authorName, String publisherName, LocalDate publishedDate, String note) {
         this.id = id;
         this.thumbnail = thumbnail;
-        this.title = title;
+        this.name = name;
         this.type = type;
         this.authorName = authorName;
         this.publisherName = publisherName;
@@ -69,7 +69,7 @@ public class Rentee {
 
 
     public void updateInformation(RenteeSaveDto renteeSaveDto) {
-        this.title = renteeSaveDto.getTitle();
+        this.name = renteeSaveDto.getTitle();
         this.type = renteeSaveDto.getType();
         this.authorName = renteeSaveDto.getAuthorName();
         this.publisherName = renteeSaveDto.getPublisherName();
@@ -81,7 +81,7 @@ public class Rentee {
         rentState = RentState.RENTED;
         rentCount++;
 
-        rentalHistories.add(rental);
+        rentals.add(rental);
         rental.rentRentee(this);
     }
 
@@ -99,6 +99,6 @@ public class Rentee {
 
     public void clearAttributes() {
         thumbnail = null;
-        rentalHistories.clear();
+        rentals.clear();
     }
 }

@@ -1,33 +1,20 @@
 package com.econo.econobeepserver.service;
 
-import com.econo.econobeepserver.domain.Rental.Rental;
 import com.econo.econobeepserver.domain.Rentee.Rentee;
 import com.econo.econobeepserver.domain.Rentee.RenteeThumbnail;
 import com.econo.econobeepserver.domain.Rentee.RenteeRepository;
 import com.econo.econobeepserver.domain.Rental.RentalRepository;
-import com.econo.econobeepserver.domain.Rentee.RentState;
 import com.econo.econobeepserver.domain.Rentee.RenteeType;
 import com.econo.econobeepserver.domain.User.UserApi;
-import com.econo.econobeepserver.domain.User.UserApiImpl;
 import com.econo.econobeepserver.dto.User.UserInfoDto;
-import com.econo.econobeepserver.exception.NotFoundPinCodeException;
-import com.econo.econobeepserver.exception.NotFoundRenteeException;
-import com.econo.econobeepserver.exception.WrongFormatPinCodeException;
-import com.econo.econobeepserver.service.Rentee.RenteeRentalService;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 

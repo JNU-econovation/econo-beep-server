@@ -36,7 +36,7 @@ public class EquipmentSaveDto {
     }
 
     public EquipmentSaveDto(Rentee rentee) {
-        this.title = rentee.getTitle();
+        this.title = rentee.getName();
         this.type = rentee.getType();
         this.note = rentee.getNote();
     }

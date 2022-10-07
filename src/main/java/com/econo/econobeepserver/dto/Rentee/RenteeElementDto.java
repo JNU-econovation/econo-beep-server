@@ -24,7 +24,7 @@ public class RenteeElementDto {
 
     public RenteeElementDto(Rentee rentee) {
         this.id = rentee.getId();
-        this.title = rentee.getTitle();
+        this.title = rentee.getName();
         this.type = rentee.getType();
         this.authorName = rentee.getAuthorName();
         this.thumbnailUrl = "/rentee/" + rentee.getId() + "/thumbnail";

@@ -51,7 +51,7 @@ public class BookSaveDto {
     }
 
     public BookSaveDto(Rentee rentee) {
-        this.title = rentee.getTitle();
+        this.title = rentee.getName();
         this.type = rentee.getType();
         this.authorName = rentee.getAuthorName();
         this.publisherName = rentee.getPublisherName();

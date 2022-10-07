@@ -29,6 +29,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import static com.econo.econobeepserver.service.ImageHandler.*;
+import static com.econo.econobeepserver.service.ImageHandlerTest.*;
 import static com.econo.econobeepserver.util.EpochTime.toEpochSecond;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doReturn;
@@ -59,13 +61,6 @@ class RenteeServiceSpringTest {
     private final Long NOT_FOUND_BOOK_ID = 100L;
     private final String SAMPLE_PINCODE = "1234";
 
-    private static final String ABSOLUTE_PATH = new File("").getAbsolutePath();
-    private static final String TEST_IMAGES_PATH = ABSOLUTE_PATH + "/src/test/java/com/econo/econobeepserver/images/";
-    private static final String REAL_IMAGES_PATH = ABSOLUTE_PATH + "/images/rentee/thumbnail";
-    private static final String THUMBNAIL_NAME = "testThumbnail.jpg";
-    private static final String UPDATED_THUMBNAIL_NAME = "updateTestThumbnail.jpg";
-    private static final String THUMBNAIL_PATH = TEST_IMAGES_PATH + THUMBNAIL_NAME;
-    private static final String UPDATED_THUMBNAIL_PATH = TEST_IMAGES_PATH + UPDATED_THUMBNAIL_NAME;
 
 
     @AfterEach
@@ -74,7 +69,7 @@ class RenteeServiceSpringTest {
         rentalRepository.deleteAll();
         renteeRepository.deleteAll();
 
-        File thumbnailPath = new File(REAL_IMAGES_PATH);
+        File thumbnailPath = new File(RENTEE_THUMBNAIL_IMAGES_PATH);
         if (thumbnailPath.exists()) {
             for (File thumbnail : thumbnailPath.listFiles()) {
                 thumbnail.delete();
@@ -130,7 +125,7 @@ class RenteeServiceSpringTest {
         assertEquals(1, renteeRepository.count());
 
         Rentee savedRentee = renteeRepository.findById(renteeId).get();
-        assertEquals(newRenteeSaveDto.getTitle(), savedRentee.getTitle());
+        assertEquals(newRenteeSaveDto.getTitle(), savedRentee.getName());
         assertEquals(newRenteeSaveDto.getType(), savedRentee.getType());
         assertEquals(newRenteeSaveDto.getAuthorName(), savedRentee.getAuthorName());
         assertEquals(newRenteeSaveDto.getPublisherName(), savedRentee.getPublisherName());
@@ -158,7 +153,7 @@ class RenteeServiceSpringTest {
 
         // then
         Rentee savedRentee = renteeRepository.findById(renteeId).get();
-        assertEquals(updatedRenteeSaveDto.getTitle(), savedRentee.getTitle());
+        assertEquals(updatedRenteeSaveDto.getTitle(), savedRentee.getName());
         assertEquals(updatedRenteeSaveDto.getType(), savedRentee.getType());
         assertEquals(updatedRenteeSaveDto.getAuthorName(), savedRentee.getAuthorName());
         assertEquals(updatedRenteeSaveDto.getPublisherName(), savedRentee.getPublisherName());

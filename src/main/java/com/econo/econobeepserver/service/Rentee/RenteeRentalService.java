@@ -46,7 +46,7 @@ public class RenteeRentalService {
 
 
     private void validateReturnableRentee(final Rentee rentee) {
-        if (rentee.getRentalHistories().isEmpty() || rentee.getRentState() != RentState.RENTED) {
+        if (rentee.getRentals().isEmpty() || rentee.getRentState() != RentState.RENTED) {
             throw new UnreturnableException();
         }
     }
@@ -66,7 +66,7 @@ public class RenteeRentalService {
         Rentee rentee = renteeService.getRenteeById(id);
         validateReturnableRentee(rentee);
 
-        Rental rental = rentee.getRentalHistories().get(rentee.getRentalHistories().size() - 1);
+        Rental rental = rentee.getRentals().get(rentee.getRentals().size() - 1);
         UserInfoDto userInfoDto = userApi.getUserInfoDtoByPinCode(pinCode);
         validateRenter(rental, userInfoDto.getId());
 

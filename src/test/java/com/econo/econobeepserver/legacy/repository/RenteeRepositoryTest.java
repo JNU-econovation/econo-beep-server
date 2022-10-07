@@ -1,4 +1,4 @@
-package com.econo.econobeepserver.repository;
+package com.econo.econobeepserver.legacy.repository;
 
 import com.econo.econobeepserver.TestConfig;
 import com.econo.econobeepserver.domain.Rentee.Rentee;
@@ -134,7 +134,7 @@ class RenteeRepositoryTest {
         // then
         assertThat(rentees)
                 .hasSize(2)
-                .extracting(Rentee::getTitle)
+                .extracting(Rentee::getName)
                 .containsExactly("testRentee3", "testRentee2");
     }
 //

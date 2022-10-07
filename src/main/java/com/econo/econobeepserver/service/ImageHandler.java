@@ -12,7 +12,7 @@ import java.io.IOException;
 public class ImageHandler {
 
     private static final String ABSOLUTE_PATH = new File("").getAbsolutePath() + "/";
-    private static final String RENTEE_THUMBNAIL_IMAGES_PATH = ABSOLUTE_PATH + "images/rentee/thumbnail/";
+    public static final String RENTEE_THUMBNAIL_IMAGES_PATH = ABSOLUTE_PATH + "images/rentee/thumbnail/";
 
 
     private void validateSavingPath(String path) {

@@ -33,7 +33,7 @@ public class RenteeManagementInfoDto {
 
     public RenteeManagementInfoDto(Rentee rentee) {
         this.id = rentee.getId();
-        this.title = rentee.getTitle();
+        this.title = rentee.getName();
         this.type = rentee.getType();
         this.authorName = rentee.getAuthorName();
         this.publisherName = rentee.getPublisherName();
@@ -42,7 +42,7 @@ public class RenteeManagementInfoDto {
         this.note = rentee.getNote();
         this.rentState = rentee.getRentState();
 
-        final List<Rental> rentals = rentee.getRentalHistories();
+        final List<Rental> rentals = rentee.getRentals();
         if (!rentals.isEmpty()) {
             final Rental recentRental = rentals.get(rentals.size() - 1);
 

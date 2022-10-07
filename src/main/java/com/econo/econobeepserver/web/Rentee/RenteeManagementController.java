@@ -1,6 +1,5 @@
 package com.econo.econobeepserver.web.Rentee;
 
-import com.econo.econobeepserver.domain.Rentee.RenteeType;
 import com.econo.econobeepserver.dto.Rentee.EquipmentSaveDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeManagementInfoDto;
 import com.econo.econobeepserver.dto.Rentee.BookSaveDto;
