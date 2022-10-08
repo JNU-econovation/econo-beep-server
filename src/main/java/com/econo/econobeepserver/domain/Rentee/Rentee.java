@@ -33,7 +33,6 @@ public class Rentee {
     @JsonManagedReference
     private List<Rental> rentals = new ArrayList<>();
 
-
     @NotNull
     @Enumerated(EnumType.STRING)
     private RenteeType type;
@@ -41,11 +40,13 @@ public class Rentee {
     @NotNull
     private String name;
 
-    private String authorName;
+    private BookArea bookArea;
 
-    private String publisherName;
+    private String bookAuthorName;
 
-    private LocalDate publishedDate;
+    private String bookPublisherName;
+
+    private LocalDate bookPublishedDate;
 
     @NotNull
     private RentState rentState = RentState.RENTABLE;
@@ -56,14 +57,16 @@ public class Rentee {
     private String note;
 
     @Builder
-    public Rentee(Long id, RenteeThumbnail thumbnail, String name, RenteeType type, String authorName, String publisherName, LocalDate publishedDate, String note) {
+    public Rentee(Long id, RenteeThumbnail thumbnail, String name, RenteeType type,
+                  BookArea bookArea, String bookAuthorName, String bookPublisherName, LocalDate bookPublishedDate, String note) {
         this.id = id;
         this.thumbnail = thumbnail;
         this.name = name;
         this.type = type;
-        this.authorName = authorName;
-        this.publisherName = publisherName;
-        this.publishedDate = publishedDate;
+        this.bookArea = bookArea;
+        this.bookAuthorName = bookAuthorName;
+        this.bookPublisherName = bookPublisherName;
+        this.bookPublishedDate = bookPublishedDate;
         this.note = note;
     }
 
@@ -71,9 +74,9 @@ public class Rentee {
     public void updateInformation(RenteeSaveDto renteeSaveDto) {
         this.name = renteeSaveDto.getTitle();
         this.type = renteeSaveDto.getType();
-        this.authorName = renteeSaveDto.getAuthorName();
-        this.publisherName = renteeSaveDto.getPublisherName();
-        this.publishedDate = toLocalDate(renteeSaveDto.getPublishedDateEpochSecond());
+        this.bookAuthorName = renteeSaveDto.getBookAuthorName();
+        this.bookPublisherName = renteeSaveDto.getBookPublisherName();
+        this.bookPublishedDate = toLocalDate(renteeSaveDto.getBookPublishedDateEpochSecond());
         this.note = renteeSaveDto.getNote();
     }
 

@@ -21,9 +21,9 @@ public class RenteeManagementInfoDto {
     private Long id;
     private String title;
     private RenteeType type;
-    private String authorName;
-    private String publisherName;
-    private Long publishedDateEpochSecond;
+    private String bookAuthorName;
+    private String bookPublisherName;
+    private Long bookPublishedDateEpochSecond;
     private String thumbnailUrl;
     private String note;
     private RentState rentState;
@@ -35,9 +35,9 @@ public class RenteeManagementInfoDto {
         this.id = rentee.getId();
         this.title = rentee.getName();
         this.type = rentee.getType();
-        this.authorName = rentee.getAuthorName();
-        this.publisherName = rentee.getPublisherName();
-        this.publishedDateEpochSecond = toEpochSecond(rentee.getPublishedDate());
+        this.bookAuthorName = rentee.getBookAuthorName();
+        this.bookPublisherName = rentee.getBookPublisherName();
+        this.bookPublishedDateEpochSecond = toEpochSecond(rentee.getBookPublishedDate());
         this.thumbnailUrl = "/rentee/" + rentee.getId() + "/thumbnail";
         this.note = rentee.getNote();
         this.rentState = rentee.getRentState();

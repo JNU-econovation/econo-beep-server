@@ -17,7 +17,7 @@ public class RenteeElementDto {
     private Long id;
     private String title;
     private RenteeType type;
-    private String authorName;
+    private String bookAuthorName;
     private String thumbnailUrl;
     private RentState rentState;
 
@@ -26,7 +26,7 @@ public class RenteeElementDto {
         this.id = rentee.getId();
         this.title = rentee.getName();
         this.type = rentee.getType();
-        this.authorName = rentee.getAuthorName();
+        this.bookAuthorName = rentee.getBookAuthorName();
         this.thumbnailUrl = "/rentee/" + rentee.getId() + "/thumbnail";
         this.rentState = rentee.getRentState();
     }

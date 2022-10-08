@@ -44,7 +44,7 @@ public class EquipmentSaveDto {
 
     public Rentee toEntity() {
         return Rentee.builder()
-                .title(title)
+                .name(title)
                 .type(type)
                 .note(note)
                 .build();

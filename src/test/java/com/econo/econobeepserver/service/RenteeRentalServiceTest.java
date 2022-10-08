@@ -56,9 +56,9 @@ class RenteeRentalServiceTest {
                 )
                 .title("testRentee1")
                 .type(RenteeType.WEB)
-                .authorName("testAuthor1")
-                .publisherName("testPublisher1")
-                .publishedDate(LocalDate.of(1999, 10, 18))
+                .bookAuthorName("testAuthor1")
+                .bookPublisherName("testPublisher1")
+                .bookPublishedDate(LocalDate.of(1999, 10, 18))
                 .note("test1")
                 .build();
     }

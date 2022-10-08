@@ -40,9 +40,9 @@ class RenteeRepositoryTest {
                 )
                 .title("testRentee1")
                 .type(RenteeType.WEB)
-                .authorName("testAuthor1")
-                .publisherName("testPublisher1")
-                .publishedDate(LocalDate.of(1999, 10, 18))
+                .bookAuthorName("testAuthor1")
+                .bookPublisherName("testPublisher1")
+                .bookPublishedDate(LocalDate.of(1999, 10, 18))
                 .note("test1")
                 .build();
     }
@@ -56,9 +56,9 @@ class RenteeRepositoryTest {
                 )
                 .title("testRentee2")
                 .type(RenteeType.WEB)
-                .authorName("testAuthor2")
-                .publisherName("testPublisher2")
-                .publishedDate(LocalDate.of(2000, 10, 18))
+                .bookAuthorName("testAuthor2")
+                .bookPublisherName("testPublisher2")
+                .bookPublishedDate(LocalDate.of(2000, 10, 18))
                 .note("test2")
                 .build();
     }
@@ -72,9 +72,9 @@ class RenteeRepositoryTest {
                 )
                 .title("testRentee3")
                 .type(RenteeType.WEB)
-                .authorName("testAuthor3")
-                .publisherName("testPublisher3")
-                .publishedDate(LocalDate.of(2001, 10, 18))
+                .bookAuthorName("testAuthor3")
+                .bookPublisherName("testPublisher3")
+                .bookPublishedDate(LocalDate.of(2001, 10, 18))
                 .note("test3")
                 .build();
     }
@@ -88,9 +88,9 @@ class RenteeRepositoryTest {
                 )
                 .title("testRentee4")
                 .type(RenteeType.APP)
-                .authorName("testAuthor4")
-                .publisherName("testPublisher4")
-                .publishedDate(LocalDate.of(2002, 10, 18))
+                .bookAuthorName("testAuthor4")
+                .bookPublisherName("testPublisher4")
+                .bookPublishedDate(LocalDate.of(2002, 10, 18))
                 .note("test4")
                 .build();
     }
@@ -104,9 +104,9 @@ class RenteeRepositoryTest {
                 )
                 .title("testRentee5")
                 .type(RenteeType.APP)
-                .authorName("testAuthor5")
-                .publisherName("testPublisher5")
-                .publishedDate(LocalDate.of(2003, 10, 18))
+                .bookAuthorName("testAuthor5")
+                .bookPublisherName("testPublisher5")
+                .bookPublishedDate(LocalDate.of(2003, 10, 18))
                 .note("test5")
                 .build();
     }

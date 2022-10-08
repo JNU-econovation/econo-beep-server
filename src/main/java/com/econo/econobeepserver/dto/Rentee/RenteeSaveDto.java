@@ -22,11 +22,11 @@ public class RenteeSaveDto {
 
     private RenteeType type;
 
-    private String authorName;
+    private String bookAuthorName;
 
-    private String publisherName;
+    private String bookPublisherName;
 
-    private Long publishedDateEpochSecond;
+    private Long bookPublishedDateEpochSecond;
 
     private MultipartFile thumbnail;
 
@@ -34,12 +34,12 @@ public class RenteeSaveDto {
 
 
     @Builder
-    public RenteeSaveDto(String title, RenteeType type, String authorName, String publisherName, Long publishedDateEpochSecond, MultipartFile thumbnail, String note) {
+    public RenteeSaveDto(String title, RenteeType type, String bookAuthorName, String bookPublisherName, Long bookPublishedDateEpochSecond, MultipartFile thumbnail, String note) {
         this.title = title;
         this.type = type;
-        this.authorName = authorName;
-        this.publisherName = publisherName;
-        this.publishedDateEpochSecond = publishedDateEpochSecond;
+        this.bookAuthorName = bookAuthorName;
+        this.bookPublisherName = bookPublisherName;
+        this.bookPublishedDateEpochSecond = bookPublishedDateEpochSecond;
         this.thumbnail = thumbnail;
         this.note = note;
     }
@@ -47,9 +47,9 @@ public class RenteeSaveDto {
     public RenteeSaveDto(BookSaveDto bookSaveDto) {
         this.title = bookSaveDto.getTitle();
         this.type = bookSaveDto.getType();
-        this.authorName = bookSaveDto.getAuthorName();
-        this.publisherName = bookSaveDto.getPublisherName();
-        this.publishedDateEpochSecond = bookSaveDto.getPublishedDateEpochSecond();
+        this.bookAuthorName = bookSaveDto.getBookAuthorName();
+        this.bookPublisherName = bookSaveDto.getBookPublisherName();
+        this.bookPublishedDateEpochSecond = bookSaveDto.getBookPublishedDateEpochSecond();
         this.thumbnail = bookSaveDto.getThumbnail();
         this.note = bookSaveDto.getNote();
     }
@@ -64,11 +64,11 @@ public class RenteeSaveDto {
 
     public Rentee toEntity() {
         return Rentee.builder()
-                .title(title)
+                .name(title)
                 .type(type)
-                .authorName(authorName)
-                .publisherName(publisherName)
-                .publishedDate(toLocalDate(publishedDateEpochSecond))
+                .bookAuthorName(bookAuthorName)
+                .bookPublisherName(bookPublisherName)
+                .bookPublishedDate(toLocalDate(bookPublishedDateEpochSecond))
                 .note(note)
                 .build();
     }

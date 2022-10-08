@@ -10,6 +10,7 @@ import com.econo.econobeepserver.exception.NotFoundRenteeException;
 import com.econo.econobeepserver.service.ImageHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,7 +41,6 @@ public class RenteeService {
 
         return renteeId;
     }
-
 
     public Rentee getRenteeById(Long id) {
         Optional<Rentee> rentee = renteeRepository.findById(id);

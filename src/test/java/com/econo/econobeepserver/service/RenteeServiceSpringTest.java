@@ -83,9 +83,9 @@ class RenteeServiceSpringTest {
             return RenteeSaveDto.builder()
                     .title("testRentee")
                     .type(RenteeType.APP)
-                    .authorName("testAuthor")
-                    .publisherName("testPublisher")
-                    .publishedDateEpochSecond(toEpochSecond(LocalDate.of(1999, 10, 18)))
+                    .bookAuthorName("testAuthor")
+                    .bookPublisherName("testPublisher")
+                    .bookPublishedDateEpochSecond(toEpochSecond(LocalDate.of(1999, 10, 18)))
                     .thumbnail(new MockMultipartFile(THUMBNAIL_NAME, THUMBNAIL_NAME, "image/jpg", new FileInputStream(THUMBNAIL_PATH)))
                     .note("test")
                     .build();
@@ -101,9 +101,9 @@ class RenteeServiceSpringTest {
             return RenteeSaveDto.builder()
                     .title("testRenteeUpdate")
                     .type(RenteeType.APP)
-                    .authorName("testAuthorUpdate")
-                    .publisherName("testPublisherUpdate")
-                    .publishedDateEpochSecond(toEpochSecond(LocalDate.of(2022, 10, 18)))
+                    .bookAuthorName("testAuthorUpdate")
+                    .bookPublisherName("testPublisherUpdate")
+                    .bookPublishedDateEpochSecond(toEpochSecond(LocalDate.of(2022, 10, 18)))
                     .thumbnail(new MockMultipartFile("testThumbnailUpdate.jpg", "testThumbnailUpdate.jpg", "image/jpg", new FileInputStream(UPDATED_THUMBNAIL_PATH)))
                     .note("testUpdate")
                     .build();
@@ -127,9 +127,9 @@ class RenteeServiceSpringTest {
         Rentee savedRentee = renteeRepository.findById(renteeId).get();
         assertEquals(newRenteeSaveDto.getTitle(), savedRentee.getName());
         assertEquals(newRenteeSaveDto.getType(), savedRentee.getType());
-        assertEquals(newRenteeSaveDto.getAuthorName(), savedRentee.getAuthorName());
-        assertEquals(newRenteeSaveDto.getPublisherName(), savedRentee.getPublisherName());
-        assertEquals(newRenteeSaveDto.getPublishedDateEpochSecond(), toEpochSecond(savedRentee.getPublishedDate()));
+        assertEquals(newRenteeSaveDto.getAuthorName(), savedRentee.getBookAuthorName());
+        assertEquals(newRenteeSaveDto.getPublisherName(), savedRentee.getBookPublisherName());
+        assertEquals(newRenteeSaveDto.getPublishedDateEpochSecond(), toEpochSecond(savedRentee.getBookPublishedDate()));
         assertNotNull(savedRentee.getThumbnail());
         assertEquals(newRenteeSaveDto.getNote(), savedRentee.getNote());
 
@@ -155,9 +155,9 @@ class RenteeServiceSpringTest {
         Rentee savedRentee = renteeRepository.findById(renteeId).get();
         assertEquals(updatedRenteeSaveDto.getTitle(), savedRentee.getName());
         assertEquals(updatedRenteeSaveDto.getType(), savedRentee.getType());
-        assertEquals(updatedRenteeSaveDto.getAuthorName(), savedRentee.getAuthorName());
-        assertEquals(updatedRenteeSaveDto.getPublisherName(), savedRentee.getPublisherName());
-        assertEquals(updatedRenteeSaveDto.getPublishedDateEpochSecond(), toEpochSecond(savedRentee.getPublishedDate()));
+        assertEquals(updatedRenteeSaveDto.getAuthorName(), savedRentee.getBookAuthorName());
+        assertEquals(updatedRenteeSaveDto.getPublisherName(), savedRentee.getBookPublisherName());
+        assertEquals(updatedRenteeSaveDto.getPublishedDateEpochSecond(), toEpochSecond(savedRentee.getBookPublishedDate()));
         assertNotEquals(oldRenteeCoverFilePath, savedRentee.getThumbnail().getFilePath());
         assertEquals(updatedRenteeSaveDto.getNote(), savedRentee.getNote());
 

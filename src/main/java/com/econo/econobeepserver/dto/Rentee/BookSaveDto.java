@@ -25,13 +25,13 @@ public class BookSaveDto {
     private RenteeType type;
 
     @NotNull
-    private String authorName;
+    private String bookAuthorName;
 
     @NotNull
-    private String publisherName;
+    private String bookPublisherName;
 
     @NotNull
-    private Long publishedDateEpochSecond;
+    private Long bookPublishedDateEpochSecond;
 
     @NotNull
     private MultipartFile thumbnail;
@@ -40,12 +40,12 @@ public class BookSaveDto {
 
 
     @Builder
-    public BookSaveDto(String title, RenteeType type, String authorName, String publisherName, Long publishedDateEpochSecond, MultipartFile thumbnail, String note) {
+    public BookSaveDto(String title, RenteeType type, String bookAuthorName, String bookPublisherName, Long bookPublishedDateEpochSecond, MultipartFile thumbnail, String note) {
         this.title = title;
         this.type = type;
-        this.authorName = authorName;
-        this.publisherName = publisherName;
-        this.publishedDateEpochSecond = publishedDateEpochSecond;
+        this.bookAuthorName = bookAuthorName;
+        this.bookPublisherName = bookPublisherName;
+        this.bookPublishedDateEpochSecond = bookPublishedDateEpochSecond;
         this.thumbnail = thumbnail;
         this.note = note;
     }
@@ -53,20 +53,20 @@ public class BookSaveDto {
     public BookSaveDto(Rentee rentee) {
         this.title = rentee.getName();
         this.type = rentee.getType();
-        this.authorName = rentee.getAuthorName();
-        this.publisherName = rentee.getPublisherName();
-        this.publishedDateEpochSecond = toEpochSecond(rentee.getPublishedDate());
+        this.bookAuthorName = rentee.getBookAuthorName();
+        this.bookPublisherName = rentee.getBookPublisherName();
+        this.bookPublishedDateEpochSecond = toEpochSecond(rentee.getBookPublishedDate());
         this.note = rentee.getNote();
     }
 
 
     public Rentee toEntity() {
         return Rentee.builder()
-                .title(title)
+                .name(title)
                 .type(type)
-                .authorName(authorName)
-                .publisherName(publisherName)
-                .publishedDate(toLocalDate(publishedDateEpochSecond))
+                .bookAuthorName(bookAuthorName)
+                .bookPublisherName(bookPublisherName)
+                .bookPublishedDate(toLocalDate(bookPublishedDateEpochSecond))
                 .note(note)
                 .build();
     }
