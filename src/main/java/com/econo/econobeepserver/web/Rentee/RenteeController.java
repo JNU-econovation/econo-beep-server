@@ -1,6 +1,5 @@
 package com.econo.econobeepserver.web.Rentee;
 
-import com.econo.econobeepserver.domain.Rentee.RenteeType;
 import com.econo.econobeepserver.dto.Rentee.RenteeElementDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeInfoDto;
 import com.econo.econobeepserver.service.Rentee.RenteeService;
@@ -26,44 +25,33 @@ public class RenteeController {
         return ResponseEntity.ok(renteeInfoDto);
     }
 
-//    @GetMapping("/rentee/search")
-//    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByKeyword(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
-//                                                                                   @RequestParam(value = "pageSize") int pageSize,
-//                                                                                   @RequestParam(value = "lastRenteeId", required = false) Long lastId
-//    ) {
-//        List<RenteeElementDto> renteeElementDtos = renteeService.searchRenteeElementDtosByKeyword(keyword, pageSize, lastId);
-//
-//        return ResponseEntity.ok(renteeElementDtos);
-//    }
-//
-//    @GetMapping("/rentee/search/book")
-//    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosFromBookByKeywordWithPaging(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
-//                                                                                                     @RequestParam(value = "pageSize") int pageSize,
-//                                                                                                     @RequestParam(value = "lastRenteeId", required = false) Long lastId
-//    ) {
-//        List<RenteeElementDto> renteeElementDtos = renteeService.searchRenteeElementDtosByRenteeTypeNotEqualWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId);
-//
-//        return ResponseEntity.ok(renteeElementDtos);
-//    }
-//
-//    @GetMapping("/rentee/search/equipment")
-//    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosFromEquipmentByKeywordWithPaging(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
-//                                                                                                          @RequestParam(value = "pageSize") int pageSize,
-//                                                                                                          @RequestParam(value = "lastRenteeId", required = false) Long lastId
-//    ) {
-//        List<RenteeElementDto> renteeElementDtos = renteeService.searchRenteeElementDtosByRenteeTypeEqualByKeywordWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId);
-//
-//        return ResponseEntity.ok(renteeElementDtos);
-//    }
-//
-//    @GetMapping("/rentee/search/{type}")
-//    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByRenteeTypeEqualByKeywordWithPaging(@PathVariable(value = "type") RenteeType renteeType,
-//                                                                                                              @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
-//                                                                                                              @RequestParam(value = "pageSize") int pageSize,
-//                                                                                                              @RequestParam(value = "lastRenteeId", required = false) Long lastId
-//    ) {
-//        List<RenteeElementDto> renteeElementDtos = renteeService.searchRenteeElementDtosByRenteeTypeEqualByKeywordWithPaging(renteeType, keyword, pageSize, lastId);
-//
-//        return ResponseEntity.ok(renteeElementDtos);
-//    }
+    @GetMapping("/rentee/search")
+    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByName(@RequestParam(value = "name", required = false, defaultValue = "") String name,
+                                                                                @RequestParam(value = "pageIndex") int pageIndex,
+                                                                                @RequestParam(value = "pageSize") int pageSize
+    ) {
+        List<RenteeElementDto> renteeElementDtos = renteeService.searchRenteeElementDtosByNameWithPaging(name, pageIndex, pageSize);
+
+        return ResponseEntity.ok(renteeElementDtos);
+    }
+
+    @GetMapping("/rentee/search/book")
+    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByNameFromBookWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String name,
+                                                                                                     @RequestParam(value = "pageIndex") int pageIndex,
+                                                                                                     @RequestParam(value = "pageSize") int pageSize
+    ) {
+        List<RenteeElementDto> renteeElementDtos = renteeService.searchRenteeElementDtosByNameFromBookWithPaging(name, pageIndex, pageSize);
+
+        return ResponseEntity.ok(renteeElementDtos);
+    }
+
+    @GetMapping("/rentee/search/equipment")
+    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByNameFromEquipmentWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String name,
+                                                                                                          @RequestParam(value = "pageIndex") int pageIndex,
+                                                                                                          @RequestParam(value = "pageSize") int pageSize
+    ) {
+        List<RenteeElementDto> renteeElementDtos = renteeService.searchRenteeElementDtosByNameFromEquipmentWithPaging(name, pageIndex, pageSize);
+
+        return ResponseEntity.ok(renteeElementDtos);
+    }
 }

@@ -63,8 +63,8 @@ public class Rentee extends BaseTimeEntity {
                   BookArea bookArea, String bookAuthorName, String bookPublisherName, LocalDate bookPublishedDate, String note) {
         this.id = id;
         this.thumbnail = thumbnail;
-        this.name = name;
         this.type = type;
+        this.name = name;
         this.bookArea = bookArea;
         this.bookAuthorName = bookAuthorName;
         this.bookPublisherName = bookPublisherName;
@@ -74,8 +74,8 @@ public class Rentee extends BaseTimeEntity {
 
 
     public void updateInformation(RenteeSaveDto renteeSaveDto) {
-        this.name = renteeSaveDto.getName();
         this.type = renteeSaveDto.getType();
+        this.name = renteeSaveDto.getName();
         this.bookAuthorName = renteeSaveDto.getBookAuthorName();
         this.bookPublisherName = renteeSaveDto.getBookPublisherName();
         this.bookPublishedDate = toLocalDate(renteeSaveDto.getBookPublishedDateEpochSecond());
