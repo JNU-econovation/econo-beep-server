@@ -1,22 +1,24 @@
 package com.econo.econobeepserver.domain.Rentee;
 
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 public interface RenteeCustomRepository {
 
-    List<Rentee> getRenteesWithPaging(int pageSize, Long lastId);
+    List<Rentee> findRenteesNameContainingFromBookOrderByCreatedAscWithPaging(String name, Pageable pageable);
 
-    List<Rentee> searchRenteeWithPaging(String keyword, int pageSize, Long lastId);
+    List<Rentee> findRenteesNameContainingFromBookOrderByCreatedDescWithPaging(String name, Pageable pageable);
 
-    List<Rentee> searchRenteeByRenteeTypeEqualWithPaging(RenteeType renteeType, String keyword, int pageSize, Long lastId);
+    List<Rentee> findRenteesNameContainingFromBookOrderByLatestRentalWithPaging(String name, Pageable pageable);
 
-    List<Rentee> searchRenteeByRenteeTypeEqualByIdSortWithPaging(RenteeType renteeType, String keyword, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc);
+    List<Rentee> findRenteesNameContainingFromBookOrderByOutdatedRentalWithPaging(String name, Pageable pageable);
 
-    List<Rentee> searchRenteeByRenteeTypeEqualByRecentRentDescWithPaging(RenteeType renteeType, String keyword, int pageSize, long offset);
+    List<Rentee> findRenteesNameContainingFromEquipmentOrderByCreatedAscWithPaging(String name, Pageable pageable);
 
-    List<Rentee> searchRenteeByRenteeTypeNotEqualWithPaging(RenteeType renteeType, String keyword, int pageSize, Long lastId);
+    List<Rentee> findRenteesNameContainingFromEquipmentOrderByCreatedDescWithPaging(String name, Pageable pageable);
 
-    List<Rentee> searchRenteeByRenteeTypeNotEqualByIdSortPaging(RenteeType renteeType, String keyword, int pageSize, Long lastId, Boolean isIdAsc, Boolean isIdDesc);
+    List<Rentee> findRenteesNameContainingFromEquipmentOrderByLatestRentalWithPaging(String name, Pageable pageable);
 
-    List<Rentee> searchRenteeByRenteeTypeNotEqualByRecentRentDescWithPaging(RenteeType renteeType, String keyword, int pageSize, long offset);
+    List<Rentee> findRenteesNameContainingFromEquipmentOrderByOutdatedRentalWithPaging(String name, Pageable pageable);
 }

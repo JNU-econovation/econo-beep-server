@@ -1,20 +1,17 @@
 package com.econo.econobeepserver.service.Rentee;
 
-import com.econo.econobeepserver.domain.Rentee.Rentee;
-import com.econo.econobeepserver.domain.Rentee.RenteeThumbnail;
-import com.econo.econobeepserver.domain.Rentee.RenteeThumbnailRepository;
-import com.econo.econobeepserver.domain.Rentee.RenteeRepository;
-import com.econo.econobeepserver.domain.Rentee.RenteeType;
+import com.econo.econobeepserver.domain.Rentee.*;
 import com.econo.econobeepserver.dto.Rentee.*;
 import com.econo.econobeepserver.exception.NotFoundRenteeException;
 import com.econo.econobeepserver.service.ImageHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -57,43 +54,66 @@ public class RenteeService {
         return new RenteeInfoDto(rentee);
     }
 
-    public List<RenteeElementDto> searchRenteeElementDtosByKeyword(String keyword, int pageSize, Long lastId) {
-        List<Rentee> rentees = renteeRepository.searchRenteeWithPaging(keyword, pageSize, lastId);
+    public List<RenteeElementDto> searchRenteeElementDtosByNameWithPaging(String name, int pageIndex ,int pageSize) {
+        PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
+        List<Rentee> rentees = renteeRepository.findRenteesByNameContaining(name, pageRequest);
 
         return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
     }
 
-    public List<RenteeElementDto> searchRenteeElementDtosByRenteeTypeEqualByKeywordWithPaging(RenteeType renteeType, String keyword, int pageSize, Long lastId) {
-        List<Rentee> rentees = renteeRepository.searchRenteeByRenteeTypeEqualWithPaging(renteeType, keyword, pageSize, lastId);
+    public List<RenteeElementDto> searchRenteeElementDtosByNameFromBookWithPaging(String name, int pageIndex, int pageSize) {
+        PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
+        List<Rentee> rentees = renteeRepository.findRenteesByTypeAndNameContaining(RenteeType.BOOK, name, pageRequest);
 
         return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
     }
 
-    public List<RenteeElementDto> searchRenteeElementDtosByRenteeTypeNotEqualWithPaging(RenteeType renteeType, String keyword, int pageSize, Long lastId) {
-        List<Rentee> rentees = renteeRepository.searchRenteeByRenteeTypeNotEqualWithPaging(renteeType, keyword, pageSize, lastId);
+    public List<RenteeElementDto> searchRenteeElementDtosByNameFromEquipmentWithPaging(String name, int pageIndex, int pageSize) {
+        PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
+        List<Rentee> rentees = renteeRepository.findRenteesByTypeAndNameContaining(RenteeType.EQUIPMENT, name, pageRequest);
 
         return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
     }
 
-    public List<RenteeManagementInfoDto> searchRenteeManagementInfoDtosFromBookWithPaging(String keyword, int pageSize, Long lastId, Long offset, Boolean isIdAsc, Boolean isIdDesc, Boolean isRecentRentDesc) {
-        List<Rentee> rentees;
-        if (isRecentRentDesc == null) {
-            rentees = renteeRepository.searchRenteeByRenteeTypeNotEqualByIdSortPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId, isIdAsc, isIdDesc);
+    public List<RenteeManagementInfoDto> searchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging(String name, RenteeSort renteeSort, int pageIndex, int pageSize) {
+        List<Rentee> rentees = Collections.emptyList();
+        PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
 
-        } else {
-            rentees = renteeRepository.searchRenteeByRenteeTypeNotEqualByRecentRentDescWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, offset);
+        switch (renteeSort) {
+            case CREATED_ASC:
+                rentees = renteeRepository.findRenteesNameContainingFromBookOrderByCreatedAscWithPaging(name, pageRequest);
+                break;
+            case CREATED_DESC:
+                rentees = renteeRepository.findRenteesNameContainingFromBookOrderByCreatedDescWithPaging(name, pageRequest);
+                break;
+            case LATEST_RENTAL:
+                rentees = renteeRepository.findRenteesNameContainingFromBookOrderByLatestRentalWithPaging(name, pageRequest);
+                break;
+            case OUTDATED_RENTAL:
+                rentees = renteeRepository.findRenteesNameContainingFromBookOrderByOutdatedRentalWithPaging(name, pageRequest);
+                break;
         }
 
         return rentees.stream().map(RenteeManagementInfoDto::new).collect(Collectors.toList());
     }
 
-    public List<RenteeManagementInfoDto> searchRenteeManagementInfoDtosFromEquipmentWithPaging(String keyword, int pageSize, Long lastId, Long offset, Boolean isIdAsc, Boolean isIdDesc, Boolean isRecentRentDesc) {
-        List<Rentee> rentees;
-        if (isRecentRentDesc == null) {
-            rentees = renteeRepository.searchRenteeByRenteeTypeEqualByIdSortWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, lastId, isIdAsc, isIdDesc);
+    public List<RenteeManagementInfoDto> searchRenteeManagementInfoDtosByNameFromEquipmentWithSortAndPaging(String name, RenteeSort renteeSort, int pageIndex, int pageSize) {
+        List<Rentee> rentees = Collections.emptyList();
+        PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
 
-        } else {
-            rentees = renteeRepository.searchRenteeByRenteeTypeEqualByRecentRentDescWithPaging(RenteeType.EQUIPMENT, keyword, pageSize, offset);
+        switch (renteeSort) {
+            case CREATED_ASC:
+                rentees = renteeRepository.findRenteesNameContainingFromEquipmentOrderByCreatedAscWithPaging(name, pageRequest);
+                break;
+            case CREATED_DESC:
+                rentees = renteeRepository.findRenteesNameContainingFromEquipmentOrderByCreatedDescWithPaging(name, pageRequest);
+                break;
+            case LATEST_RENTAL:
+                rentees = renteeRepository.findRenteesNameContainingFromEquipmentOrderByLatestRentalWithPaging(name, pageRequest);
+                break;
+            case OUTDATED_RENTAL:
+                rentees = renteeRepository.findRenteesNameContainingFromEquipmentOrderByOutdatedRentalWithPaging(name, pageRequest);
+                break;
         }
 
         return rentees.stream().map(RenteeManagementInfoDto::new).collect(Collectors.toList());

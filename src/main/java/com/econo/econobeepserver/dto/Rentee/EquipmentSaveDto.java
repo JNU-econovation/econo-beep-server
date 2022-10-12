@@ -1,7 +1,6 @@
 package com.econo.econobeepserver.dto.Rentee;
 
 import com.econo.econobeepserver.domain.Rentee.Rentee;
-import com.econo.econobeepserver.domain.Rentee.RenteeType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,37 +15,23 @@ import javax.validation.constraints.NotNull;
 public class EquipmentSaveDto {
 
     @NotNull
-    private String title;
-
-    @NotNull
-    private RenteeType type;
-
-    @NotNull
     private MultipartFile thumbnail;
+
+    @NotNull
+    private String name;
 
     private String note;
 
 
     @Builder
-    public EquipmentSaveDto(String title, RenteeType type, MultipartFile thumbnail, String note) {
-        this.title = title;
-        this.type = type;
+    public EquipmentSaveDto(MultipartFile thumbnail, String name, String note) {
         this.thumbnail = thumbnail;
+        this.name = name;
         this.note = note;
     }
 
     public EquipmentSaveDto(Rentee rentee) {
-        this.title = rentee.getName();
-        this.type = rentee.getType();
+        this.name = rentee.getName();
         this.note = rentee.getNote();
-    }
-
-
-    public Rentee toEntity() {
-        return Rentee.builder()
-                .name(title)
-                .type(type)
-                .note(note)
-                .build();
     }
 }

@@ -1,5 +1,6 @@
 package com.econo.econobeepserver.domain.Rentee;
 
+import com.econo.econobeepserver.domain.BaseTimeEntity;
 import com.econo.econobeepserver.domain.Rental.Rental;
 import com.econo.econobeepserver.dto.Rentee.RenteeSaveDto;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -18,7 +19,7 @@ import static com.econo.econobeepserver.util.EpochTime.toLocalDate;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Rentee {
+public class Rentee extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,13 +49,14 @@ public class Rentee {
 
     private LocalDate bookPublishedDate;
 
+    private String note;
+
     @NotNull
     private RentState rentState = RentState.RENTABLE;
 
     @NotNull
     private int rentCount = 0;
 
-    private String note;
 
     @Builder
     public Rentee(Long id, RenteeThumbnail thumbnail, String name, RenteeType type,
@@ -72,7 +74,7 @@ public class Rentee {
 
 
     public void updateInformation(RenteeSaveDto renteeSaveDto) {
-        this.name = renteeSaveDto.getTitle();
+        this.name = renteeSaveDto.getName();
         this.type = renteeSaveDto.getType();
         this.bookAuthorName = renteeSaveDto.getBookAuthorName();
         this.bookPublisherName = renteeSaveDto.getBookPublisherName();

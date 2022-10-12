@@ -1,5 +1,6 @@
 package com.econo.econobeepserver.domain.Rental;
 
+import com.econo.econobeepserver.domain.BaseTimeEntity;
 import com.econo.econobeepserver.domain.Rentee.Rentee;
 import com.sun.istack.NotNull;
 import lombok.Builder;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Rental {
+public class Rental extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

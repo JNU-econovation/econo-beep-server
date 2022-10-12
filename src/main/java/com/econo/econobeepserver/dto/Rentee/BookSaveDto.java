@@ -1,5 +1,6 @@
 package com.econo.econobeepserver.dto.Rentee;
 
+import com.econo.econobeepserver.domain.Rentee.BookArea;
 import com.econo.econobeepserver.domain.Rentee.Rentee;
 import com.econo.econobeepserver.domain.Rentee.RenteeType;
 import lombok.Builder;
@@ -19,10 +20,13 @@ import static com.econo.econobeepserver.util.EpochTime.toLocalDate;
 public class BookSaveDto {
 
     @NotNull
-    private String title;
+    private MultipartFile thumbnail;
 
     @NotNull
-    private RenteeType type;
+    private String name;
+
+    @NotNull
+    private BookArea bookArea;
 
     @NotNull
     private String bookAuthorName;
@@ -33,41 +37,26 @@ public class BookSaveDto {
     @NotNull
     private Long bookPublishedDateEpochSecond;
 
-    @NotNull
-    private MultipartFile thumbnail;
-
     private String note;
 
 
     @Builder
-    public BookSaveDto(String title, RenteeType type, String bookAuthorName, String bookPublisherName, Long bookPublishedDateEpochSecond, MultipartFile thumbnail, String note) {
-        this.title = title;
-        this.type = type;
+    public BookSaveDto(String name, BookArea bookArea, String bookAuthorName, String bookPublisherName, Long bookPublishedDateEpochSecond, MultipartFile thumbnail, String note) {
+        this.thumbnail = thumbnail;
+        this.name = name;
+        this.bookArea = bookArea;
         this.bookAuthorName = bookAuthorName;
         this.bookPublisherName = bookPublisherName;
         this.bookPublishedDateEpochSecond = bookPublishedDateEpochSecond;
-        this.thumbnail = thumbnail;
         this.note = note;
     }
 
     public BookSaveDto(Rentee rentee) {
-        this.title = rentee.getName();
-        this.type = rentee.getType();
+        this.name = rentee.getName();
+        this.bookArea = rentee.getBookArea();
         this.bookAuthorName = rentee.getBookAuthorName();
         this.bookPublisherName = rentee.getBookPublisherName();
         this.bookPublishedDateEpochSecond = toEpochSecond(rentee.getBookPublishedDate());
         this.note = rentee.getNote();
-    }
-
-
-    public Rentee toEntity() {
-        return Rentee.builder()
-                .name(title)
-                .type(type)
-                .bookAuthorName(bookAuthorName)
-                .bookPublisherName(bookPublisherName)
-                .bookPublishedDate(toLocalDate(bookPublishedDateEpochSecond))
-                .note(note)
-                .build();
     }
 }

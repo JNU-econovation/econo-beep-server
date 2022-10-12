@@ -1,5 +1,6 @@
 package com.econo.econobeepserver.dto.Rentee;
 
+import com.econo.econobeepserver.domain.Rentee.BookArea;
 import com.econo.econobeepserver.domain.Rentee.Rentee;
 import com.econo.econobeepserver.domain.Rentee.RentState;
 import com.econo.econobeepserver.domain.Rentee.RenteeType;
@@ -15,19 +16,21 @@ import java.util.Objects;
 public class RenteeElementDto {
 
     private Long id;
-    private String title;
-    private RenteeType type;
-    private String bookAuthorName;
     private String thumbnailUrl;
+    private RenteeType type;
+    private String name;
+    private BookArea bookArea;
+    private String bookAuthorName;
     private RentState rentState;
 
 
     public RenteeElementDto(Rentee rentee) {
         this.id = rentee.getId();
-        this.title = rentee.getName();
-        this.type = rentee.getType();
-        this.bookAuthorName = rentee.getBookAuthorName();
         this.thumbnailUrl = "/rentee/" + rentee.getId() + "/thumbnail";
+        this.type = rentee.getType();
+        this.name = rentee.getName();
+        this.bookArea = rentee.getBookArea();
+        this.bookAuthorName = rentee.getBookAuthorName();
         this.rentState = rentee.getRentState();
     }
 
@@ -36,11 +39,11 @@ public class RenteeElementDto {
         if (this == o) return true;
         if (!(o instanceof RenteeElementDto)) return false;
         RenteeElementDto that = (RenteeElementDto) o;
-        return getId().equals(that.getId()) && getTitle().equals(that.getTitle()) && getType() == that.getType() && Objects.equals(getAuthorName(), that.getAuthorName()) && getThumbnailUrl().equals(that.getThumbnailUrl()) && getRentState() == that.getRentState();
+        return getThumbnailUrl().equals(that.getThumbnailUrl()) && getType() == that.getType() && getName().equals(that.getName()) && getBookArea() == that.getBookArea() && Objects.equals(getBookAuthorName(), that.getBookAuthorName()) && getRentState() == that.getRentState();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return 0;
     }
 }

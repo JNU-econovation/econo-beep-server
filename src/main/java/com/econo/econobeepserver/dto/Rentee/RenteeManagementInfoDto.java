@@ -1,5 +1,6 @@
 package com.econo.econobeepserver.dto.Rentee;
 
+import com.econo.econobeepserver.domain.Rentee.BookArea;
 import com.econo.econobeepserver.domain.Rentee.Rentee;
 import com.econo.econobeepserver.domain.Rental.Rental;
 import com.econo.econobeepserver.domain.Rentee.RentState;
@@ -19,12 +20,13 @@ import static com.econo.econobeepserver.util.EpochTime.toEpochSecond;
 public class RenteeManagementInfoDto {
 
     private Long id;
-    private String title;
+    private String thumbnailUrl;
     private RenteeType type;
+    private String name;
+    private BookArea bookArea;
     private String bookAuthorName;
     private String bookPublisherName;
     private Long bookPublishedDateEpochSecond;
-    private String thumbnailUrl;
     private String note;
     private RentState rentState;
 
@@ -33,12 +35,13 @@ public class RenteeManagementInfoDto {
 
     public RenteeManagementInfoDto(Rentee rentee) {
         this.id = rentee.getId();
-        this.title = rentee.getName();
+        this.thumbnailUrl = "/rentee/" + rentee.getId() + "/thumbnail";
         this.type = rentee.getType();
+        this.name = rentee.getName();
+        this.bookArea = rentee.getBookArea();
         this.bookAuthorName = rentee.getBookAuthorName();
         this.bookPublisherName = rentee.getBookPublisherName();
         this.bookPublishedDateEpochSecond = toEpochSecond(rentee.getBookPublishedDate());
-        this.thumbnailUrl = "/rentee/" + rentee.getId() + "/thumbnail";
         this.note = rentee.getNote();
         this.rentState = rentee.getRentState();
 
@@ -56,11 +59,11 @@ public class RenteeManagementInfoDto {
         if (this == o) return true;
         if (!(o instanceof RenteeManagementInfoDto)) return false;
         RenteeManagementInfoDto that = (RenteeManagementInfoDto) o;
-        return getId().equals(that.getId()) && getTitle().equals(that.getTitle()) && getType() == that.getType() && Objects.equals(getAuthorName(), that.getAuthorName()) && Objects.equals(getPublisherName(), that.getPublisherName()) && Objects.equals(getPublishedDateEpochSecond(), that.getPublishedDateEpochSecond()) && Objects.equals(getThumbnailUrl(), that.getThumbnailUrl()) && Objects.equals(getNote(), that.getNote()) && getRentState() == that.getRentState() && Objects.equals(getRecentRenter(), that.getRecentRenter()) && Objects.equals(getRecentRentalEpochSecond(), that.getRecentRentalEpochSecond());
+        return getThumbnailUrl().equals(that.getThumbnailUrl()) && getType() == that.getType() && getName().equals(that.getName()) && getBookArea() == that.getBookArea() && Objects.equals(getBookAuthorName(), that.getBookAuthorName()) && Objects.equals(getBookPublisherName(), that.getBookPublisherName()) && Objects.equals(getBookPublishedDateEpochSecond(), that.getBookPublishedDateEpochSecond()) && Objects.equals(getNote(), that.getNote()) && getRentState() == that.getRentState();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return 0;
     }
 }

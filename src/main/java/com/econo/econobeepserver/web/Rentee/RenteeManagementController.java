@@ -34,35 +34,35 @@ public class RenteeManagementController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/management/search/book")
-    public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromBook(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
-                                                                                                @RequestParam(value = "pageSize") int pageSize,
-                                                                                                @RequestParam(value = "lastRenteeId", required = false) Long lastId,
-                                                                                                @RequestParam(value = "offset", required = false, defaultValue = "0L") Long offset,
-                                                                                                @RequestParam(value = "isIdAsc", required = false) Boolean isIdAsc,
-                                                                                                @RequestParam(value = "isIdDesc", required = false) Boolean isIdDesc,
-                                                                                                @RequestParam(value = "isRecentRentDesc", required = false) Boolean isRecentRentDesc
-    ) {
-        log.info(keyword);
-        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosFromBookWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
-
-        return ResponseEntity.ok(renteeManagementInfoDtos);
-    }
-
-    @GetMapping("/management/search/equipment")
-    public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromEquipment(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
-                                                                                                     @RequestParam(value = "pageSize") int pageSize,
-                                                                                                     @RequestParam(value = "lastRenteeId", required = false) Long lastId,
-                                                                                                     @RequestParam(value = "offset", required = false, defaultValue = "0L") Long offset,
-                                                                                                     @RequestParam(value = "isIdAsc", required = false) Boolean isIdAsc,
-                                                                                                     @RequestParam(value = "isIdDesc", required = false) Boolean isIdDesc,
-                                                                                                     @RequestParam(value = "isRecentRentDesc", required = false) Boolean isRecentRentDesc
-    ) {
-        log.info(keyword);
-        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosFromEquipmentWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
-
-        return ResponseEntity.ok(renteeManagementInfoDtos);
-    }
+//    @GetMapping("/management/search/book")
+//    public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromBook(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+//                                                                                                @RequestParam(value = "pageSize") int pageSize,
+//                                                                                                @RequestParam(value = "lastRenteeId", required = false) Long lastId,
+//                                                                                                @RequestParam(value = "offset", required = false, defaultValue = "0L") Long offset,
+//                                                                                                @RequestParam(value = "isIdAsc", required = false) Boolean isIdAsc,
+//                                                                                                @RequestParam(value = "isIdDesc", required = false) Boolean isIdDesc,
+//                                                                                                @RequestParam(value = "isRecentRentDesc", required = false) Boolean isRecentRentDesc
+//    ) {
+//        log.info(keyword);
+//        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosFromBookWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
+//
+//        return ResponseEntity.ok(renteeManagementInfoDtos);
+//    }
+//
+//    @GetMapping("/management/search/equipment")
+//    public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromEquipment(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+//                                                                                                     @RequestParam(value = "pageSize") int pageSize,
+//                                                                                                     @RequestParam(value = "lastRenteeId", required = false) Long lastId,
+//                                                                                                     @RequestParam(value = "offset", required = false, defaultValue = "0L") Long offset,
+//                                                                                                     @RequestParam(value = "isIdAsc", required = false) Boolean isIdAsc,
+//                                                                                                     @RequestParam(value = "isIdDesc", required = false) Boolean isIdDesc,
+//                                                                                                     @RequestParam(value = "isRecentRentDesc", required = false) Boolean isRecentRentDesc
+//    ) {
+//        log.info(keyword);
+//        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosFromEquipmentWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
+//
+//        return ResponseEntity.ok(renteeManagementInfoDtos);
+//    }
 
     @PutMapping("/management/book/{id}")
     public ResponseEntity<Void> updateBookById(@PathVariable(value = "id") Long id,
