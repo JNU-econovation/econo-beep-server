@@ -80,6 +80,9 @@ public class RenteeService {
         PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
 
         switch (renteeSort) {
+            case NONE:
+                rentees = renteeRepository.findRenteesNameContainingFromBookWithPaging(name, pageRequest);
+                break;
             case CREATED_ASC:
                 rentees = renteeRepository.findRenteesNameContainingFromBookOrderByCreatedAscWithPaging(name, pageRequest);
                 break;
@@ -102,6 +105,9 @@ public class RenteeService {
         PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
 
         switch (renteeSort) {
+            case NONE:
+                rentees = renteeRepository.findRenteesNameContainingFromEquipmentWithPaging(name, pageRequest);
+                break;
             case CREATED_ASC:
                 rentees = renteeRepository.findRenteesNameContainingFromEquipmentOrderByCreatedAscWithPaging(name, pageRequest);
                 break;

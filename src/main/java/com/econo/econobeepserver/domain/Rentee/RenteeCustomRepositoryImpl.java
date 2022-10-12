@@ -16,6 +16,20 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
+    public List<Rentee> findRenteesNameContainingFromBookWithPaging(String name, Pageable pageable) {
+        return jpaQueryFactory
+                .select(rentee)
+                .from(rentee)
+                .where(
+                        rentee.type.eq(RenteeType.BOOK),
+                        rentee.name.contains(name)
+                )
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+    }
+
+    @Override
     public List<Rentee> findRenteesNameContainingFromBookOrderByCreatedAscWithPaging(String name, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
@@ -93,6 +107,21 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
                 .fetch();
     }
     ////
+
+
+    @Override
+    public List<Rentee> findRenteesNameContainingFromEquipmentWithPaging(String name, Pageable pageable) {
+        return jpaQueryFactory
+                .select(rentee)
+                .from(rentee)
+                .where(
+                        rentee.type.eq(RenteeType.EQUIPMENT),
+                        rentee.name.contains(name)
+                )
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+    }
 
     @Override
     public List<Rentee> findRenteesNameContainingFromEquipmentOrderByCreatedAscWithPaging(String name, Pageable pageable) {

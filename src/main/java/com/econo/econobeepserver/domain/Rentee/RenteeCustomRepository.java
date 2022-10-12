@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface RenteeCustomRepository {
 
+    List<Rentee> findRenteesNameContainingFromBookWithPaging(String name, Pageable pageable);
+
     List<Rentee> findRenteesNameContainingFromBookOrderByCreatedAscWithPaging(String name, Pageable pageable);
 
     List<Rentee> findRenteesNameContainingFromBookOrderByCreatedDescWithPaging(String name, Pageable pageable);
@@ -13,6 +15,8 @@ public interface RenteeCustomRepository {
     List<Rentee> findRenteesNameContainingFromBookOrderByLatestRentalWithPaging(String name, Pageable pageable);
 
     List<Rentee> findRenteesNameContainingFromBookOrderByOutdatedRentalWithPaging(String name, Pageable pageable);
+
+    List<Rentee> findRenteesNameContainingFromEquipmentWithPaging(String name, Pageable pageable);
 
     List<Rentee> findRenteesNameContainingFromEquipmentOrderByCreatedAscWithPaging(String name, Pageable pageable);
 

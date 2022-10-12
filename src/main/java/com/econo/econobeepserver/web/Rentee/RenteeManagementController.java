@@ -5,6 +5,7 @@ import com.econo.econobeepserver.dto.Rentee.RenteeManagementInfoDto;
 import com.econo.econobeepserver.dto.Rentee.BookSaveDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeSaveDto;
 import com.econo.econobeepserver.service.Rentee.RenteeService;
+import com.econo.econobeepserver.service.Rentee.RenteeSort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -34,39 +35,32 @@ public class RenteeManagementController {
         return ResponseEntity.ok().build();
     }
 
-//    @GetMapping("/management/search/book")
-//    public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromBook(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
-//                                                                                                @RequestParam(value = "pageSize") int pageSize,
-//                                                                                                @RequestParam(value = "lastRenteeId", required = false) Long lastId,
-//                                                                                                @RequestParam(value = "offset", required = false, defaultValue = "0L") Long offset,
-//                                                                                                @RequestParam(value = "isIdAsc", required = false) Boolean isIdAsc,
-//                                                                                                @RequestParam(value = "isIdDesc", required = false) Boolean isIdDesc,
-//                                                                                                @RequestParam(value = "isRecentRentDesc", required = false) Boolean isRecentRentDesc
-//    ) {
-//        log.info(keyword);
-//        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosFromBookWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
-//
-//        return ResponseEntity.ok(renteeManagementInfoDtos);
-//    }
-//
-//    @GetMapping("/management/search/equipment")
-//    public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromEquipment(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
-//                                                                                                     @RequestParam(value = "pageSize") int pageSize,
-//                                                                                                     @RequestParam(value = "lastRenteeId", required = false) Long lastId,
-//                                                                                                     @RequestParam(value = "offset", required = false, defaultValue = "0L") Long offset,
-//                                                                                                     @RequestParam(value = "isIdAsc", required = false) Boolean isIdAsc,
-//                                                                                                     @RequestParam(value = "isIdDesc", required = false) Boolean isIdDesc,
-//                                                                                                     @RequestParam(value = "isRecentRentDesc", required = false) Boolean isRecentRentDesc
-//    ) {
-//        log.info(keyword);
-//        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosFromEquipmentWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
-//
-//        return ResponseEntity.ok(renteeManagementInfoDtos);
-//    }
+    @GetMapping("/management/search/book")
+    public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromBook(@RequestParam(value = "name", required = false, defaultValue = "") String name,
+                                                                                                @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
+                                                                                                @RequestParam(value = "pageIndex") int pageIndex,
+                                                                                                @RequestParam(value = "pageSize") int pageSize
+    ) {
+        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging(name, renteeSort, pageIndex, pageSize);
+
+        return ResponseEntity.ok(renteeManagementInfoDtos);
+    }
+
+    @GetMapping("/management/search/equipment")
+    public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromEquipment(@RequestParam(value = "name", required = false, defaultValue = "") String name,
+                                                                                                     @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
+                                                                                                     @RequestParam(value = "pageIndex") int pageIndex,
+                                                                                                     @RequestParam(value = "pageSize") int pageSize
+    ) {
+        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosByNameFromEquipmentWithSortAndPaging(name, renteeSort, pageIndex, pageSize);
+
+        return ResponseEntity.ok(renteeManagementInfoDtos);
+    }
 
     @PutMapping("/management/book/{id}")
     public ResponseEntity<Void> updateBookById(@PathVariable(value = "id") Long id,
-                                               @Valid @ModelAttribute BookSaveDto bookSaveDto) {
+                                               @Valid @ModelAttribute BookSaveDto bookSaveDto
+    ) {
         renteeService.updateRenteeById(id, new RenteeSaveDto(bookSaveDto));
 
         return ResponseEntity.ok().build();
@@ -74,7 +68,8 @@ public class RenteeManagementController {
 
     @PutMapping("/management/equipment/{id}")
     public ResponseEntity<Void> updateEquipmentById(@PathVariable(value = "id") Long id,
-                                                    @Valid @ModelAttribute EquipmentSaveDto equipmentSaveDto) {
+                                                    @Valid @ModelAttribute EquipmentSaveDto equipmentSaveDto
+    ) {
         renteeService.updateRenteeById(id, new RenteeSaveDto(equipmentSaveDto));
 
         return ResponseEntity.ok().build();

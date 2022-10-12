@@ -37,8 +37,8 @@ public class RenteeController {
 
     @GetMapping("/rentee/search/book")
     public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByNameFromBookWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String name,
-                                                                                                     @RequestParam(value = "pageIndex") int pageIndex,
-                                                                                                     @RequestParam(value = "pageSize") int pageSize
+                                                                                                  @RequestParam(value = "pageIndex") int pageIndex,
+                                                                                                  @RequestParam(value = "pageSize") int pageSize
     ) {
         List<RenteeElementDto> renteeElementDtos = renteeService.searchRenteeElementDtosByNameFromBookWithPaging(name, pageIndex, pageSize);
 
@@ -47,8 +47,8 @@ public class RenteeController {
 
     @GetMapping("/rentee/search/equipment")
     public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByNameFromEquipmentWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String name,
-                                                                                                          @RequestParam(value = "pageIndex") int pageIndex,
-                                                                                                          @RequestParam(value = "pageSize") int pageSize
+                                                                                                       @RequestParam(value = "pageIndex") int pageIndex,
+                                                                                                       @RequestParam(value = "pageSize") int pageSize
     ) {
         List<RenteeElementDto> renteeElementDtos = renteeService.searchRenteeElementDtosByNameFromEquipmentWithPaging(name, pageIndex, pageSize);
 
