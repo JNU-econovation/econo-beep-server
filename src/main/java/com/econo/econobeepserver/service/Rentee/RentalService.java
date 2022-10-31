@@ -16,7 +16,7 @@ import java.util.Objects;
 
 @Service
 @AllArgsConstructor
-public class RenteeRentalService {
+public class RentalService {
 
     private final RenteeService renteeService;
     private UserApi userApi;

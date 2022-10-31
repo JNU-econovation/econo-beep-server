@@ -1,6 +1,6 @@
 package com.econo.econobeepserver.web.Rentee;
 
-import com.econo.econobeepserver.service.Rentee.RenteeRentalService;
+import com.econo.econobeepserver.service.Rentee.RentalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,22 +10,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class RenteeRentalController {
+public class RentalController {
 
-    private final RenteeRentalService renteeRentalService;
+    private final RentalService rentalService;
 
     @PutMapping("/rentee/{id}/rent")
     public ResponseEntity<String> rentRenteeById(@PathVariable(value = "id") Long id,
-                                               @RequestParam(value = "pinCode") String pinCode) {
-        renteeRentalService.rentRenteeById(id, pinCode);
+                                                 @RequestParam(value = "pinCode") String pinCode) {
+        rentalService.rentRenteeById(id, pinCode);
 
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/rentee/{id}/return")
     public ResponseEntity<String> returnRenteeById(@PathVariable(value = "id") Long id,
-                                                 @RequestParam(value = "pinCode") String pinCode) {
-        renteeRentalService.returnRenteeById(id, pinCode);
+                                                   @RequestParam(value = "pinCode") String pinCode) {
+        rentalService.returnRenteeById(id, pinCode);
 
         return ResponseEntity.ok().build();
     }
