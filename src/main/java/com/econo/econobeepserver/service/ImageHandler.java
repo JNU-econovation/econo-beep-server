@@ -25,9 +25,9 @@ public class ImageHandler {
     private boolean isSupportPictureContentType(String contentType) {
         if (
                 contentType.contains("image/jpg") ||
-                contentType.contains("image/jpeg") ||
-                contentType.contains("image/gif") ||
-                contentType.contains("image/png")
+                        contentType.contains("image/jpeg") ||
+                        contentType.contains("image/gif") ||
+                        contentType.contains("image/png")
         ) {
             return true;
         }
@@ -51,7 +51,7 @@ public class ImageHandler {
         }
     }
 
-    public RenteeThumbnail parseThumbnail(MultipartFile multipartFile) {
+    public RenteeThumbnail parseRenteeThumbnail(MultipartFile multipartFile) {
         validateSavingPath(RENTEE_THUMBNAIL_IMAGES_PATH);
         validatePictureContentType(multipartFile.getContentType());
 
@@ -71,16 +71,13 @@ public class ImageHandler {
         }
     }
 
-    public void deleteImage(String filePath) {
+    public void deleteImage(String filePath) throws ImageIOException {
         File file = new File(filePath);
-        try {
-            if (file.exists()) {
-                if (!file.delete()) {
-                    throw new RuntimeException();
-                }
-            }
+        if (!file.exists()) {
+            throw new ImageIOException("존재하지 않는 이미지 파일입니다.");
+        }
 
-        } catch (Exception e) {
+        if (!file.delete()) {
             throw new ImageIOException("이미지 삭제에 실패했습니다.");
         }
     }

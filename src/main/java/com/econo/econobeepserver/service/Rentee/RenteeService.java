@@ -28,7 +28,7 @@ public class RenteeService {
     @Transactional
     public Long createRentee(RenteeSaveDto renteeSaveDto) {
         Rentee rentee = renteeSaveDto.toEntity();
-        RenteeThumbnail thumbnail = imageHandler.parseThumbnail(renteeSaveDto.getThumbnail());
+        RenteeThumbnail thumbnail = imageHandler.parseRenteeThumbnail(renteeSaveDto.getThumbnail());
         rentee.setRenteeThumbnail(thumbnail);
         thumbnail.setRentee(rentee);
 
@@ -135,7 +135,7 @@ public class RenteeService {
     public void updateRenteeById(Long id, RenteeSaveDto renteeSaveDto) {
         Rentee rentee = getRenteeById(id);
         RenteeThumbnail oldRenteeThumbnail = rentee.getThumbnail();
-        RenteeThumbnail newRenteeThumbnail = imageHandler.parseThumbnail(renteeSaveDto.getThumbnail());
+        RenteeThumbnail newRenteeThumbnail = imageHandler.parseRenteeThumbnail(renteeSaveDto.getThumbnail());
 
         imageHandler.deleteImage(oldRenteeThumbnail.getFilePath());
         thumbnailRepository.deleteById(oldRenteeThumbnail.getId());
