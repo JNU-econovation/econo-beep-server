@@ -12,7 +12,7 @@ import java.io.IOException;
 public class ImageHandler {
 
     private static final String ABSOLUTE_PATH = new File("").getAbsolutePath() + "/";
-    public static final String RENTEE_THUMBNAIL_IMAGES_PATH = ABSOLUTE_PATH + "images/rentee/thumbnail/";
+    public static final String RENTEE_THUMBNAIL_FOLDER_PATH = ABSOLUTE_PATH + "images/rentee/thumbnail/";
 
 
     private void validateSavingPath(String path) {
@@ -22,7 +22,7 @@ public class ImageHandler {
         }
     }
 
-    private boolean isSupportPictureContentType(String contentType) {
+    private boolean isSupportImageExtension(String contentType) {
         if (
                 contentType.contains("image/jpg") ||
                         contentType.contains("image/jpeg") ||
@@ -35,14 +35,14 @@ public class ImageHandler {
         return false;
     }
 
-    private void validatePictureContentType(String contentType) {
-        if (contentType == null || !isSupportPictureContentType(contentType)) {
+    private void validateImageExtension(String contentType) {
+        if (contentType == null || !isSupportImageExtension(contentType)) {
             throw new ImageIOException("업로드한 이미지의 파일이 올바르지 않습니다 : " + contentType);
         }
     }
 
-    private String getFileExtension(String contentType) {
-        String[] splitedFileName = contentType.split(".");
+    private String getFileExtension(String fileName) {
+        String[] splitedFileName = fileName.split(".");
 
         if (splitedFileName.length == 1) {
             return "";
@@ -52,11 +52,11 @@ public class ImageHandler {
     }
 
     public RenteeThumbnail parseRenteeThumbnail(MultipartFile multipartFile) {
-        validateSavingPath(RENTEE_THUMBNAIL_IMAGES_PATH);
-        validatePictureContentType(multipartFile.getContentType());
+        validateSavingPath(RENTEE_THUMBNAIL_FOLDER_PATH);
+        validateImageExtension(multipartFile.getContentType());
 
         String fileName = System.nanoTime() + multipartFile.getOriginalFilename();
-        String filePath = RENTEE_THUMBNAIL_IMAGES_PATH + fileName;
+        String filePath = RENTEE_THUMBNAIL_FOLDER_PATH + fileName;
         return RenteeThumbnail.builder()
                 .filePath(filePath)
                 .build();
