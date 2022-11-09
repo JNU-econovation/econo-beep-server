@@ -19,6 +19,7 @@ public class Rental extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rentee_id")
     private Rentee rentee;
@@ -35,17 +36,17 @@ public class Rental extends BaseTimeEntity {
     private LocalDateTime returnDateTime;
 
     @Builder
-    public Rental(Long renterId, String renterName) {
+    public Rental(Rentee rentee, Long renterId, String renterName) {
+        this.rentee = rentee;
+        this.rentee.rentRentee();
+
         this.renterId = renterId;
         this.renterName = renterName;
         this.rentalDateTime = LocalDateTime.now();
     }
 
-    public void rentRentee(Rentee rentee) {
-        this.rentee = rentee;
-    }
-
     public void returnRentee() {
         returnDateTime = LocalDateTime.now();
+        rentee.returnRentee();
     }
 }

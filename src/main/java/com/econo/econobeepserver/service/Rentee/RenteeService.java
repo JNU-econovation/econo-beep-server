@@ -1,5 +1,6 @@
 package com.econo.econobeepserver.service.Rentee;
 
+import com.econo.econobeepserver.domain.Rental.RentalRepository;
 import com.econo.econobeepserver.domain.Rentee.*;
 import com.econo.econobeepserver.dto.Rentee.*;
 import com.econo.econobeepserver.exception.NotFoundRenteeException;
@@ -23,6 +24,7 @@ public class RenteeService {
     private final RenteeRepository renteeRepository;
     private final RenteeThumbnailRepository thumbnailRepository;
 
+    private final RentalRepository rentalRepository;
     private final ImageHandler imageHandler;
 
     @Transactional
@@ -48,11 +50,12 @@ public class RenteeService {
 
     public RenteeInfoDto getRenteeInfoDtoById(Long id) {
         Rentee rentee = getRenteeById(id);
+        List<RentalElementDto> rentalElementDtos = rentalRepository.findByRentee_Id(rentee.getId()).stream().map(RentalElementDto::new).collect(Collectors.toList());
 
-        return new RenteeInfoDto(rentee);
+        return new RenteeInfoDto(rentee, rentalElementDtos);
     }
 
-    public List<RenteeElementDto> searchRenteeElementDtosByNameWithPaging(String name, int pageIndex ,int pageSize) {
+    public List<RenteeElementDto> searchRenteeElementDtosByNameWithPaging(String name, int pageIndex, int pageSize) {
         PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
         List<Rentee> rentees = renteeRepository.findRenteesByNameContaining(name, pageRequest);
 
@@ -95,7 +98,9 @@ public class RenteeService {
                 break;
         }
 
-        return rentees.stream().map(RenteeManagementInfoDto::new).collect(Collectors.toList());
+        return rentees.stream()
+                .map(rentee -> new RenteeManagementInfoDto(rentee, rentalRepository.findFirstByRentee_IdOrderByCreatedDateDesc(rentee.getId()).orElse(null)))
+                .collect(Collectors.toList());
     }
 
     public List<RenteeManagementInfoDto> searchRenteeManagementInfoDtosByNameFromEquipmentWithSortAndPaging(String name, RenteeSort renteeSort, int pageIndex, int pageSize) {
@@ -120,7 +125,9 @@ public class RenteeService {
                 break;
         }
 
-        return rentees.stream().map(RenteeManagementInfoDto::new).collect(Collectors.toList());
+        return rentees.stream()
+                .map(rentee -> new RenteeManagementInfoDto(rentee, rentalRepository.findFirstByRentee_IdOrderByCreatedDateDesc(rentee.getId()).orElse(null)))
+                .collect(Collectors.toList());
     }
 
     public String getThumbnailFilePathByRenteeId(long renteeId) {
@@ -152,7 +159,6 @@ public class RenteeService {
             Rentee rentee = getRenteeById(id);
 
             imageHandler.deleteImage(rentee.getThumbnail().getFilePath());
-            rentee.clearAttributes();
             renteeRepository.deleteById(id);
 
         } catch (EmptyResultDataAccessException e) {

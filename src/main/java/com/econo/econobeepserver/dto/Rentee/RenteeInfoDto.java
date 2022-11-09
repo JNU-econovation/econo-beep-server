@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.econo.econobeepserver.util.EpochTime.toEpochSecond;
 
@@ -19,7 +18,7 @@ public class RenteeInfoDto {
 
     private Long id;
     private String thumbnailUrl;
-    private List<RenteeRentalElementDto> rentalHistories;
+    private List<RentalElementDto> rentalHistories;
     private String title;
     private RenteeType type;
     private String bookAuthorName;
@@ -30,10 +29,10 @@ public class RenteeInfoDto {
     private String note;
 
 
-    public RenteeInfoDto(Rentee rentee) {
+    public RenteeInfoDto(Rentee rentee, List<RentalElementDto> rentalElementDtos) {
         this.id = rentee.getId();
         this.thumbnailUrl = "/rentee/" + rentee.getId() + "/thumbnail";
-        this.rentalHistories = rentee.getRentals().stream().map(RenteeRentalElementDto::new).collect(Collectors.toList());
+        this.rentalHistories = rentalElementDtos;
         this.title = rentee.getName();
         this.type = rentee.getType();
         this.bookAuthorName = rentee.getBookAuthorName();

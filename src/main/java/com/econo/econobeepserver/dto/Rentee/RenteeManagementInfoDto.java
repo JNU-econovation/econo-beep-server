@@ -33,7 +33,7 @@ public class RenteeManagementInfoDto {
     private String recentRenter;
     private Long recentRentalEpochSecond;
 
-    public RenteeManagementInfoDto(Rentee rentee) {
+    public RenteeManagementInfoDto(Rentee rentee, Rental recentRental) {
         this.id = rentee.getId();
         this.thumbnailUrl = "/rentee/" + rentee.getId() + "/thumbnail";
         this.type = rentee.getType();
@@ -45,10 +45,7 @@ public class RenteeManagementInfoDto {
         this.note = rentee.getNote();
         this.rentState = rentee.getRentState();
 
-        final List<Rental> rentals = rentee.getRentals();
-        if (!rentals.isEmpty()) {
-            final Rental recentRental = rentals.get(rentals.size() - 1);
-
+        if (recentRental != null) {
             this.recentRenter = recentRental.getRenterName();
             this.recentRentalEpochSecond = toEpochSecond(recentRental.getRentalDateTime());
         }

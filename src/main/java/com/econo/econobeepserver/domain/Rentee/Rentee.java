@@ -25,14 +25,10 @@ public class Rentee extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "rentee_thumbnail_id")
     private RenteeThumbnail thumbnail;
-
-    @NotNull
-    @OneToMany(mappedBy = "rentee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private List<Rental> rentals = new ArrayList<>();
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -82,12 +78,9 @@ public class Rentee extends BaseTimeEntity {
         this.note = renteeSaveDto.getNote();
     }
 
-    public void rentRentee(Rental rental) {
+    public void rentRentee() {
         rentState = RentState.RENTED;
         rentCount++;
-
-        rentals.add(rental);
-        rental.rentRentee(this);
     }
 
     public void returnRentee() {
@@ -100,10 +93,5 @@ public class Rentee extends BaseTimeEntity {
 
     public void setRenteeThumbnail(RenteeThumbnail thumbnail) {
         this.thumbnail = thumbnail;
-    }
-
-    public void clearAttributes() {
-        thumbnail = null;
-        rentals.clear();
     }
 }

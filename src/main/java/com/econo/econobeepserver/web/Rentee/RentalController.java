@@ -25,7 +25,7 @@ public class RentalController {
     @PutMapping("/rentee/{id}/return")
     public ResponseEntity<String> returnRenteeById(@PathVariable(value = "id") Long id,
                                                    @RequestParam(value = "pinCode") String pinCode) {
-        rentalService.returnRenteeById(id, pinCode);
+        rentalService.returnRenteeByRenteeId(id, pinCode);
 
         return ResponseEntity.ok().build();
     }

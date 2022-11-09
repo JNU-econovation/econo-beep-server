@@ -1,6 +1,7 @@
 package com.econo.econobeepserver.service.Rentee;
 
 import com.econo.econobeepserver.domain.Rental.Rental;
+import com.econo.econobeepserver.domain.Rental.RentalRepository;
 import com.econo.econobeepserver.domain.Rentee.Rentee;
 import com.econo.econobeepserver.domain.Rentee.RentState;
 import com.econo.econobeepserver.domain.User.UserApi;
@@ -18,9 +19,15 @@ import java.util.Objects;
 @AllArgsConstructor
 public class RentalService {
 
+    private final RentalRepository rentalRepository;
+
     private final RenteeService renteeService;
     private UserApi userApi;
 
+
+    private Rental getRecentRentalByRenteeId(long renteeId) {
+        return rentalRepository.findFirstByRentee_IdOrderByCreatedDateDesc(renteeId).orElseThrow(UnrentableException::new);
+    }
 
     private void validateRentableRentee(final Rentee rentee) {
         if (rentee.getRentState() != RentState.RENTABLE) {
@@ -31,22 +38,23 @@ public class RentalService {
     @Transactional
     public void rentRenteeById(Long id, String pinCode) {
         userApi.validatePinCode(pinCode);
+        UserInfoDto userInfoDto = userApi.getUserInfoDtoByPinCode(pinCode);
+
 
         Rentee rentee = renteeService.getRenteeById(id);
         validateRentableRentee(rentee);
 
-        UserInfoDto userInfoDto = userApi.getUserInfoDtoByPinCode(pinCode);
         Rental rental = Rental.builder()
+                .rentee(rentee)
                 .renterId(userInfoDto.getId())
                 .renterName(userInfoDto.getUserName())
                 .build();
-
-        rentee.rentRentee(rental);
+        rentalRepository.save(rental);
     }
 
 
     private void validateReturnableRentee(final Rentee rentee) {
-        if (rentee.getRentals().isEmpty() || rentee.getRentState() != RentState.RENTED) {
+        if (rentee.getRentState() != RentState.RENTED) {
             throw new UnreturnableException();
         }
     }
@@ -60,17 +68,17 @@ public class RentalService {
     }
 
     @Transactional
-    public void returnRenteeById(Long id, String pinCode) {
+    public void returnRenteeByRenteeId(Long renteeId, String pinCode) {
         userApi.validatePinCode(pinCode);
+        UserInfoDto userInfoDto = userApi.getUserInfoDtoByPinCode(pinCode);
 
-        Rentee rentee = renteeService.getRenteeById(id);
+
+        Rentee rentee = renteeService.getRenteeById(renteeId);
         validateReturnableRentee(rentee);
 
-        Rental rental = rentee.getRentals().get(rentee.getRentals().size() - 1);
-        UserInfoDto userInfoDto = userApi.getUserInfoDtoByPinCode(pinCode);
+        Rental rental = getRecentRentalByRenteeId(renteeId);
         validateRenter(rental, userInfoDto.getId());
 
         rental.returnRentee();
-        rentee.returnRentee();
     }
 }
