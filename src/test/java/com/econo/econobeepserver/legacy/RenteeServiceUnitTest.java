@@ -647,9 +647,9 @@
 //        );
 //    }
 //
-//    @DisplayName("searchRenteeManagementInfoDtosFromEquipmentWithPaging 작동 테스트 (id sort)")
+//    @DisplayName("searchRenteeManagementInfoDtosFromDeviceWithPaging 작동 테스트 (id sort)")
 //    @Test
-//    void test_searchRenteeManagementInfoDtosFromEquipmentWithPaging_idSort() {
+//    void test_searchRenteeManagementInfoDtosFromDeviceWithPaging_idSort() {
 //        // given
 //        final String keyword = "";
 //        final int pageSize = 2;
@@ -668,16 +668,16 @@
 //
 //
 //        // when
-//        List<RenteeManagementInfoDto> results = renteeService.searchRenteeManagementInfoDtosFromEquipmentWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
+//        List<RenteeManagementInfoDto> results = renteeService.searchRenteeManagementInfoDtosFromDeviceWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
 //
 //        // then
 //        assertNotNull(results);
 //        assertIterableEquals(wantedResults, results);
 //    }
 //
-//    @DisplayName("searchRenteeManagementInfoDtosFromEquipmentWithPaging 작동 테스트 (except for id sort)")
+//    @DisplayName("searchRenteeManagementInfoDtosFromDeviceWithPaging 작동 테스트 (except for id sort)")
 //    @Test
-//    void test_searchRenteeManagementInfoDtosFromEquipmentWithPaging_exceptForIdSort() {
+//    void test_searchRenteeManagementInfoDtosFromDeviceWithPaging_exceptForIdSort() {
 //        // given
 //        final String keyword = "";
 //        final int pageSize = 2;
@@ -696,16 +696,16 @@
 //
 //
 //        // when
-//        List<RenteeManagementInfoDto> results = renteeService.searchRenteeManagementInfoDtosFromEquipmentWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
+//        List<RenteeManagementInfoDto> results = renteeService.searchRenteeManagementInfoDtosFromDeviceWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
 //
 //        // then
 //        assertNotNull(results);
 //        assertIterableEquals(wantedResults, results);
 //    }
 //
-//    @DisplayName("searchRenteeManagementInfoDtosFromEquipmentWithPaging 작동 테스트 (id sort, last lastId params")
+//    @DisplayName("searchRenteeManagementInfoDtosFromDeviceWithPaging 작동 테스트 (id sort, last lastId params")
 //    @Test
-//    void test_searchRenteeManagementInfoDtosFromEquipmentWithPaging_lastLastIdParams() {
+//    void test_searchRenteeManagementInfoDtosFromDeviceWithPaging_lastLastIdParams() {
 //        // given
 //        final String keyword = "";
 //        final int pageSize = 2;
@@ -721,16 +721,16 @@
 //
 //
 //        // when
-//        List<RenteeManagementInfoDto> results = renteeService.searchRenteeManagementInfoDtosFromEquipmentWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
+//        List<RenteeManagementInfoDto> results = renteeService.searchRenteeManagementInfoDtosFromDeviceWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
 //
 //        // then
 //        assertNotNull(results);
 //        assertIterableEquals(Collections.emptyList(), results);
 //    }
 //
-//    @DisplayName("searchRenteeManagementInfoDtosFromEquipmentWithPaging 작동 테스트 (id sort, not exist keyword params")
+//    @DisplayName("searchRenteeManagementInfoDtosFromDeviceWithPaging 작동 테스트 (id sort, not exist keyword params")
 //    @Test
-//    void test_searchRenteeManagementInfoDtosFromEquipmentWithPaging_notExistKeywordParams() {
+//    void test_searchRenteeManagementInfoDtosFromDeviceWithPaging_notExistKeywordParams() {
 //        // given
 //        final String keyword = "notExist";
 //        final int pageSize = 2;
@@ -746,7 +746,7 @@
 //
 //
 //        // when
-//        List<RenteeManagementInfoDto> results = renteeService.searchRenteeManagementInfoDtosFromEquipmentWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
+//        List<RenteeManagementInfoDto> results = renteeService.searchRenteeManagementInfoDtosFromDeviceWithPaging(keyword, pageSize, lastId, offset, isIdAsc, isIdDesc, isRecentRentDesc);
 //
 //        // then
 //        assertNotNull(results);

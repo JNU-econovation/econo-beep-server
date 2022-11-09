@@ -1,6 +1,6 @@
 package com.econo.econobeepserver.web.Rentee;
 
-import com.econo.econobeepserver.dto.Rentee.EquipmentSaveDto;
+import com.econo.econobeepserver.dto.Rentee.DeviceSaveDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeManagementInfoDto;
 import com.econo.econobeepserver.dto.Rentee.BookSaveDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeSaveDto;
@@ -28,9 +28,9 @@ public class RenteeManagementController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/management/equipment")
-    public ResponseEntity<Void> createEquipment(@Valid @ModelAttribute EquipmentSaveDto equipmentSaveDto) {
-        renteeService.createRentee(new RenteeSaveDto(equipmentSaveDto));
+    @PostMapping("/management/device")
+    public ResponseEntity<Void> createDevice(@Valid @ModelAttribute DeviceSaveDto deviceSaveDto) {
+        renteeService.createRentee(new RenteeSaveDto(deviceSaveDto));
 
         return ResponseEntity.ok().build();
     }
@@ -46,13 +46,13 @@ public class RenteeManagementController {
         return ResponseEntity.ok(renteeManagementInfoDtos);
     }
 
-    @GetMapping("/management/search/equipment")
-    public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromEquipment(@RequestParam(value = "name", required = false, defaultValue = "") String name,
+    @GetMapping("/management/search/device")
+    public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromDevice(@RequestParam(value = "name", required = false, defaultValue = "") String name,
                                                                                                      @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
                                                                                                      @RequestParam(value = "pageIndex") int pageIndex,
                                                                                                      @RequestParam(value = "pageSize") int pageSize
     ) {
-        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosByNameFromEquipmentWithSortAndPaging(name, renteeSort, pageIndex, pageSize);
+        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosByNameFromDeviceWithSortAndPaging(name, renteeSort, pageIndex, pageSize);
 
         return ResponseEntity.ok(renteeManagementInfoDtos);
     }
@@ -66,11 +66,11 @@ public class RenteeManagementController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/management/equipment/{id}")
-    public ResponseEntity<Void> updateEquipmentById(@PathVariable(value = "id") Long id,
-                                                    @Valid @ModelAttribute EquipmentSaveDto equipmentSaveDto
+    @PutMapping("/management/device/{id}")
+    public ResponseEntity<Void> updateDeviceById(@PathVariable(value = "id") Long id,
+                                                    @Valid @ModelAttribute DeviceSaveDto deviceSaveDto
     ) {
-        renteeService.updateRenteeById(id, new RenteeSaveDto(equipmentSaveDto));
+        renteeService.updateRenteeById(id, new RenteeSaveDto(deviceSaveDto));
 
         return ResponseEntity.ok().build();
     }
@@ -83,8 +83,8 @@ public class RenteeManagementController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/management/equipment/{id}")
-    public ResponseEntity<Void> deleteEquipmentById(@PathVariable(value = "id") Long id) {
+    @DeleteMapping("/management/device/{id}")
+    public ResponseEntity<Void> deleteDeviceById(@PathVariable(value = "id") Long id) {
         renteeService.deleteRenteeById(id);
 
         return ResponseEntity.ok().build();

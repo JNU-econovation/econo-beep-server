@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
-public class EquipmentSaveDto {
+public class DeviceSaveDto {
 
     @NotNull
     private MultipartFile thumbnail;
@@ -24,13 +24,13 @@ public class EquipmentSaveDto {
 
 
     @Builder
-    public EquipmentSaveDto(MultipartFile thumbnail, String name, String note) {
+    public DeviceSaveDto(MultipartFile thumbnail, String name, String note) {
         this.thumbnail = thumbnail;
         this.name = name;
         this.note = note;
     }
 
-    public EquipmentSaveDto(Rentee rentee) {
+    public DeviceSaveDto(Rentee rentee) {
         this.name = rentee.getName();
         this.note = rentee.getNote();
     }

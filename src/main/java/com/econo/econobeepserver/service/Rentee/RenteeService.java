@@ -11,10 +11,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,7 +26,7 @@ public class RenteeService {
     private final ImageHandler imageHandler;
 
     @Transactional
-    public Long createRentee(RenteeSaveDto renteeSaveDto) {
+    public Rentee createRentee(RenteeSaveDto renteeSaveDto) {
         Rentee rentee = renteeSaveDto.toEntity();
         RenteeThumbnail thumbnail = imageHandler.parseRenteeThumbnail(renteeSaveDto.getThumbnail());
 
@@ -36,11 +34,15 @@ public class RenteeService {
         thumbnail = thumbnailRepository.save(thumbnail);
         rentee.setRenteeThumbnail(thumbnail);
 
-        return renteeRepository.save(rentee).getId();
+        return renteeRepository.save(rentee);
     }
 
     public Rentee getRenteeById(Long id) {
         return renteeRepository.findById(id).orElseThrow(NotFoundRenteeException::new);
+    }
+
+    public Rentee getRenteeByName(String name) {
+        return renteeRepository.findByName(name).orElseThrow(NotFoundRenteeException::new);
     }
 
     public RenteeInfoDto getRenteeInfoDtoById(Long id) {
@@ -64,9 +66,9 @@ public class RenteeService {
         return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
     }
 
-    public List<RenteeElementDto> searchRenteeElementDtosByNameFromEquipmentWithPaging(String name, int pageIndex, int pageSize) {
+    public List<RenteeElementDto> searchRenteeElementDtosByNameFromDeviceWithPaging(String name, int pageIndex, int pageSize) {
         PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
-        List<Rentee> rentees = renteeRepository.findRenteesByTypeAndNameContaining(RenteeType.EQUIPMENT, name, pageRequest);
+        List<Rentee> rentees = renteeRepository.findRenteesByTypeAndNameContaining(RenteeType.DEVICE, name, pageRequest);
 
         return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
     }
@@ -98,25 +100,25 @@ public class RenteeService {
                 .collect(Collectors.toList());
     }
 
-    public List<RenteeManagementInfoDto> searchRenteeManagementInfoDtosByNameFromEquipmentWithSortAndPaging(String name, RenteeSort renteeSort, int pageIndex, int pageSize) {
+    public List<RenteeManagementInfoDto> searchRenteeManagementInfoDtosByNameFromDeviceWithSortAndPaging(String name, RenteeSort renteeSort, int pageIndex, int pageSize) {
         List<Rentee> rentees = Collections.emptyList();
         PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
 
         switch (renteeSort) {
             case NONE:
-                rentees = renteeRepository.findRenteesNameContainingFromEquipmentWithPaging(name, pageRequest);
+                rentees = renteeRepository.findRenteesNameContainingFromDeviceWithPaging(name, pageRequest);
                 break;
             case CREATED_ASC:
-                rentees = renteeRepository.findRenteesNameContainingFromEquipmentOrderByCreatedAscWithPaging(name, pageRequest);
+                rentees = renteeRepository.findRenteesNameContainingFromDeviceOrderByCreatedAscWithPaging(name, pageRequest);
                 break;
             case CREATED_DESC:
-                rentees = renteeRepository.findRenteesNameContainingFromEquipmentOrderByCreatedDescWithPaging(name, pageRequest);
+                rentees = renteeRepository.findRenteesNameContainingFromDeviceOrderByCreatedDescWithPaging(name, pageRequest);
                 break;
             case LATEST_RENTAL:
-                rentees = renteeRepository.findRenteesNameContainingFromEquipmentOrderByLatestRentalWithPaging(name, pageRequest);
+                rentees = renteeRepository.findRenteesNameContainingFromDeviceOrderByLatestRentalWithPaging(name, pageRequest);
                 break;
             case OUTDATED_RENTAL:
-                rentees = renteeRepository.findRenteesNameContainingFromEquipmentOrderByOutdatedRentalWithPaging(name, pageRequest);
+                rentees = renteeRepository.findRenteesNameContainingFromDeviceOrderByOutdatedRentalWithPaging(name, pageRequest);
                 break;
         }
 
@@ -132,7 +134,7 @@ public class RenteeService {
     }
 
     @Transactional
-    public void updateRenteeById(Long id, RenteeSaveDto renteeSaveDto) {
+    public void updateRenteeById(long id, RenteeSaveDto renteeSaveDto) {
         Rentee rentee = getRenteeById(id);
         RenteeThumbnail oldRenteeThumbnail = rentee.getThumbnail();
         RenteeThumbnail newRenteeThumbnail = imageHandler.parseRenteeThumbnail(renteeSaveDto.getThumbnail());

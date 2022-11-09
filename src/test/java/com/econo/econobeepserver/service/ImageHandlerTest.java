@@ -34,7 +34,7 @@ class ImageHandlerTest {
     public static final String TEST_MP4_NAME = "test.mp4";
     public static final String TEST_MP4_PATH = TEST_IMAGES_FOLDER_PATH + TEST_MP4_NAME;
     public static final String UPDATE_TEST_JPG_NAME = "updateTest.jpg";
-//    public static final String UPDATE_TEST_JPG_PATH = TEST_IMAGES_FOLDER_PATH + UPDATE_TEST_JPG_NAME;
+    public static final String UPDATE_TEST_JPG_PATH = TEST_IMAGES_FOLDER_PATH + UPDATE_TEST_JPG_NAME;
 
     @Nested
     @DisplayName("parseRenteeThumbnail 테스트")

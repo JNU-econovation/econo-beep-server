@@ -45,12 +45,12 @@ public class RenteeController {
         return ResponseEntity.ok(renteeElementDtos);
     }
 
-    @GetMapping("/rentee/search/equipment")
-    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByNameFromEquipmentWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String name,
+    @GetMapping("/rentee/search/device")
+    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByNameFromDeviceWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String name,
                                                                                                        @RequestParam(value = "pageIndex") int pageIndex,
                                                                                                        @RequestParam(value = "pageSize") int pageSize
     ) {
-        List<RenteeElementDto> renteeElementDtos = renteeService.searchRenteeElementDtosByNameFromEquipmentWithPaging(name, pageIndex, pageSize);
+        List<RenteeElementDto> renteeElementDtos = renteeService.searchRenteeElementDtosByNameFromDeviceWithPaging(name, pageIndex, pageSize);
 
         return ResponseEntity.ok(renteeElementDtos);
     }

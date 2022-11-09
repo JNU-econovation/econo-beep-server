@@ -110,12 +110,12 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
 
 
     @Override
-    public List<Rentee> findRenteesNameContainingFromEquipmentWithPaging(String name, Pageable pageable) {
+    public List<Rentee> findRenteesNameContainingFromDeviceWithPaging(String name, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
-                        rentee.type.eq(RenteeType.EQUIPMENT),
+                        rentee.type.eq(RenteeType.DEVICE),
                         rentee.name.contains(name)
                 )
                 .offset(pageable.getOffset())
@@ -124,12 +124,12 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesNameContainingFromEquipmentOrderByCreatedAscWithPaging(String name, Pageable pageable) {
+    public List<Rentee> findRenteesNameContainingFromDeviceOrderByCreatedAscWithPaging(String name, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
-                        rentee.type.eq(RenteeType.EQUIPMENT),
+                        rentee.type.eq(RenteeType.DEVICE),
                         rentee.name.contains(name)
                 )
                 .orderBy(
@@ -141,12 +141,12 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesNameContainingFromEquipmentOrderByCreatedDescWithPaging(String name, Pageable pageable) {
+    public List<Rentee> findRenteesNameContainingFromDeviceOrderByCreatedDescWithPaging(String name, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
-                        rentee.type.eq(RenteeType.EQUIPMENT),
+                        rentee.type.eq(RenteeType.DEVICE),
                         rentee.name.contains(name)
                 )
                 .orderBy(
@@ -158,7 +158,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesNameContainingFromEquipmentOrderByLatestRentalWithPaging(String name, Pageable pageable) {
+    public List<Rentee> findRenteesNameContainingFromDeviceOrderByLatestRentalWithPaging(String name, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
@@ -167,7 +167,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
                                 .select(rental.rentee.id)
                                 .from(rental)
                                 .where(
-                                        rental.rentee.type.eq(RenteeType.EQUIPMENT),
+                                        rental.rentee.type.eq(RenteeType.DEVICE),
                                         rental.rentee.name.contains(name)
                                 )
                                 .orderBy(
@@ -180,7 +180,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesNameContainingFromEquipmentOrderByOutdatedRentalWithPaging(String name, Pageable pageable) {
+    public List<Rentee> findRenteesNameContainingFromDeviceOrderByOutdatedRentalWithPaging(String name, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
@@ -189,7 +189,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
                                 .select(rental.rentee.id)
                                 .from(rental)
                                 .where(
-                                        rental.rentee.type.eq(RenteeType.EQUIPMENT),
+                                        rental.rentee.type.eq(RenteeType.DEVICE),
                                         rental.rentee.name.contains(name)
                                 )
                                 .orderBy(

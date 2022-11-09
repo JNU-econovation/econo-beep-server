@@ -16,13 +16,13 @@ public interface RenteeCustomRepository {
 
     List<Rentee> findRenteesNameContainingFromBookOrderByOutdatedRentalWithPaging(String name, Pageable pageable);
 
-    List<Rentee> findRenteesNameContainingFromEquipmentWithPaging(String name, Pageable pageable);
+    List<Rentee> findRenteesNameContainingFromDeviceWithPaging(String name, Pageable pageable);
 
-    List<Rentee> findRenteesNameContainingFromEquipmentOrderByCreatedAscWithPaging(String name, Pageable pageable);
+    List<Rentee> findRenteesNameContainingFromDeviceOrderByCreatedAscWithPaging(String name, Pageable pageable);
 
-    List<Rentee> findRenteesNameContainingFromEquipmentOrderByCreatedDescWithPaging(String name, Pageable pageable);
+    List<Rentee> findRenteesNameContainingFromDeviceOrderByCreatedDescWithPaging(String name, Pageable pageable);
 
-    List<Rentee> findRenteesNameContainingFromEquipmentOrderByLatestRentalWithPaging(String name, Pageable pageable);
+    List<Rentee> findRenteesNameContainingFromDeviceOrderByLatestRentalWithPaging(String name, Pageable pageable);
 
-    List<Rentee> findRenteesNameContainingFromEquipmentOrderByOutdatedRentalWithPaging(String name, Pageable pageable);
+    List<Rentee> findRenteesNameContainingFromDeviceOrderByOutdatedRentalWithPaging(String name, Pageable pageable);
 }
