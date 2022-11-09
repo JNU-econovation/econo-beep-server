@@ -29,14 +29,12 @@ public class RenteeService {
     public Long createRentee(RenteeSaveDto renteeSaveDto) {
         Rentee rentee = renteeSaveDto.toEntity();
         RenteeThumbnail thumbnail = imageHandler.parseRenteeThumbnail(renteeSaveDto.getThumbnail());
-        rentee.setRenteeThumbnail(thumbnail);
-        thumbnail.setRentee(rentee);
 
         imageHandler.downloadImage(renteeSaveDto.getThumbnail(), thumbnail.getFilePath());
-        long renteeId = renteeRepository.save(rentee).getId();
-        thumbnailRepository.save(thumbnail);
+        thumbnail = thumbnailRepository.save(thumbnail);
+        rentee.setRenteeThumbnail(thumbnail);
 
-        return renteeId;
+        return renteeRepository.save(rentee).getId();
     }
 
     public Rentee getRenteeById(Long id) {
@@ -140,12 +138,11 @@ public class RenteeService {
         imageHandler.deleteImage(oldRenteeThumbnail.getFilePath());
         thumbnailRepository.deleteById(oldRenteeThumbnail.getId());
 
+        imageHandler.downloadImage(renteeSaveDto.getThumbnail(), newRenteeThumbnail.getFilePath());
+        newRenteeThumbnail = thumbnailRepository.save(newRenteeThumbnail);
+
         rentee.updateInformation(renteeSaveDto);
         rentee.setRenteeThumbnail(newRenteeThumbnail);
-        newRenteeThumbnail.setRentee(rentee);
-
-        imageHandler.downloadImage(renteeSaveDto.getThumbnail(), newRenteeThumbnail.getFilePath());
-        thumbnailRepository.save(newRenteeThumbnail);
     }
 
 
@@ -154,7 +151,7 @@ public class RenteeService {
         try {
             Rentee rentee = getRenteeById(id);
 
-            new File(rentee.getThumbnail().getFilePath()).delete();
+            imageHandler.deleteImage(rentee.getThumbnail().getFilePath());
             rentee.clearAttributes();
             renteeRepository.deleteById(id);
 

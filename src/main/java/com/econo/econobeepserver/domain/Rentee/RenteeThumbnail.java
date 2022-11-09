@@ -18,21 +18,11 @@ public class RenteeThumbnail extends BaseTimeEntity {
     private Long id;
 
     @NotNull
-    @OneToOne(mappedBy = "thumbnail")
-    private Rentee rentee;
-
-    @NotNull
     private String filePath;
 
 
     @Builder
-    public RenteeThumbnail(String filePath, Rentee rentee) {
+    public RenteeThumbnail(String filePath) {
         this.filePath = filePath;
-        this.rentee = rentee;
-    }
-
-
-    public void setRentee(Rentee rentee) {
-        this.rentee = rentee;
     }
 }
