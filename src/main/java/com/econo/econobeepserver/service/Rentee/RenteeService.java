@@ -40,12 +40,7 @@ public class RenteeService {
     }
 
     public Rentee getRenteeById(Long id) {
-        Optional<Rentee> rentee = renteeRepository.findById(id);
-        if (rentee.isEmpty()) {
-            throw new NotFoundRenteeException();
-        }
-
-        return rentee.get();
+        return renteeRepository.findById(id).orElseThrow(NotFoundRenteeException::new);
     }
 
     public RenteeInfoDto getRenteeInfoDtoById(Long id) {
