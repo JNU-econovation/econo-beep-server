@@ -1,11 +1,17 @@
 package com.econo.econobeepserver.service;
 
+import com.econo.econobeepserver.domain.Rental.RentalRepository;
 import com.econo.econobeepserver.domain.Rentee.*;
+import com.econo.econobeepserver.domain.User.UserApi;
 import com.econo.econobeepserver.dto.Rentee.RenteeSaveDto;
+import com.econo.econobeepserver.dto.User.UserInfoDto;
+import com.econo.econobeepserver.service.Rentee.RentalService;
 import com.econo.econobeepserver.service.Rentee.RenteeService;
+import com.econo.econobeepserver.util.EpochTime;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockMultipartFile;
 
 import java.io.FileInputStream;
@@ -16,7 +22,7 @@ import static com.econo.econobeepserver.service.ImageHandlerTest.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class RenteeServiceCUDIntegrationTest {
+class RenteeServiceCUDTest {
 
     @Autowired
     private RenteeService renteeService;
@@ -28,14 +34,12 @@ class RenteeServiceCUDIntegrationTest {
     private RenteeThumbnailRepository renteeThumbnailRepository;
 
 
-    MockMultipartFile thumbnail;
-    MockMultipartFile updateThumbnail;
-    RenteeSaveDto book1SaveDto;
-    RenteeSaveDto book2SaveDto;
+    private RenteeSaveDto book1SaveDto;
+    private RenteeSaveDto book2SaveDto;
 
-    public RenteeServiceCUDIntegrationTest() throws IOException {
-        thumbnail = new MockMultipartFile(TEST_JPG_NAME, TEST_JPG_NAME, "image/jpg", new FileInputStream(TEST_JPG_PATH));
-        updateThumbnail = new MockMultipartFile(UPDATE_TEST_JPG_NAME, UPDATE_TEST_JPG_NAME, "image/jpg", new FileInputStream(UPDATE_TEST_JPG_PATH));
+    public RenteeServiceCUDTest() throws IOException {
+        MockMultipartFile thumbnail = new MockMultipartFile(TEST_JPG_NAME, TEST_JPG_NAME, "image/jpg", new FileInputStream(TEST_JPG_PATH));
+        MockMultipartFile updateThumbnail = new MockMultipartFile(UPDATE_TEST_JPG_NAME, UPDATE_TEST_JPG_NAME, "image/jpg", new FileInputStream(UPDATE_TEST_JPG_PATH));
         book1SaveDto = RenteeSaveDto.builder()
                 .thumbnail(thumbnail)
                 .type(RenteeType.BOOK)
@@ -67,9 +71,19 @@ class RenteeServiceCUDIntegrationTest {
 
         // then
         Rentee book = renteeService.getRenteeByName(book1SaveDto.getName());
-        assertEquals(book1SaveDto, book);
-//        assertTrue(book1SaveDto.equals(book));
-        assertNotNull(book.getThumbnail());
+
+        assertEquals(book1SaveDto.getType(), book.getType());
+        assertEquals(book1SaveDto.getName(), book.getName());
+        assertEquals(book1SaveDto.getBookArea(), book.getBookArea());
+        assertEquals(book1SaveDto.getBookAuthorName(), book.getBookAuthorName());
+        assertEquals(book1SaveDto.getBookPublisherName(), book.getBookPublisherName());
+        assertEquals(EpochTime.toLocalDate(book1SaveDto.getBookPublishedDateEpochSecond()), book.getBookPublishedDate());
+        assertEquals(book1SaveDto.getNote(), book.getNote());
+        assertEquals(RentState.RENTABLE, book.getRentState());
+        assertEquals(0, book.getRentCount());
+
+        long bookThumbnailId = book.getThumbnail().getId();
+        assertTrue(renteeThumbnailRepository.findById(bookThumbnailId).isPresent());
     }
 
     @DisplayName("updateRenteeById 정상동작 테스트")
@@ -78,13 +92,25 @@ class RenteeServiceCUDIntegrationTest {
         // given
         Rentee book = renteeService.createRentee(book1SaveDto);
         long bookId = book.getId();
+        long bookThumbnailId = book.getThumbnail().getId();
 
         // when
         renteeService.updateRenteeById(bookId, book2SaveDto);
 
         // then
         Rentee updatedBook = renteeService.getRenteeById(bookId);
-        assertEquals(book2SaveDto, updatedBook);
+        assertEquals(book2SaveDto.getType(), updatedBook.getType());
+        assertEquals(book2SaveDto.getName(), updatedBook.getName());
+        assertEquals(book2SaveDto.getBookArea(), updatedBook.getBookArea());
+        assertEquals(book2SaveDto.getBookAuthorName(), updatedBook.getBookAuthorName());
+        assertEquals(book2SaveDto.getBookPublisherName(), updatedBook.getBookPublisherName());
+        assertEquals(EpochTime.toLocalDate(book2SaveDto.getBookPublishedDateEpochSecond()), updatedBook.getBookPublishedDate());
+        assertEquals(book2SaveDto.getNote(), updatedBook.getNote());
+        assertEquals(RentState.RENTABLE, updatedBook.getRentState());
+        assertEquals(0, updatedBook.getRentCount());
+
+        long updatedBookThumbnailId = updatedBook.getThumbnail().getId();
+        assertNotEquals(bookThumbnailId, updatedBookThumbnailId);
     }
 
     @DisplayName("deleteRenteeById 정상동작 테스트")

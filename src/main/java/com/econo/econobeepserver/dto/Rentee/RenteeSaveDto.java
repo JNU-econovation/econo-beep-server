@@ -51,21 +51,6 @@ public class RenteeSaveDto {
         this.note = note;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        Rentee that = (Rentee) o;
-        return getType() == that.getType() && getName().equals(that.getName()) && getBookArea() == that.getBookArea() &&
-                Objects.equals(getBookAuthorName(), that.getBookAuthorName()) && Objects.equals(getBookPublisherName(), that.getBookPublisherName()) &&
-                Objects.equals(EpochTime.toLocalDate(bookPublishedDateEpochSecond), that.getBookPublishedDate()) &&
-                Objects.equals(getNote(), that.getNote());
-    }
-    @Override
-    public int hashCode() {
-        return Objects.hash(getType(), getName());
-    }
-
-
     public RenteeSaveDto(BookSaveDto bookSaveDto) {
         this.thumbnail = bookSaveDto.getThumbnail();
         this.type = RenteeType.BOOK;

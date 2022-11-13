@@ -10,7 +10,7 @@ public interface RenteeRepository extends JpaRepository<Rentee, Long>, RenteeCus
 
     Optional<Rentee> findByName(String name);
 
-    List<Rentee> findRenteesByNameContaining(String name, Pageable pageable);
+    List<Rentee> findByNameContaining(String name, Pageable pageable);
 
-    List<Rentee> findRenteesByTypeAndNameContaining(RenteeType renteeType, String name, Pageable pageable);
+    List<Rentee> findByTypeAndNameContaining(RenteeType renteeType, String name, Pageable pageable);
 }

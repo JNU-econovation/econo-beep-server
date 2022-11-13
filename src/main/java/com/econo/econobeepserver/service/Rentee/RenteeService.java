@@ -54,21 +54,21 @@ public class RenteeService {
 
     public List<RenteeElementDto> searchRenteeElementDtosByNameWithPaging(String name, int pageIndex, int pageSize) {
         PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
-        List<Rentee> rentees = renteeRepository.findRenteesByNameContaining(name, pageRequest);
+        List<Rentee> rentees = renteeRepository.findByNameContaining(name, pageRequest);
 
         return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
     }
 
     public List<RenteeElementDto> searchRenteeElementDtosByNameFromBookWithPaging(String name, int pageIndex, int pageSize) {
         PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
-        List<Rentee> rentees = renteeRepository.findRenteesByTypeAndNameContaining(RenteeType.BOOK, name, pageRequest);
+        List<Rentee> rentees = renteeRepository.findByTypeAndNameContaining(RenteeType.BOOK, name, pageRequest);
 
         return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
     }
 
     public List<RenteeElementDto> searchRenteeElementDtosByNameFromDeviceWithPaging(String name, int pageIndex, int pageSize) {
         PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
-        List<Rentee> rentees = renteeRepository.findRenteesByTypeAndNameContaining(RenteeType.DEVICE, name, pageRequest);
+        List<Rentee> rentees = renteeRepository.findByTypeAndNameContaining(RenteeType.DEVICE, name, pageRequest);
 
         return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
     }
@@ -87,11 +87,11 @@ public class RenteeService {
             case CREATED_DESC:
                 rentees = renteeRepository.findRenteesNameContainingFromBookOrderByCreatedDescWithPaging(name, pageRequest);
                 break;
-            case LATEST_RENTAL:
-                rentees = renteeRepository.findRenteesNameContainingFromBookOrderByLatestRentalWithPaging(name, pageRequest);
-                break;
             case OUTDATED_RENTAL:
                 rentees = renteeRepository.findRenteesNameContainingFromBookOrderByOutdatedRentalWithPaging(name, pageRequest);
+                break;
+            case LATEST_RENTAL:
+                rentees = renteeRepository.findRenteesNameContainingFromBookOrderByLatestRentalWithPaging(name, pageRequest);
                 break;
         }
 

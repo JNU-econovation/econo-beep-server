@@ -37,7 +37,7 @@ public class RentalService {
 
     @Transactional
     public void rentRenteeById(Long id, String pinCode) {
-        userApi.validatePinCode(pinCode);
+//        userApi.validatePinCode(pinCode);
         UserInfoDto userInfoDto = userApi.getUserInfoDtoByPinCode(pinCode);
 
 
