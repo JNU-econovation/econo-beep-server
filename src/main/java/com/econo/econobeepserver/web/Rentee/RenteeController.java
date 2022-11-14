@@ -5,10 +5,7 @@ import com.econo.econobeepserver.dto.Rentee.RenteeInfoDto;
 import com.econo.econobeepserver.service.Rentee.RenteeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,11 +15,27 @@ public class RenteeController {
 
     private final RenteeService renteeService;
 
-    @GetMapping("/api/rentee/{id}")
-    public ResponseEntity<RenteeInfoDto> getRenteeInfoDtoById(@PathVariable(value = "id") Long id) {
-        RenteeInfoDto renteeInfoDto = renteeService.getRenteeInfoDtoById(id);
+    @GetMapping("/api/rentee/{renteeId}")
+    public ResponseEntity<RenteeInfoDto> getRenteeInfoDtoById(@PathVariable(value = "renteeId") Long renteeId) {
+        RenteeInfoDto renteeInfoDto = renteeService.getRenteeInfoDtoById(renteeId);
 
         return ResponseEntity.ok(renteeInfoDto);
+    }
+
+    @PutMapping("/api/rentee/{renteeId}/bookmark")
+    public ResponseEntity<Void> registerBookmark(@PathVariable(value = "renteeId") Long renteeId,
+                                                 @RequestParam(value = "accessToken") String accessToken) {
+        renteeService.registerBookmark(renteeId, accessToken);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/api/rentee/{renteeId}/bookmark")
+    public ResponseEntity<Void> unregisterBookmark(@PathVariable(value = "renteeId") Long renteeId,
+                                                   @RequestParam(value = "accessToken") String accessToken) {
+        renteeService.unregisterBookmark(renteeId, accessToken);
+
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/api/rentee/search")
@@ -47,8 +60,8 @@ public class RenteeController {
 
     @GetMapping("/api/rentee/search/device")
     public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByNameFromDeviceWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String name,
-                                                                                                       @RequestParam(value = "pageIndex") int pageIndex,
-                                                                                                       @RequestParam(value = "pageSize") int pageSize
+                                                                                                    @RequestParam(value = "pageIndex") int pageIndex,
+                                                                                                    @RequestParam(value = "pageSize") int pageSize
     ) {
         List<RenteeElementDto> renteeElementDtos = renteeService.searchRenteeElementDtosByNameFromDeviceWithPaging(name, pageIndex, pageSize);
 
