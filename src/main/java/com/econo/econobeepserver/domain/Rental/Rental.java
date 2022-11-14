@@ -2,6 +2,7 @@ package com.econo.econobeepserver.domain.Rental;
 
 import com.econo.econobeepserver.domain.BaseTimeEntity;
 import com.econo.econobeepserver.domain.Rentee.Rentee;
+import com.econo.econobeepserver.domain.User.User;
 import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,16 +20,13 @@ public class Rental extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rentee_id")
+    @JoinColumn(name = "rentee_id", nullable = false)
     private Rentee rentee;
 
-    @NotNull
-    private Long renterId;
-
-    @NotNull
-    private String renterName;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @NotNull
     private LocalDateTime rentalDateTime;
@@ -36,12 +34,10 @@ public class Rental extends BaseTimeEntity {
     private LocalDateTime returnDateTime;
 
     @Builder
-    public Rental(Rentee rentee, Long renterId, String renterName) {
+    public Rental(Rentee rentee, User user) {
         this.rentee = rentee;
         this.rentee.rentRentee();
-
-        this.renterId = renterId;
-        this.renterName = renterName;
+        this.user = user;
         this.rentalDateTime = LocalDateTime.now();
     }
 

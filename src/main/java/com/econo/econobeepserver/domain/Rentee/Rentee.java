@@ -2,7 +2,9 @@ package com.econo.econobeepserver.domain.Rentee;
 
 import com.econo.econobeepserver.domain.BaseTimeEntity;
 import com.econo.econobeepserver.domain.Rental.Rental;
+import com.econo.econobeepserver.domain.User.User;
 import com.econo.econobeepserver.dto.Rentee.RenteeSaveDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.Builder;
@@ -25,9 +27,8 @@ public class Rentee extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "rentee_thumbnail_id")
+    @JoinColumn(name = "rentee_thumbnail_id", nullable = false)
     private RenteeThumbnail thumbnail;
 
     @NotNull
@@ -52,7 +53,6 @@ public class Rentee extends BaseTimeEntity {
 
     @NotNull
     private int rentCount = 0;
-
 
     @Builder
     public Rentee(Long id, RenteeThumbnail thumbnail, String name, RenteeType type,
