@@ -20,7 +20,7 @@ public class RenteeThumbnailController {
 
     private final RenteeService renteeService;
 
-    @GetMapping("/rentee/{id}/thumbnail")
+    @GetMapping("/api/rentee/{id}/thumbnail")
     public void getRenteeCoverImageByRenteeId(HttpServletResponse response, @PathVariable(value = "id") Long id) {
         String imageFilePath = renteeService.getThumbnailFilePathByRenteeId(id);
 

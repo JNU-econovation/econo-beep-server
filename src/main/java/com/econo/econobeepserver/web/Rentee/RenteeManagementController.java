@@ -21,21 +21,21 @@ public class RenteeManagementController {
 
     private final RenteeService renteeService;
 
-    @PostMapping("/management/book")
+    @PostMapping("/api/management/book")
     public ResponseEntity<Void> createBook(@Valid @ModelAttribute BookSaveDto bookSaveDto) {
         renteeService.createRentee(new RenteeSaveDto(bookSaveDto));
 
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/management/device")
+    @PostMapping("/api/management/device")
     public ResponseEntity<Void> createDevice(@Valid @ModelAttribute DeviceSaveDto deviceSaveDto) {
         renteeService.createRentee(new RenteeSaveDto(deviceSaveDto));
 
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/management/search/book")
+    @GetMapping("/api/management/search/book")
     public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromBook(@RequestParam(value = "name", required = false, defaultValue = "") String name,
                                                                                                 @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
                                                                                                 @RequestParam(value = "pageIndex") int pageIndex,
@@ -46,7 +46,7 @@ public class RenteeManagementController {
         return ResponseEntity.ok(renteeManagementInfoDtos);
     }
 
-    @GetMapping("/management/search/device")
+    @GetMapping("/api/management/search/device")
     public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromDevice(@RequestParam(value = "name", required = false, defaultValue = "") String name,
                                                                                                      @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
                                                                                                      @RequestParam(value = "pageIndex") int pageIndex,
@@ -57,7 +57,7 @@ public class RenteeManagementController {
         return ResponseEntity.ok(renteeManagementInfoDtos);
     }
 
-    @PutMapping("/management/book/{id}")
+    @PutMapping("/api/management/book/{id}")
     public ResponseEntity<Void> updateBookById(@PathVariable(value = "id") Long id,
                                                @Valid @ModelAttribute BookSaveDto bookSaveDto
     ) {
@@ -66,7 +66,7 @@ public class RenteeManagementController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/management/device/{id}")
+    @PutMapping("/api/management/device/{id}")
     public ResponseEntity<Void> updateDeviceById(@PathVariable(value = "id") Long id,
                                                     @Valid @ModelAttribute DeviceSaveDto deviceSaveDto
     ) {
@@ -76,14 +76,14 @@ public class RenteeManagementController {
     }
 
 
-    @DeleteMapping("/management/book/{id}")
+    @DeleteMapping("/api/management/book/{id}")
     public ResponseEntity<Void> deleteBookById(@PathVariable(value = "id") Long id) {
         renteeService.deleteRenteeById(id);
 
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/management/device/{id}")
+    @DeleteMapping("/api/management/device/{id}")
     public ResponseEntity<Void> deleteDeviceById(@PathVariable(value = "id") Long id) {
         renteeService.deleteRenteeById(id);
 

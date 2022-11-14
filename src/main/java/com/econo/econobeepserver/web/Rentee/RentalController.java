@@ -14,7 +14,7 @@ public class RentalController {
 
     private final RentalService rentalService;
 
-    @PutMapping("/rentee/{id}/rent")
+    @PutMapping("/api/rentee/{id}/rent")
     public ResponseEntity<String> rentRenteeById(@PathVariable(value = "id") Long id,
                                                  @RequestParam(value = "pinCode") String pinCode) {
         rentalService.rentRenteeById(id, pinCode);
@@ -22,7 +22,7 @@ public class RentalController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/rentee/{id}/return")
+    @PutMapping("/api/rentee/{id}/return")
     public ResponseEntity<String> returnRenteeById(@PathVariable(value = "id") Long id,
                                                    @RequestParam(value = "pinCode") String pinCode) {
         rentalService.returnRenteeByRenteeId(id, pinCode);

@@ -18,14 +18,14 @@ public class RenteeController {
 
     private final RenteeService renteeService;
 
-    @GetMapping("/rentee/{id}")
+    @GetMapping("/api/rentee/{id}")
     public ResponseEntity<RenteeInfoDto> getRenteeInfoDtoById(@PathVariable(value = "id") Long id) {
         RenteeInfoDto renteeInfoDto = renteeService.getRenteeInfoDtoById(id);
 
         return ResponseEntity.ok(renteeInfoDto);
     }
 
-    @GetMapping("/rentee/search")
+    @GetMapping("/api/rentee/search")
     public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByName(@RequestParam(value = "name", required = false, defaultValue = "") String name,
                                                                                 @RequestParam(value = "pageIndex") int pageIndex,
                                                                                 @RequestParam(value = "pageSize") int pageSize
@@ -35,7 +35,7 @@ public class RenteeController {
         return ResponseEntity.ok(renteeElementDtos);
     }
 
-    @GetMapping("/rentee/search/book")
+    @GetMapping("/api/rentee/search/book")
     public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByNameFromBookWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String name,
                                                                                                   @RequestParam(value = "pageIndex") int pageIndex,
                                                                                                   @RequestParam(value = "pageSize") int pageSize
@@ -45,7 +45,7 @@ public class RenteeController {
         return ResponseEntity.ok(renteeElementDtos);
     }
 
-    @GetMapping("/rentee/search/device")
+    @GetMapping("/api/rentee/search/device")
     public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByNameFromDeviceWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String name,
                                                                                                        @RequestParam(value = "pageIndex") int pageIndex,
                                                                                                        @RequestParam(value = "pageSize") int pageSize
