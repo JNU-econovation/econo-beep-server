@@ -1,17 +1,12 @@
 package com.econo.econobeepserver.service;
 
-import com.econo.econobeepserver.domain.Rental.RentalRepository;
 import com.econo.econobeepserver.domain.Rentee.*;
-import com.econo.econobeepserver.domain.User.UserApi;
 import com.econo.econobeepserver.dto.Rentee.RenteeSaveDto;
-import com.econo.econobeepserver.dto.User.UserInfoDto;
-import com.econo.econobeepserver.service.Rentee.RentalService;
 import com.econo.econobeepserver.service.Rentee.RenteeService;
 import com.econo.econobeepserver.util.EpochTime;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockMultipartFile;
 
 import java.io.FileInputStream;

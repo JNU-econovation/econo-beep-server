@@ -4,7 +4,7 @@ import com.econo.econobeepserver.domain.Rental.RentalRepository;
 import com.econo.econobeepserver.domain.Rentee.BookArea;
 import com.econo.econobeepserver.domain.Rentee.RenteeRepository;
 import com.econo.econobeepserver.domain.Rentee.RenteeType;
-import com.econo.econobeepserver.domain.User.UserApi;
+import com.econo.econobeepserver.service.User.EconoIDP;
 import com.econo.econobeepserver.dto.Rentee.RenteeElementDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeManagementInfoDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeSaveDto;
@@ -40,7 +40,7 @@ class RenteeServiceRTest {
     @Autowired
     private RentalService rentalService;
     @MockBean
-    private UserApi userApi;
+    private EconoIDP econoIDP;
 
     @Autowired
     private RentalRepository rentalRepository;
@@ -206,7 +206,7 @@ class RenteeServiceRTest {
         @Test
         void test_outdatedRentalSort() {
             // given
-            given(userApi.getUserInfoDtoByPinCode(userInfoDto.getPinCode()))
+            given(econoIDP.getUserInfoDtoByPinCode(userInfoDto.getPinCode()))
                     .willReturn(userInfoDto);
             long book1Id = renteeService.getRenteeByName(book1SaveDto.getName()).getId();
             long book2Id = renteeService.getRenteeByName(book2SaveDto.getName()).getId();
@@ -231,7 +231,7 @@ class RenteeServiceRTest {
         @Test
         void test_latestRentalSort() {
             // given
-            given(userApi.getUserInfoDtoByPinCode(userInfoDto.getPinCode()))
+            given(econoIDP.getUserInfoDtoByPinCode(userInfoDto.getPinCode()))
                     .willReturn(userInfoDto);
             long book1Id = renteeService.getRenteeByName(book1SaveDto.getName()).getId();
             long book2Id = renteeService.getRenteeByName(book2SaveDto.getName()).getId();

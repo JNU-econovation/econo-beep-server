@@ -36,8 +36,8 @@ public class GlobalExceptionHandler {
                 .body(e.getMessage());
     }
 
-    @ExceptionHandler(NotFoundPinCodeException.class)
-    public ResponseEntity<String> handleNotFoundPinCodeException(NotFoundPinCodeException e) {
+    @ExceptionHandler(WrongAccessTokenException.class)
+    public ResponseEntity<String> handleNotFoundPinCodeException(WrongAccessTokenException e) {
         log.error("handleNotFoundPinCodeException] ", e);
         e.printStackTrace();
 

@@ -8,20 +8,18 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
-public class UserInfoDto {
+public class UserIDPDto {
 
     private Long id;
-    private String username;
     private Integer year;
-    private String email;
+    private String username;
+    private String userEmail;
 
     @Builder
-    public UserInfoDto(Long id, String username, Integer year, String email) {
+    public UserIDPDto(Long id, Integer year, String username, String userEmail) {
         this.id = id;
-        this.username = username;
         this.year = year;
-        this.email = email;
+        this.username = username;
+        this.userEmail = userEmail;
     }
-
-
 }

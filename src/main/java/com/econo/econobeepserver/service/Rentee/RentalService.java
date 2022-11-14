@@ -4,7 +4,7 @@ import com.econo.econobeepserver.domain.Rental.Rental;
 import com.econo.econobeepserver.domain.Rental.RentalRepository;
 import com.econo.econobeepserver.domain.Rentee.Rentee;
 import com.econo.econobeepserver.domain.Rentee.RentState;
-import com.econo.econobeepserver.domain.User.UserApi;
+import com.econo.econobeepserver.service.User.EconoIDP;
 import com.econo.econobeepserver.dto.User.UserInfoDto;
 import com.econo.econobeepserver.exception.NotRenterException;
 import com.econo.econobeepserver.exception.UnrentableException;
@@ -20,9 +20,8 @@ import java.util.Objects;
 public class RentalService {
 
     private final RentalRepository rentalRepository;
-
     private final RenteeService renteeService;
-    private UserApi userApi;
+    private EconoIDP econoIDP;
 
 
     private Rental getRecentRentalByRenteeId(long renteeId) {
@@ -38,7 +37,7 @@ public class RentalService {
     @Transactional
     public void rentRenteeById(Long id, String pinCode) {
 //        userApi.validatePinCode(pinCode);
-        UserInfoDto userInfoDto = userApi.getUserInfoDtoByPinCode(pinCode);
+        UserInfoDto userInfoDto = econoIDP.getUserInfoDtoByPinCode(pinCode);
 
 
         Rentee rentee = renteeService.getRenteeById(id);
@@ -69,8 +68,8 @@ public class RentalService {
 
     @Transactional
     public void returnRenteeByRenteeId(Long renteeId, String pinCode) {
-        userApi.validatePinCode(pinCode);
-        UserInfoDto userInfoDto = userApi.getUserInfoDtoByPinCode(pinCode);
+        econoIDP.validatePinCode(pinCode);
+        UserInfoDto userInfoDto = econoIDP.getUserInfoDtoByPinCode(pinCode);
 
 
         Rentee rentee = renteeService.getRenteeById(renteeId);
