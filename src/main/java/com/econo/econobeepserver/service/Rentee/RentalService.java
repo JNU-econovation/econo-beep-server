@@ -4,11 +4,13 @@ import com.econo.econobeepserver.domain.Rental.Rental;
 import com.econo.econobeepserver.domain.Rental.RentalRepository;
 import com.econo.econobeepserver.domain.Rentee.Rentee;
 import com.econo.econobeepserver.domain.Rentee.RentState;
+import com.econo.econobeepserver.domain.User.User;
 import com.econo.econobeepserver.service.User.EconoIDP;
 import com.econo.econobeepserver.dto.User.UserInfoDto;
 import com.econo.econobeepserver.exception.NotRenterException;
 import com.econo.econobeepserver.exception.UnrentableException;
 import com.econo.econobeepserver.exception.UnreturnableException;
+import com.econo.econobeepserver.service.User.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +23,7 @@ public class RentalService {
 
     private final RentalRepository rentalRepository;
     private final RenteeService renteeService;
-    private EconoIDP econoIDP;
+    private final UserService userService;
 
 
     private Rental getRecentRentalByRenteeId(long renteeId) {
@@ -35,18 +37,16 @@ public class RentalService {
     }
 
     @Transactional
-    public void rentRenteeById(Long id, String pinCode) {
-//        userApi.validatePinCode(pinCode);
-        UserInfoDto userInfoDto = econoIDP.getUserInfoDtoByPinCode(pinCode);
+    public void rentRenteeByRenteeId(Long renteeId, String accessToken) {
+        User user = userService.getUserByAccessToken(accessToken);
 
 
-        Rentee rentee = renteeService.getRenteeById(id);
+        Rentee rentee = renteeService.getRenteeById(renteeId);
         validateRentableRentee(rentee);
 
         Rental rental = Rental.builder()
                 .rentee(rentee)
-                .renterId(userInfoDto.getId())
-                .renterName(userInfoDto.getUsername())
+                .renter(user)
                 .build();
         rentalRepository.save(rental);
     }
@@ -58,25 +58,22 @@ public class RentalService {
         }
     }
 
-    private void validateRenter(final Rental rental, final Long renterId) {
+    private void validateRenter(final Rental rental, final UserInfoDto userInfoDto) {
         if (
-                !Objects.equals(rental.getRenterId(), renterId)
+                !Objects.equals(rental.getRenter().getId(), userInfoDto.getId())
         ) {
             throw new NotRenterException();
         }
     }
 
     @Transactional
-    public void returnRenteeByRenteeId(Long renteeId, String pinCode) {
-        econoIDP.validatePinCode(pinCode);
-        UserInfoDto userInfoDto = econoIDP.getUserInfoDtoByPinCode(pinCode);
-
-
+    public void returnRenteeByRenteeId(Long renteeId, String accessToken) {
         Rentee rentee = renteeService.getRenteeById(renteeId);
         validateReturnableRentee(rentee);
 
         Rental rental = getRecentRentalByRenteeId(renteeId);
-        validateRenter(rental, userInfoDto.getId());
+        UserInfoDto userInfoDto = userService.getUserInfoDtoByAccessToken(accessToken);
+        validateRenter(rental, userInfoDto);
 
         rental.returnRentee();
     }

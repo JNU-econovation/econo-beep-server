@@ -14,18 +14,18 @@ public class RentalController {
 
     private final RentalService rentalService;
 
-    @PutMapping("/api/rentee/{id}/rent")
-    public ResponseEntity<String> rentRenteeById(@PathVariable(value = "id") Long id,
-                                                 @RequestParam(value = "pinCode") String pinCode) {
-        rentalService.rentRenteeById(id, pinCode);
+    @PutMapping("/api/rentee/{renteeId}/rent")
+    public ResponseEntity<String> rentRenteeById(@PathVariable(value = "renteeId") Long renteeId,
+                                                 @RequestParam(value = "accessToken") String accessToken) {
+        rentalService.rentRenteeByRenteeId(renteeId, accessToken);
 
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/api/rentee/{id}/return")
-    public ResponseEntity<String> returnRenteeById(@PathVariable(value = "id") Long id,
-                                                   @RequestParam(value = "pinCode") String pinCode) {
-        rentalService.returnRenteeByRenteeId(id, pinCode);
+    @PutMapping("/api/rentee/{renteeId}/return")
+    public ResponseEntity<String> returnRenteeById(@PathVariable(value = "renteeId") Long renteeId,
+                                                   @RequestParam(value = "accessToken") String accessToken) {
+        rentalService.returnRenteeByRenteeId(renteeId, accessToken);
 
         return ResponseEntity.ok().build();
     }

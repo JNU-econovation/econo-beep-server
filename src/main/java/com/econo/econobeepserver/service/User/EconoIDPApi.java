@@ -12,7 +12,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @RequiredArgsConstructor
 public class EconoIDPApi {
 
-    @Value("${TECONO_API_URL}")
+    @Value("${ECONO_IDP_API}")
     private String ECONO_IDP_API;
 
     public UserIDPDto getUserByAccessToken(String accessToken) {

@@ -26,7 +26,7 @@ public class Rental extends BaseTimeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private User renter;
 
     @NotNull
     private LocalDateTime rentalDateTime;
@@ -34,10 +34,11 @@ public class Rental extends BaseTimeEntity {
     private LocalDateTime returnDateTime;
 
     @Builder
-    public Rental(Rentee rentee, User user) {
+    public Rental(Rentee rentee, User renter) {
         this.rentee = rentee;
         this.rentee.rentRentee();
-        this.user = user;
+
+        this.renter = renter;
         this.rentalDateTime = LocalDateTime.now();
     }
 

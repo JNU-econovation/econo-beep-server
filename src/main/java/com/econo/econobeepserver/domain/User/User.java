@@ -1,6 +1,7 @@
 package com.econo.econobeepserver.domain.User;
 
 import com.econo.econobeepserver.domain.Rentee.Rentee;
+import com.econo.econobeepserver.dto.User.UserSaveDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,6 +41,18 @@ public class User {
         this.year = year;
         this.username = username;
         this.userEmail = userEmail;
+        this.role = role;
+    }
+
+
+    public void update(UserSaveDto userSaveDto) {
+        this.idpId = userSaveDto.getIdpId();
+        this.year = userSaveDto.getYear();
+        this.username = userSaveDto.getUsername();
+        this.userEmail = userSaveDto.getUserEmail();
+    }
+
+    public void setRole(Role role) {
         this.role = role;
     }
 }
