@@ -6,6 +6,7 @@ import com.econo.econobeepserver.service.User.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,18 +23,18 @@ public class UserController {
         return null;
     }
 
-    @GetMapping("/api/user/rents")
-    public ResponseEntity<List<RenteeElementDto>> getRentsByAccessToken(@RequestParam(value = "accessToken") String accessToken) {
+    @GetMapping("/api/user/{userId}/rents")
+    public ResponseEntity<List<RenteeElementDto>> getRentsByUserId(@PathVariable(value = "userId") long userId) {
         return null;
     }
 
-    @GetMapping("/api/user/returns")
-    public ResponseEntity<List<RenteeElementDto>> getReturnsByAccessToken(@RequestParam(value = "accessToken") String accessToken) {
+    @GetMapping("/api/user/{userId}/returns")
+    public ResponseEntity<List<RenteeElementDto>> getReturnsByUserId(@PathVariable(value = "userId") long userId) {
         return null;
     }
 
-    @GetMapping("/api/user/bookmarks")
-    public ResponseEntity<List<RenteeElementDto>> getBookmarksByAccessToken(@RequestParam(value = "accessToken") String accessToken) {
+    @GetMapping("/api/user/{userId}/bookmarks")
+    public ResponseEntity<List<RenteeElementDto>> getBookmarksByUserId(@PathVariable(value = "userId") long userId) {
         return null;
     }
 }
