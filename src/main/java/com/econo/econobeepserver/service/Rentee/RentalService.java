@@ -47,7 +47,7 @@ public class RentalService {
         Rental rental = Rental.builder()
                 .rentee(rentee)
                 .renterId(userInfoDto.getId())
-                .renterName(userInfoDto.getUserName())
+                .renterName(userInfoDto.getUsername())
                 .build();
         rentalRepository.save(rental);
     }

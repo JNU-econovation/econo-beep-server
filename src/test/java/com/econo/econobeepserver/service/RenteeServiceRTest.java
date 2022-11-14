@@ -108,8 +108,9 @@ class RenteeServiceRTest {
 
         userInfoDto = UserInfoDto.builder()
                 .id(1L)
-                .userName("test")
-                .pinCode("1234")
+                .username("test")
+                .year(21)
+                .email("test@gmail.com")
                 .build();
     }
 

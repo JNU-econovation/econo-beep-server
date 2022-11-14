@@ -11,13 +11,15 @@ import lombok.Setter;
 public class UserInfoDto {
 
     private Long id;
-    private String userName;
-    private String pinCode;
+    private String username;
+    private Integer year;
+    private String email;
 
     @Builder
-    public UserInfoDto(Long id, String userName, String pinCode) {
+    public UserInfoDto(Long id, String username, Integer year, String email) {
         this.id = id;
-        this.userName = userName;
-        this.pinCode = pinCode;
+        this.username = username;
+        this.year = year;
+        this.email = email;
     }
 }

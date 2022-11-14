@@ -32,8 +32,8 @@ public class UserApiImpl implements UserApi {
 
         return UserInfoDto.builder()
                 .id(999L)
-                .userName("삡")
-                .pinCode("3677")
+                .username("삡")
+//                .pinCode("3677")
                 .build();
     }
 
