@@ -1,6 +1,7 @@
 package com.econo.econobeepserver.dto.User;
 
 import com.econo.econobeepserver.domain.User.Role;
+import com.econo.econobeepserver.domain.User.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,5 +33,15 @@ public class UserSaveDto {
         this.username = userIDPDto.getUsername();
         this.userEmail = userIDPDto.getUserEmail();
         this.role = Role.ADMIN;
+    }
+
+    public User toEntity() {
+        return User.builder()
+                .idpId(idpId)
+                .year(year)
+                .username(username)
+                .userEmail(userEmail)
+                .role(Role.USER)
+                .build();
     }
 }

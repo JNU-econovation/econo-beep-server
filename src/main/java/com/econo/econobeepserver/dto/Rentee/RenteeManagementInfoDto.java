@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 import java.util.Objects;
 
 import static com.econo.econobeepserver.util.EpochTime.toEpochSecond;
@@ -30,7 +29,7 @@ public class RenteeManagementInfoDto {
     private String note;
     private RentState rentState;
 
-    private String recentRenter;
+    private String recentRenterName;
     private Long recentRentalEpochSecond;
 
     public RenteeManagementInfoDto(Rentee rentee, Rental recentRental) {
@@ -46,7 +45,7 @@ public class RenteeManagementInfoDto {
         this.rentState = rentee.getRentState();
 
         if (recentRental != null) {
-            this.recentRenter = recentRental.getRenterName();
+            this.recentRenterName = recentRental.getRenter().getUsername();
             this.recentRentalEpochSecond = toEpochSecond(recentRental.getRentalDateTime());
         }
     }

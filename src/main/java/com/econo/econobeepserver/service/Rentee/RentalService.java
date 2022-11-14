@@ -40,7 +40,6 @@ public class RentalService {
     public void rentRenteeByRenteeId(Long renteeId, String accessToken) {
         User user = userService.getUserByAccessToken(accessToken);
 
-
         Rentee rentee = renteeService.getRenteeById(renteeId);
         validateRentableRentee(rentee);
 

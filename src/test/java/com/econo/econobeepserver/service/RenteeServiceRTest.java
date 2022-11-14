@@ -4,14 +4,15 @@ import com.econo.econobeepserver.domain.Rental.RentalRepository;
 import com.econo.econobeepserver.domain.Rentee.BookArea;
 import com.econo.econobeepserver.domain.Rentee.RenteeRepository;
 import com.econo.econobeepserver.domain.Rentee.RenteeType;
-import com.econo.econobeepserver.service.User.EconoIDP;
+import com.econo.econobeepserver.dto.User.UserSaveDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeElementDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeManagementInfoDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeSaveDto;
-import com.econo.econobeepserver.dto.User.UserInfoDto;
 import com.econo.econobeepserver.service.Rentee.RentalService;
 import com.econo.econobeepserver.service.Rentee.RenteeService;
 import com.econo.econobeepserver.service.Rentee.RenteeSort;
+import com.econo.econobeepserver.service.User.EconoIDPImpl;
+import com.econo.econobeepserver.service.User.UserService;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,23 +28,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 
 @SpringBootTest
-//@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @Nested
 class RenteeServiceRTest {
 
     @Autowired
     private RenteeService renteeService;
-
     @Autowired
     private RenteeRepository renteeRepository;
-
     @Autowired
     private RentalService rentalService;
-    @MockBean
-    private EconoIDP econoIDP;
-
     @Autowired
     private RentalRepository rentalRepository;
+    @Autowired
+    private UserService userService;
+    @MockBean(name = "econoIDPImpl")
+    private EconoIDPImpl econoIDPImpl;
 
 
     RenteeSaveDto book1SaveDto;
@@ -52,7 +51,7 @@ class RenteeServiceRTest {
     RenteeSaveDto device1SaveDto;
     RenteeSaveDto device2SaveDto;
     RenteeSaveDto device3SaveDto;
-    UserInfoDto userInfoDto;
+    UserSaveDto userSaveDto;
 
     public RenteeServiceRTest() throws IOException {
         MockMultipartFile thumbnail = new MockMultipartFile(TEST_JPG_NAME, TEST_JPG_NAME, "image/jpg", new FileInputStream(TEST_JPG_PATH));
@@ -106,11 +105,11 @@ class RenteeServiceRTest {
                 .note("note3")
                 .build();
 
-        userInfoDto = UserInfoDto.builder()
-                .id(1L)
-                .username("test")
+        userSaveDto = UserSaveDto.builder()
+                .idpId(999L)
                 .year(21)
-                .email("test@gmail.com")
+                .username("test")
+                .userEmail("test@gmail.com")
                 .build();
     }
 
@@ -124,6 +123,7 @@ class RenteeServiceRTest {
         renteeService.createRentee(device3SaveDto);
 
     }
+
     @AfterEach
     void clear() {
         rentalRepository.deleteAll();
@@ -206,22 +206,19 @@ class RenteeServiceRTest {
         @Test
         void test_outdatedRentalSort() {
             // given
-            given(econoIDP.getUserInfoDtoByPinCode(userInfoDto.getPinCode()))
-                    .willReturn(userInfoDto);
+            given(econoIDPImpl.getUserInfoDtoByAccessToken("accessToken"))
+                    .willReturn(userSaveDto);
             long book1Id = renteeService.getRenteeByName(book1SaveDto.getName()).getId();
             long book2Id = renteeService.getRenteeByName(book2SaveDto.getName()).getId();
             long book3Id = renteeService.getRenteeByName(book3SaveDto.getName()).getId();
-            rentalService.rentRenteeById(book2Id, userInfoDto.getPinCode());
-            rentalService.rentRenteeById(book1Id, userInfoDto.getPinCode());
-            rentalService.rentRenteeById(book3Id, userInfoDto.getPinCode());
+            rentalService.rentRenteeByRenteeId(book2Id, "accessToken");
+            rentalService.rentRenteeByRenteeId(book1Id, "accessToken");
+            rentalService.rentRenteeByRenteeId(book3Id, "accessToken");
 
             // when
             List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging("book", RenteeSort.OUTDATED_RENTAL, 0, 3);
 
             // then
-            for (RenteeManagementInfoDto renteeManagementInfoDto : renteeManagementInfoDtos) {
-                System.out.println(renteeManagementInfoDto.getName());
-            }
             assertEquals(book2SaveDto.getName(), renteeManagementInfoDtos.get(0).getName());
             assertEquals(book1SaveDto.getName(), renteeManagementInfoDtos.get(1).getName());
             assertEquals(book3SaveDto.getName(), renteeManagementInfoDtos.get(2).getName());
@@ -231,14 +228,14 @@ class RenteeServiceRTest {
         @Test
         void test_latestRentalSort() {
             // given
-            given(econoIDP.getUserInfoDtoByPinCode(userInfoDto.getPinCode()))
-                    .willReturn(userInfoDto);
+            given(econoIDPImpl.getUserInfoDtoByAccessToken("accessToken"))
+                    .willReturn(userSaveDto);
             long book1Id = renteeService.getRenteeByName(book1SaveDto.getName()).getId();
             long book2Id = renteeService.getRenteeByName(book2SaveDto.getName()).getId();
             long book3Id = renteeService.getRenteeByName(book3SaveDto.getName()).getId();
-            rentalService.rentRenteeById(book2Id, userInfoDto.getPinCode());
-            rentalService.rentRenteeById(book1Id, userInfoDto.getPinCode());
-            rentalService.rentRenteeById(book3Id, userInfoDto.getPinCode());
+            rentalService.rentRenteeByRenteeId(book2Id, "accessToken");
+            rentalService.rentRenteeByRenteeId(book1Id, "accessToken");
+            rentalService.rentRenteeByRenteeId(book3Id, "accessToken");
 
             // when
             List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging("book", RenteeSort.LATEST_RENTAL, 0, 3);

@@ -24,7 +24,7 @@ public class Rental extends BaseTimeEntity {
     @JoinColumn(name = "rentee_id", nullable = false)
     private Rentee rentee;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User renter;
 

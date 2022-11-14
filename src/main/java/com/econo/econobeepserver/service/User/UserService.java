@@ -17,6 +17,10 @@ public class UserService {
     private EconoIDP econoIDP;
 
 
+    private User createUser(UserSaveDto userSaveDto) {
+        return userRepository.save(userSaveDto.toEntity());
+    }
+
     public User getUserById(Long id) {
         return userRepository.findById(id).orElseThrow(NotFoundUserException::new);
     }
@@ -27,8 +31,13 @@ public class UserService {
 
     @Transactional
     public void syncUser(UserSaveDto userSaveDto) {
-        User user = getUserByIdpId(userSaveDto.getIdpId());
-        user.update(userSaveDto);
+        if (userRepository.existsByIdpId(userSaveDto.getIdpId())) {
+            User user = getUserByIdpId(userSaveDto.getIdpId());
+            user.update(userSaveDto);
+
+        } else {
+            createUser(userSaveDto);
+        }
     }
 
     public User getUserByAccessToken(String accessToken) {
