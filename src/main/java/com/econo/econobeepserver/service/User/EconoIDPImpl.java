@@ -1,7 +1,5 @@
 package com.econo.econobeepserver.service.User;
 
-import com.econo.econobeepserver.dto.User.UserIDPDto;
-import com.econo.econobeepserver.dto.User.UserInfoDto;
 import com.econo.econobeepserver.dto.User.UserSaveDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

@@ -5,6 +5,7 @@ import com.econo.econobeepserver.domain.Rentee.*;
 import com.econo.econobeepserver.dto.Rentee.*;
 import com.econo.econobeepserver.exception.NotFoundRenteeException;
 import com.econo.econobeepserver.service.ImageHandler;
+import com.econo.econobeepserver.service.User.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.PageRequest;
@@ -21,7 +22,6 @@ public class RenteeService {
 
     private final RenteeRepository renteeRepository;
     private final RenteeThumbnailRepository thumbnailRepository;
-
     private final RentalRepository rentalRepository;
     private final ImageHandler imageHandler;
 

@@ -1,7 +1,9 @@
 package com.econo.econobeepserver.web.User;
 
+import com.econo.econobeepserver.domain.User.Role;
 import com.econo.econobeepserver.dto.Rentee.RenteeElementDto;
-import com.econo.econobeepserver.dto.User.UserInfoDto;
+import com.econo.econobeepserver.dto.User.UserProfileDto;
+import com.econo.econobeepserver.service.Rentee.RentalService;
 import com.econo.econobeepserver.service.User.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,20 +19,34 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final RentalService rentalService;
 
-    @GetMapping("/api/user")
-    public ResponseEntity<UserInfoDto> getUserInfoDtoByAccessToken(@RequestParam(value = "accessToken") String accessToken) {
-        return null;
+    @GetMapping("/api/user/profile")
+    public ResponseEntity<UserProfileDto> getUserInfoDtoByAccessToken(@RequestParam(value = "accessToken") String accessToken) {
+        UserProfileDto userProfileDto = userService.getUserInfoDtoByAccessToken(accessToken);
+
+        return ResponseEntity.ok(userProfileDto);
+    }
+
+    @GetMapping("/api/user/role")
+    public ResponseEntity<Role> getUserRoleByAccessToken(@RequestParam(value = "accessToken") String accessToken) {
+        Role userRole = userService.getUserRoleByAccessToken(accessToken);
+
+        return ResponseEntity.ok(userRole);
     }
 
     @GetMapping("/api/user/{userId}/rents")
     public ResponseEntity<List<RenteeElementDto>> getRentsByUserId(@PathVariable(value = "userId") long userId) {
-        return null;
+        List<RenteeElementDto> renteeElementDtos = rentalService.getRentedRenteesByUserId(userId);
+
+        return ResponseEntity.ok(renteeElementDtos);
     }
 
     @GetMapping("/api/user/{userId}/returns")
     public ResponseEntity<List<RenteeElementDto>> getReturnsByUserId(@PathVariable(value = "userId") long userId) {
-        return null;
+        List<RenteeElementDto> renteeElementDtos = rentalService.getReturnedRenteeByUserId(userId);
+
+        return ResponseEntity.ok(renteeElementDtos);
     }
 
     @GetMapping("/api/user/{userId}/bookmarks")

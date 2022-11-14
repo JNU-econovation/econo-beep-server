@@ -1,8 +1,9 @@
 package com.econo.econobeepserver.service.User;
 
+import com.econo.econobeepserver.domain.User.Role;
 import com.econo.econobeepserver.domain.User.User;
 import com.econo.econobeepserver.domain.User.UserRepository;
-import com.econo.econobeepserver.dto.User.UserInfoDto;
+import com.econo.econobeepserver.dto.User.UserProfileDto;
 import com.econo.econobeepserver.dto.User.UserSaveDto;
 import com.econo.econobeepserver.exception.NotFoundUserException;
 import lombok.AllArgsConstructor;
@@ -47,7 +48,11 @@ public class UserService {
         return getUserByIdpId(userSaveDto.getIdpId());
     }
 
-    public UserInfoDto getUserInfoDtoByAccessToken(String accessToken) {
-        return new UserInfoDto(getUserByAccessToken(accessToken));
+    public UserProfileDto getUserInfoDtoByAccessToken(String accessToken) {
+        return new UserProfileDto(getUserByAccessToken(accessToken));
+    }
+
+    public Role getUserRoleByAccessToken(String accessToken) {
+        return getUserByAccessToken(accessToken).getRole();
     }
 }
