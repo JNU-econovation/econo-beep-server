@@ -4,6 +4,7 @@ import com.econo.econobeepserver.domain.User.Role;
 import com.econo.econobeepserver.dto.Rentee.RenteeElementDto;
 import com.econo.econobeepserver.dto.User.UserProfileDto;
 import com.econo.econobeepserver.service.Rentee.RentalService;
+import com.econo.econobeepserver.service.Rentee.RenteeService;
 import com.econo.econobeepserver.service.User.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final RenteeService renteeService;
     private final RentalService rentalService;
 
     @GetMapping("/api/user/profile")
@@ -51,6 +53,8 @@ public class UserController {
 
     @GetMapping("/api/user/{userId}/bookmarks")
     public ResponseEntity<List<RenteeElementDto>> getBookmarksByUserId(@PathVariable(value = "userId") long userId) {
-        return null;
+        List<RenteeElementDto> renteeElementDtos = renteeService.getBookmarkedRenteeByUserId(userId);
+
+        return ResponseEntity.ok(renteeElementDtos);
     }
 }

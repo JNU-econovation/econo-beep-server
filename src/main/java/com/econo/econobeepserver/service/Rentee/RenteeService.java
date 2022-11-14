@@ -1,8 +1,12 @@
 package com.econo.econobeepserver.service.Rentee;
 
+import com.econo.econobeepserver.domain.Bookmark.Bookmark;
+import com.econo.econobeepserver.domain.Bookmark.BookmarkRepository;
 import com.econo.econobeepserver.domain.Rental.RentalRepository;
 import com.econo.econobeepserver.domain.Rentee.*;
+import com.econo.econobeepserver.domain.User.User;
 import com.econo.econobeepserver.dto.Rentee.*;
+import com.econo.econobeepserver.exception.NotFoundBookmarkException;
 import com.econo.econobeepserver.exception.NotFoundRenteeException;
 import com.econo.econobeepserver.service.ImageHandler;
 import com.econo.econobeepserver.service.User.UserService;
@@ -22,8 +26,10 @@ public class RenteeService {
 
     private final RenteeRepository renteeRepository;
     private final RenteeThumbnailRepository thumbnailRepository;
+    private final BookmarkRepository bookmarkRepository;
     private final RentalRepository rentalRepository;
     private final ImageHandler imageHandler;
+    private final UserService userService;
 
     @Transactional
     public Rentee createRentee(RenteeSaveDto renteeSaveDto) {
@@ -35,6 +41,14 @@ public class RenteeService {
         rentee.setRenteeThumbnail(thumbnail);
 
         return renteeRepository.save(rentee);
+    }
+
+    public Bookmark registerBookmark(Long renteeId, String accessToken) {
+        User user = userService.getUserByAccessToken(accessToken);
+        Rentee rentee = getRenteeById(renteeId);
+
+        Bookmark bookmark = new Bookmark(user, rentee);
+        return bookmarkRepository.save(bookmark);
     }
 
     public Rentee getRenteeById(Long id) {
@@ -133,6 +147,12 @@ public class RenteeService {
         return rentee.getThumbnail().getFilePath();
     }
 
+    public List<RenteeElementDto> getBookmarkedRenteeByUserId(long userId) {
+        List<Bookmark> bookmarks = bookmarkRepository.findByUser_Id(userId);
+
+        return bookmarks.stream().map((bookmark -> new RenteeElementDto(bookmark.getRentee()))).collect(Collectors.toList());
+    }
+
     @Transactional
     public void updateRenteeById(long id, RenteeSaveDto renteeSaveDto) {
         Rentee rentee = getRenteeById(id);
@@ -161,5 +181,13 @@ public class RenteeService {
         } catch (EmptyResultDataAccessException e) {
             throw new NotFoundRenteeException();
         }
+    }
+
+    public void unregisterBookmark(Long renteeId, String accessToken) {
+        User user = userService.getUserByAccessToken(accessToken);
+        Rentee rentee = getRenteeById(renteeId);
+
+        Bookmark bookmark = bookmarkRepository.findByUser_IdAndRentee_Id(user.getId(), rentee.getId()).orElseThrow(NotFoundBookmarkException::new);
+        bookmarkRepository.delete(bookmark);
     }
 }
