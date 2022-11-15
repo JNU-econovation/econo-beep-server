@@ -10,7 +10,7 @@ public interface RentalRepository extends JpaRepository<Rental, Long> {
 
     Optional<Rental> findFirstByRentee_IdOrderByCreatedDateDesc(long renteeId);
 
-    List<Rental> findByRentee_Id(long renteeId);
+    List<Rental> findByRentee_IdOrderByCreatedDateDesc(long renteeId);
 
     List<Rental> findByReturnDateTimeIsNullAndRenter_Id(long renterId);
 

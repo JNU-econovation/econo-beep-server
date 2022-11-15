@@ -61,7 +61,7 @@ public class RenteeService {
 
     public RenteeInfoDto getRenteeInfoDtoByIdWithAccessToken(Long id, String accessToken) {
         Rentee rentee = getRenteeById(id);
-        List<RentalElementDto> rentalElementDtos = rentalRepository.findByRentee_Id(rentee.getId()).stream().map(RentalElementDto::new).collect(Collectors.toList());
+        List<RentalElementDto> rentalElementDtos = rentalRepository.findByRentee_IdOrderByCreatedDateDesc(rentee.getId()).stream().map(RentalElementDto::new).collect(Collectors.toList());
         boolean isBookmarked = false;
 
         if (accessToken != null) {
