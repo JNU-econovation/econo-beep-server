@@ -73,7 +73,7 @@ public class RentalService {
         validateReturnableRentee(rentee);
 
         Rental rental = getRecentRentalByRenteeId(renteeId);
-        UserProfileDto userProfileDto = userService.getUserInfoDtoByAccessToken(accessToken);
+        UserProfileDto userProfileDto = userService.getUserProfileDtoByAccessToken(accessToken);
         validateRenter(rental, userProfileDto);
 
         rental.returnRentee();

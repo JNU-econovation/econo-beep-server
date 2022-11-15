@@ -27,9 +27,10 @@ public class RenteeInfoDto {
     private RentState rentState;
     private int rentCount;
     private String note;
+    private Boolean isBookmarked;
 
 
-    public RenteeInfoDto(Rentee rentee, List<RentalElementDto> rentalElementDtos) {
+    public RenteeInfoDto(Rentee rentee, List<RentalElementDto> rentalElementDtos, boolean isBookmarked) {
         this.id = rentee.getId();
         this.thumbnailUrl = "/rentee/" + rentee.getId() + "/thumbnail";
         this.rentalHistories = rentalElementDtos;
@@ -41,5 +42,6 @@ public class RenteeInfoDto {
         this.rentState = rentee.getRentState();
         this.rentCount = rentee.getRentCount();
         this.note = rentee.getNote();
+        this.isBookmarked = isBookmarked;
     }
 }

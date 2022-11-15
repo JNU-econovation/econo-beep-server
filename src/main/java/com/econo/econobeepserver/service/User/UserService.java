@@ -48,8 +48,12 @@ public class UserService {
         return getUserByIdpId(userSaveDto.getIdpId());
     }
 
-    public UserProfileDto getUserInfoDtoByAccessToken(String accessToken) {
+    public UserProfileDto getUserProfileDtoByAccessToken(String accessToken) {
         return new UserProfileDto(getUserByAccessToken(accessToken));
+    }
+
+    public long getUserIdByAccessToken(String accessToken) {
+        return getUserByAccessToken(accessToken).getId();
     }
 
     public Role getUserRoleByAccessToken(String accessToken) {

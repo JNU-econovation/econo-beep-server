@@ -25,7 +25,7 @@ public class UserController {
 
     @GetMapping("/api/user/profile")
     public ResponseEntity<UserProfileDto> getUserInfoDtoByAccessToken(@RequestParam(value = "accessToken") String accessToken) {
-        UserProfileDto userProfileDto = userService.getUserInfoDtoByAccessToken(accessToken);
+        UserProfileDto userProfileDto = userService.getUserProfileDtoByAccessToken(accessToken);
 
         return ResponseEntity.ok(userProfileDto);
     }

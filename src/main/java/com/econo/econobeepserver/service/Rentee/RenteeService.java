@@ -59,11 +59,17 @@ public class RenteeService {
         return renteeRepository.findByName(name).orElseThrow(NotFoundRenteeException::new);
     }
 
-    public RenteeInfoDto getRenteeInfoDtoById(Long id) {
+    public RenteeInfoDto getRenteeInfoDtoByIdWithAccessToken(Long id, String accessToken) {
         Rentee rentee = getRenteeById(id);
         List<RentalElementDto> rentalElementDtos = rentalRepository.findByRentee_Id(rentee.getId()).stream().map(RentalElementDto::new).collect(Collectors.toList());
+        boolean isBookmarked = false;
 
-        return new RenteeInfoDto(rentee, rentalElementDtos);
+        if (accessToken != null) {
+            long userId = userService.getUserIdByAccessToken(accessToken);
+            isBookmarked = bookmarkRepository.findByUser_IdAndRentee_Id(userId, rentee.getId()).isPresent();
+        }
+
+        return new RenteeInfoDto(rentee, rentalElementDtos, isBookmarked);
     }
 
     public List<RenteeElementDto> searchRenteeElementDtosByNameWithPaging(String name, int pageIndex, int pageSize) {

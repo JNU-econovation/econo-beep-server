@@ -16,8 +16,9 @@ public class RenteeController {
     private final RenteeService renteeService;
 
     @GetMapping("/api/rentee/{renteeId}")
-    public ResponseEntity<RenteeInfoDto> getRenteeInfoDtoById(@PathVariable(value = "renteeId") Long renteeId) {
-        RenteeInfoDto renteeInfoDto = renteeService.getRenteeInfoDtoById(renteeId);
+    public ResponseEntity<RenteeInfoDto> getRenteeInfoDtoById(@PathVariable(value = "renteeId") Long renteeId,
+                                                              @RequestParam(value = "accessToken", required = false) String accessToken) {
+        RenteeInfoDto renteeInfoDto = renteeService.getRenteeInfoDtoByIdWithAccessToken(renteeId, accessToken);
 
         return ResponseEntity.ok(renteeInfoDto);
     }
