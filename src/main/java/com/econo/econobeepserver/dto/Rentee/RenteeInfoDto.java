@@ -1,5 +1,6 @@
 package com.econo.econobeepserver.dto.Rentee;
 
+import com.econo.econobeepserver.domain.Rentee.BookArea;
 import com.econo.econobeepserver.domain.Rentee.Rentee;
 import com.econo.econobeepserver.domain.Rentee.RentState;
 import com.econo.econobeepserver.domain.Rentee.RenteeType;
@@ -17,10 +18,10 @@ import static com.econo.econobeepserver.util.EpochTime.toEpochSecond;
 public class RenteeInfoDto {
 
     private Long id;
-    private String thumbnailUrl;
-    private List<RentalElementDto> rentalHistories;
-    private String title;
     private RenteeType type;
+    private String thumbnailUrl;
+    private String name;
+    private BookArea bookArea;
     private String bookAuthorName;
     private String bookPublisherName;
     private Long bookPublishedDateEpochSecond;
@@ -28,14 +29,15 @@ public class RenteeInfoDto {
     private int rentCount;
     private String note;
     private Boolean isBookmarked;
+    private List<RentalElementDto> rentalHistories;
 
 
     public RenteeInfoDto(Rentee rentee, List<RentalElementDto> rentalElementDtos, boolean isBookmarked) {
         this.id = rentee.getId();
-        this.thumbnailUrl = "/rentee/" + rentee.getId() + "/thumbnail";
-        this.rentalHistories = rentalElementDtos;
-        this.title = rentee.getName();
         this.type = rentee.getType();
+        this.thumbnailUrl = "/rentee/" + rentee.getId() + "/thumbnail";
+        this.name = rentee.getName();
+        this.bookArea = rentee.getBookArea();
         this.bookAuthorName = rentee.getBookAuthorName();
         this.bookPublisherName = rentee.getBookPublisherName();
         this.bookPublishedDateEpochSecond = toEpochSecond(rentee.getBookPublishedDate());
@@ -43,5 +45,6 @@ public class RenteeInfoDto {
         this.rentCount = rentee.getRentCount();
         this.note = rentee.getNote();
         this.isBookmarked = isBookmarked;
+        this.rentalHistories = rentalElementDtos;
     }
 }
