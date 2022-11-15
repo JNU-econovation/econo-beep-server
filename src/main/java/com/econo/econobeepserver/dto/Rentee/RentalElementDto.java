@@ -13,11 +13,13 @@ import static com.econo.econobeepserver.util.EpochTime.toEpochSecond;
 public class RentalElementDto {
 
     private String renterName;
+    private String renterProfileImage;
     private Long rentalEpochSecond;
     private Long returnEpochSecond;
 
     public RentalElementDto(Rental rental) {
         this.renterName = rental.getRenter().getUsername();
+        this.renterProfileImage = rental.getRenter().getProfileImageUrl();
         this.rentalEpochSecond = toEpochSecond(rental.getRentalDateTime());
         this.returnEpochSecond = toEpochSecond(rental.getReturnDateTime());
     }

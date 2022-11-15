@@ -16,14 +16,16 @@ public class UserSaveDto {
     private Integer year;
     private String username;
     private String userEmail;
+    private String profileImageUrl;
     private Role role;
 
     @Builder
-    public UserSaveDto(Long idpId, Integer year, String username, String userEmail, Role role) {
+    public UserSaveDto(Long idpId, Integer year, String username, String userEmail, String profileImageUrl, Role role) {
         this.idpId = idpId;
         this.year = year;
         this.username = username;
         this.userEmail = userEmail;
+        this.profileImageUrl = profileImageUrl;
         this.role = role;
     }
 
@@ -32,6 +34,7 @@ public class UserSaveDto {
         this.year = userIDPDto.getYear();
         this.username = userIDPDto.getUsername();
         this.userEmail = userIDPDto.getUserEmail();
+        this.profileImageUrl = userIDPDto.getProfileImageUrl();
         this.role = Role.ADMIN;
     }
 
@@ -41,6 +44,7 @@ public class UserSaveDto {
                 .year(year)
                 .username(username)
                 .userEmail(userEmail)
+                .profileImageUrl(profileImageUrl)
                 .role(Role.USER)
                 .build();
     }

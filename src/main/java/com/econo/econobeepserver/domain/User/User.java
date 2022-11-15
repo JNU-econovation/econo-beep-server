@@ -32,15 +32,18 @@ public class User {
     @NotNull
     private String userEmail;
 
+    private String profileImageUrl;
+
     @NotNull
     private Role role;
 
     @Builder
-    public User(Long idpId, Integer year, String username, String userEmail, Role role) {
+    public User(Long idpId, Integer year, String username, String userEmail, String profileImageUrl, Role role) {
         this.idpId = idpId;
         this.year = year;
         this.username = username;
         this.userEmail = userEmail;
+        this.profileImageUrl = profileImageUrl;
         this.role = role;
     }
 
@@ -50,6 +53,7 @@ public class User {
         this.year = userSaveDto.getYear();
         this.username = userSaveDto.getUsername();
         this.userEmail = userSaveDto.getUserEmail();
+        this.profileImageUrl = userSaveDto.getProfileImageUrl();
     }
 
     public void setRole(Role role) {

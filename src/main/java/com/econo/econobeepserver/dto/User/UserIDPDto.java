@@ -14,12 +14,14 @@ public class UserIDPDto {
     private Integer year;
     private String username;
     private String userEmail;
+    private String profileImageUrl;
 
     @Builder
-    public UserIDPDto(Long id, Integer year, String username, String userEmail) {
+    public UserIDPDto(Long id, Integer year, String username, String userEmail, String profileImageUrl) {
         this.id = id;
         this.year = year;
         this.username = username;
         this.userEmail = userEmail;
+        this.profileImageUrl = profileImageUrl;
     }
 }
