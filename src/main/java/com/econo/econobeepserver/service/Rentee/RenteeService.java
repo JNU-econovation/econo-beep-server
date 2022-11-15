@@ -63,13 +63,14 @@ public class RenteeService {
         Rentee rentee = getRenteeById(id);
         List<RentalElementDto> rentalElementDtos = rentalRepository.findByRentee_IdOrderByCreatedDateDesc(rentee.getId()).stream().map(RentalElementDto::new).collect(Collectors.toList());
         boolean isBookmarked = false;
+        int bookmarkCount = bookmarkRepository.countByRentee_Id(rentee.getId());
 
         if (accessToken != null) {
             long userId = userService.getUserIdByAccessToken(accessToken);
             isBookmarked = bookmarkRepository.findByUser_IdAndRentee_Id(userId, rentee.getId()).isPresent();
         }
 
-        return new RenteeInfoDto(rentee, rentalElementDtos, isBookmarked);
+        return new RenteeInfoDto(rentee, rentalElementDtos, isBookmarked, bookmarkCount);
     }
 
     public List<RenteeElementDto> searchRenteeElementDtosByNameWithPaging(String name, int pageIndex, int pageSize) {
