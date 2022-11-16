@@ -25,21 +25,27 @@ public class RenteeManagementController {
     private final RenteeService renteeService;
 
 
-    @Operation(summary = "책 추가")
+    @Operation(
+            summary = "책 추가",
+            description = "성공하면 생성된 책의 id를 반환한다."
+    )
     @PostMapping("/api/management/book")
-    public ResponseEntity<Void> createBook(@Valid @ModelAttribute BookSaveDto bookSaveDto) {
-        renteeService.createRentee(new RenteeSaveDto(bookSaveDto));
+    public ResponseEntity<Long> createBook(@Valid @ModelAttribute BookSaveDto bookSaveDto) {
+        long bookId = renteeService.createRentee(new RenteeSaveDto(bookSaveDto)).getId();
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(bookId);
     }
 
 
-    @Operation(summary = "기자재 추가")
+    @Operation(
+            summary = "기자재 추가",
+            description = "성공하면 생성된 기자재의 id를 반환한다."
+    )
     @PostMapping("/api/management/device")
-    public ResponseEntity<Void> createDevice(@Valid @ModelAttribute DeviceSaveDto deviceSaveDto) {
-        renteeService.createRentee(new RenteeSaveDto(deviceSaveDto));
+    public ResponseEntity<Long> createDevice(@Valid @ModelAttribute DeviceSaveDto deviceSaveDto) {
+        long deviceId = renteeService.createRentee(new RenteeSaveDto(deviceSaveDto)).getId();
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(deviceId);
     }
 
 
