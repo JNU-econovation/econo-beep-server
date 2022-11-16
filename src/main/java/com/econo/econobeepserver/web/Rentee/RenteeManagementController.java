@@ -48,9 +48,9 @@ public class RenteeManagementController {
 
     @GetMapping("/api/management/search/device")
     public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromDevice(@RequestParam(value = "name", required = false, defaultValue = "") String name,
-                                                                                                     @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
-                                                                                                     @RequestParam(value = "pageIndex") int pageIndex,
-                                                                                                     @RequestParam(value = "pageSize") int pageSize
+                                                                                                  @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
+                                                                                                  @RequestParam(value = "pageIndex") int pageIndex,
+                                                                                                  @RequestParam(value = "pageSize") int pageSize
     ) {
         List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosByNameFromDeviceWithSortAndPaging(name, renteeSort, pageIndex, pageSize);
 
@@ -68,7 +68,7 @@ public class RenteeManagementController {
 
     @PutMapping("/api/management/device/{id}")
     public ResponseEntity<Void> updateDeviceById(@PathVariable(value = "id") Long id,
-                                                    @Valid @ModelAttribute DeviceSaveDto deviceSaveDto
+                                                 @Valid @ModelAttribute DeviceSaveDto deviceSaveDto
     ) {
         renteeService.updateRenteeById(id, new RenteeSaveDto(deviceSaveDto));
 
