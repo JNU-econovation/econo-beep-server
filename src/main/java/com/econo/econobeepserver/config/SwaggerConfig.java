@@ -15,7 +15,7 @@ public class SwaggerConfig {
         License license = new License().name("Copyright(C) CWY Corporation All rights reserved.");
         return new OpenAPI()
                 .components(new Components())
-                .info(new Info().title("Spring Boot API Example")
+                .info(new Info().title("Econo Beep API")
                         .description("Econo Beep 서버")
                         .version("v2.0.0"));
     }

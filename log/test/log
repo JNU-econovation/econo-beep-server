@@ -519,3 +519,370 @@ Field error in object 'bookSaveDto' on field 'name': rejected value [null]; code
 2022-11-16 17:06:24.807  INFO 92098 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2022-11-16 17:06:24.808  INFO 92098 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2022-11-16 17:06:24.833  WARN 92098 --- [http-nio-8080-exec-1] c.e.e.exception.GlobalExceptionHandler   : [IllegalArgumentException] For input string: "asd"
+2022-11-16 17:36:12.943  INFO 92098 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 17:36:12.943  INFO 92098 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 17:36:13.122  INFO 92098 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 17:36:13.123  INFO 92098 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 17:36:13.126  INFO 92098 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 17:36:18.431  INFO 92719 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 92719 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 17:36:18.433  INFO 92719 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 17:36:19.269  INFO 92719 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 17:36:19.361  INFO 92719 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 85 ms. Found 5 JPA repository interfaces.
+2022-11-16 17:36:19.866  INFO 92719 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 17:36:19.875  INFO 92719 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 17:36:19.876  INFO 92719 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 17:36:19.962  INFO 92719 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 17:36:19.963  INFO 92719 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1481 ms
+2022-11-16 17:36:20.001  INFO 92719 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 17:36:20.151  INFO 92719 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 17:36:20.156  INFO 92719 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 17:36:20.234  INFO 92719 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 17:36:20.276  INFO 92719 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 17:36:20.318  INFO 92719 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 17:36:20.433  INFO 92719 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 17:36:20.527  INFO 92719 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 17:36:21.153  INFO 92719 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 17:36:21.176  INFO 92719 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 17:36:21.382  WARN 92719 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 17:36:22.164  INFO 92719 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 17:36:22.165  INFO 92719 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 17:36:22.331  INFO 92719 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 17:36:22.340  INFO 92719 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 4.308 seconds (JVM running for 5.028)
+2022-11-16 17:36:27.884  INFO 92719 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 17:36:27.885  INFO 92719 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 17:36:27.886  INFO 92719 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-16 17:45:21.202  WARN 92719 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m881ms).
+2022-11-16 17:47:23.899  WARN 92719 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m2s698ms).
+2022-11-16 17:50:55.562  WARN 92719 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m47s433ms).
+2022-11-16 17:52:13.108  WARN 92719 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m17s547ms).
+2022-11-16 17:54:07.355  WARN 92719 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m24s238ms).
+2022-11-16 18:05:46.282  INFO 92719 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:05:46.289  INFO 92719 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 18:05:46.412  INFO 92719 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:05:46.413  INFO 92719 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 18:05:46.417  INFO 92719 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 18:05:59.561  INFO 93090 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 93090 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 18:05:59.564  INFO 93090 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 18:06:00.494  INFO 93090 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 18:06:00.592  INFO 93090 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 92 ms. Found 5 JPA repository interfaces.
+2022-11-16 18:06:01.202  INFO 93090 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 18:06:01.211  INFO 93090 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 18:06:01.211  INFO 93090 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 18:06:01.316  INFO 93090 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 18:06:01.316  INFO 93090 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1692 ms
+2022-11-16 18:06:01.361  INFO 93090 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 18:06:01.538  INFO 93090 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 18:06:01.543  INFO 93090 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 18:06:01.624  INFO 93090 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:06:01.663  INFO 93090 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 18:06:01.709  INFO 93090 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 18:06:01.845  INFO 93090 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 18:06:01.951  INFO 93090 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 18:06:02.910  INFO 93090 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 18:06:02.919  INFO 93090 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:06:03.184  WARN 93090 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 18:06:04.215  INFO 93090 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 18:06:04.216  INFO 93090 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 18:06:04.426  INFO 93090 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 18:06:04.437  INFO 93090 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 5.356 seconds (JVM running for 6.338)
+2022-11-16 18:06:13.559  INFO 93090 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:06:13.560  INFO 93090 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 18:06:13.736  INFO 93090 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:06:13.737  INFO 93090 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 18:06:13.741  INFO 93090 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 18:06:17.304  INFO 93095 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 93095 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 18:06:17.306  INFO 93095 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 18:06:18.317  INFO 93095 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 18:06:18.423  INFO 93095 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 98 ms. Found 5 JPA repository interfaces.
+2022-11-16 18:06:19.009  INFO 93095 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 18:06:19.023  INFO 93095 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 18:06:19.023  INFO 93095 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 18:06:19.118  INFO 93095 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 18:06:19.119  INFO 93095 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1743 ms
+2022-11-16 18:06:19.159  INFO 93095 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 18:06:19.338  INFO 93095 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 18:06:19.344  INFO 93095 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 18:06:19.437  INFO 93095 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:06:19.478  INFO 93095 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 18:06:19.529  INFO 93095 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 18:06:19.680  INFO 93095 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 18:06:19.803  INFO 93095 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 18:06:20.535  INFO 93095 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 18:06:20.542  INFO 93095 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:06:20.742  WARN 93095 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 18:06:21.580  INFO 93095 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 18:06:21.581  INFO 93095 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 18:06:21.746  INFO 93095 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 18:06:21.758  INFO 93095 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 5.014 seconds (JVM running for 5.959)
+2022-11-16 18:06:25.342  INFO 93095 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 18:06:25.342  INFO 93095 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 18:06:25.344  INFO 93095 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-11-16 18:07:58.982  INFO 93095 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:07:58.983  INFO 93095 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 18:07:59.169  INFO 93095 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:07:59.170  INFO 93095 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 18:07:59.174  INFO 93095 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 18:08:03.142  INFO 93119 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 93119 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 18:08:03.145  INFO 93119 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 18:08:03.936  INFO 93119 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 18:08:04.025  INFO 93119 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 83 ms. Found 5 JPA repository interfaces.
+2022-11-16 18:08:04.575  INFO 93119 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 18:08:04.584  INFO 93119 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 18:08:04.585  INFO 93119 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 18:08:04.681  INFO 93119 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 18:08:04.681  INFO 93119 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1474 ms
+2022-11-16 18:08:04.725  INFO 93119 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 18:08:04.898  INFO 93119 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 18:08:04.907  INFO 93119 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 18:08:04.999  INFO 93119 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:08:05.047  INFO 93119 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 18:08:05.101  INFO 93119 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 18:08:05.265  INFO 93119 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 18:08:05.391  INFO 93119 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 18:08:06.246  INFO 93119 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 18:08:06.254  INFO 93119 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:08:06.452  WARN 93119 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 18:08:07.429  INFO 93119 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 18:08:07.430  INFO 93119 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 18:08:07.642  INFO 93119 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 18:08:07.653  INFO 93119 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 5.045 seconds (JVM running for 6.113)
+2022-11-16 18:08:16.448  INFO 93119 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 18:08:16.448  INFO 93119 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 18:08:16.449  INFO 93119 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-16 18:08:43.679  INFO 93119 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:08:43.679  INFO 93119 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 18:08:43.861  INFO 93119 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:08:43.863  INFO 93119 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 18:08:43.866  INFO 93119 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 18:08:47.203  INFO 93131 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 93131 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 18:08:47.208  INFO 93131 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 18:08:48.171  INFO 93131 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 18:08:48.294  INFO 93131 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 112 ms. Found 5 JPA repository interfaces.
+2022-11-16 18:08:48.959  INFO 93131 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 18:08:48.973  INFO 93131 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 18:08:48.974  INFO 93131 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 18:08:49.091  INFO 93131 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 18:08:49.091  INFO 93131 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1811 ms
+2022-11-16 18:08:49.140  INFO 93131 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 18:08:49.321  INFO 93131 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 18:08:49.327  INFO 93131 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 18:08:49.422  INFO 93131 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:08:49.461  INFO 93131 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 18:08:49.507  INFO 93131 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 18:08:49.627  INFO 93131 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 18:08:49.726  INFO 93131 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 18:08:50.469  INFO 93131 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 18:08:50.475  INFO 93131 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:08:50.708  WARN 93131 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 18:08:51.598  INFO 93131 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 18:08:51.600  INFO 93131 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 18:08:51.791  INFO 93131 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 18:08:51.801  INFO 93131 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 5.121 seconds (JVM running for 5.938)
+2022-11-16 18:08:59.902  INFO 93131 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 18:08:59.902  INFO 93131 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 18:08:59.904  INFO 93131 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-16 18:09:24.561  INFO 93131 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:09:24.562  INFO 93131 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 18:09:24.957  INFO 93131 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:09:24.957  INFO 93131 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 18:09:24.961  INFO 93131 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 18:09:28.341  INFO 93147 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 93147 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 18:09:28.348  INFO 93147 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 18:09:29.319  INFO 93147 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 18:09:29.416  INFO 93147 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 91 ms. Found 5 JPA repository interfaces.
+2022-11-16 18:09:29.951  INFO 93147 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 18:09:29.959  INFO 93147 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 18:09:29.959  INFO 93147 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 18:09:30.046  INFO 93147 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 18:09:30.046  INFO 93147 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1626 ms
+2022-11-16 18:09:30.085  INFO 93147 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 18:09:30.241  INFO 93147 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 18:09:30.247  INFO 93147 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 18:09:30.328  INFO 93147 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:09:30.368  INFO 93147 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 18:09:30.422  INFO 93147 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 18:09:30.577  INFO 93147 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 18:09:30.695  INFO 93147 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 18:09:31.384  INFO 93147 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 18:09:31.391  INFO 93147 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:09:31.611  WARN 93147 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 18:09:32.553  INFO 93147 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 18:09:32.554  INFO 93147 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 18:09:32.824  INFO 93147 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 18:09:32.844  INFO 93147 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 4.982 seconds (JVM running for 5.797)
+2022-11-16 18:09:41.639  INFO 93147 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 18:09:41.639  INFO 93147 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 18:09:41.641  INFO 93147 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-11-16 18:16:30.622  INFO 93147 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:16:30.623  INFO 93147 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 18:16:30.809  INFO 93147 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:16:30.809  INFO 93147 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 18:16:30.813  INFO 93147 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 18:16:35.085  INFO 93230 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 93230 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 18:16:35.088  INFO 93230 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 18:16:36.058  INFO 93230 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 18:16:36.147  INFO 93230 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 82 ms. Found 5 JPA repository interfaces.
+2022-11-16 18:16:36.720  INFO 93230 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 18:16:36.729  INFO 93230 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 18:16:36.730  INFO 93230 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 18:16:36.827  INFO 93230 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 18:16:36.828  INFO 93230 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1675 ms
+2022-11-16 18:16:36.871  INFO 93230 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 18:16:37.046  INFO 93230 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 18:16:37.054  INFO 93230 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 18:16:37.131  INFO 93230 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:16:37.169  INFO 93230 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 18:16:37.215  INFO 93230 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 18:16:37.351  INFO 93230 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 18:16:37.452  INFO 93230 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 18:16:38.158  INFO 93230 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 18:16:38.166  INFO 93230 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:16:38.368  WARN 93230 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 18:16:39.259  INFO 93230 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 18:16:39.260  INFO 93230 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 18:16:39.442  INFO 93230 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 18:16:39.453  INFO 93230 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 5.09 seconds (JVM running for 6.239)
+2022-11-16 18:16:41.894  INFO 93230 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 18:16:41.894  INFO 93230 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 18:16:41.895  INFO 93230 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-16 18:17:46.997  INFO 93230 --- [http-nio-8080-exec-1] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 156 ms
+2022-11-16 18:19:00.795  INFO 93230 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:19:00.796  INFO 93230 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 18:19:00.979  INFO 93230 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:19:00.979  INFO 93230 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 18:19:00.982  INFO 93230 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 18:19:04.630  INFO 93259 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 93259 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 18:19:04.632  INFO 93259 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 18:19:05.544  INFO 93259 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 18:19:05.641  INFO 93259 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 91 ms. Found 5 JPA repository interfaces.
+2022-11-16 18:19:06.188  INFO 93259 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 18:19:06.199  INFO 93259 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 18:19:06.199  INFO 93259 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 18:19:06.294  INFO 93259 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 18:19:06.295  INFO 93259 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1619 ms
+2022-11-16 18:19:06.338  INFO 93259 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 18:19:06.512  INFO 93259 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 18:19:06.519  INFO 93259 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 18:19:06.611  INFO 93259 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:19:06.651  INFO 93259 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 18:19:06.696  INFO 93259 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 18:19:06.832  INFO 93259 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 18:19:06.929  INFO 93259 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 18:19:07.603  INFO 93259 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 18:19:07.610  INFO 93259 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:19:07.769  WARN 93259 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 18:19:08.629  INFO 93259 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 18:19:08.630  INFO 93259 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 18:19:08.819  INFO 93259 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 18:19:08.831  INFO 93259 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 4.707 seconds (JVM running for 5.725)
+2022-11-16 18:19:10.587  INFO 93259 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 18:19:10.587  INFO 93259 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 18:19:10.588  INFO 93259 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-16 18:19:13.485  INFO 93259 --- [http-nio-8080-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 153 ms
+2022-11-16 18:19:15.284  INFO 93259 --- [http-nio-8080-exec-7] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 54 ms
+2022-11-16 18:19:16.939  INFO 93259 --- [http-nio-8080-exec-10] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 59 ms
+2022-11-16 18:19:28.744  INFO 93259 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:19:28.745  INFO 93259 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 18:19:28.928  INFO 93259 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:19:28.928  INFO 93259 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 18:19:28.931  INFO 93259 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 18:19:33.043  INFO 93265 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 93265 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 18:19:33.045  INFO 93265 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 18:19:34.040  INFO 93265 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 18:19:34.131  INFO 93265 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 83 ms. Found 5 JPA repository interfaces.
+2022-11-16 18:19:34.752  INFO 93265 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 18:19:34.762  INFO 93265 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 18:19:34.762  INFO 93265 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 18:19:34.891  INFO 93265 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 18:19:34.891  INFO 93265 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1780 ms
+2022-11-16 18:19:34.937  INFO 93265 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 18:19:35.126  INFO 93265 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 18:19:35.135  INFO 93265 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 18:19:35.244  INFO 93265 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:19:35.290  INFO 93265 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 18:19:35.343  INFO 93265 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 18:19:35.497  INFO 93265 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 18:19:35.626  INFO 93265 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 18:19:36.463  INFO 93265 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 18:19:36.470  INFO 93265 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:19:36.705  WARN 93265 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 18:19:37.763  INFO 93265 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 18:19:37.765  INFO 93265 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 18:19:37.953  INFO 93265 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 18:19:37.966  INFO 93265 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 5.473 seconds (JVM running for 6.354)
+2022-11-16 18:19:54.834  INFO 93265 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 18:19:54.834  INFO 93265 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 18:19:54.836  INFO 93265 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-11-16 18:19:55.191  INFO 93265 --- [http-nio-8080-exec-3] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 176 ms
+2022-11-16 18:19:56.427  INFO 93265 --- [http-nio-8080-exec-6] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 58 ms
+2022-11-16 18:22:07.667  INFO 93265 --- [http-nio-8080-exec-1] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 77 ms
+2022-11-16 18:24:10.725  INFO 93265 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:24:10.726  INFO 93265 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 18:24:10.906  INFO 93265 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:24:10.906  INFO 93265 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 18:24:10.909  INFO 93265 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 18:24:14.724  INFO 93314 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 93314 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 18:24:14.730  INFO 93314 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 18:24:15.617  INFO 93314 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 18:24:15.717  INFO 93314 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 93 ms. Found 5 JPA repository interfaces.
+2022-11-16 18:24:16.551  INFO 93314 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 18:24:16.562  INFO 93314 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 18:24:16.562  INFO 93314 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 18:24:16.656  INFO 93314 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 18:24:16.656  INFO 93314 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1874 ms
+2022-11-16 18:24:16.693  INFO 93314 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 18:24:16.858  INFO 93314 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 18:24:16.864  INFO 93314 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 18:24:16.931  INFO 93314 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:24:16.966  INFO 93314 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 18:24:17.004  INFO 93314 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 18:24:17.189  INFO 93314 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 18:24:17.314  INFO 93314 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 18:24:17.960  INFO 93314 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 18:24:17.968  INFO 93314 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:24:18.317  WARN 93314 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 18:24:19.188  INFO 93314 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 18:24:19.189  INFO 93314 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 18:24:19.365  INFO 93314 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 18:24:19.374  INFO 93314 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 5.222 seconds (JVM running for 5.962)
+2022-11-16 18:24:20.150  INFO 93314 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 18:24:20.150  INFO 93314 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 18:24:20.152  INFO 93314 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-11-16 18:24:20.643  INFO 93314 --- [http-nio-8080-exec-3] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 235 ms
+2022-11-16 18:24:34.713  INFO 93314 --- [http-nio-8080-exec-6] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 50 ms
+2022-11-16 18:24:35.471  INFO 93314 --- [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 50 ms
+2022-11-16 18:24:35.646  INFO 93314 --- [http-nio-8080-exec-2] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 45 ms
+2022-11-16 18:25:01.386  INFO 93314 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:25:01.387  INFO 93314 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 18:25:01.560  INFO 93314 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:25:01.560  INFO 93314 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 18:25:01.563  INFO 93314 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 18:25:04.744  INFO 93326 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 93326 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 18:25:04.747  INFO 93326 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 18:25:05.637  INFO 93326 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 18:25:05.745  INFO 93326 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 102 ms. Found 5 JPA repository interfaces.
+2022-11-16 18:25:06.356  INFO 93326 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 18:25:06.368  INFO 93326 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 18:25:06.369  INFO 93326 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 18:25:06.472  INFO 93326 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 18:25:06.472  INFO 93326 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1676 ms
+2022-11-16 18:25:06.519  INFO 93326 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 18:25:06.687  INFO 93326 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 18:25:06.692  INFO 93326 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 18:25:06.787  INFO 93326 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 18:25:06.828  INFO 93326 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 18:25:06.871  INFO 93326 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 18:25:06.988  INFO 93326 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 18:25:07.088  INFO 93326 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 18:25:07.736  INFO 93326 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 18:25:07.742  INFO 93326 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 18:25:07.941  WARN 93326 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 18:25:08.846  INFO 93326 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 18:25:08.850  INFO 93326 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 18:25:09.073  INFO 93326 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 18:25:09.089  INFO 93326 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 4.853 seconds (JVM running for 5.659)
+2022-11-16 18:25:09.948  INFO 93326 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 18:25:09.949  INFO 93326 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 18:25:09.950  INFO 93326 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-16 18:25:10.502  INFO 93326 --- [http-nio-8080-exec-3] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 377 ms
+2022-11-16 18:31:18.326  INFO 93326 --- [http-nio-8080-exec-7] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 160 ms

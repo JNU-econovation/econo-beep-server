@@ -6,6 +6,8 @@ import com.econo.econobeepserver.dto.User.UserProfileDto;
 import com.econo.econobeepserver.service.Rentee.RentalService;
 import com.econo.econobeepserver.service.Rentee.RenteeService;
 import com.econo.econobeepserver.service.User.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "유저 API", description = "Econo IDP의 Token을 통한 인증, 유저 정보 조회")
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -23,6 +26,8 @@ public class UserController {
     private final RenteeService renteeService;
     private final RentalService rentalService;
 
+
+    @Operation(summary = "유저 프로필 조회")
     @GetMapping("/api/user/profile")
     public ResponseEntity<UserProfileDto> getUserInfoDtoByAccessToken(@RequestParam(value = "accessToken") String accessToken) {
         UserProfileDto userProfileDto = userService.getUserProfileDtoByAccessToken(accessToken);
@@ -30,6 +35,8 @@ public class UserController {
         return ResponseEntity.ok(userProfileDto);
     }
 
+
+    @Operation(summary = "삡 서비스 내 유저 권한 조회")
     @GetMapping("/api/user/role")
     public ResponseEntity<Role> getUserRoleByAccessToken(@RequestParam(value = "accessToken") String accessToken) {
         Role userRole = userService.getUserRoleByAccessToken(accessToken);
@@ -37,6 +44,11 @@ public class UserController {
         return ResponseEntity.ok(userRole);
     }
 
+
+    @Operation(
+            summary = "해당 유저가 대여한 대여품 조회",
+            description = "최신에 대여한 대여품을 먼저 조회한다."
+    )
     @GetMapping("/api/user/{userId}/rents")
     public ResponseEntity<List<RenteeElementDto>> getRentsByUserId(@PathVariable(value = "userId") long userId) {
         List<RenteeElementDto> renteeElementDtos = rentalService.getRentedRenteesByUserId(userId);
@@ -44,6 +56,11 @@ public class UserController {
         return ResponseEntity.ok(renteeElementDtos);
     }
 
+
+    @Operation(
+            summary = "해당 유저가 반납한 대여품 조회",
+            description = "최신에 반납한 대여품을 먼저 조회한다."
+    )
     @GetMapping("/api/user/{userId}/returns")
     public ResponseEntity<List<RenteeElementDto>> getReturnsByUserId(@PathVariable(value = "userId") long userId) {
         List<RenteeElementDto> renteeElementDtos = rentalService.getReturnedRenteeByUserId(userId);
@@ -51,6 +68,11 @@ public class UserController {
         return ResponseEntity.ok(renteeElementDtos);
     }
 
+
+    @Operation(
+            summary = "해당 유저가 즐겨찾기한 대여품 조회",
+            description = "최신에 즐겨찾기한 대여품을 먼저 조회한다."
+    )
     @GetMapping("/api/user/{userId}/bookmarks")
     public ResponseEntity<List<RenteeElementDto>> getBookmarksByUserId(@PathVariable(value = "userId") long userId) {
         List<RenteeElementDto> renteeElementDtos = renteeService.getBookmarkedRenteeByUserId(userId);
