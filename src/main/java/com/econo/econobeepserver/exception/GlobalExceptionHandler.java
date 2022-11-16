@@ -3,6 +3,7 @@ package com.econo.econobeepserver.exception;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -18,8 +19,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException e) {
-        log.error("IllegalArgumentException] ", e);
-        e.printStackTrace();
+        log.warn("[IllegalArgumentException] " + e.getMessage());
+
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
@@ -28,8 +29,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(AlreadyRentedException.class)
     public ResponseEntity<String> handleAlreadyRentedException(AlreadyRentedException e) {
-        log.error("handleAlreadyRentedException] ", e);
-        e.printStackTrace();
+        log.warn("[handleAlreadyRentedException] " + e.getMessage());
+
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
@@ -38,8 +39,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(WrongAccessTokenException.class)
     public ResponseEntity<String> handleNotFoundPinCodeException(WrongAccessTokenException e) {
-        log.error("handleNotFoundPinCodeException] ", e);
-        e.printStackTrace();
+        log.warn("[handleNotFoundPinCodeException] " + e.getMessage());
+
 
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)
@@ -48,8 +49,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotFoundRenteeException.class)
     public ResponseEntity<String> handleNotFoundRenteeException(NotFoundRenteeException e) {
-        log.error("handleNotFoundRenteeException] ", e);
-        e.printStackTrace();
+        log.warn("[handleNotFoundRenteeException] " + e.getMessage());
+
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
@@ -58,8 +59,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UnrentableException.class)
     public ResponseEntity<String> handleUnrentableException(UnrentableException e) {
-        log.error("handleUnrentableException] ", e);
-        e.printStackTrace();
+        log.warn("[handleUnrentableException] " + e.getMessage());
+
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
@@ -68,8 +69,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotRenterException.class)
     public ResponseEntity<String> handleNotRenterException(NotRenterException e) {
-        log.error("handleNotRenterException] ", e);
-        e.printStackTrace();
+        log.warn("[handleNotRenterException] " + e.getMessage());
+
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
@@ -78,18 +79,18 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(WrongFormatPinCodeException.class)
     public ResponseEntity<String> handleWrongFormatPinCodeException(WrongFormatPinCodeException e) {
-        log.error("handleWrongFormatPinCodeException] ", e);
-        e.printStackTrace();
+        log.warn("[handleWrongFormatPinCodeException] " + e.getMessage());
+
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(e.getMessage());
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleRequestBodyValidException(MethodArgumentNotValidException e) {
-        log.error("handleRequestBodyValidException] ", e);
-        e.printStackTrace();
+    @ExceptionHandler(BindException.class)
+    public ResponseEntity<Map<String, String>> handleRequestBodyValidException(BindException e) {
+        log.warn("[handleRequestBodyValidException] " + e.getMessage());
+
         Map<String, String> errors = new HashMap<>();
         e.getBindingResult().getAllErrors()
                 .forEach(c -> errors.put(((FieldError) c).getField(), c.getDefaultMessage()));
@@ -101,8 +102,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<String> handleMissingServletRequestParameterException(MissingServletRequestParameterException e) {
-        log.error("handleMissingServletRequestParameterException] ", e);
-        e.printStackTrace();
+        log.warn("[handleMissingServletRequestParameterException] " + e.getMessage());
+
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
@@ -111,8 +112,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ImageIOException.class)
     public ResponseEntity<String> handleImageIOException(ImageIOException e) {
-        log.error("handleImageIOException] ", e);
-        e.printStackTrace();
+        log.warn("[handleImageIOException] " + e.getMessage());
+
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)

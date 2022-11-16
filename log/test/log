@@ -1,366 +1,487 @@
-2022-11-15 01:41:17.771  INFO 74444 --- [main] c.e.e.service.RenteeServiceRTest         : Starting RenteeServiceRTest using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 74444 (started by chan in /Users/chan/code/java/econo-beep-server)
-2022-11-15 01:41:17.780  INFO 74444 --- [main] c.e.e.service.RenteeServiceRTest         : The following profiles are active: secret
-2022-11-15 01:41:19.189  INFO 74444 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2022-11-15 01:41:19.450  INFO 74444 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 251 ms. Found 4 JPA repository interfaces.
-2022-11-15 01:41:20.511  INFO 74444 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2022-11-15 01:41:20.577  INFO 74444 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-11-15 01:41:20.662  INFO 74444 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
-2022-11-15 01:41:20.713  INFO 74444 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-11-15 01:41:20.861  INFO 74444 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-11-15 01:41:21.185  INFO 74444 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-11-15 01:41:21.210  INFO 74444 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2022-11-15 01:41:21.895  WARN 74444 --- [task-1] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table bookmark drop foreign key FKlykt7slly2jg94u3w0gynrj7a" via JDBC Statement
+2022-11-16 15:40:39.487  INFO 90925 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 90925 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 15:40:39.497  INFO 90925 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 15:40:40.684  INFO 90925 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 15:40:40.917  INFO 90925 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 219 ms. Found 5 JPA repository interfaces.
+2022-11-16 15:40:41.569  INFO 90925 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 15:40:41.576  INFO 90925 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 15:40:41.577  INFO 90925 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 15:40:41.654  INFO 90925 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 15:40:41.655  INFO 90925 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2054 ms
+2022-11-16 15:40:41.691  INFO 90925 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 15:40:41.857  INFO 90925 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 15:40:41.863  INFO 90925 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 15:40:41.946  INFO 90925 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 15:40:41.994  INFO 90925 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 15:40:42.083  INFO 90925 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 15:40:42.235  INFO 90925 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 15:40:42.374  INFO 90925 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 15:40:43.222  INFO 90925 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 15:40:43.233  INFO 90925 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 15:40:43.561  WARN 90925 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 15:40:44.621  INFO 90925 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 15:40:44.622  INFO 90925 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 15:40:44.826  INFO 90925 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 15:40:44.839  INFO 90925 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 6.012 seconds (JVM running for 6.931)
+2022-11-16 15:40:51.665  INFO 90925 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 15:40:51.666  INFO 90925 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 15:40:51.667  INFO 90925 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-16 15:40:51.762  WARN 90925 --- [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 2 errors
+Field error in object 'bookSaveDto' on field 'name': rejected value [null]; codes [NotNull.bookSaveDto.name,NotNull.name,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [bookSaveDto.name,name]; arguments []; default message [name]]; default message [널이어서는 안됩니다]
+Field error in object 'bookSaveDto' on field 'thumbnail': rejected value [null]; codes [NotNull.bookSaveDto.thumbnail,NotNull.thumbnail,NotNull.org.springframework.web.multipart.MultipartFile,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [bookSaveDto.thumbnail,thumbnail]; arguments []; default message [thumbnail]]; default message [널이어서는 안됩니다]]
+2022-11-16 15:41:15.502  INFO 90925 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 15:41:15.503  INFO 90925 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 15:41:15.648  INFO 90925 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 15:41:15.649  INFO 90925 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 15:41:15.654  INFO 90925 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 15:41:22.356  INFO 90942 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 90942 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 15:41:22.359  INFO 90942 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 15:41:23.253  INFO 90942 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 15:41:23.357  INFO 90942 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 97 ms. Found 5 JPA repository interfaces.
+2022-11-16 15:41:23.871  INFO 90942 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 15:41:23.881  INFO 90942 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 15:41:23.881  INFO 90942 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 15:41:23.962  INFO 90942 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 15:41:23.962  INFO 90942 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1546 ms
+2022-11-16 15:41:24.000  INFO 90942 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 15:41:24.165  INFO 90942 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 15:41:24.171  INFO 90942 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 15:41:24.249  INFO 90942 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 15:41:24.291  INFO 90942 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 15:41:24.339  INFO 90942 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 15:41:24.454  INFO 90942 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 15:41:24.551  INFO 90942 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 15:41:25.218  INFO 90942 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 15:41:25.226  INFO 90942 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 15:41:25.430  WARN 90942 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 15:41:26.321  INFO 90942 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 15:41:26.322  INFO 90942 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 15:41:26.495  INFO 90942 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 15:41:26.505  INFO 90942 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 4.682 seconds (JVM running for 5.725)
+2022-11-16 15:41:29.657  INFO 90942 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 15:41:29.657  INFO 90942 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 15:41:29.659  INFO 90942 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-16 15:41:29.755  WARN 90942 --- [http-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 2 errors
+Field error in object 'bookSaveDto' on field 'thumbnail': rejected value [null]; codes [NotNull.bookSaveDto.thumbnail,NotNull.thumbnail,NotNull.org.springframework.web.multipart.MultipartFile,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [bookSaveDto.thumbnail,thumbnail]; arguments []; default message [thumbnail]]; default message [널이어서는 안됩니다]
+Field error in object 'bookSaveDto' on field 'name': rejected value [null]; codes [NotNull.bookSaveDto.name,NotNull.name,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [bookSaveDto.name,name]; arguments []; default message [name]]; default message [널이어서는 안됩니다]]
+2022-11-16 15:41:55.779  INFO 90942 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 15:41:55.779  INFO 90942 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 15:41:55.977  INFO 90942 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 15:41:55.978  INFO 90942 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 15:41:55.998  INFO 90942 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 15:42:02.082  INFO 90960 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 90960 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 15:42:02.088  INFO 90960 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 15:42:03.049  INFO 90960 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 15:42:03.150  INFO 90960 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 92 ms. Found 5 JPA repository interfaces.
+2022-11-16 15:42:03.761  INFO 90960 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 15:42:03.774  INFO 90960 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 15:42:03.775  INFO 90960 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 15:42:03.882  INFO 90960 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 15:42:03.882  INFO 90960 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1728 ms
+2022-11-16 15:42:03.930  INFO 90960 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 15:42:04.115  INFO 90960 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 15:42:04.121  INFO 90960 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 15:42:04.201  INFO 90960 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 15:42:04.238  INFO 90960 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 15:42:04.278  INFO 90960 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 15:42:04.386  INFO 90960 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 15:42:04.477  INFO 90960 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 15:42:05.157  INFO 90960 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 15:42:05.164  INFO 90960 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 15:42:05.430  WARN 90960 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 15:42:06.314  INFO 90960 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 15:42:06.315  INFO 90960 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 15:42:06.509  INFO 90960 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 15:42:06.521  INFO 90960 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 4.965 seconds (JVM running for 5.804)
+2022-11-16 15:42:10.368  INFO 90960 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 15:42:10.369  INFO 90960 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 15:42:10.370  INFO 90960 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-16 15:42:10.441  INFO 90960 --- [http-nio-8080-exec-1] c.e.e.exception.GlobalExceptionHandler   : handleNotFoundRenteeException] 
 
-org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table bookmark drop foreign key FKlykt7slly2jg94u3w0gynrj7a" via JDBC Statement
-	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:375) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:359) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:331) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:230) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:154) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:126) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:112) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:145) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:73) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:316) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:469) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1259) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58) ~[spring-orm-5.3.1.jar:5.3.1]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) ~[spring-orm-5.3.1.jar:5.3.1]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-5.3.1.jar:5.3.1]
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+com.econo.econobeepserver.exception.NotFoundRenteeException: NOT_FOUND_RENTEE_EXCEPTION: 일치하는 비품(들)이 없습니다.
+	at java.base/java.util.Optional.orElseThrow(Optional.java:408) ~[na:na]
+	at com.econo.econobeepserver.service.Rentee.RenteeService.getRenteeById(RenteeService.java:55) ~[classes/:na]
+	at com.econo.econobeepserver.service.Rentee.RenteeService.getRenteeInfoDtoByIdWithAccessToken(RenteeService.java:63) ~[classes/:na]
+	at com.econo.econobeepserver.service.Rentee.RenteeService$$FastClassBySpringCGLIB$$ab832054.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.1.jar:5.3.1]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:687) ~[spring-aop-5.3.1.jar:5.3.1]
+	at com.econo.econobeepserver.service.Rentee.RenteeService$$EnhancerBySpringCGLIB$$f7b13dbd.getRenteeInfoDtoByIdWithAccessToken(<generated>) ~[classes/:na]
+	at com.econo.econobeepserver.web.Rentee.RenteeController.getRenteeInfoDtoById(RenteeController.java:23) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:893) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:807) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1061) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:961) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) ~[tomcat-embed-core-9.0.39.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) ~[tomcat-embed-core-9.0.39.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
 	at java.base/java.lang.Thread.run(Thread.java:829) ~[na:na]
-Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BOOKMARK" not found; SQL statement:
-alter table bookmark drop foreign key FKlykt7slly2jg94u3w0gynrj7a [42102-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.message.DbException.get(DbException.java:205) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.message.DbException.get(DbException.java:181) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.tableIfTableExists(Parser.java:8041) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.commandIfTableExists(Parser.java:8057) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.parseAlterTableDropCompatibility(Parser.java:7879) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.parseAlterTableDrop(Parser.java:7835) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.parseAlterTable(Parser.java:7696) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.parseAlter(Parser.java:6983) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.parsePrepared(Parser.java:887) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.parse(Parser.java:843) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.parse(Parser.java:815) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.prepareCommand(Parser.java:738) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.engine.Session.prepareLocal(Session.java:657) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.engine.Session.prepareCommand(Session.java:595) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201) ~[h2-1.4.200.jar:1.4.200]
-	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-3.4.5.jar:na]
-	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-3.4.5.jar:na]
-	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	... 19 common frames omitted
 
-2022-11-15 01:41:21.897  WARN 74444 --- [task-1] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table bookmark drop foreign key FK3ogdxsxa4tx6vndyvpk1fk1am" via JDBC Statement
+2022-11-16 15:43:37.729  INFO 90960 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 15:43:37.730  INFO 90960 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 15:43:37.945  INFO 90960 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 15:43:37.946  INFO 90960 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 15:43:37.952  INFO 90960 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 15:43:43.642  INFO 90987 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 90987 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 15:43:43.645  INFO 90987 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 15:43:44.576  INFO 90987 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 15:43:44.666  INFO 90987 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 83 ms. Found 5 JPA repository interfaces.
+2022-11-16 15:43:45.186  INFO 90987 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 15:43:45.195  INFO 90987 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 15:43:45.195  INFO 90987 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 15:43:45.278  INFO 90987 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 15:43:45.279  INFO 90987 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1567 ms
+2022-11-16 15:43:45.317  INFO 90987 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 15:43:45.465  INFO 90987 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 15:43:45.472  INFO 90987 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 15:43:45.563  INFO 90987 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 15:43:45.599  INFO 90987 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 15:43:45.638  INFO 90987 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 15:43:45.738  INFO 90987 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 15:43:45.819  INFO 90987 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 15:43:46.477  INFO 90987 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 15:43:46.484  INFO 90987 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 15:43:46.698  WARN 90987 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 15:43:47.544  INFO 90987 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 15:43:47.545  INFO 90987 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 15:43:47.723  INFO 90987 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 15:43:47.734  INFO 90987 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 4.523 seconds (JVM running for 5.389)
+2022-11-16 15:43:53.468  INFO 90987 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 15:43:53.469  INFO 90987 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 15:43:53.472  INFO 90987 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-11-16 15:43:53.563  WARN 90987 --- [http-nio-8080-exec-1] c.e.e.exception.GlobalExceptionHandler   : [handleNotFoundRenteeException] 
+2022-11-16 15:44:24.812  INFO 90987 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 15:44:24.813  INFO 90987 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 15:44:24.983  INFO 90987 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 15:44:24.983  INFO 90987 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 15:44:24.987  INFO 90987 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 15:44:29.965  INFO 91001 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 91001 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 15:44:29.968  INFO 91001 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 15:44:30.859  INFO 91001 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 15:44:30.951  INFO 91001 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 85 ms. Found 5 JPA repository interfaces.
+2022-11-16 15:44:31.778  INFO 91001 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 15:44:31.795  INFO 91001 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 15:44:31.795  INFO 91001 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 15:44:31.948  INFO 91001 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 15:44:31.949  INFO 91001 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1918 ms
+2022-11-16 15:44:32.021  INFO 91001 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 15:44:32.195  INFO 91001 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 15:44:32.200  INFO 91001 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 15:44:32.283  INFO 91001 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 15:44:32.326  INFO 91001 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 15:44:32.379  INFO 91001 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 15:44:32.529  INFO 91001 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 15:44:32.635  INFO 91001 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 15:44:33.590  INFO 91001 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 15:44:33.598  INFO 91001 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 15:44:33.871  WARN 91001 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 15:44:35.482  INFO 91001 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 15:44:35.485  INFO 91001 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 15:44:35.796  INFO 91001 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 15:44:35.810  INFO 91001 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 6.33 seconds (JVM running for 7.314)
+2022-11-16 15:44:38.084  INFO 91001 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 15:44:38.085  INFO 91001 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 15:44:38.090  INFO 91001 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2022-11-16 15:44:38.212  WARN 91001 --- [http-nio-8080-exec-1] c.e.e.exception.GlobalExceptionHandler   : handleNotFoundRenteeException] 
 
-org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table bookmark drop foreign key FK3ogdxsxa4tx6vndyvpk1fk1am" via JDBC Statement
-	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:375) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:359) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:331) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:230) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:154) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:126) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:112) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:145) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:73) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:316) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:469) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1259) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58) ~[spring-orm-5.3.1.jar:5.3.1]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) ~[spring-orm-5.3.1.jar:5.3.1]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-5.3.1.jar:5.3.1]
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+com.econo.econobeepserver.exception.NotFoundRenteeException: NOT_FOUND_RENTEE_EXCEPTION: 일치하는 비품(들)이 없습니다.
+	at java.base/java.util.Optional.orElseThrow(Optional.java:408) ~[na:na]
+	at com.econo.econobeepserver.service.Rentee.RenteeService.getRenteeById(RenteeService.java:55) ~[classes/:na]
+	at com.econo.econobeepserver.service.Rentee.RenteeService.getRenteeInfoDtoByIdWithAccessToken(RenteeService.java:63) ~[classes/:na]
+	at com.econo.econobeepserver.service.Rentee.RenteeService$$FastClassBySpringCGLIB$$ab832054.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.1.jar:5.3.1]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:687) ~[spring-aop-5.3.1.jar:5.3.1]
+	at com.econo.econobeepserver.service.Rentee.RenteeService$$EnhancerBySpringCGLIB$$49062931.getRenteeInfoDtoByIdWithAccessToken(<generated>) ~[classes/:na]
+	at com.econo.econobeepserver.web.Rentee.RenteeController.getRenteeInfoDtoById(RenteeController.java:23) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:893) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:807) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1061) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:961) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) ~[tomcat-embed-core-9.0.39.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) ~[tomcat-embed-core-9.0.39.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
 	at java.base/java.lang.Thread.run(Thread.java:829) ~[na:na]
-Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BOOKMARK" not found; SQL statement:
-alter table bookmark drop foreign key FK3ogdxsxa4tx6vndyvpk1fk1am [42102-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.message.DbException.get(DbException.java:205) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.message.DbException.get(DbException.java:181) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.tableIfTableExists(Parser.java:8041) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.commandIfTableExists(Parser.java:8057) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.parseAlterTableDropCompatibility(Parser.java:7879) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.parseAlterTableDrop(Parser.java:7835) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.parseAlterTable(Parser.java:7696) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.parseAlter(Parser.java:6983) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.parsePrepared(Parser.java:887) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.parse(Parser.java:843) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.parse(Parser.java:815) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Parser.prepareCommand(Parser.java:738) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.engine.Session.prepareLocal(Session.java:657) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.engine.Session.prepareCommand(Session.java:595) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201) ~[h2-1.4.200.jar:1.4.200]
-	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-3.4.5.jar:na]
-	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-3.4.5.jar:na]
-	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	... 19 common frames omitted
 
-2022-11-15 01:41:21.904  WARN 74444 --- [task-1] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table rental drop foreign key FKm6f1r8a0m7w8n5upyjslprj25" via JDBC Statement
+2022-11-16 15:45:04.371  INFO 91001 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 15:45:04.371  INFO 91001 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 15:45:04.538  INFO 91001 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 15:45:04.539  INFO 91001 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 15:45:04.542  INFO 91001 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 15:45:10.574  INFO 91013 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 91013 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 15:45:10.579  INFO 91013 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 15:45:11.464  INFO 91013 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 15:45:11.568  INFO 91013 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 94 ms. Found 5 JPA repository interfaces.
+2022-11-16 15:45:12.160  INFO 91013 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 15:45:12.171  INFO 91013 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 15:45:12.172  INFO 91013 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 15:45:12.273  INFO 91013 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 15:45:12.273  INFO 91013 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1642 ms
+2022-11-16 15:45:12.315  INFO 91013 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 15:45:12.486  INFO 91013 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 15:45:12.494  INFO 91013 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 15:45:12.576  INFO 91013 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 15:45:12.623  INFO 91013 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 15:45:12.671  INFO 91013 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 15:45:12.807  INFO 91013 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 15:45:12.914  INFO 91013 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 15:45:13.555  INFO 91013 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 15:45:13.562  INFO 91013 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 15:45:13.793  WARN 91013 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 15:45:14.765  INFO 91013 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 15:45:14.766  INFO 91013 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 15:45:14.952  INFO 91013 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 15:45:14.964  INFO 91013 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 4.842 seconds (JVM running for 5.668)
+2022-11-16 15:45:17.571  INFO 91013 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 15:45:17.572  INFO 91013 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 15:45:17.573  INFO 91013 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-16 15:45:17.690  WARN 91013 --- [http-nio-8080-exec-2] c.e.e.exception.GlobalExceptionHandler   : handleNotFoundRenteeException] 
+2022-11-16 15:46:52.749  WARN 91013 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m10s63ms).
+2022-11-16 15:56:53.907  WARN 91013 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m1s158ms).
+2022-11-16 16:01:11.973  WARN 91013 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m48s5ms).
+2022-11-16 16:15:57.045  INFO 91013 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 16:15:57.047  INFO 91013 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 16:15:57.203  INFO 91013 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 16:15:57.204  INFO 91013 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 16:15:57.208  INFO 91013 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 16:16:01.611  INFO 91290 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 91290 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 16:16:01.614  INFO 91290 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 16:16:02.478  INFO 91290 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 16:16:02.568  INFO 91290 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 84 ms. Found 5 JPA repository interfaces.
+2022-11-16 16:16:03.083  INFO 91290 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 16:16:03.091  INFO 91290 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 16:16:03.092  INFO 91290 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 16:16:03.175  INFO 91290 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 16:16:03.175  INFO 91290 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1474 ms
+2022-11-16 16:16:03.209  INFO 91290 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 16:16:03.347  INFO 91290 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 16:16:03.353  INFO 91290 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 16:16:03.425  INFO 91290 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 16:16:03.463  INFO 91290 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 16:16:03.503  INFO 91290 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 16:16:03.625  INFO 91290 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 16:16:03.737  INFO 91290 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 16:16:04.452  INFO 91290 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 16:16:04.459  INFO 91290 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 16:16:04.686  WARN 91290 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 16:16:05.528  INFO 91290 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 16:16:05.530  INFO 91290 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 16:16:05.719  INFO 91290 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 16:16:05.737  INFO 91290 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 4.577 seconds (JVM running for 5.503)
+2022-11-16 16:16:09.448  INFO 91290 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 16:16:09.448  INFO 91290 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 16:16:09.449  INFO 91290 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-16 16:16:09.517  WARN 91290 --- [http-nio-8080-exec-1] c.e.e.exception.GlobalExceptionHandler   : handleNotFoundRenteeException] 
 
-org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table rental drop foreign key FKm6f1r8a0m7w8n5upyjslprj25" via JDBC Statement
-	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:375) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:359) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:331) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:230) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:154) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:126) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:112) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:145) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:73) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:316) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:469) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1259) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58) ~[spring-orm-5.3.1.jar:5.3.1]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) ~[spring-orm-5.3.1.jar:5.3.1]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-5.3.1.jar:5.3.1]
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+com.econo.econobeepserver.exception.NotFoundRenteeException: NOT_FOUND_RENTEE_EXCEPTION: 일치하는 비품(들)이 없습니다.
+	at java.base/java.util.Optional.orElseThrow(Optional.java:408) ~[na:na]
+	at com.econo.econobeepserver.service.Rentee.RenteeService.getRenteeById(RenteeService.java:55) ~[classes/:na]
+	at com.econo.econobeepserver.service.Rentee.RenteeService.getRenteeInfoDtoByIdWithAccessToken(RenteeService.java:63) ~[classes/:na]
+	at com.econo.econobeepserver.service.Rentee.RenteeService$$FastClassBySpringCGLIB$$ab832054.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.1.jar:5.3.1]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:687) ~[spring-aop-5.3.1.jar:5.3.1]
+	at com.econo.econobeepserver.service.Rentee.RenteeService$$EnhancerBySpringCGLIB$$4ec12593.getRenteeInfoDtoByIdWithAccessToken(<generated>) ~[classes/:na]
+	at com.econo.econobeepserver.web.Rentee.RenteeController.getRenteeInfoDtoById(RenteeController.java:23) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:893) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:807) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1061) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:961) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) ~[tomcat-embed-core-9.0.39.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.1.jar:5.3.1]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) ~[tomcat-embed-core-9.0.39.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.1.jar:5.3.1]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
 	at java.base/java.lang.Thread.run(Thread.java:829) ~[na:na]
-Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Constraint "FKM6F1R8A0M7W8N5UPYJSLPRJ25" not found; SQL statement:
-alter table rental drop foreign key FKm6f1r8a0m7w8n5upyjslprj25 [90057-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.message.DbException.get(DbException.java:205) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.message.DbException.get(DbException.java:181) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.ddl.AlterTableDropConstraint.update(AlterTableDropConstraint.java:41) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.CommandContainer.update(CommandContainer.java:198) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.command.Command.executeUpdate(Command.java:251) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:228) ~[h2-1.4.200.jar:1.4.200]
-	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201) ~[h2-1.4.200.jar:1.4.200]
-	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-3.4.5.jar:na]
-	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-3.4.5.jar:na]
-	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.4.23.Final.jar:5.4.23.Final]
-	... 19 common frames omitted
 
-2022-11-15 01:41:21.938  INFO 74444 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-11-15 01:41:21.948  INFO 74444 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-11-15 01:41:22.483  WARN 74444 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-11-15 01:41:22.918  INFO 74444 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
-2022-11-15 01:41:24.037  INFO 74444 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
-2022-11-15 01:41:24.250  INFO 74444 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
-2022-11-15 01:41:24.260  INFO 74444 --- [main] c.e.e.service.RenteeServiceRTest         : Started RenteeServiceRTest in 7.064 seconds (JVM running for 8.677)
-2022-11-15 01:41:24.771  INFO 74444 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.econo.econobeepserver.service.RenteeServiceRTest$SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test], using SpringBootContextLoader
-2022-11-15 01:41:24.772  INFO 74444 --- [main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.econo.econobeepserver.service.RenteeServiceRTest$SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test]: no resource found for suffixes {-context.xml, Context.groovy}.
-2022-11-15 01:41:24.772  INFO 74444 --- [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.econo.econobeepserver.service.RenteeServiceRTest$SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test]: SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2022-11-15 01:41:24.775  INFO 74444 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.econo.econobeepserver.EconoBeepServerApplication for test class com.econo.econobeepserver.service.RenteeServiceRTest$SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test
-2022-11-15 01:41:24.775  INFO 74444 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2022-11-15 01:41:24.776  INFO 74444 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@64df8422, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2b30b627, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5fa9971f, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@70a24463, org.springframework.test.context.support.DirtiesContextTestExecutionListener@684430c1, org.springframework.test.context.transaction.TransactionalTestExecutionListener@46eb2260, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@556944cd, org.springframework.test.context.event.EventPublishingTestExecutionListener@370a935f, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7e017f47, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6166aac5, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@7e36d508, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@1d4531fa, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@68cb8e52, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@3c2f310c]
-2022-11-15 01:41:25.236  INFO 74444 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-11-15 01:41:25.237  INFO 74444 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-11-15 01:41:25.239  WARN 74444 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
-2022-11-15 01:41:25.239 ERROR 74444 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
-2022-11-15 01:41:25.241  WARN 74444 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
-2022-11-15 01:41:25.241 ERROR 74444 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
-2022-11-15 01:41:25.241  WARN 74444 --- [SpringContextShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
-2022-11-15 01:41:25.241  INFO 74444 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2022-11-15 01:41:25.241  INFO 74444 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-11-15 01:41:25.245  INFO 74444 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-11-15 01:45:30.929  INFO 74513 --- [main] c.e.e.service.RenteeServiceRTest         : Starting RenteeServiceRTest using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 74513 (started by chan in /Users/chan/code/java/econo-beep-server)
-2022-11-15 01:45:30.930  INFO 74513 --- [main] c.e.e.service.RenteeServiceRTest         : The following profiles are active: secret
-2022-11-15 01:45:31.786  INFO 74513 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2022-11-15 01:45:32.026  INFO 74513 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 232 ms. Found 4 JPA repository interfaces.
-2022-11-15 01:45:32.527  INFO 74513 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2022-11-15 01:45:32.586  INFO 74513 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-11-15 01:45:32.641  INFO 74513 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
-2022-11-15 01:45:32.781  INFO 74513 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-11-15 01:45:32.914  INFO 74513 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-11-15 01:45:33.173  INFO 74513 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-11-15 01:45:33.190  INFO 74513 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2022-11-15 01:45:33.786  INFO 74513 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-11-15 01:45:33.794  INFO 74513 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-11-15 01:45:34.226  WARN 74513 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-11-15 01:45:34.583  INFO 74513 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
-2022-11-15 01:45:35.492  INFO 74513 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
-2022-11-15 01:45:35.658  INFO 74513 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
-2022-11-15 01:45:35.666  INFO 74513 --- [main] c.e.e.service.RenteeServiceRTest         : Started RenteeServiceRTest in 5.249 seconds (JVM running for 6.491)
-2022-11-15 01:45:36.127  INFO 74513 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.econo.econobeepserver.service.RenteeServiceRTest$SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test], using SpringBootContextLoader
-2022-11-15 01:45:36.128  INFO 74513 --- [main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.econo.econobeepserver.service.RenteeServiceRTest$SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test]: no resource found for suffixes {-context.xml, Context.groovy}.
-2022-11-15 01:45:36.128  INFO 74513 --- [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.econo.econobeepserver.service.RenteeServiceRTest$SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test]: SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2022-11-15 01:45:36.129  INFO 74513 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.econo.econobeepserver.EconoBeepServerApplication for test class com.econo.econobeepserver.service.RenteeServiceRTest$SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test
-2022-11-15 01:45:36.131  INFO 74513 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2022-11-15 01:45:36.131  INFO 74513 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@361c4981, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@35fac3ba, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@50a095cb, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3f2afa8b, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6b2efcae, org.springframework.test.context.transaction.TransactionalTestExecutionListener@8aa1562, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@5c70c771, org.springframework.test.context.event.EventPublishingTestExecutionListener@346690d6, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@2831c178, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@70e8c019, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2a79da3a, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@2a191f83, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@c8531b9, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@3adbd038]
-2022-11-15 01:45:36.419  WARN 74513 --- [main] o.h.a.i.UnresolvedEntityInsertActions    : HHH000437: Attempting to save one or more entities that have a non-nullable association with an unsaved transient entity. The unsaved transient entity must be saved in an operation prior to saving these dependent entities.
-	Unsaved transient entity: ([com.econo.econobeepserver.domain.User.User#<null>])
-	Dependent entities: ([[com.econo.econobeepserver.domain.Rental.Rental#<null>]])
-	Non-nullable association(s): ([com.econo.econobeepserver.domain.Rental.Rental.renter])
-2022-11-15 01:45:36.561  WARN 74513 --- [main] o.h.a.i.UnresolvedEntityInsertActions    : HHH000437: Attempting to save one or more entities that have a non-nullable association with an unsaved transient entity. The unsaved transient entity must be saved in an operation prior to saving these dependent entities.
-	Unsaved transient entity: ([com.econo.econobeepserver.domain.User.User#<null>])
-	Dependent entities: ([[com.econo.econobeepserver.domain.Rental.Rental#<null>]])
-	Non-nullable association(s): ([com.econo.econobeepserver.domain.Rental.Rental.renter])
-2022-11-15 01:45:36.602  INFO 74513 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-11-15 01:45:36.603  INFO 74513 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-11-15 01:45:36.607  WARN 74513 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
-2022-11-15 01:45:36.608 ERROR 74513 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
-2022-11-15 01:45:36.609  WARN 74513 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
-2022-11-15 01:45:36.609 ERROR 74513 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
-2022-11-15 01:45:36.610  WARN 74513 --- [SpringContextShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
-2022-11-15 01:45:36.610  INFO 74513 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2022-11-15 01:45:36.610  INFO 74513 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-11-15 01:45:36.614  INFO 74513 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-11-15 01:48:25.522  INFO 74579 --- [main] c.e.e.service.RenteeServiceRTest         : Starting RenteeServiceRTest using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 74579 (started by chan in /Users/chan/code/java/econo-beep-server)
-2022-11-15 01:48:25.523  INFO 74579 --- [main] c.e.e.service.RenteeServiceRTest         : The following profiles are active: secret
-2022-11-15 01:48:26.265  INFO 74579 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2022-11-15 01:48:26.474  INFO 74579 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 201 ms. Found 4 JPA repository interfaces.
-2022-11-15 01:48:27.397  INFO 74579 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2022-11-15 01:48:27.460  INFO 74579 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-11-15 01:48:27.519  INFO 74579 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
-2022-11-15 01:48:27.561  INFO 74579 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-11-15 01:48:27.681  INFO 74579 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-11-15 01:48:27.909  INFO 74579 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-11-15 01:48:27.930  INFO 74579 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2022-11-15 01:48:28.577  INFO 74579 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-11-15 01:48:28.585  INFO 74579 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-11-15 01:48:29.017  WARN 74579 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-11-15 01:48:29.407  INFO 74579 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
-2022-11-15 01:48:30.460  INFO 74579 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
-2022-11-15 01:48:30.646  INFO 74579 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
-2022-11-15 01:48:30.654  INFO 74579 --- [main] c.e.e.service.RenteeServiceRTest         : Started RenteeServiceRTest in 5.423 seconds (JVM running for 6.556)
-2022-11-15 01:48:31.316  INFO 74579 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-11-15 01:48:31.317  INFO 74579 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-11-15 01:48:31.321  WARN 74579 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
-2022-11-15 01:48:31.321 ERROR 74579 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
-2022-11-15 01:48:31.322  WARN 74579 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
-2022-11-15 01:48:31.322 ERROR 74579 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
-2022-11-15 01:48:31.323  WARN 74579 --- [SpringContextShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
-2022-11-15 01:48:31.323  INFO 74579 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2022-11-15 01:48:31.323  INFO 74579 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-11-15 01:48:31.326  INFO 74579 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-11-15 01:49:42.709  INFO 74605 --- [main] c.e.e.service.RenteeServiceRTest         : Starting RenteeServiceRTest using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 74605 (started by chan in /Users/chan/code/java/econo-beep-server)
-2022-11-15 01:49:42.710  INFO 74605 --- [main] c.e.e.service.RenteeServiceRTest         : The following profiles are active: secret
-2022-11-15 01:49:43.605  INFO 74605 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2022-11-15 01:49:43.876  INFO 74605 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 261 ms. Found 4 JPA repository interfaces.
-2022-11-15 01:49:44.812  INFO 74605 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2022-11-15 01:49:44.875  INFO 74605 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-11-15 01:49:44.936  INFO 74605 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
-2022-11-15 01:49:44.977  INFO 74605 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-11-15 01:49:45.098  INFO 74605 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-11-15 01:49:45.335  INFO 74605 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-11-15 01:49:45.352  INFO 74605 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2022-11-15 01:49:45.985  INFO 74605 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-11-15 01:49:45.992  INFO 74605 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-11-15 01:49:46.477  WARN 74605 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-11-15 01:49:46.921  INFO 74605 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
-2022-11-15 01:49:47.970  INFO 74605 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
-2022-11-15 01:49:48.159  INFO 74605 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
-2022-11-15 01:49:48.171  INFO 74605 --- [main] c.e.e.service.RenteeServiceRTest         : Started RenteeServiceRTest in 5.881 seconds (JVM running for 7.128)
-2022-11-15 01:49:48.815  INFO 74605 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-11-15 01:49:48.816  INFO 74605 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-11-15 01:49:48.820  WARN 74605 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
-2022-11-15 01:49:48.820 ERROR 74605 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
-2022-11-15 01:49:48.821  WARN 74605 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
-2022-11-15 01:49:48.821 ERROR 74605 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
-2022-11-15 01:49:48.822  WARN 74605 --- [SpringContextShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
-2022-11-15 01:49:48.822  INFO 74605 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2022-11-15 01:49:48.822  INFO 74605 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-11-15 01:49:48.826  INFO 74605 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-11-15 01:49:59.872  INFO 74616 --- [main] c.e.e.service.RenteeServiceRTest         : Starting RenteeServiceRTest using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 74616 (started by chan in /Users/chan/code/java/econo-beep-server)
-2022-11-15 01:49:59.873  INFO 74616 --- [main] c.e.e.service.RenteeServiceRTest         : The following profiles are active: secret
-2022-11-15 01:50:00.722  INFO 74616 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2022-11-15 01:50:00.958  INFO 74616 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 228 ms. Found 4 JPA repository interfaces.
-2022-11-15 01:50:01.884  INFO 74616 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2022-11-15 01:50:01.954  INFO 74616 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-11-15 01:50:02.012  INFO 74616 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
-2022-11-15 01:50:02.056  INFO 74616 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-11-15 01:50:02.187  INFO 74616 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-11-15 01:50:02.447  INFO 74616 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-11-15 01:50:02.467  INFO 74616 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2022-11-15 01:50:03.114  INFO 74616 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-11-15 01:50:03.121  INFO 74616 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-11-15 01:50:03.593  WARN 74616 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-11-15 01:50:04.009  INFO 74616 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
-2022-11-15 01:50:05.184  INFO 74616 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
-2022-11-15 01:50:05.388  INFO 74616 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
-2022-11-15 01:50:05.397  INFO 74616 --- [main] c.e.e.service.RenteeServiceRTest         : Started RenteeServiceRTest in 5.812 seconds (JVM running for 7.092)
-2022-11-15 01:50:06.006  INFO 74616 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.econo.econobeepserver.service.RenteeServiceRTest$SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test], using SpringBootContextLoader
-2022-11-15 01:50:06.007  INFO 74616 --- [main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.econo.econobeepserver.service.RenteeServiceRTest$SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test]: no resource found for suffixes {-context.xml, Context.groovy}.
-2022-11-15 01:50:06.008  INFO 74616 --- [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.econo.econobeepserver.service.RenteeServiceRTest$SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test]: SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2022-11-15 01:50:06.010  INFO 74616 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.econo.econobeepserver.EconoBeepServerApplication for test class com.econo.econobeepserver.service.RenteeServiceRTest$SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test
-2022-11-15 01:50:06.012  INFO 74616 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2022-11-15 01:50:06.012  INFO 74616 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@2c51c756, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4ef277ef, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@1ddc889b, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@5ec3689b, org.springframework.test.context.support.DirtiesContextTestExecutionListener@7c0a6f62, org.springframework.test.context.transaction.TransactionalTestExecutionListener@219a2203, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@58fbfefb, org.springframework.test.context.event.EventPublishingTestExecutionListener@1db9c2cf, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@32e7df65, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@421d7900, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@45964b9e, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@166a5659, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@1afabf06, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@33060020]
-2022-11-15 01:50:06.548  INFO 74616 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-11-15 01:50:06.548  INFO 74616 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-11-15 01:50:06.552  WARN 74616 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
-2022-11-15 01:50:06.552 ERROR 74616 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
-2022-11-15 01:50:06.553  WARN 74616 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
-2022-11-15 01:50:06.553 ERROR 74616 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
-2022-11-15 01:50:06.553  WARN 74616 --- [SpringContextShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
-2022-11-15 01:50:06.554  INFO 74616 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2022-11-15 01:50:06.554  INFO 74616 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-11-15 01:50:06.558  INFO 74616 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-11-15 01:50:35.607  INFO 74629 --- [main] c.e.e.service.RenteeServiceRTest         : Starting RenteeServiceRTest using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 74629 (started by chan in /Users/chan/code/java/econo-beep-server)
-2022-11-15 01:50:35.608  INFO 74629 --- [main] c.e.e.service.RenteeServiceRTest         : The following profiles are active: secret
-2022-11-15 01:50:36.441  INFO 74629 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2022-11-15 01:50:36.668  INFO 74629 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 218 ms. Found 4 JPA repository interfaces.
-2022-11-15 01:50:37.583  INFO 74629 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2022-11-15 01:50:37.639  INFO 74629 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-11-15 01:50:37.693  INFO 74629 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
-2022-11-15 01:50:37.730  INFO 74629 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-11-15 01:50:37.843  INFO 74629 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-11-15 01:50:38.089  INFO 74629 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-11-15 01:50:38.107  INFO 74629 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2022-11-15 01:50:38.752  INFO 74629 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-11-15 01:50:38.760  INFO 74629 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-11-15 01:50:39.230  WARN 74629 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-11-15 01:50:39.643  INFO 74629 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
-2022-11-15 01:50:40.834  INFO 74629 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
-2022-11-15 01:50:41.050  INFO 74629 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
-2022-11-15 01:50:41.060  INFO 74629 --- [main] c.e.e.service.RenteeServiceRTest         : Started RenteeServiceRTest in 5.728 seconds (JVM running for 6.927)
-2022-11-15 01:50:41.570  INFO 74629 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.econo.econobeepserver.service.RenteeServiceRTest$SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test], using SpringBootContextLoader
-2022-11-15 01:50:41.571  INFO 74629 --- [main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.econo.econobeepserver.service.RenteeServiceRTest$SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test]: no resource found for suffixes {-context.xml, Context.groovy}.
-2022-11-15 01:50:41.571  INFO 74629 --- [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.econo.econobeepserver.service.RenteeServiceRTest$SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test]: SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2022-11-15 01:50:41.573  INFO 74629 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.econo.econobeepserver.EconoBeepServerApplication for test class com.econo.econobeepserver.service.RenteeServiceRTest$SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test
-2022-11-15 01:50:41.575  INFO 74629 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2022-11-15 01:50:41.575  INFO 74629 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@510bd87a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@3d213a2b, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@27691ee8, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@78a34c47, org.springframework.test.context.support.DirtiesContextTestExecutionListener@77648321, org.springframework.test.context.transaction.TransactionalTestExecutionListener@43201f84, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2c51c756, org.springframework.test.context.event.EventPublishingTestExecutionListener@4ef277ef, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@1ddc889b, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@5ec3689b, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@7c0a6f62, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@219a2203, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@58fbfefb, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@1db9c2cf]
-2022-11-15 01:50:42.153  INFO 74629 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-11-15 01:50:42.154  INFO 74629 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-11-15 01:50:42.159  WARN 74629 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
-2022-11-15 01:50:42.159 ERROR 74629 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
-2022-11-15 01:50:42.160  WARN 74629 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
-2022-11-15 01:50:42.160 ERROR 74629 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
-2022-11-15 01:50:42.160  WARN 74629 --- [SpringContextShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
-2022-11-15 01:50:42.161  INFO 74629 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2022-11-15 01:50:42.161  INFO 74629 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-11-15 01:50:42.164  INFO 74629 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-11-15 02:57:20.183  INFO 77215 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 77215 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
-2022-11-15 02:57:20.186  INFO 77215 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
-2022-11-15 02:57:21.144  INFO 77215 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2022-11-15 02:57:21.279  INFO 77215 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 116 ms. Found 5 JPA repository interfaces.
-2022-11-15 02:57:21.856  INFO 77215 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-11-15 02:57:21.867  INFO 77215 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-11-15 02:57:21.867  INFO 77215 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
-2022-11-15 02:57:21.965  INFO 77215 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-11-15 02:57:21.966  INFO 77215 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1712 ms
-2022-11-15 02:57:22.007  INFO 77215 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-11-15 02:57:22.188  INFO 77215 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-11-15 02:57:22.195  INFO 77215 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
-2022-11-15 02:57:22.274  INFO 77215 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2022-11-15 02:57:22.313  INFO 77215 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-11-15 02:57:22.353  INFO 77215 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
-2022-11-15 02:57:22.515  INFO 77215 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-11-15 02:57:22.616  INFO 77215 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2022-11-15 02:57:23.360  INFO 77215 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-11-15 02:57:23.367  INFO 77215 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-11-15 02:57:23.609  WARN 77215 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-11-15 02:57:24.423  INFO 77215 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2022-11-15 02:57:24.424  INFO 77215 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
-2022-11-15 02:57:24.593  INFO 77215 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
-2022-11-15 02:57:24.603  INFO 77215 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 4.879 seconds (JVM running for 5.873)
-2022-11-15 03:19:01.470  INFO 77215 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-11-15 03:19:01.471  INFO 77215 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-11-15 03:19:01.831  INFO 77215 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2022-11-15 03:19:01.832  INFO 77215 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-11-15 03:19:01.836  INFO 77215 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 16:19:34.821  INFO 91290 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 16:19:34.822  INFO 91290 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 16:19:34.992  INFO 91290 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 16:19:34.993  INFO 91290 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 16:19:34.996  INFO 91290 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 16:19:39.613  INFO 91350 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 91350 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 16:19:39.616  INFO 91350 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 16:19:40.444  INFO 91350 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 16:19:40.529  INFO 91350 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 79 ms. Found 5 JPA repository interfaces.
+2022-11-16 16:19:41.004  INFO 91350 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 16:19:41.013  INFO 91350 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 16:19:41.013  INFO 91350 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 16:19:41.104  INFO 91350 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 16:19:41.104  INFO 91350 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1423 ms
+2022-11-16 16:19:41.143  INFO 91350 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 16:19:41.286  INFO 91350 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 16:19:41.291  INFO 91350 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 16:19:41.364  INFO 91350 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 16:19:41.400  INFO 91350 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 16:19:41.441  INFO 91350 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 16:19:41.553  INFO 91350 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 16:19:41.639  INFO 91350 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 16:19:42.235  INFO 91350 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 16:19:42.243  INFO 91350 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 16:19:42.444  WARN 91350 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 16:19:43.196  INFO 91350 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 16:19:43.197  INFO 91350 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 16:19:43.357  INFO 91350 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 16:19:43.367  INFO 91350 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 4.16 seconds (JVM running for 4.992)
+2022-11-16 16:19:45.478  INFO 91350 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 16:19:45.478  INFO 91350 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 16:19:45.479  INFO 91350 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-16 16:19:45.542  WARN 91350 --- [http-nio-8080-exec-2] c.e.e.exception.GlobalExceptionHandler   : handleNotFoundRenteeException] NOT_FOUND_RENTEE_EXCEPTION: 일치하는 비품(들)이 없습니다.
+2022-11-16 16:28:11.946  WARN 91350 --- [http-nio-8080-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 2 errors
+Field error in object 'bookSaveDto' on field 'name': rejected value [null]; codes [NotNull.bookSaveDto.name,NotNull.name,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [bookSaveDto.name,name]; arguments []; default message [name]]; default message [널이어서는 안됩니다]
+Field error in object 'bookSaveDto' on field 'thumbnail': rejected value [null]; codes [NotNull.bookSaveDto.thumbnail,NotNull.thumbnail,NotNull.org.springframework.web.multipart.MultipartFile,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [bookSaveDto.thumbnail,thumbnail]; arguments []; default message [thumbnail]]; default message [널이어서는 안됩니다]]
+2022-11-16 16:52:26.286  INFO 91350 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 16:52:26.287  INFO 91350 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-16 16:52:26.474  INFO 91350 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-16 16:52:26.474  INFO 91350 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 16:52:26.478  INFO 91350 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 16:52:30.354  INFO 91767 --- [main] c.e.e.EconoBeepServerApplication         : Starting EconoBeepServerApplication using Java 11.0.17 on gwonsunchan-ui-MacBookPro.local with PID 91767 (/Users/chan/code/java/econo-beep-server/out/production/classes started by chan in /Users/chan/code/java/econo-beep-server)
+2022-11-16 16:52:30.356  INFO 91767 --- [main] c.e.e.EconoBeepServerApplication         : The following profiles are active: secret
+2022-11-16 16:52:31.000  INFO 91767 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-11-16 16:52:31.083  INFO 91767 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 77 ms. Found 5 JPA repository interfaces.
+2022-11-16 16:52:31.516  INFO 91767 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-16 16:52:31.524  INFO 91767 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 16:52:31.524  INFO 91767 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-11-16 16:52:31.600  INFO 91767 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 16:52:31.601  INFO 91767 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1199 ms
+2022-11-16 16:52:31.631  INFO 91767 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 16:52:31.759  INFO 91767 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 16:52:31.764  INFO 91767 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
+2022-11-16 16:52:31.831  INFO 91767 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-11-16 16:52:31.864  INFO 91767 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 16:52:31.900  INFO 91767 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2022-11-16 16:52:32.005  INFO 91767 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 16:52:32.087  INFO 91767 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-11-16 16:52:32.676  INFO 91767 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 16:52:32.682  INFO 91767 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 16:52:32.848  WARN 91767 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 16:52:33.575  INFO 91767 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-16 16:52:33.576  INFO 91767 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-11-16 16:52:33.721  INFO 91767 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-11-16 16:52:33.730  INFO 91767 --- [main] c.e.e.EconoBeepServerApplication         : Started EconoBeepServerApplication in 3.708 seconds (JVM running for 4.5)
+2022-11-16 16:52:35.115  INFO 91767 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-16 16:52:35.115  INFO 91767 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-16 16:52:35.117  INFO 91767 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-11-16 16:52:35.195  WARN 91767 --- [http-nio-8080-exec-2] c.e.e.exception.GlobalExceptionHandler   : handleRequestBodyValidException] org.springframework.validation.BeanPropertyBindingResult: 2 errors
+Field error in object 'bookSaveDto' on field 'thumbnail': rejected value [null]; codes [NotNull.bookSaveDto.thumbnail,NotNull.thumbnail,NotNull.org.springframework.web.multipart.MultipartFile,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [bookSaveDto.thumbnail,thumbnail]; arguments []; default message [thumbnail]]; default message [널이어서는 안됩니다]
+Field error in object 'bookSaveDto' on field 'name': rejected value [null]; codes [NotNull.bookSaveDto.name,NotNull.name,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [bookSaveDto.name,name]; arguments []; default message [name]]; default message [널이어서는 안됩니다]

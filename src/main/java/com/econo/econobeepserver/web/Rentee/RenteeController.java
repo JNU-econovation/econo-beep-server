@@ -3,12 +3,14 @@ package com.econo.econobeepserver.web.Rentee;
 import com.econo.econobeepserver.dto.Rentee.RenteeElementDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeInfoDto;
 import com.econo.econobeepserver.service.Rentee.RenteeService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Rentee", description = "대여품 API")
 @RestController
 @RequiredArgsConstructor
 public class RenteeController {
