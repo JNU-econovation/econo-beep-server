@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@Slf4j
 @Tag(name = "대여품 관리 API", description = "대여품 추가, 수정, 삭제, 정렬")
 @RestController
 @RequiredArgsConstructor
-@Slf4j
 public class RenteeManagementController {
 
     private final RenteeService renteeService;
