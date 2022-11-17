@@ -40,8 +40,8 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(WrongAccessTokenException.class)
-    public ResponseEntity<String> handleNotFoundPinCodeException(WrongAccessTokenException e) {
-        String exceptionMessage = "[handleNotFoundPinCodeException] " + e.getMessage();
+    public ResponseEntity<String> handleWrongAccessTokenException(WrongAccessTokenException e) {
+        String exceptionMessage = "[handleWrongAccessTokenException] " + e.getMessage();
         log.warn(exceptionMessage);
 
 
@@ -50,9 +50,31 @@ public class GlobalExceptionHandler {
                 .body(exceptionMessage);
     }
 
+    @ExceptionHandler(NotFoundUserException.class)
+    public ResponseEntity<String> handleNotFoundUserException(NotFoundUserException e) {
+        String exceptionMessage = "[handleNotFoundUserException] " + e.getMessage();
+        log.warn(exceptionMessage);
+
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(exceptionMessage);
+    }
+
     @ExceptionHandler(NotFoundRenteeException.class)
     public ResponseEntity<String> handleNotFoundRenteeException(NotFoundRenteeException e) {
         String exceptionMessage = "[handleNotFoundRenteeException] " + e.getMessage();
+        log.warn(exceptionMessage);
+
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(exceptionMessage);
+    }
+
+    @ExceptionHandler(NotFoundBookmarkException.class)
+    public ResponseEntity<String> handleNotFoundBookmarkException(NotFoundBookmarkException e) {
+        String exceptionMessage = "[handleNotFoundBookmarkException] " + e.getMessage();
         log.warn(exceptionMessage);
 
 
@@ -72,9 +94,9 @@ public class GlobalExceptionHandler {
                 .body(exceptionMessage);
     }
 
-    @ExceptionHandler(NotRenterException.class)
-    public ResponseEntity<String> handleNotRenterException(NotRenterException e) {
-        String exceptionMessage = "[handleNotRenterException] " + e.getMessage();
+    @ExceptionHandler(UnreturnableException.class)
+    public ResponseEntity<String> handleUnreturnableException(UnreturnableException e) {
+        String exceptionMessage = "[handleUnreturnableException] " + e.getMessage();
         log.warn(exceptionMessage);
 
 
@@ -83,9 +105,9 @@ public class GlobalExceptionHandler {
                 .body(exceptionMessage);
     }
 
-    @ExceptionHandler(WrongFormatPinCodeException.class)
-    public ResponseEntity<String> handleWrongFormatPinCodeException(WrongFormatPinCodeException e) {
-        String exceptionMessage = "[handleWrongFormatPinCodeException] " + e.getMessage();
+    @ExceptionHandler(NotRenterException.class)
+    public ResponseEntity<String> handleNotRenterException(NotRenterException e) {
+        String exceptionMessage = "[handleNotRenterException] " + e.getMessage();
         log.warn(exceptionMessage);
 
 
