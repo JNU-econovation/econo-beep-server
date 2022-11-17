@@ -39,17 +39,6 @@ public class GlobalExceptionHandler {
                 .body(exceptionMessage);
     }
 
-    @ExceptionHandler(WrongAccessTokenException.class)
-    public ResponseEntity<String> handleWrongAccessTokenException(WrongAccessTokenException e) {
-        String exceptionMessage = "[handleWrongAccessTokenException] " + e.getMessage();
-        log.warn(exceptionMessage);
-
-
-        return ResponseEntity
-                .status(HttpStatus.NO_CONTENT)
-                .body(exceptionMessage);
-    }
-
     @ExceptionHandler(NotFoundUserException.class)
     public ResponseEntity<String> handleNotFoundUserException(NotFoundUserException e) {
         String exceptionMessage = "[handleNotFoundUserException] " + e.getMessage();
@@ -152,4 +141,25 @@ public class GlobalExceptionHandler {
                 .body(exceptionMessage);
     }
 
+    @ExceptionHandler(WrongAccessTokenException.class)
+    public ResponseEntity<String> handleWrongAccessTokenException(WrongAccessTokenException e) {
+        String exceptionMessage = "[handleWrongAccessTokenException] " + e.getMessage();
+        log.warn(exceptionMessage);
+
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(exceptionMessage);
+    }
+
+    @ExceptionHandler(ExpiredAccessTokenException.class)
+    public ResponseEntity<String> handleExpiredAccessTokenException(ExpiredAccessTokenException e) {
+        String exceptionMessage = "[handleExpiredAccessTokenException] " + e.getMessage();
+        log.warn(exceptionMessage);
+
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(exceptionMessage);
+    }
 }
