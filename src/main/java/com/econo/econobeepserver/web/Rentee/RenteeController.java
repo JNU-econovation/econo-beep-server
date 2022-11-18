@@ -34,11 +34,11 @@ public class RenteeController {
 
     @Operation(summary = "즐겨찾기 추가")
     @PutMapping("/api/rentee/{renteeId}/bookmark")
-    public ResponseEntity<Void> registerBookmark(@PathVariable(value = "renteeId") Long renteeId,
+    public ResponseEntity<Long> registerBookmark(@PathVariable(value = "renteeId") Long renteeId,
                                                  @RequestParam(value = "accessToken") String accessToken) {
-        renteeService.registerBookmark(renteeId, accessToken);
+        long bookmarkId = renteeService.registerBookmark(renteeId, accessToken).getId();
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(bookmarkId);
     }
 
 
