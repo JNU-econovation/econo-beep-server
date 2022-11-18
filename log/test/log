@@ -29,3 +29,9 @@
 2022-11-17 11:39:35.785  WARN 2750 --- [http-nio-8080-exec-1] c.e.e.exception.GlobalExceptionHandler   : [handleNotFoundRenteeException] NOT_FOUND_RENTEE_EXCEPTION: 일치하는 비품(들)이 없습니다.
 2022-11-17 11:39:59.307  WARN 2750 --- [http-nio-8080-exec-4] c.e.e.exception.GlobalExceptionHandler   : [handleMissingServletRequestParameterException] Required String parameter 'accessToken' is not present
 2022-11-17 11:40:07.945  WARN 2750 --- [http-nio-8080-exec-6] c.e.e.exception.GlobalExceptionHandler   : [handleMissingServletRequestParameterException] Required String parameter 'accessToken' is not present
+2022-11-17 12:15:34.070  WARN 2750 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=23m20s321ms).
+2022-11-17 12:22:00.862  INFO 2750 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-17 12:22:00.863  INFO 2750 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-17 12:22:01.039  INFO 2750 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-17 12:22:01.040  INFO 2750 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-17 12:22:01.043  INFO 2750 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

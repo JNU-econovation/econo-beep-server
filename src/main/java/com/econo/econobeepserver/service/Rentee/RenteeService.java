@@ -6,6 +6,7 @@ import com.econo.econobeepserver.domain.Rental.RentalRepository;
 import com.econo.econobeepserver.domain.Rentee.*;
 import com.econo.econobeepserver.domain.User.User;
 import com.econo.econobeepserver.dto.Rentee.*;
+import com.econo.econobeepserver.exception.DuplicatedBookmarkException;
 import com.econo.econobeepserver.exception.NotFoundBookmarkException;
 import com.econo.econobeepserver.exception.NotFoundRenteeException;
 import com.econo.econobeepserver.service.ImageHandler;
@@ -46,6 +47,10 @@ public class RenteeService {
     public Bookmark registerBookmark(Long renteeId, String accessToken) {
         User user = userService.getUserByAccessToken(accessToken);
         Rentee rentee = getRenteeById(renteeId);
+
+        if (bookmarkRepository.existsByUser_IdAndRentee_Id(user.getId(), rentee.getId())) {
+            throw new DuplicatedBookmarkException();
+        }
 
         Bookmark bookmark = new Bookmark(user, rentee);
         return bookmarkRepository.save(bookmark);
