@@ -44,13 +44,17 @@ public class RenteeService {
         return renteeRepository.save(rentee);
     }
 
+    private void validateDuplicatedBookmark(long userId, long renteeId) {
+        if (bookmarkRepository.existsByUser_IdAndRentee_Id(userId, renteeId)) {
+            throw new DuplicatedBookmarkException();
+        }
+    }
+
     public Bookmark registerBookmark(Long renteeId, String accessToken) {
         User user = userService.getUserByAccessToken(accessToken);
         Rentee rentee = getRenteeById(renteeId);
 
-        if (bookmarkRepository.existsByUser_IdAndRentee_Id(user.getId(), rentee.getId())) {
-            throw new DuplicatedBookmarkException();
-        }
+        validateDuplicatedBookmark(user.getId(), rentee.getId());
 
         Bookmark bookmark = new Bookmark(user, rentee);
         return bookmarkRepository.save(bookmark);
