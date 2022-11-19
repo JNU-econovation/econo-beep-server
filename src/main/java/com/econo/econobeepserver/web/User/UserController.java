@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
+import static com.econo.econobeepserver.config.BearerAuthInterceptor.ACCESS_TOKEN;
 
 @Tag(name = "유저 API", description = "Econo IDP의 Token을 통한 인증, 유저 정보 조회")
 @RestController
@@ -27,12 +30,22 @@ public class UserController {
     private final RentalService rentalService;
 
 
-    @Operation(summary = "유저 프로필 조회")
-    @GetMapping("/api/user/profile")
-    public ResponseEntity<UserProfileDto> getUserInfoDtoByAccessToken(@RequestParam(value = "accessToken") String accessToken) {
+    @Operation(summary = "내 프로필 조회")
+    @GetMapping("/api/user/profile/my")
+    public ResponseEntity<UserProfileDto> getUserInfoDtoByAccessToken(HttpServletRequest request) {
+        String accessToken = request.getAttribute(ACCESS_TOKEN).toString();
         UserProfileDto userProfileDto = userService.getUserProfileDtoByAccessToken(accessToken);
 
         return ResponseEntity.ok(userProfileDto);
+    }
+
+    @Operation(summary = "유저 프로필 조회")
+    @GetMapping("/api/user/profile/{userId}")
+    public ResponseEntity<UserProfileDto> getUserInfoDtoByAccessToken(@PathVariable(value = "userId") Long userId) {
+//        UserProfileDto userProfileDto = userService.getUserProfileDtoByAccessToken(accessToken);
+
+//        return ResponseEntity.ok(userProfileDto);
+        return ResponseEntity.ok().build();
     }
 
 
