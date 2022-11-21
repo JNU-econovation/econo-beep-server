@@ -16,22 +16,22 @@ public class EconoIDPApi {
     @Value("${ECONO_IDP_API}")
     private String ECONO_IDP_API;
 
-    public UserIDPDto getUserByAccessToken(String accessToken) {
-        return WebClient.create(ECONO_IDP_API + "/usernames&accessToken=" + accessToken)
-                .get()
-                .retrieve()
-                .onStatus(
-                        HttpStatus.BAD_REQUEST::equals,
-                        (response) -> {
-                            throw new WrongAccessTokenException();
-                        })
-                .onStatus(
-                        HttpStatus.UNAUTHORIZED::equals,
-                        (response) -> {
-                            throw new ExpiredAccessTokenException();
-                        }
-                )
-                .bodyToFlux(UserIDPDto.class)
-                .blockFirst();
-    }
+//    public UserIDPDto getUserByAccessToken(String accessToken) {
+//        return WebClient.create(ECONO_IDP_API + "/usernames&accessToken=" + accessToken)
+//                .get()
+//                .retrieve()
+//                .onStatus(
+//                        HttpStatus.BAD_REQUEST::equals,
+//                        (response) -> {
+//                            throw new WrongAccessTokenException();
+//                        })
+//                .onStatus(
+//                        HttpStatus.UNAUTHORIZED::equals,
+//                        (response) -> {
+//                            throw new ExpiredAccessTokenException();
+//                        }
+//                )
+//                .bodyToFlux(UserIDPDto.class)
+//                .blockFirst();
+//    }
 }

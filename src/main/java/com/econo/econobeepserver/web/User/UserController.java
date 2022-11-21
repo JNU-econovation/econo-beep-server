@@ -12,13 +12,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-import static com.econo.econobeepserver.config.BearerAuthInterceptor.ACCESS_TOKEN;
+import static com.econo.econobeepserver.config.BearerAuthInterceptor.USER_ROLE;
+import static com.econo.econobeepserver.config.BearerAuthInterceptor.USER_ID;
+
 
 @Tag(name = "유저 API", description = "Econo IDP의 Token을 통한 인증, 유저 정보 조회")
 @RestController
@@ -30,11 +31,11 @@ public class UserController {
     private final RentalService rentalService;
 
 
-    @Operation(summary = "내 프로필 조회")
+    @Operation(summary = "내 프로필 조회 [Token required]")
     @GetMapping("/api/user/profile/my")
     public ResponseEntity<UserProfileDto> getUserInfoDtoByAccessToken(HttpServletRequest request) {
-        String accessToken = request.getAttribute(ACCESS_TOKEN).toString();
-        UserProfileDto userProfileDto = userService.getUserProfileDtoByAccessToken(accessToken);
+        Long userId = (Long) request.getAttribute(USER_ID);
+        UserProfileDto userProfileDto = userService.getUserProfileDtoByUserId(userId);
 
         return ResponseEntity.ok(userProfileDto);
     }
@@ -42,17 +43,16 @@ public class UserController {
     @Operation(summary = "유저 프로필 조회")
     @GetMapping("/api/user/profile/{userId}")
     public ResponseEntity<UserProfileDto> getUserInfoDtoByAccessToken(@PathVariable(value = "userId") Long userId) {
-//        UserProfileDto userProfileDto = userService.getUserProfileDtoByAccessToken(accessToken);
+        UserProfileDto userProfileDto = userService.getUserProfileDtoByUserId(userId);
 
-//        return ResponseEntity.ok(userProfileDto);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(userProfileDto);
     }
 
 
-    @Operation(summary = "삡 서비스 내 유저 권한 조회")
+    @Operation(summary = "유저 권한 조회 [Token required]")
     @GetMapping("/api/user/role")
-    public ResponseEntity<Role> getUserRoleByAccessToken(@RequestParam(value = "accessToken") String accessToken) {
-        Role userRole = userService.getUserRoleByAccessToken(accessToken);
+    public ResponseEntity<Role> getUserRoleByAccessToken(HttpServletRequest request) {
+        Role userRole = (Role) request.getAttribute(USER_ROLE);
 
         return ResponseEntity.ok(userRole);
     }

@@ -164,4 +164,15 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(exceptionMessage);
     }
+
+    @ExceptionHandler(ForbiddenRoleException.class)
+    public ResponseEntity<String> handleForbiddenRoleException(ForbiddenRoleException e, HttpServletRequest httpServletRequest) {
+        String exceptionMessage = "[handleForbiddenRoleException] " + httpServletRequest.getRequestURL().toString() + " : " + e.getMessage();
+        log.warn(exceptionMessage);
+
+
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(exceptionMessage);
+    }
 }

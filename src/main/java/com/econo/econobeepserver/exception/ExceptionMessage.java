@@ -18,7 +18,9 @@ public enum ExceptionMessage {
 
 
     WRONG_ACCESS_TOKEN_EXCEPTION("WRONG_ACCESS_TOKEN_EXCEPTION: 잘못된 AccessToken입니다."),
-    EXPIRED_ACCESS_TOKEN_EXCEPTION("EXPIRED_ACCESS_TOKEN_EXCEPTION: 만료된 AccessToken입니다.");
+    EXPIRED_ACCESS_TOKEN_EXCEPTION("EXPIRED_ACCESS_TOKEN_EXCEPTION: 만료된 AccessToken입니다."),
+
+    FORBIDDEN_ROLE_EXCEPTION("FORBIDDEN_ROLE_EXCEPTION: 허용되지 않는 권한입니다.");
 
     public final String message;
 

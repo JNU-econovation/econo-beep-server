@@ -1,5 +1,8 @@
 package com.econo.econobeepserver.config;
 
+import com.econo.econobeepserver.domain.User.User;
+import com.econo.econobeepserver.service.User.UserService;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Component;
@@ -11,11 +14,15 @@ import java.util.Enumeration;
 import java.util.Iterator;
 
 @Component
+@RequiredArgsConstructor
 public class BearerAuthInterceptor implements HandlerInterceptor {
 
     private static final String AUTHORIZATION = "Authorization";
     private static final String BEARER = "Bearer";
-    public static final String ACCESS_TOKEN = "accessToken";
+    public static final String USER_ID = "userId";
+    public static final String USER_ROLE = "userRole";
+
+    private final UserService userService;
 
 
     private String extract(HttpServletRequest request, String type) {
@@ -33,9 +40,13 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = extract(request, BEARER);
-        if (StringUtils.isNotEmpty(token)) {
-            request.setAttribute(ACCESS_TOKEN, token);
+        if (StringUtils.isEmpty(token)) {
+            return true;
         }
+
+        User user = userService.getUserByAccessToken(token);
+        request.setAttribute(USER_ID, user.getId());
+        request.setAttribute(USER_ROLE, user.getRole());
 
         return true;
     }

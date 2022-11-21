@@ -22,12 +22,16 @@ public class UserService {
         return userRepository.save(userSaveDto.toEntity());
     }
 
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElseThrow(NotFoundUserException::new);
+    public User getUserByUserId(Long userId) {
+        return userRepository.findById(userId).orElseThrow(NotFoundUserException::new);
     }
 
     public User getUserByIdpId(Long idpId) {
         return userRepository.findByIdpId(idpId).orElseThrow(NotFoundUserException::new);
+    }
+
+    public UserProfileDto getUserProfileDtoByUserId(Long userId) {
+        return new UserProfileDto(getUserByUserId(userId));
     }
 
     @Transactional
