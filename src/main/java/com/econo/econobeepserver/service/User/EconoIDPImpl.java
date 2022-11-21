@@ -1,5 +1,6 @@
 package com.econo.econobeepserver.service.User;
 
+import com.econo.econobeepserver.domain.User.Role;
 import com.econo.econobeepserver.dto.User.UserSaveDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,7 @@ public class EconoIDPImpl implements EconoIDP {
                 .year(21)
                 .username("삡")
                 .userEmail("beep@gmail.com")
+                .role(Role.ADMIN)
                 .build();
     }
 }
