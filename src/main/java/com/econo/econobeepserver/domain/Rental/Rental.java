@@ -31,7 +31,7 @@ public class Rental extends BaseTimeEntity {
     @NotNull
     private LocalDateTime rentalDateTime;
 
-    private LocalDateTime returnDateTime;
+    private LocalDateTime returnDateTime = null;
 
     @Builder
     public Rental(Rentee rentee, User renter) {

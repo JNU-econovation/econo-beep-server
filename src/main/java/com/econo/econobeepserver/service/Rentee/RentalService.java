@@ -79,7 +79,7 @@ public class RentalService {
         rental.returnRentee();
     }
 
-    public List<RenteeElementDto> getRentedRenteesByUserId(long userId) {
+    public List<RenteeElementDto> getRentingRenteesByUserId(long userId) {
         List<Rental> rentals = rentalRepository.findByReturnDateTimeIsNullAndRenter_Id(userId);
 
         return rentals.stream().map((rental -> new RenteeElementDto(rental.getRentee()))).collect(Collectors.toList());

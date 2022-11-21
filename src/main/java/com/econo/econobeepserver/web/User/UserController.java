@@ -59,20 +59,20 @@ public class UserController {
 
 
     @Operation(
-            summary = "해당 유저가 대여한 대여품 조회",
-            description = "최신에 대여한 대여품을 먼저 조회한다."
+            summary = "유저가 대여하고 있는 대여품들을 조회",
+            description = "최신에 대여한 대여품 먼저 조회한다."
     )
     @GetMapping("/api/user/{userId}/rents")
     public ResponseEntity<List<RenteeElementDto>> getRentsByUserId(@PathVariable(value = "userId") long userId) {
-        List<RenteeElementDto> renteeElementDtos = rentalService.getRentedRenteesByUserId(userId);
+        List<RenteeElementDto> renteeElementDtos = rentalService.getRentingRenteesByUserId(userId);
 
         return ResponseEntity.ok(renteeElementDtos);
     }
 
 
     @Operation(
-            summary = "해당 유저가 반납한 대여품 조회",
-            description = "최신에 반납한 대여품을 먼저 조회한다."
+            summary = "유저가 반납한 대여품들을 조회",
+            description = "최신에 반납한 대여품 먼저 조회한다."
     )
     @GetMapping("/api/user/{userId}/returns")
     public ResponseEntity<List<RenteeElementDto>> getReturnsByUserId(@PathVariable(value = "userId") long userId) {

@@ -11,7 +11,7 @@ public class EconoIDPImpl implements EconoIDP {
     private final EconoIDPApi econoIDPApi;
 
     @Override
-    public UserSaveDto getUserInfoDtoByAccessToken(String accessToken) {
+    public UserSaveDto getUserSaveDtoByAccessToken(String accessToken) {
 //        UserIDPDto userIDPDto = econoIDPApi.getUserByAccessToken(accessToken);
 //        return new UserSaveDto(userIDPDto);
 

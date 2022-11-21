@@ -4,5 +4,6 @@ import com.econo.econobeepserver.dto.User.UserSaveDto;
 
 public interface EconoIDP {
 
-    UserSaveDto getUserInfoDtoByAccessToken(String accessToken);
+    UserSaveDto getUserSaveDtoByAccessToken(String accessToken);
+
 }

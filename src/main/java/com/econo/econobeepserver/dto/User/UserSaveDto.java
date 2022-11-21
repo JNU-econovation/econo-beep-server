@@ -13,17 +13,17 @@ import lombok.Setter;
 public class UserSaveDto {
 
     private Long idpId;
-    private Integer year;
     private String username;
+    private Integer year;
     private String userEmail;
     private String profileImageUrl;
     private Role role;
 
     @Builder
-    public UserSaveDto(Long idpId, Integer year, String username, String userEmail, String profileImageUrl, Role role) {
+    public UserSaveDto(Long idpId, String username, Integer year, String userEmail, String profileImageUrl, Role role) {
         this.idpId = idpId;
-        this.year = year;
         this.username = username;
+        this.year = year;
         this.userEmail = userEmail;
         this.profileImageUrl = profileImageUrl;
         this.role = role;
@@ -31,8 +31,8 @@ public class UserSaveDto {
 
     public UserSaveDto(UserIDPDto userIDPDto) {
         this.idpId = userIDPDto.getId();
-        this.year = userIDPDto.getYear();
         this.username = userIDPDto.getUsername();
+        this.year = userIDPDto.getYear();
         this.userEmail = userIDPDto.getUserEmail();
         this.profileImageUrl = userIDPDto.getProfileImageUrl();
         this.role = Role.ADMIN;
@@ -41,8 +41,8 @@ public class UserSaveDto {
     public User toEntity() {
         return User.builder()
                 .idpId(idpId)
-                .year(year)
                 .username(username)
+                .year(year)
                 .userEmail(userEmail)
                 .profileImageUrl(profileImageUrl)
                 .role(Role.USER)

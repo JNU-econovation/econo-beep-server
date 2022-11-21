@@ -42,7 +42,7 @@ public class UserService {
     }
 
     public User getUserByAccessToken(String accessToken) {
-        UserSaveDto userSaveDto = econoIDP.getUserInfoDtoByAccessToken(accessToken);
+        UserSaveDto userSaveDto = econoIDP.getUserSaveDtoByAccessToken(accessToken);
         syncUser(userSaveDto);
 
         return getUserByIdpId(userSaveDto.getIdpId());

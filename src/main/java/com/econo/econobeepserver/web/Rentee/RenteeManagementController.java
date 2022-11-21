@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
-@Tag(name = "대여품 관리 API", description = "대여품 추가, 수정, 삭제, 정렬")
+@Tag(name = "대여품 관리 API", description = "대여품 추가, 수정, 삭제, 정렬 [Only Admin]")
 @RestController
 @RequiredArgsConstructor
 public class RenteeManagementController {
@@ -26,7 +26,7 @@ public class RenteeManagementController {
 
 
     @Operation(
-            summary = "책 추가",
+            summary = "책 추가 [Token required]",
             description = "성공하면 생성된 책의 id를 반환한다."
     )
     @PostMapping("/api/management/book")
@@ -38,7 +38,7 @@ public class RenteeManagementController {
 
 
     @Operation(
-            summary = "기자재 추가",
+            summary = "기자재 추가 [Token required]",
             description = "성공하면 생성된 기자재의 id를 반환한다."
     )
     @PostMapping("/api/management/device")
@@ -50,7 +50,7 @@ public class RenteeManagementController {
 
 
     @Operation(
-            summary = "책 검색 및 정렬",
+            summary = "책 검색 및 정렬 [Token required]",
             description = "검색과 정렬 파라미터를 비우면, 필터가 적용되지 않는 상태로 조회한다."
     )
     @GetMapping("/api/management/search/book")
@@ -66,7 +66,7 @@ public class RenteeManagementController {
 
 
     @Operation(
-            summary = "기자재 검색 및 정렬",
+            summary = "기자재 검색 및 정렬 [Token required]",
             description = "검색과 정렬 파라미터를 비우면, 필터가 적용되지 않는 상태로 조회한다."
     )
     @GetMapping("/api/management/search/device")
@@ -81,7 +81,7 @@ public class RenteeManagementController {
     }
 
 
-    @Operation(summary = "책 수정")
+    @Operation(summary = "책 수정 [Token required]")
     @PutMapping("/api/management/book/{id}")
     public ResponseEntity<Void> updateBookById(@PathVariable(value = "id") Long id,
                                                @Valid @ModelAttribute BookSaveDto bookSaveDto
@@ -92,7 +92,7 @@ public class RenteeManagementController {
     }
 
 
-    @Operation(summary = "기자재 수정")
+    @Operation(summary = "기자재 수정 [Token required]")
     @PutMapping("/api/management/device/{id}")
     public ResponseEntity<Void> updateDeviceById(@PathVariable(value = "id") Long id,
                                                  @Valid @ModelAttribute DeviceSaveDto deviceSaveDto
@@ -103,7 +103,7 @@ public class RenteeManagementController {
     }
 
 
-    @Operation(summary = "책 삭제")
+    @Operation(summary = "책 삭제 [Token required]")
     @DeleteMapping("/api/management/book/{id}")
     public ResponseEntity<Void> deleteBookById(@PathVariable(value = "id") Long id) {
         renteeService.deleteRenteeById(id);
@@ -112,7 +112,7 @@ public class RenteeManagementController {
     }
 
 
-    @Operation(summary = "기자재 삭제")
+    @Operation(summary = "기자재 삭제 [Token required]")
     @DeleteMapping("/api/management/device/{id}")
     public ResponseEntity<Void> deleteDeviceById(@PathVariable(value = "id") Long id) {
         renteeService.deleteRenteeById(id);

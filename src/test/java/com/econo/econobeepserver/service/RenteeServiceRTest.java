@@ -206,7 +206,7 @@ class RenteeServiceRTest {
         @Test
         void test_outdatedRentalSort() {
             // given
-            given(econoIDPImpl.getUserInfoDtoByAccessToken("accessToken"))
+            given(econoIDPImpl.getUserSaveDtoByAccessToken("accessToken"))
                     .willReturn(userSaveDto);
             long book1Id = renteeService.getRenteeByName(book1SaveDto.getName()).getId();
             long book2Id = renteeService.getRenteeByName(book2SaveDto.getName()).getId();
@@ -228,7 +228,7 @@ class RenteeServiceRTest {
         @Test
         void test_latestRentalSort() {
             // given
-            given(econoIDPImpl.getUserInfoDtoByAccessToken("accessToken"))
+            given(econoIDPImpl.getUserSaveDtoByAccessToken("accessToken"))
                     .willReturn(userSaveDto);
             long book1Id = renteeService.getRenteeByName(book1SaveDto.getName()).getId();
             long book2Id = renteeService.getRenteeByName(book2SaveDto.getName()).getId();
