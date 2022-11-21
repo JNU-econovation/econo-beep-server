@@ -23,7 +23,7 @@ public class RentalController {
     private final RentalService rentalService;
 
 
-    @Operation(summary = "책 대여")
+    @Operation(summary = "책 대여 [Token required]")
     @PutMapping("/api/rentees/{id}/rent")
     public ResponseEntity<String> rentRenteeById(HttpServletRequest request,
                                                  @PathVariable(value = "id") Long renteeId) {
@@ -33,7 +33,7 @@ public class RentalController {
         return ResponseEntity.ok().build();
     }
 
-    @Operation(summary = "책 반납")
+    @Operation(summary = "책 반납 [Token required]")
     @PutMapping("/api/rentees/{id}/return")
     public ResponseEntity<String> returnRenteeById(HttpServletRequest request,
                                                    @PathVariable(value = "id") Long renteeId) {
