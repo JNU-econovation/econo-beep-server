@@ -202,3 +202,8 @@ com.econo.econobeepserver.exception.ForbiddenRoleException: FORBIDDEN_ROLE_EXCEP
 2022-11-22 02:42:18.740  INFO 34882 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2022-11-22 02:42:18.999  WARN 34882 --- [http-nio-8080-exec-2] c.e.e.exception.GlobalExceptionHandler   : [handleForbiddenRoleException] http://localhost:8080/api/management/search/book : FORBIDDEN_ROLE_EXCEPTION: 허용되지 않는 권한입니다.
 2022-11-22 02:52:15.289  WARN 34882 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Retrograde clock change detected (housekeeper delta=29s838ms), soft-evicting connections from pool.
+2022-11-22 03:11:19.012  INFO 34882 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-22 03:11:19.013  INFO 34882 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-11-22 03:11:19.426  INFO 34882 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-11-22 03:11:19.427  INFO 34882 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-22 03:11:19.429  INFO 34882 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

@@ -39,8 +39,8 @@ public class RentalService {
     }
 
     @Transactional
-    public void rentRenteeByRenteeId(Long renteeId, String accessToken) {
-        User user = userService.getUserByAccessToken(accessToken);
+    public void rentRenteeByRenteeIdAndUserId(Long renteeId, Long userId) {
+        User user = userService.getUserByUserId(userId);
 
         Rentee rentee = renteeService.getRenteeById(renteeId);
         validateRentableRentee(rentee);
@@ -68,12 +68,12 @@ public class RentalService {
     }
 
     @Transactional
-    public void returnRenteeByRenteeId(Long renteeId, String accessToken) {
+    public void returnRenteeByRenteeId(Long renteeId, Long userId) {
         Rentee rentee = renteeService.getRenteeById(renteeId);
         validateReturnableRentee(rentee);
 
         Rental rental = getRecentRentalByRenteeId(renteeId);
-        UserProfileDto userProfileDto = userService.getUserProfileDtoByAccessToken(accessToken);
+        UserProfileDto userProfileDto = userService.getUserProfileDtoByUserId(userId);
         validateRenter(rental, userProfileDto);
 
         rental.returnRentee();

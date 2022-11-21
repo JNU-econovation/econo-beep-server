@@ -8,8 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+
+import static com.econo.econobeepserver.config.BearerAuthInterceptor.USER_ID;
 
 @Slf4j
 @Tag(name = "대여/반납 API", description = "대여, 반납")
@@ -22,18 +25,20 @@ public class RentalController {
 
     @Operation(summary = "책 대여")
     @PutMapping("/api/rentees/{id}/rent")
-    public ResponseEntity<String> rentRenteeById(@PathVariable(value = "id") Long id,
-                                                 @RequestParam(value = "accessToken") String accessToken) {
-        rentalService.rentRenteeByRenteeId(id, accessToken);
+    public ResponseEntity<String> rentRenteeById(HttpServletRequest request,
+                                                 @PathVariable(value = "id") Long renteeId) {
+        Long userId = (Long) request.getAttribute(USER_ID);
+        rentalService.rentRenteeByRenteeIdAndUserId(renteeId, userId);
 
         return ResponseEntity.ok().build();
     }
 
     @Operation(summary = "책 반납")
     @PutMapping("/api/rentees/{id}/return")
-    public ResponseEntity<String> returnRenteeById(@PathVariable(value = "id") Long id,
-                                                   @RequestParam(value = "accessToken") String accessToken) {
-        rentalService.returnRenteeByRenteeId(id, accessToken);
+    public ResponseEntity<String> returnRenteeById(HttpServletRequest request,
+                                                   @PathVariable(value = "id") Long renteeId) {
+        Long userId = (Long) request.getAttribute(USER_ID);
+        rentalService.returnRenteeByRenteeId(renteeId, userId);
 
         return ResponseEntity.ok().build();
     }

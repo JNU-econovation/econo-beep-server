@@ -50,8 +50,8 @@ public class RenteeService {
         }
     }
 
-    public Bookmark registerBookmark(Long renteeId, String accessToken) {
-        User user = userService.getUserByAccessToken(accessToken);
+    public Bookmark registerBookmark(Long renteeId, Long userId) {
+        User user = userService.getUserByUserId(userId);
         Rentee rentee = getRenteeById(renteeId);
 
         validateDuplicatedBookmark(user.getId(), rentee.getId());
@@ -68,14 +68,13 @@ public class RenteeService {
         return renteeRepository.findByName(name).orElseThrow(NotFoundRenteeException::new);
     }
 
-    public RenteeInfoDto getRenteeInfoDtoByIdWithAccessToken(Long id, String accessToken) {
+    public RenteeInfoDto getRenteeInfoDtoByIdWithUserId(Long id, Long userId) {
         Rentee rentee = getRenteeById(id);
         List<RentalElementDto> rentalElementDtos = rentalRepository.findByRentee_IdOrderByCreatedDateDesc(rentee.getId()).stream().map(RentalElementDto::new).collect(Collectors.toList());
         boolean isBookmarked = false;
         int bookmarkCount = bookmarkRepository.countByRentee_Id(rentee.getId());
 
-        if (accessToken != null) {
-            long userId = userService.getUserIdByAccessToken(accessToken);
+        if (userId != null) {
             isBookmarked = bookmarkRepository.findByUser_IdAndRentee_Id(userId, rentee.getId()).isPresent();
         }
 
@@ -199,8 +198,8 @@ public class RenteeService {
         }
     }
 
-    public void unregisterBookmark(Long renteeId, String accessToken) {
-        User user = userService.getUserByAccessToken(accessToken);
+    public void unregisterBookmark(Long renteeId, Long userId) {
+        User user = userService.getUserByUserId(userId);
         Rentee rentee = getRenteeById(renteeId);
 
         Bookmark bookmark = bookmarkRepository.findByUser_IdAndRentee_Id(user.getId(), rentee.getId()).orElseThrow(NotFoundBookmarkException::new);

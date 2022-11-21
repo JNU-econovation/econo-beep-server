@@ -4,6 +4,7 @@ import com.econo.econobeepserver.domain.Rental.RentalRepository;
 import com.econo.econobeepserver.domain.Rentee.BookArea;
 import com.econo.econobeepserver.domain.Rentee.RenteeRepository;
 import com.econo.econobeepserver.domain.Rentee.RenteeType;
+import com.econo.econobeepserver.domain.User.User;
 import com.econo.econobeepserver.dto.User.UserSaveDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeElementDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeManagementInfoDto;
@@ -208,12 +209,13 @@ class RenteeServiceRTest {
             // given
             given(econoIDPImpl.getUserSaveDtoByAccessToken("accessToken"))
                     .willReturn(userSaveDto);
+            long userId = userService.getUserIdByAccessToken("accessToken");
             long book1Id = renteeService.getRenteeByName(book1SaveDto.getName()).getId();
             long book2Id = renteeService.getRenteeByName(book2SaveDto.getName()).getId();
             long book3Id = renteeService.getRenteeByName(book3SaveDto.getName()).getId();
-            rentalService.rentRenteeByRenteeId(book2Id, "accessToken");
-            rentalService.rentRenteeByRenteeId(book1Id, "accessToken");
-            rentalService.rentRenteeByRenteeId(book3Id, "accessToken");
+            rentalService.rentRenteeByRenteeIdAndUserId(book2Id, userId);
+            rentalService.rentRenteeByRenteeIdAndUserId(book1Id, userId);
+            rentalService.rentRenteeByRenteeIdAndUserId(book3Id, userId);
 
             // when
             List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging("book", RenteeSort.OUTDATED_RENTAL, 0, 3);
@@ -230,12 +232,13 @@ class RenteeServiceRTest {
             // given
             given(econoIDPImpl.getUserSaveDtoByAccessToken("accessToken"))
                     .willReturn(userSaveDto);
+            long userId = userService.getUserIdByAccessToken("accessToken");
             long book1Id = renteeService.getRenteeByName(book1SaveDto.getName()).getId();
             long book2Id = renteeService.getRenteeByName(book2SaveDto.getName()).getId();
             long book3Id = renteeService.getRenteeByName(book3SaveDto.getName()).getId();
-            rentalService.rentRenteeByRenteeId(book2Id, "accessToken");
-            rentalService.rentRenteeByRenteeId(book1Id, "accessToken");
-            rentalService.rentRenteeByRenteeId(book3Id, "accessToken");
+            rentalService.rentRenteeByRenteeIdAndUserId(book2Id, userId);
+            rentalService.rentRenteeByRenteeIdAndUserId(book1Id, userId);
+            rentalService.rentRenteeByRenteeIdAndUserId(book3Id, userId);
 
             // when
             List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging("book", RenteeSort.LATEST_RENTAL, 0, 3);
