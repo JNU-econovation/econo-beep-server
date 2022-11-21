@@ -42,7 +42,7 @@ public class RenteeManagementController {
             summary = "책 추가 [Token required]",
             description = "성공하면 생성된 책의 id를 반환한다."
     )
-    @PostMapping("/api/management/book")
+    @PostMapping("/api/management/books")
     public ResponseEntity<Long> createBook(HttpServletRequest request, @Valid @ModelAttribute BookSaveDto bookSaveDto) {
         validateUserRole(request);
         long bookId = renteeService.createRentee(new RenteeSaveDto(bookSaveDto)).getId();
@@ -55,7 +55,7 @@ public class RenteeManagementController {
             summary = "기자재 추가 [Token required]",
             description = "성공하면 생성된 기자재의 id를 반환한다."
     )
-    @PostMapping("/api/management/device")
+    @PostMapping("/api/management/devices")
     public ResponseEntity<Long> createDevice(HttpServletRequest request, @Valid @ModelAttribute DeviceSaveDto deviceSaveDto) {
         validateUserRole(request);
         long deviceId = renteeService.createRentee(new RenteeSaveDto(deviceSaveDto)).getId();
@@ -68,7 +68,7 @@ public class RenteeManagementController {
             summary = "책 검색 및 정렬 [Token required]",
             description = "검색과 정렬 파라미터를 비우면, 필터가 적용되지 않는 상태로 조회한다."
     )
-    @GetMapping("/api/management/search/book")
+    @GetMapping("/api/management/books")
     public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromBook(HttpServletRequest request,
                                                                                                 @RequestParam(value = "name", required = false, defaultValue = "") String name,
                                                                                                 @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
@@ -86,7 +86,7 @@ public class RenteeManagementController {
             summary = "기자재 검색 및 정렬 [Token required]",
             description = "검색과 정렬 파라미터를 비우면, 필터가 적용되지 않는 상태로 조회한다."
     )
-    @GetMapping("/api/management/search/device")
+    @GetMapping("/api/management/devices")
     public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromDevice(HttpServletRequest request,
                                                                                                   @RequestParam(value = "name", required = false, defaultValue = "") String name,
                                                                                                   @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
@@ -101,7 +101,7 @@ public class RenteeManagementController {
 
 
     @Operation(summary = "책 수정 [Token required]")
-    @PutMapping("/api/management/book/{id}")
+    @PutMapping("/api/management/books/{id}")
     public ResponseEntity<Void> updateBookById(HttpServletRequest request,
                                                @PathVariable(value = "id") Long id,
                                                @Valid @ModelAttribute BookSaveDto bookSaveDto
@@ -114,7 +114,7 @@ public class RenteeManagementController {
 
 
     @Operation(summary = "기자재 수정 [Token required]")
-    @PutMapping("/api/management/device/{id}")
+    @PutMapping("/api/management/devices/{id}")
     public ResponseEntity<Void> updateDeviceById(HttpServletRequest request,
                                                  @PathVariable(value = "id") Long id,
                                                  @Valid @ModelAttribute DeviceSaveDto deviceSaveDto
@@ -127,7 +127,7 @@ public class RenteeManagementController {
 
 
     @Operation(summary = "책 삭제 [Token required]")
-    @DeleteMapping("/api/management/book/{id}")
+    @DeleteMapping("/api/management/books/{id}")
     public ResponseEntity<Void> deleteBookById(HttpServletRequest request,
                                                @PathVariable(value = "id") Long id) {
         validateUserRole(request);
@@ -138,7 +138,7 @@ public class RenteeManagementController {
 
 
     @Operation(summary = "기자재 삭제 [Token required]")
-    @DeleteMapping("/api/management/device/{id}")
+    @DeleteMapping("/api/management/devices/{id}")
     public ResponseEntity<Void> deleteDeviceById(HttpServletRequest request,
                                                  @PathVariable(value = "id") Long id) {
         validateUserRole(request);

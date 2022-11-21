@@ -21,19 +21,19 @@ public class RentalController {
 
 
     @Operation(summary = "책 대여")
-    @PutMapping("/api/rentee/{renteeId}/rent")
-    public ResponseEntity<String> rentRenteeById(@PathVariable(value = "renteeId") Long renteeId,
+    @PutMapping("/api/rentees/{id}/rent")
+    public ResponseEntity<String> rentRenteeById(@PathVariable(value = "id") Long id,
                                                  @RequestParam(value = "accessToken") String accessToken) {
-        rentalService.rentRenteeByRenteeId(renteeId, accessToken);
+        rentalService.rentRenteeByRenteeId(id, accessToken);
 
         return ResponseEntity.ok().build();
     }
 
     @Operation(summary = "책 반납")
-    @PutMapping("/api/rentee/{renteeId}/return")
-    public ResponseEntity<String> returnRenteeById(@PathVariable(value = "renteeId") Long renteeId,
+    @PutMapping("/api/rentees/{id}/return")
+    public ResponseEntity<String> returnRenteeById(@PathVariable(value = "id") Long id,
                                                    @RequestParam(value = "accessToken") String accessToken) {
-        rentalService.returnRenteeByRenteeId(renteeId, accessToken);
+        rentalService.returnRenteeByRenteeId(id, accessToken);
 
         return ResponseEntity.ok().build();
     }

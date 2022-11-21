@@ -23,30 +23,30 @@ public class RenteeController {
             summary = "대여품 정보 조회",
             description = "accessToken을 첨부하면, 해당 유저의 즐겨찾기 여부를 확인한다. (첨부하지 않으면, false)"
     )
-    @GetMapping("/api/rentee/{renteeId}")
-    public ResponseEntity<RenteeInfoDto> getRenteeInfoDtoById(@PathVariable(value = "renteeId") Long renteeId,
+    @GetMapping("/api/rentees/{id}")
+    public ResponseEntity<RenteeInfoDto> getRenteeInfoDtoById(@PathVariable(value = "id") Long id,
                                                               @RequestParam(value = "accessToken", required = false) String accessToken) {
-        RenteeInfoDto renteeInfoDto = renteeService.getRenteeInfoDtoByIdWithAccessToken(renteeId, accessToken);
+        RenteeInfoDto renteeInfoDto = renteeService.getRenteeInfoDtoByIdWithAccessToken(id, accessToken);
 
         return ResponseEntity.ok(renteeInfoDto);
     }
 
 
     @Operation(summary = "즐겨찾기 추가")
-    @PutMapping("/api/rentee/{renteeId}/bookmark")
-    public ResponseEntity<Long> registerBookmark(@PathVariable(value = "renteeId") Long renteeId,
+    @PutMapping("/api/rentees/{id}/bookmark")
+    public ResponseEntity<Long> registerBookmark(@PathVariable(value = "id") Long id,
                                                  @RequestParam(value = "accessToken") String accessToken) {
-        long bookmarkId = renteeService.registerBookmark(renteeId, accessToken).getId();
+        long bookmarkId = renteeService.registerBookmark(id, accessToken).getId();
 
         return ResponseEntity.ok(bookmarkId);
     }
 
 
     @Operation(summary = "즐겨찾기 제거")
-    @DeleteMapping("/api/rentee/{renteeId}/bookmark")
-    public ResponseEntity<Void> unregisterBookmark(@PathVariable(value = "renteeId") Long renteeId,
+    @DeleteMapping("/api/rentees/{id}/bookmark")
+    public ResponseEntity<Void> unregisterBookmark(@PathVariable(value = "id") Long id,
                                                    @RequestParam(value = "accessToken") String accessToken) {
-        renteeService.unregisterBookmark(renteeId, accessToken);
+        renteeService.unregisterBookmark(id, accessToken);
 
         return ResponseEntity.ok().build();
     }
@@ -56,7 +56,7 @@ public class RenteeController {
             summary = "대여품 검색",
             description = "pageIndex: 페이지 번호 (0부터 시작)\n pageSize: 페이지 크기"
     )
-    @GetMapping("/api/rentee/search")
+    @GetMapping("/api/rentees")
     public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByNameWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String name,
                                                                                 @RequestParam(value = "pageIndex") int pageIndex,
                                                                                 @RequestParam(value = "pageSize") int pageSize
@@ -71,7 +71,7 @@ public class RenteeController {
             summary = "책 검색",
             description = "pageIndex: 페이지 번호 (0부터 시작)\n pageSize: 페이지 크기"
     )
-    @GetMapping("/api/rentee/search/book")
+    @GetMapping("/api/rentee/books")
     public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByNameFromBookWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String name,
                                                                                                   @RequestParam(value = "pageIndex") int pageIndex,
                                                                                                   @RequestParam(value = "pageSize") int pageSize
@@ -86,7 +86,7 @@ public class RenteeController {
             summary = "기자재 검색",
             description = "pageIndex: 페이지 번호 (0부터 시작)\n pageSize: 페이지 크기"
     )
-    @GetMapping("/api/rentee/search/device")
+    @GetMapping("/api/rentee/devices")
     public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByNameFromDeviceWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String name,
                                                                                                     @RequestParam(value = "pageIndex") int pageIndex,
                                                                                                     @RequestParam(value = "pageSize") int pageSize

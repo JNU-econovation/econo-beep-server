@@ -32,7 +32,7 @@ public class UserController {
 
 
     @Operation(summary = "내 프로필 조회 [Token required]")
-    @GetMapping("/api/user/profile/my")
+    @GetMapping("/api/user/my/profile")
     public ResponseEntity<UserProfileDto> getUserInfoDtoByAccessToken(HttpServletRequest request) {
         Long userId = (Long) request.getAttribute(USER_ID);
         UserProfileDto userProfileDto = userService.getUserProfileDtoByUserId(userId);
@@ -41,16 +41,16 @@ public class UserController {
     }
 
     @Operation(summary = "유저 프로필 조회")
-    @GetMapping("/api/user/profile/{userId}")
-    public ResponseEntity<UserProfileDto> getUserInfoDtoByAccessToken(@PathVariable(value = "userId") Long userId) {
-        UserProfileDto userProfileDto = userService.getUserProfileDtoByUserId(userId);
+    @GetMapping("/api/user/{id}/profile")
+    public ResponseEntity<UserProfileDto> getUserInfoDtoByAccessToken(@PathVariable(value = "id") Long id) {
+        UserProfileDto userProfileDto = userService.getUserProfileDtoByUserId(id);
 
         return ResponseEntity.ok(userProfileDto);
     }
 
 
     @Operation(summary = "유저 권한 조회 [Token required]")
-    @GetMapping("/api/user/role")
+    @GetMapping("/api/user/my/role")
     public ResponseEntity<Role> getUserRoleByAccessToken(HttpServletRequest request) {
         Role userRole = (Role) request.getAttribute(USER_ROLE);
 
@@ -62,9 +62,9 @@ public class UserController {
             summary = "유저가 대여하고 있는 대여품들을 조회",
             description = "최신에 대여한 대여품 먼저 조회한다."
     )
-    @GetMapping("/api/user/{userId}/rents")
-    public ResponseEntity<List<RenteeElementDto>> getRentsByUserId(@PathVariable(value = "userId") long userId) {
-        List<RenteeElementDto> renteeElementDtos = rentalService.getRentingRenteesByUserId(userId);
+    @GetMapping("/api/user/{id}/rents")
+    public ResponseEntity<List<RenteeElementDto>> getRentsByUserId(@PathVariable(value = "id") long id) {
+        List<RenteeElementDto> renteeElementDtos = rentalService.getRentingRenteesByUserId(id);
 
         return ResponseEntity.ok(renteeElementDtos);
     }
@@ -74,9 +74,9 @@ public class UserController {
             summary = "유저가 반납한 대여품들을 조회",
             description = "최신에 반납한 대여품 먼저 조회한다."
     )
-    @GetMapping("/api/user/{userId}/returns")
-    public ResponseEntity<List<RenteeElementDto>> getReturnsByUserId(@PathVariable(value = "userId") long userId) {
-        List<RenteeElementDto> renteeElementDtos = rentalService.getReturnedRenteeByUserId(userId);
+    @GetMapping("/api/user/{id}/returns")
+    public ResponseEntity<List<RenteeElementDto>> getReturnsByUserId(@PathVariable(value = "id") long id) {
+        List<RenteeElementDto> renteeElementDtos = rentalService.getReturnedRenteeByUserId(id);
 
         return ResponseEntity.ok(renteeElementDtos);
     }
@@ -86,9 +86,9 @@ public class UserController {
             summary = "해당 유저가 즐겨찾기한 대여품 조회",
             description = "최신에 즐겨찾기한 대여품을 먼저 조회한다."
     )
-    @GetMapping("/api/user/{userId}/bookmarks")
-    public ResponseEntity<List<RenteeElementDto>> getBookmarksByUserId(@PathVariable(value = "userId") long userId) {
-        List<RenteeElementDto> renteeElementDtos = renteeService.getBookmarkedRenteeByUserId(userId);
+    @GetMapping("/api/user/{id}/bookmarks")
+    public ResponseEntity<List<RenteeElementDto>> getBookmarksByUserId(@PathVariable(value = "id") long id) {
+        List<RenteeElementDto> renteeElementDtos = renteeService.getBookmarkedRenteeByUserId(id);
 
         return ResponseEntity.ok(renteeElementDtos);
     }
