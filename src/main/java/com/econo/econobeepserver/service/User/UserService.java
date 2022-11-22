@@ -1,6 +1,5 @@
 package com.econo.econobeepserver.service.User;
 
-import com.econo.econobeepserver.domain.User.Role;
 import com.econo.econobeepserver.domain.User.User;
 import com.econo.econobeepserver.domain.User.UserRepository;
 import com.econo.econobeepserver.dto.User.UserProfileDto;
@@ -29,6 +28,9 @@ public class UserService {
     public User getUserByIdpId(Long idpId) {
         return userRepository.findByIdpId(idpId).orElseThrow(NotFoundUserException::new);
     }
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(NotFoundUserException::new);
+    }
 
     public UserProfileDto getUserProfileDtoByUserId(Long userId) {
         return new UserProfileDto(getUserByUserId(userId));
@@ -49,18 +51,10 @@ public class UserService {
         UserSaveDto userSaveDto = econoIDP.getUserSaveDtoByAccessToken(accessToken);
         syncUser(userSaveDto);
 
-        return getUserByIdpId(userSaveDto.getIdpId());
-    }
-
-    public UserProfileDto getUserProfileDtoByAccessToken(String accessToken) {
-        return new UserProfileDto(getUserByAccessToken(accessToken));
+        return getUserByEmail(userSaveDto.getEmail());
     }
 
     public long getUserIdByAccessToken(String accessToken) {
         return getUserByAccessToken(accessToken).getId();
-    }
-
-    public Role getUserRoleByAccessToken(String accessToken) {
-        return getUserByAccessToken(accessToken).getRole();
     }
 }

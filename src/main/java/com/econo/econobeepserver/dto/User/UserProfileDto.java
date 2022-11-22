@@ -12,25 +12,25 @@ import lombok.Setter;
 public class UserProfileDto {
 
     private Long id;
-    private String username;
+    private String name;
     private Integer year;
-    private String userEmail;
+    private String email;
     private String profileImageUrl;
 
     @Builder
-    public UserProfileDto(Long id, String username, Integer year, String userEmail, String profileImageUrl) {
+    public UserProfileDto(Long id, String name, Integer year, String email, String profileImageUrl) {
         this.id = id;
-        this.username = username;
+        this.name = name;
         this.year = year;
-        this.userEmail = userEmail;
+        this.email = email;
         this.profileImageUrl = profileImageUrl;
     }
 
     public UserProfileDto(User user) {
         this.id = user.getId();
-        this.username = user.getUsername();
+        this.name = user.getName();
         this.year = user.getYear();
-        this.userEmail = user.getUserEmail();
+        this.email = user.getEmail();
         this.profileImageUrl = user.getProfileImageUrl();
     }
 }

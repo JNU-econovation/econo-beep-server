@@ -18,7 +18,7 @@ public class RentalElementDto {
     private Long returnEpochSecond;
 
     public RentalElementDto(Rental rental) {
-        this.renterName = rental.getRenter().getUsername();
+        this.renterName = rental.getRenter().getName();
         this.renterProfileImage = rental.getRenter().getProfileImageUrl();
         this.rentalEpochSecond = toEpochSecond(rental.getRentalDateTime());
         this.returnEpochSecond = toEpochSecond(rental.getReturnDateTime());

@@ -45,7 +45,7 @@ public class RenteeManagementInfoDto {
         this.rentState = rentee.getRentState();
 
         if (recentRental != null) {
-            this.recentRenterName = recentRental.getRenter().getUsername();
+            this.recentRenterName = recentRental.getRenter().getName();
             this.recentRentalEpochSecond = toEpochSecond(recentRental.getRentalDateTime());
         }
     }
