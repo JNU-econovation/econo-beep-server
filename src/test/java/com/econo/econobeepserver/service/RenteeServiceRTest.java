@@ -109,8 +109,8 @@ class RenteeServiceRTest {
         userSaveDto = UserSaveDto.builder()
                 .idpId(999L)
                 .year(21)
-                .username("test")
-                .userEmail("test@gmail.com")
+                .name("test")
+                .email("test@gmail.com")
                 .build();
     }
 

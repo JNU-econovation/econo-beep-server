@@ -19,8 +19,8 @@ public class EconoIDPImpl implements EconoIDP {
         return UserSaveDto.builder()
                 .idpId(999L)
                 .year(21)
-                .username("삡")
-                .userEmail("beep@gmail.com")
+                .name("삡")
+                .email("beep@gmail.com")
                 .role(Role.ADMIN)
                 .build();
     }
