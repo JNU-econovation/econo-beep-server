@@ -36,7 +36,7 @@ public class RenteeInfoDto {
     public RenteeInfoDto(Rentee rentee, List<RentalElementDto> rentalElementDtos, boolean isBookmarked, int bookmarkCount) {
         this.id = rentee.getId();
         this.type = rentee.getType();
-        this.thumbnailUrl = "/rentee/" + rentee.getId() + "/thumbnail";
+        this.thumbnailUrl = "/api/rentees/" + rentee.getId() + "/thumbnail";
         this.name = rentee.getName();
         this.bookArea = rentee.getBookArea();
         this.bookAuthorName = rentee.getBookAuthorName();

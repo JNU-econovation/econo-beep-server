@@ -34,7 +34,7 @@ public class RenteeManagementInfoDto {
 
     public RenteeManagementInfoDto(Rentee rentee, Rental recentRental) {
         this.id = rentee.getId();
-        this.thumbnailUrl = "/rentee/" + rentee.getId() + "/thumbnail";
+        this.thumbnailUrl = "/api/rentees/" + rentee.getId() + "/thumbnail";
         this.type = rentee.getType();
         this.name = rentee.getName();
         this.bookArea = rentee.getBookArea();
