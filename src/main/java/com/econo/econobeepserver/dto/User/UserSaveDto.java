@@ -17,7 +17,7 @@ public class UserSaveDto {
     private Integer year;
     private String email;
     private String profileImageUrl;
-    private Role role;
+    private Role role = Role.USER;
 
     @Builder
     public UserSaveDto(Long idpId, String name, Integer year, String email, String profileImageUrl, Role role) {
@@ -35,7 +35,7 @@ public class UserSaveDto {
         this.year = userIDPDto.getYear();
         this.email = userIDPDto.getEmail();
         this.profileImageUrl = userIDPDto.getProfileImageUrl();
-        this.role = Role.ADMIN;
+        this.role = Role.USER;
     }
 
     public User toEntity() {
@@ -45,7 +45,7 @@ public class UserSaveDto {
                 .year(year)
                 .email(email)
                 .profileImageUrl(profileImageUrl)
-                .role(Role.USER)
+                .role(role)
                 .build();
     }
 }

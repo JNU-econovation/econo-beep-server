@@ -22,7 +22,6 @@ import java.util.List;
 
 import static com.econo.econobeepserver.config.BearerAuthInterceptor.USER_ROLE;
 
-@Slf4j
 @Tag(name = "대여품 관리 API", description = "대여품 추가, 수정, 삭제, 정렬 [Only Admin]")
 @RestController
 @RequiredArgsConstructor
@@ -32,7 +31,9 @@ public class RenteeManagementController {
 
 
     private void validateUserRole(HttpServletRequest request) {
+        System.out.println(request.getAttribute(USER_ROLE));
         Role role = (Role) request.getAttribute(USER_ROLE);
+        System.out.println(role);
         if (!role.equals(Role.ADMIN)) {
             throw new ForbiddenRoleException();
         }
