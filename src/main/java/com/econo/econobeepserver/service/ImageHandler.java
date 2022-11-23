@@ -42,20 +42,19 @@ public class ImageHandler {
     }
 
     private String getFileExtension(String fileName) {
-        String[] splitedFileName = fileName.split(".");
-
-        if (splitedFileName.length == 1) {
+        String[] splitFileName = fileName.split("\\.");
+        if (splitFileName.length <= 1) {
             return "";
-        } else {
-            return splitedFileName[splitedFileName.length - 1];
         }
+
+        return splitFileName[splitFileName.length - 1];
     }
 
     public RenteeThumbnail parseRenteeThumbnail(MultipartFile multipartFile) {
         validateSavingPath(RENTEE_THUMBNAIL_FOLDER_PATH);
         validateImageExtension(multipartFile.getContentType());
 
-        String fileName = System.nanoTime() + multipartFile.getOriginalFilename();
+        String fileName = System.nanoTime() + "." + getFileExtension(multipartFile.getOriginalFilename());
         String filePath = RENTEE_THUMBNAIL_FOLDER_PATH + fileName;
         return RenteeThumbnail.builder()
                 .filePath(filePath)
