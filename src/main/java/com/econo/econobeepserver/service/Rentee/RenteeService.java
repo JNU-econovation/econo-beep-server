@@ -189,9 +189,10 @@ public class RenteeService {
     public void deleteRenteeById(Long id) {
         try {
             Rentee rentee = getRenteeById(id);
+            String thumbnailPath = rentee.getThumbnail().getFilePath();
 
-            imageHandler.deleteImage(rentee.getThumbnail().getFilePath());
             renteeRepository.deleteById(id);
+            imageHandler.deleteImage(thumbnailPath);
 
         } catch (EmptyResultDataAccessException e) {
             throw new NotFoundRenteeException();

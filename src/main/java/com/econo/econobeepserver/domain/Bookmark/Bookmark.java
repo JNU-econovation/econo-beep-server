@@ -4,6 +4,8 @@ import com.econo.econobeepserver.domain.Rentee.Rentee;
 import com.econo.econobeepserver.domain.User.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -18,10 +20,12 @@ public class Bookmark {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "rentee_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Rentee rentee;
 
     public Bookmark(User user, Rentee rentee) {

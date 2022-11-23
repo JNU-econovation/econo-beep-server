@@ -7,6 +7,8 @@ import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -22,6 +24,7 @@ public class Rental extends BaseTimeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rentee_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Rentee rentee;
 
     @ManyToOne
