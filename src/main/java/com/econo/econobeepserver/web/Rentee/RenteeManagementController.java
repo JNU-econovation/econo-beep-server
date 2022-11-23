@@ -31,9 +31,7 @@ public class RenteeManagementController {
 
 
     private void validateUserRole(HttpServletRequest request) {
-        System.out.println(request.getAttribute(USER_ROLE));
         Role role = (Role) request.getAttribute(USER_ROLE);
-        System.out.println(role);
         if (!role.equals(Role.ADMIN)) {
             throw new ForbiddenRoleException();
         }
