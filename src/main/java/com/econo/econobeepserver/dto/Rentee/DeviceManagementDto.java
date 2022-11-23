@@ -13,11 +13,11 @@ import java.util.List;
 public class DeviceManagementDto {
 
     private Long totalCount;
-    private List<DeviceManagementElementDto> bookManagementElementDtoList;
+    private List<DeviceManagementElementDto> deviceManagementElementDtos;
 
     @Builder
-    public DeviceManagementDto(Long totalCount, List<DeviceManagementElementDto> bookManagementElementDtoList) {
+    public DeviceManagementDto(Long totalCount, List<DeviceManagementElementDto> deviceManagementElementDtos) {
         this.totalCount = totalCount;
-        this.bookManagementElementDtoList = bookManagementElementDtoList;
+        this.deviceManagementElementDtos = deviceManagementElementDtos;
     }
 }

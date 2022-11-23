@@ -13,11 +13,11 @@ import java.util.List;
 public class BookManagementDto {
 
     private Long totalCount;
-    private List<BookManagementElementDto> bookManagementElementDtoList;
+    private List<BookManagementElementDto> bookManagementElementDtos;
 
     @Builder
-    public BookManagementDto(Long totalCount, List<BookManagementElementDto> bookManagementElementDtoList) {
+    public BookManagementDto(Long totalCount, List<BookManagementElementDto> bookManagementElementDtos) {
         this.totalCount = totalCount;
-        this.bookManagementElementDtoList = bookManagementElementDtoList;
+        this.bookManagementElementDtos = bookManagementElementDtos;
     }
 }
