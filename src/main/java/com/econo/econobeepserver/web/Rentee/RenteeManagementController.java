@@ -1,24 +1,20 @@
 package com.econo.econobeepserver.web.Rentee;
 
 import com.econo.econobeepserver.domain.User.Role;
-import com.econo.econobeepserver.dto.Rentee.DeviceSaveDto;
-import com.econo.econobeepserver.dto.Rentee.RenteeManagementInfoDto;
-import com.econo.econobeepserver.dto.Rentee.BookSaveDto;
-import com.econo.econobeepserver.dto.Rentee.RenteeSaveDto;
+import com.econo.econobeepserver.dto.Rentee.*;
 import com.econo.econobeepserver.exception.ForbiddenRoleException;
 import com.econo.econobeepserver.service.Rentee.RenteeService;
 import com.econo.econobeepserver.service.Rentee.RenteeSort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.econo.econobeepserver.config.BearerAuthInterceptor.USER_ROLE;
 
@@ -68,16 +64,20 @@ public class RenteeManagementController {
             description = "검색과 정렬 파라미터를 비우면, 필터가 적용되지 않는 상태로 조회한다."
     )
     @GetMapping("/api/management/books")
-    public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromBook(HttpServletRequest request,
-                                                                                                @RequestParam(value = "name", required = false, defaultValue = "") String name,
-                                                                                                @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
-                                                                                                @RequestParam(value = "pageIndex") int pageIndex,
-                                                                                                @RequestParam(value = "pageSize") int pageSize
+    public ResponseEntity<BookManagementDto> searchRenteesFromBook(HttpServletRequest request,
+                                                                                    @RequestParam(value = "name", required = false, defaultValue = "") String name,
+                                                                                    @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
+                                                                                    @RequestParam(value = "pageIndex") int pageIndex,
+                                                                                    @RequestParam(value = "pageSize") int pageSize
     ) {
         validateUserRole(request);
-        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging(name, renteeSort, pageIndex, pageSize);
+        Long count = renteeService.countByNameContainingFromBookWithSort(name, renteeSort);
+        List<BookManagementElementDto> bookManagementElementDtos = renteeService.searchRenteeManagementInfoDtosByNameContainingFromBookWithSortAndPaging(name, renteeSort, pageIndex, pageSize)
+                .stream().map(BookManagementElementDto::new).collect(Collectors.toList());
 
-        return ResponseEntity.ok(renteeManagementInfoDtos);
+        BookManagementDto bookManagementDto = new BookManagementDto(count, bookManagementElementDtos);
+
+        return ResponseEntity.ok(bookManagementDto);
     }
 
 
@@ -86,16 +86,20 @@ public class RenteeManagementController {
             description = "검색과 정렬 파라미터를 비우면, 필터가 적용되지 않는 상태로 조회한다."
     )
     @GetMapping("/api/management/devices")
-    public ResponseEntity<List<RenteeManagementInfoDto>> searchRenteeManagementInfoDtosFromDevice(HttpServletRequest request,
-                                                                                                  @RequestParam(value = "name", required = false, defaultValue = "") String name,
-                                                                                                  @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
-                                                                                                  @RequestParam(value = "pageIndex") int pageIndex,
-                                                                                                  @RequestParam(value = "pageSize") int pageSize
+    public ResponseEntity<DeviceManagementDto> searchRenteesFromDevice(HttpServletRequest request,
+                                                                                                   @RequestParam(value = "name", required = false, defaultValue = "") String name,
+                                                                                                   @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
+                                                                                                   @RequestParam(value = "pageIndex") int pageIndex,
+                                                                                                   @RequestParam(value = "pageSize") int pageSize
     ) {
         validateUserRole(request);
-        List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosByNameFromDeviceWithSortAndPaging(name, renteeSort, pageIndex, pageSize);
+        Long count = renteeService.countByNameContainingFromDeviceWithSort(name, renteeSort);
+        List<DeviceManagementElementDto> deviceManagementElementDtos = renteeService.searchRenteeManagementInfoDtosByNameContainingFromDeviceWithSortAndPaging(name, renteeSort, pageIndex, pageSize)
+                .stream().map(DeviceManagementElementDto::new).collect(Collectors.toList());
 
-        return ResponseEntity.ok(renteeManagementInfoDtos);
+        DeviceManagementDto deviceManagementDto = new DeviceManagementDto(count, deviceManagementElementDtos);
+
+        return ResponseEntity.ok(deviceManagementDto);
     }
 
 

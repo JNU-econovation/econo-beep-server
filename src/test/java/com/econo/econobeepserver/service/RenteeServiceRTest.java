@@ -4,10 +4,9 @@ import com.econo.econobeepserver.domain.Rental.RentalRepository;
 import com.econo.econobeepserver.domain.Rentee.BookArea;
 import com.econo.econobeepserver.domain.Rentee.RenteeRepository;
 import com.econo.econobeepserver.domain.Rentee.RenteeType;
-import com.econo.econobeepserver.domain.User.User;
 import com.econo.econobeepserver.dto.User.UserSaveDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeElementDto;
-import com.econo.econobeepserver.dto.Rentee.RenteeManagementInfoDto;
+import com.econo.econobeepserver.dto.Rentee.BookManagementElementDto;
 import com.econo.econobeepserver.dto.Rentee.RenteeSaveDto;
 import com.econo.econobeepserver.service.Rentee.RentalService;
 import com.econo.econobeepserver.service.Rentee.RenteeService;
@@ -167,40 +166,40 @@ class RenteeServiceRTest {
 
     @Nested
     @DisplayName("searchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging 정상동작 테스트")
-    class SearchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging_Test {
+    class SearchBookManagementInfoDtosByNameFromBookWithSortAndPaging_Test {
 
         @DisplayName("페이징 테스트")
         @Test
         void test_paging() {
             // when
-            List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging("book", RenteeSort.NONE, 0, 2);
+            List<BookManagementElementDto> bookManagementElementDtos = renteeService.searchRenteeManagementInfoDtosByNameContainingFromBookWithSortAndPaging("book", RenteeSort.NONE, 0, 2);
 
             // then
-            assertEquals(2, renteeManagementInfoDtos.size());
+            assertEquals(2, bookManagementElementDtos.size());
         }
 
         @DisplayName("오래전에 추가된순(CREATED_ASC) 정렬 테스트")
         @Test
         void test_createdAscSort() {
             // when
-            List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging("book", RenteeSort.CREATED_ASC, 0, 3);
+            List<BookManagementElementDto> bookManagementElementDtos = renteeService.searchRenteeManagementInfoDtosByNameContainingFromBookWithSortAndPaging("book", RenteeSort.CREATED_ASC, 0, 3);
 
             // then
-            assertEquals(book1SaveDto.getName(), renteeManagementInfoDtos.get(0).getName());
-            assertEquals(book2SaveDto.getName(), renteeManagementInfoDtos.get(1).getName());
-            assertEquals(book3SaveDto.getName(), renteeManagementInfoDtos.get(2).getName());
+            assertEquals(book1SaveDto.getName(), bookManagementElementDtos.get(0).getName());
+            assertEquals(book2SaveDto.getName(), bookManagementElementDtos.get(1).getName());
+            assertEquals(book3SaveDto.getName(), bookManagementElementDtos.get(2).getName());
         }
 
         @DisplayName("최근에 추가된순(CREATED_DESC) 정렬 테스트")
         @Test
         void test_createdDescSort() {
             // when
-            List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging("book", RenteeSort.CREATED_DESC, 0, 3);
+            List<BookManagementElementDto> bookManagementElementDtos = renteeService.searchRenteeManagementInfoDtosByNameContainingFromBookWithSortAndPaging("book", RenteeSort.CREATED_DESC, 0, 3);
 
             // then
-            assertEquals(book3SaveDto.getName(), renteeManagementInfoDtos.get(0).getName());
-            assertEquals(book2SaveDto.getName(), renteeManagementInfoDtos.get(1).getName());
-            assertEquals(book1SaveDto.getName(), renteeManagementInfoDtos.get(2).getName());
+            assertEquals(book3SaveDto.getName(), bookManagementElementDtos.get(0).getName());
+            assertEquals(book2SaveDto.getName(), bookManagementElementDtos.get(1).getName());
+            assertEquals(book1SaveDto.getName(), bookManagementElementDtos.get(2).getName());
         }
 
         @DisplayName("오래전에 대여된순(OUTDATED_RENTAL) 정렬 테스트")
@@ -218,12 +217,12 @@ class RenteeServiceRTest {
             rentalService.rentRenteeByRenteeIdAndUserId(book3Id, userId);
 
             // when
-            List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging("book", RenteeSort.OUTDATED_RENTAL, 0, 3);
+            List<BookManagementElementDto> bookManagementElementDtos = renteeService.searchRenteeManagementInfoDtosByNameContainingFromBookWithSortAndPaging("book", RenteeSort.OUTDATED_RENTAL, 0, 3);
 
             // then
-            assertEquals(book2SaveDto.getName(), renteeManagementInfoDtos.get(0).getName());
-            assertEquals(book1SaveDto.getName(), renteeManagementInfoDtos.get(1).getName());
-            assertEquals(book3SaveDto.getName(), renteeManagementInfoDtos.get(2).getName());
+            assertEquals(book2SaveDto.getName(), bookManagementElementDtos.get(0).getName());
+            assertEquals(book1SaveDto.getName(), bookManagementElementDtos.get(1).getName());
+            assertEquals(book3SaveDto.getName(), bookManagementElementDtos.get(2).getName());
         }
 
         @DisplayName("최근 대여된순(LATEST_RENTAL) 정렬 테스트")
@@ -241,12 +240,12 @@ class RenteeServiceRTest {
             rentalService.rentRenteeByRenteeIdAndUserId(book3Id, userId);
 
             // when
-            List<RenteeManagementInfoDto> renteeManagementInfoDtos = renteeService.searchRenteeManagementInfoDtosByNameFromBookWithSortAndPaging("book", RenteeSort.LATEST_RENTAL, 0, 3);
+            List<BookManagementElementDto> bookManagementElementDtos = renteeService.searchRenteeManagementInfoDtosByNameContainingFromBookWithSortAndPaging("book", RenteeSort.LATEST_RENTAL, 0, 3);
 
             // then
-            assertEquals(book3SaveDto.getName(), renteeManagementInfoDtos.get(0).getName());
-            assertEquals(book1SaveDto.getName(), renteeManagementInfoDtos.get(1).getName());
-            assertEquals(book2SaveDto.getName(), renteeManagementInfoDtos.get(2).getName());
+            assertEquals(book3SaveDto.getName(), bookManagementElementDtos.get(0).getName());
+            assertEquals(book1SaveDto.getName(), bookManagementElementDtos.get(1).getName());
+            assertEquals(book2SaveDto.getName(), bookManagementElementDtos.get(2).getName());
         }
     }
 }

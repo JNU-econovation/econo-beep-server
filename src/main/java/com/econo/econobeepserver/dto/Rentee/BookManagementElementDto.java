@@ -16,7 +16,7 @@ import static com.econo.econobeepserver.util.EpochTime.toEpochSecond;
 @Setter
 @Getter
 @NoArgsConstructor
-public class RenteeManagementInfoDto {
+public class BookManagementElementDto {
 
     private Long id;
     private String thumbnailUrl;
@@ -32,7 +32,7 @@ public class RenteeManagementInfoDto {
     private String recentRenterName;
     private Long recentRentalEpochSecond;
 
-    public RenteeManagementInfoDto(Rentee rentee, Rental recentRental) {
+    public BookManagementElementDto(Rentee rentee, Rental recentRental) {
         this.id = rentee.getId();
         this.thumbnailUrl = "/api/rentees/" + rentee.getId() + "/thumbnail";
         this.type = rentee.getType();
@@ -50,11 +50,27 @@ public class RenteeManagementInfoDto {
         }
     }
 
+    public BookManagementElementDto(RenteeManagementInfoDto renteeManagementInfoDto) {
+        this.id = renteeManagementInfoDto.getId();
+        this.thumbnailUrl = "/api/rentees/" + renteeManagementInfoDto.getId() + "/thumbnail";
+        this.type = renteeManagementInfoDto.getType();
+        this.name = renteeManagementInfoDto.getName();
+        this.bookArea = renteeManagementInfoDto.getBookArea();
+        this.bookAuthorName = renteeManagementInfoDto.getBookAuthorName();
+        this.bookPublisherName = renteeManagementInfoDto.getBookPublisherName();
+        this.bookPublishedDateEpochSecond = renteeManagementInfoDto.getBookPublishedDateEpochSecond();
+        this.note = renteeManagementInfoDto.getNote();
+        this.rentState = renteeManagementInfoDto.getRentState();
+
+        this.recentRenterName = renteeManagementInfoDto.getRecentRenterName();
+        this.recentRentalEpochSecond = renteeManagementInfoDto.getRecentRentalEpochSecond();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof RenteeManagementInfoDto)) return false;
-        RenteeManagementInfoDto that = (RenteeManagementInfoDto) o;
+        if (!(o instanceof BookManagementElementDto)) return false;
+        BookManagementElementDto that = (BookManagementElementDto) o;
         return getThumbnailUrl().equals(that.getThumbnailUrl()) && getType() == that.getType() && getName().equals(that.getName()) && getBookArea() == that.getBookArea() && Objects.equals(getBookAuthorName(), that.getBookAuthorName()) && Objects.equals(getBookPublisherName(), that.getBookPublisherName()) && Objects.equals(getBookPublishedDateEpochSecond(), that.getBookPublishedDateEpochSecond()) && Objects.equals(getNote(), that.getNote()) && getRentState() == that.getRentState();
     }
 

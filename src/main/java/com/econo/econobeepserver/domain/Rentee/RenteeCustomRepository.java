@@ -6,23 +6,33 @@ import java.util.List;
 
 public interface RenteeCustomRepository {
 
-    List<Rentee> findRenteesNameContainingFromBookWithPaging(String name, Pageable pageable);
+    Long countByNameContainingFromBook(String name);
+    List<Rentee> findRenteesByNameContainingFromBookWithPaging(String name, Pageable pageable);
 
-    List<Rentee> findRenteesNameContainingFromBookOrderByCreatedAscWithPaging(String name, Pageable pageable);
+    Long countByNameContainingFromBookOrderByCreatedAsc(String name);
+    List<Rentee> findRenteesByNameContainingFromBookOrderByCreatedAscWithPaging(String name, Pageable pageable);
 
-    List<Rentee> findRenteesNameContainingFromBookOrderByCreatedDescWithPaging(String name, Pageable pageable);
+    Long countByNameContainingFromBookOrderByCreatedDesc(String name);
+    List<Rentee> findRenteesByNameContainingFromBookOrderByCreatedDescWithPaging(String name, Pageable pageable);
 
-    List<Rentee> findRenteesNameContainingFromBookOrderByLatestRentalWithPaging(String name, Pageable pageable);
+    Long countByNameContainingFromBookOrderByLatestRental(String name);
+    List<Rentee> findRenteesByNameContainingFromBookOrderByLatestRentalWithPaging(String name, Pageable pageable);
 
-    List<Rentee> findRenteesNameContainingFromBookOrderByOutdatedRentalWithPaging(String name, Pageable pageable);
+    Long countByNameContainingFromBookOrderByOutdatedRental(String name);
+    List<Rentee> findRenteesByNameContainingFromBookOrderByOutdatedRentalWithPaging(String name, Pageable pageable);
 
-    List<Rentee> findRenteesNameContainingFromDeviceWithPaging(String name, Pageable pageable);
+    Long countByNameContainingFromDevice(String name);
+    List<Rentee> findRenteesByNameContainingFromDeviceWithPaging(String name, Pageable pageable);
 
-    List<Rentee> findRenteesNameContainingFromDeviceOrderByCreatedAscWithPaging(String name, Pageable pageable);
+    Long countByNameContainingFromDeviceOrderByCreatedAsc(String name);
+    List<Rentee> findRenteesByNameContainingFromDeviceOrderByCreatedAscWithPaging(String name, Pageable pageable);
 
-    List<Rentee> findRenteesNameContainingFromDeviceOrderByCreatedDescWithPaging(String name, Pageable pageable);
+    Long countByNameContainingFromDeviceOrderByCreatedDesc(String name);
+    List<Rentee> findRenteesByNameContainingFromDeviceOrderByCreatedDescWithPaging(String name, Pageable pageable);
 
-    List<Rentee> findRenteesNameContainingFromDeviceOrderByLatestRentalWithPaging(String name, Pageable pageable);
+    Long countByNameContainingFromDeviceOrderByLatestRental(String name);
+    List<Rentee> findRenteesByNameContainingFromDeviceOrderByLatestRentalWithPaging(String name, Pageable pageable);
 
-    List<Rentee> findRenteesNameContainingFromDeviceOrderByOutdatedRentalWithPaging(String name, Pageable pageable);
+    Long countByNameContainingFromDeviceOrderByOutdatedRental(String name);
+    List<Rentee> findRenteesByNameContainingFromDeviceOrderByOutdatedRentalWithPaging(String name, Pageable pageable);
 }
