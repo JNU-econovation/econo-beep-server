@@ -32,7 +32,7 @@ public class BookManagementElementDto {
     private String recentRenterName;
     private Long recentRentalEpochSecond;
 
-    public BookManagementElementDto(Rentee rentee, Rental recentRental) {
+    public BookManagementElementDto(Rentee rentee, String recentRenterName, Long recentRentalEpochSecond) {
         this.id = rentee.getId();
         this.thumbnailUrl = "/api/rentees/" + rentee.getId() + "/thumbnail";
         this.type = rentee.getType();
@@ -44,10 +44,8 @@ public class BookManagementElementDto {
         this.note = rentee.getNote();
         this.rentState = rentee.getRentState();
 
-        if (recentRental != null) {
-            this.recentRenterName = recentRental.getRenter().getName();
-            this.recentRentalEpochSecond = toEpochSecond(recentRental.getRentalDateTime());
-        }
+        this.recentRenterName = recentRenterName;
+        this.recentRentalEpochSecond = recentRentalEpochSecond;
     }
 
     public BookManagementElementDto(RenteeManagementInfoDto renteeManagementInfoDto) {

@@ -1,6 +1,7 @@
 package com.econo.econobeepserver.dto.Rentee;
 
 import com.econo.econobeepserver.domain.Rental.Rental;
+import com.econo.econobeepserver.dto.User.UserRenterDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,9 +18,9 @@ public class RentalElementDto {
     private Long rentalEpochSecond;
     private Long returnEpochSecond;
 
-    public RentalElementDto(Rental rental) {
-        this.renterName = rental.getRenter().getName();
-        this.renterProfileImage = rental.getRenter().getProfileImageUrl();
+    public RentalElementDto(Rental rental, UserRenterDto userRenterDto) {
+        this.renterName = userRenterDto.getUsername();
+        this.renterProfileImage = userRenterDto.getProfileImageUrl();
         this.rentalEpochSecond = toEpochSecond(rental.getRentalDateTime());
         this.returnEpochSecond = toEpochSecond(rental.getReturnDateTime());
     }

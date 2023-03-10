@@ -17,25 +17,25 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public Long countByNameContainingFromBook(String name) {
+    public Long countByRenteeNameContainingFromBook(String RenteeName) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
                         rentee.type.eq(RenteeType.BOOK),
-                        rentee.name.contains(name)
+                        rentee.name.contains(RenteeName)
                 )
                 .fetchCount();
     }
 
     @Override
-    public List<Rentee> findRenteesByNameContainingFromBookWithPaging(String name, Pageable pageable) {
+    public List<Rentee> findRenteesByRenteeNameContainingFromBookWithPaging(String RenteeName, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
                         rentee.type.eq(RenteeType.BOOK),
-                        rentee.name.contains(name)
+                        rentee.name.contains(RenteeName)
                 )
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -43,13 +43,13 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public Long countByNameContainingFromBookOrderByCreatedAsc(String name) {
+    public Long countByRenteeNameContainingFromBookOrderByCreatedAsc(String RenteeName) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
                         rentee.type.eq(RenteeType.BOOK),
-                        rentee.name.contains(name)
+                        rentee.name.contains(RenteeName)
                 )
                 .orderBy(
                         rentee.createdDate.asc()
@@ -58,13 +58,13 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByNameContainingFromBookOrderByCreatedAscWithPaging(String name, Pageable pageable) {
+    public List<Rentee> findRenteesByRenteeNameContainingFromBookOrderByCreatedAscWithPaging(String RenteeName, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
                         rentee.type.eq(RenteeType.BOOK),
-                        rentee.name.contains(name)
+                        rentee.name.contains(RenteeName)
                 )
                 .orderBy(
                         rentee.createdDate.asc()
@@ -75,13 +75,13 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public Long countByNameContainingFromBookOrderByCreatedDesc(String name) {
+    public Long countByRenteeNameContainingFromBookOrderByCreatedDesc(String RenteeName) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
                         rentee.type.eq(RenteeType.BOOK),
-                        rentee.name.contains(name)
+                        rentee.name.contains(RenteeName)
                 )
                 .orderBy(
                         rentee.createdDate.desc()
@@ -90,13 +90,13 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByNameContainingFromBookOrderByCreatedDescWithPaging(String name, Pageable pageable) {
+    public List<Rentee> findRenteesByRenteeNameContainingFromBookOrderByCreatedDescWithPaging(String RenteeName, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
                         rentee.type.eq(RenteeType.BOOK),
-                        rentee.name.contains(name)
+                        rentee.name.contains(RenteeName)
                 )
                 .orderBy(
                         rentee.createdDate.desc()
@@ -107,13 +107,13 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public Long countByNameContainingFromBookOrderByLatestRental(String name) {
+    public Long countByRenteeNameContainingFromBookOrderByLatestRental(String RenteeName) {
         return jpaQueryFactory
                 .select(rental.rentee.id)
                 .from(rental)
                 .where(
                         rental.rentee.type.eq(RenteeType.BOOK),
-                        rental.rentee.name.contains(name)
+                        rental.rentee.name.contains(RenteeName)
                 )
                 .distinct()
                 .orderBy(
@@ -123,14 +123,14 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByNameContainingFromBookOrderByLatestRentalWithPaging(String name, Pageable pageable) {
+    public List<Rentee> findRenteesByRenteeNameContainingFromBookOrderByLatestRentalWithPaging(String RenteeName, Pageable pageable) {
         List<Long> latestRentedBookIds =
                 jpaQueryFactory
                         .select(rental.rentee.id)
                         .from(rental)
                         .where(
                                 rental.rentee.type.eq(RenteeType.BOOK),
-                                rental.rentee.name.contains(name)
+                                rental.rentee.name.contains(RenteeName)
                         )
                         .distinct()
                         .orderBy(
@@ -155,13 +155,13 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public Long countByNameContainingFromBookOrderByOutdatedRental(String name) {
+    public Long countByRenteeNameContainingFromBookOrderByOutdatedRental(String RenteeName) {
         return jpaQueryFactory
                 .select(rental.rentee.id)
                 .from(rental)
                 .where(
                         rental.rentee.type.eq(RenteeType.BOOK),
-                        rental.rentee.name.contains(name)
+                        rental.rentee.name.contains(RenteeName)
                 )
                 .orderBy(
                         rental.rentalDateTime.asc()
@@ -171,14 +171,14 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByNameContainingFromBookOrderByOutdatedRentalWithPaging(String name, Pageable pageable) {
+    public List<Rentee> findRenteesByRenteeNameContainingFromBookOrderByOutdatedRentalWithPaging(String RenteeName, Pageable pageable) {
         List<Long> outdatedRentedBookIds =
                 jpaQueryFactory
                         .select(rental.rentee.id)
                         .from(rental)
                         .where(
                                 rental.rentee.type.eq(RenteeType.BOOK),
-                                rental.rentee.name.contains(name)
+                                rental.rentee.name.contains(RenteeName)
                         )
                         .orderBy(
                                 rental.rentalDateTime.asc()
@@ -204,25 +204,25 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
 
 
     @Override
-    public Long countByNameContainingFromDevice(String name) {
+    public Long countByRenteeNameContainingFromDevice(String RenteeName) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
                         rentee.type.eq(RenteeType.DEVICE),
-                        rentee.name.contains(name)
+                        rentee.name.contains(RenteeName)
                 )
                 .fetchCount();
     }
 
     @Override
-    public List<Rentee> findRenteesByNameContainingFromDeviceWithPaging(String name, Pageable pageable) {
+    public List<Rentee> findRenteesByRenteeNameContainingFromDeviceWithPaging(String RenteeName, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
                         rentee.type.eq(RenteeType.DEVICE),
-                        rentee.name.contains(name)
+                        rentee.name.contains(RenteeName)
                 )
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -230,13 +230,13 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public Long countByNameContainingFromDeviceOrderByCreatedAsc(String name) {
+    public Long countByRenteeNameContainingFromDeviceOrderByCreatedAsc(String RenteeName) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
                         rentee.type.eq(RenteeType.DEVICE),
-                        rentee.name.contains(name)
+                        rentee.name.contains(RenteeName)
                 )
                 .orderBy(
                         rentee.createdDate.asc()
@@ -245,13 +245,13 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByNameContainingFromDeviceOrderByCreatedAscWithPaging(String name, Pageable pageable) {
+    public List<Rentee> findRenteesByRenteeNameContainingFromDeviceOrderByCreatedAscWithPaging(String RenteeName, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
                         rentee.type.eq(RenteeType.DEVICE),
-                        rentee.name.contains(name)
+                        rentee.name.contains(RenteeName)
                 )
                 .orderBy(
                         rentee.createdDate.asc()
@@ -262,13 +262,13 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public Long countByNameContainingFromDeviceOrderByCreatedDesc(String name) {
+    public Long countByRenteeNameContainingFromDeviceOrderByCreatedDesc(String RenteeName) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
                         rentee.type.eq(RenteeType.DEVICE),
-                        rentee.name.contains(name)
+                        rentee.name.contains(RenteeName)
                 )
                 .orderBy(
                         rentee.createdDate.desc()
@@ -277,13 +277,13 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByNameContainingFromDeviceOrderByCreatedDescWithPaging(String name, Pageable pageable) {
+    public List<Rentee> findRenteesByRenteeNameContainingFromDeviceOrderByCreatedDescWithPaging(String RenteeName, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
                 .where(
                         rentee.type.eq(RenteeType.DEVICE),
-                        rentee.name.contains(name)
+                        rentee.name.contains(RenteeName)
                 )
                 .orderBy(
                         rentee.createdDate.desc()
@@ -294,13 +294,13 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public Long countByNameContainingFromDeviceOrderByLatestRental(String name) {
+    public Long countByRenteeNameContainingFromDeviceOrderByLatestRental(String RenteeName) {
         return jpaQueryFactory
                 .select(rental.rentee.id)
                 .from(rental)
                 .where(
                         rental.rentee.type.eq(RenteeType.DEVICE),
-                        rental.rentee.name.contains(name)
+                        rental.rentee.name.contains(RenteeName)
                 )
                 .orderBy(
                         rental.rentalDateTime.desc()
@@ -310,14 +310,14 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByNameContainingFromDeviceOrderByLatestRentalWithPaging(String name, Pageable pageable) {
+    public List<Rentee> findRenteesByRenteeNameContainingFromDeviceOrderByLatestRentalWithPaging(String RenteeName, Pageable pageable) {
         List<Long> latestRentedDeviceIds =
                 jpaQueryFactory
                         .select(rental.rentee.id)
                         .from(rental)
                         .where(
                                 rental.rentee.type.eq(RenteeType.DEVICE),
-                                rental.rentee.name.contains(name)
+                                rental.rentee.name.contains(RenteeName)
                         )
                         .orderBy(
                                 rental.rentalDateTime.desc()
@@ -342,13 +342,13 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public Long countByNameContainingFromDeviceOrderByOutdatedRental(String name) {
+    public Long countByRenteeNameContainingFromDeviceOrderByOutdatedRental(String RenteeName) {
         return jpaQueryFactory
                 .select(rental.rentee.id)
                 .from(rental)
                 .where(
                         rental.rentee.type.eq(RenteeType.DEVICE),
-                        rental.rentee.name.contains(name)
+                        rental.rentee.name.contains(RenteeName)
                 )
                 .orderBy(
                         rental.rentalDateTime.asc()
@@ -358,14 +358,14 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByNameContainingFromDeviceOrderByOutdatedRentalWithPaging(String name, Pageable pageable) {
+    public List<Rentee> findRenteesByRenteeNameContainingFromDeviceOrderByOutdatedRentalWithPaging(String RenteeName, Pageable pageable) {
         List<Long> outdatedRentedDeviceIds =
                 jpaQueryFactory
                         .select(rental.rentee.id)
                         .from(rental)
                         .where(
                                 rental.rentee.type.eq(RenteeType.DEVICE),
-                                rental.rentee.name.contains(name)
+                                rental.rentee.name.contains(RenteeName)
                         )
                         .orderBy(
                                 rental.rentalDateTime.asc()

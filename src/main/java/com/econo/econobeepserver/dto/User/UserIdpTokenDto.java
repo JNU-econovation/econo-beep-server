@@ -8,20 +8,20 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
-public class UserIDPDto {
+public class UserIdpTokenDto {
 
     private Long id;
+    private String username;
     private Integer year;
-    private String name;
     private String email;
     private String profileImageUrl;
 
     @Builder
-    public UserIDPDto(Long id, Integer year, String name, String email, String profileImageUrl) {
+    public UserIdpTokenDto(Long id, String username, Integer year, String email) {
         this.id = id;
+        this.username = username;
         this.year = year;
-        this.name = name;
         this.email = email;
-        this.profileImageUrl = profileImageUrl;
+        this.profileImageUrl = null;
     }
 }

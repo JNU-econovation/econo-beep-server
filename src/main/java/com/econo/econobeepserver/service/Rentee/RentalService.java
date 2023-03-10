@@ -6,7 +6,6 @@ import com.econo.econobeepserver.domain.Rentee.Rentee;
 import com.econo.econobeepserver.domain.Rentee.RentState;
 import com.econo.econobeepserver.domain.User.User;
 import com.econo.econobeepserver.dto.Rentee.RenteeElementDto;
-import com.econo.econobeepserver.dto.User.UserProfileDto;
 import com.econo.econobeepserver.exception.NotRenterException;
 import com.econo.econobeepserver.exception.UnrentableException;
 import com.econo.econobeepserver.exception.UnreturnableException;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,7 +40,7 @@ public class RentalService {
     public void rentRenteeByRenteeIdAndUserId(Long renteeId, Long userId) {
         User user = userService.getUserByUserId(userId);
 
-        Rentee rentee = renteeService.getRenteeById(renteeId);
+        Rentee rentee = renteeService.getRenteeByRenteeId(renteeId);
         validateRentableRentee(rentee);
 
         Rental rental = Rental.builder()
@@ -59,22 +57,19 @@ public class RentalService {
         }
     }
 
-    private void validateRenter(final Rental rental, final UserProfileDto userProfileDto) {
-        if (
-                !Objects.equals(rental.getRenter().getId(), userProfileDto.getId())
-        ) {
+    private void validateRenter(final User renter, final long userId) {
+        if (!renter.getId().equals(userId)) {
             throw new NotRenterException();
         }
     }
 
     @Transactional
     public void returnRenteeByRenteeId(Long renteeId, Long userId) {
-        Rentee rentee = renteeService.getRenteeById(renteeId);
+        Rentee rentee = renteeService.getRenteeByRenteeId(renteeId);
         validateReturnableRentee(rentee);
 
         Rental rental = getRecentRentalByRenteeId(renteeId);
-        UserProfileDto userProfileDto = userService.getUserProfileDtoByUserId(userId);
-        validateRenter(rental, userProfileDto);
+        validateRenter(rental.getRenter(), userId);
 
         rental.returnRentee();
     }

@@ -65,7 +65,7 @@ class RenteeServiceCUDTest {
         renteeService.createRentee(book1SaveDto);
 
         // then
-        Rentee book = renteeService.getRenteeByName(book1SaveDto.getName());
+        Rentee book = renteeService.getRenteeByRenteeName(book1SaveDto.getName());
 
         assertEquals(book1SaveDto.getType(), book.getType());
         assertEquals(book1SaveDto.getName(), book.getName());
@@ -90,10 +90,10 @@ class RenteeServiceCUDTest {
         long bookThumbnailId = book.getThumbnail().getId();
 
         // when
-        renteeService.updateRenteeById(bookId, book2SaveDto);
+        renteeService.updateRenteeByRenteeId(bookId, book2SaveDto);
 
         // then
-        Rentee updatedBook = renteeService.getRenteeById(bookId);
+        Rentee updatedBook = renteeService.getRenteeByRenteeId(bookId);
         assertEquals(book2SaveDto.getType(), updatedBook.getType());
         assertEquals(book2SaveDto.getName(), updatedBook.getName());
         assertEquals(book2SaveDto.getBookArea(), updatedBook.getBookArea());
@@ -117,7 +117,7 @@ class RenteeServiceCUDTest {
         long thumbnailId = book.getThumbnail().getId();
 
         // when
-        renteeService.deleteRenteeById(bookId);
+        renteeService.deleteRenteeByRenteeId(bookId);
 
         // then
         assertEquals(Optional.empty(), renteeRepository.findById(bookId));

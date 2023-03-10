@@ -19,6 +19,8 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
 
     private static final String AUTHORIZATION = "Authorization";
     private static final String BEARER = "Bearer";
+    public static final String IDP_TOKEN = "idpToken";
+    public static final String IDP_ID = "idpId";
     public static final String USER_ID = "userId";
     public static final String USER_ROLE = "userRole";
 
@@ -41,10 +43,12 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = extract(request, BEARER);
         if (StringUtils.isEmpty(token)) {
-            return true;
+            return false;
         }
 
-        User user = userService.getUserByAccessToken(token);
+        User user = userService.getUserByIdpToken(token);
+        request.setAttribute(IDP_TOKEN, token);
+        request.setAttribute(IDP_ID, user.getIdpId());
         request.setAttribute(USER_ID, user.getId());
         request.setAttribute(USER_ROLE, user.getRole());
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static com.econo.econobeepserver.config.BearerAuthInterceptor.IDP_ID;
 import static com.econo.econobeepserver.config.BearerAuthInterceptor.USER_ID;
 
 @Slf4j
