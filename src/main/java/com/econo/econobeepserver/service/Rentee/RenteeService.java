@@ -132,100 +132,49 @@ public class RenteeService {
         return new RenteeManagementInfoDto(rentee, recentRenterName, recentRentalEpochSecond);
     }
 
-    public Long countByBookNameContainingWithSort(String renteeName, RenteeSort renteeSort) {
+    public Long countByRenteeTypeAndNameContainingWithSort(RenteeType renteeType, String renteeName, RenteeSort renteeSort) {
         Long count = null;
 
         switch (renteeSort) {
             case NONE:
-                count = renteeRepository.countByRenteeNameContainingFromBook(renteeName);
+                count = renteeRepository.countByRenteeTypeAndRenteeNameContaining(renteeType, renteeName);
                 break;
             case CREATED_ASC:
-                count = renteeRepository.countByRenteeNameContainingFromBookOrderByCreatedAsc(renteeName);
+                count = renteeRepository.countByRenteeTypeAndRenteeNameContainingOrderByCreatedAsc(renteeType, renteeName);
                 break;
             case CREATED_DESC:
-                count = renteeRepository.countByRenteeNameContainingFromBookOrderByCreatedDesc(renteeName);
+                count = renteeRepository.countByRenteeTypeAndRenteeNameContainingOrderByCreatedDesc(renteeType, renteeName);
                 break;
             case OUTDATED_RENTAL:
-                count = renteeRepository.countByRenteeNameContainingFromBookOrderByOutdatedRental(renteeName);
+                count = renteeRepository.countByRenteeTypeAndRenteeNameContainingOrderByOutdatedRental(renteeType, renteeName);
                 break;
             case LATEST_RENTAL:
-                count = renteeRepository.countByRenteeNameContainingFromBookOrderByLatestRental(renteeName);
+                count = renteeRepository.countByRenteeTypeAndRenteeNameContainingOrderByLatestRental(renteeType, renteeName);
                 break;
         }
 
         return count;
     }
 
-    public List<RenteeManagementInfoDto> getRenteeManagementInfoDtosByBookNameContainingWithSortAndPaging(String renteeName, RenteeSort renteeSort, int pageIndex, int pageSize) {
+    public List<RenteeManagementInfoDto> getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging(RenteeType renteeType, String renteeName, RenteeSort renteeSort, int pageIndex, int pageSize) {
         List<Rentee> rentees = Collections.emptyList();
         PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
 
         switch (renteeSort) {
             case NONE:
-                rentees = renteeRepository.findByRenteeNameContainingFromBookWithPaging(renteeName, pageRequest);
+                rentees = renteeRepository.findByRenteeTypeAndRenteeNameContainingWithPaging(renteeType, renteeName, pageRequest);
                 break;
             case CREATED_ASC:
-                rentees = renteeRepository.findByRenteeNameContainingFromBookOrderByCreatedAscWithPaging(renteeName, pageRequest);
+                rentees = renteeRepository.findByRenteeTypeAndRenteeNameContainingOrderByCreatedAscWithPaging(renteeType, renteeName, pageRequest);
                 break;
             case CREATED_DESC:
-                rentees = renteeRepository.findByRenteeNameContainingFromBookOrderByCreatedDescWithPaging(renteeName, pageRequest);
+                rentees = renteeRepository.findByRenteeTypeAndRenteeNameContainingOrderByCreatedDescWithPaging(renteeType, renteeName, pageRequest);
                 break;
             case OUTDATED_RENTAL:
-                rentees = renteeRepository.findByRenteeNameContainingFromBookOrderByOutdatedRentalWithPaging(renteeName, pageRequest);
+                rentees = renteeRepository.findByRenteeTypeAndRenteeNameContainingOrderByOutdatedRentalWithPaging(renteeType, renteeName, pageRequest);
                 break;
             case LATEST_RENTAL:
-                rentees = renteeRepository.findByRenteeNameContainingFromBookOrderByLatestRentalWithPaging(renteeName, pageRequest);
-                break;
-        }
-
-        return rentees.stream()
-                .map(this::getRenteeManagementInfoDtoByRentee)
-                .collect(Collectors.toList());
-    }
-
-    public Long countByDeviceNameContainingWithSort(String renteeName, RenteeSort renteeSort) {
-        Long count = null;
-
-        switch (renteeSort) {
-            case NONE:
-                count = renteeRepository.countByRenteeNameContainingFromDevice(renteeName);
-                break;
-            case CREATED_ASC:
-                count = renteeRepository.countByRenteeNameContainingFromDeviceOrderByCreatedAsc(renteeName);
-                break;
-            case CREATED_DESC:
-                count = renteeRepository.countByRenteeNameContainingFromDeviceOrderByCreatedDesc(renteeName);
-                break;
-            case LATEST_RENTAL:
-                count = renteeRepository.countByRenteeNameContainingFromDeviceOrderByLatestRental(renteeName);
-                break;
-            case OUTDATED_RENTAL:
-                count = renteeRepository.countByRenteeNameContainingFromDeviceOrderByOutdatedRental(renteeName);
-                break;
-        }
-
-        return count;
-    }
-
-    public List<RenteeManagementInfoDto> getRenteeManagementInfoDtosByDeviceNameContainingWithSortAndPaging(String renteeName, RenteeSort renteeSort, int pageIndex, int pageSize) {
-        List<Rentee> rentees = Collections.emptyList();
-        PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
-
-        switch (renteeSort) {
-            case NONE:
-                rentees = renteeRepository.findByRenteeNameContainingFromDeviceWithPaging(renteeName, pageRequest);
-                break;
-            case CREATED_ASC:
-                rentees = renteeRepository.findByRenteeNameContainingFromDeviceOrderByCreatedAscWithPaging(renteeName, pageRequest);
-                break;
-            case CREATED_DESC:
-                rentees = renteeRepository.findByRenteeNameContainingFromDeviceOrderByCreatedDescWithPaging(renteeName, pageRequest);
-                break;
-            case LATEST_RENTAL:
-                rentees = renteeRepository.findByRenteeNameContainingFromDeviceOrderByLatestRentalWithPaging(renteeName, pageRequest);
-                break;
-            case OUTDATED_RENTAL:
-                rentees = renteeRepository.findByRenteeNameContainingFromDeviceOrderByOutdatedRentalWithPaging(renteeName, pageRequest);
+                rentees = renteeRepository.findByRenteeTypeAndRenteeNameContainingOrderByLatestRentalWithPaging(renteeType, renteeName, pageRequest);
                 break;
         }
 

@@ -1,5 +1,6 @@
 package com.econo.econobeepserver.web.Rentee;
 
+import com.econo.econobeepserver.domain.Rentee.RenteeType;
 import com.econo.econobeepserver.domain.User.Role;
 import com.econo.econobeepserver.dto.Rentee.*;
 import com.econo.econobeepserver.exception.ForbiddenRoleException;
@@ -64,15 +65,15 @@ public class RenteeManagementController {
             description = "검색과 정렬 파라미터를 비우면, 필터가 적용되지 않는 상태로 조회한다."
     )
     @GetMapping("/api/management/books")
-    public ResponseEntity<BookManagementDto> searchRenteesFromBook(HttpServletRequest request,
-                                                                                    @RequestParam(value = "renteeName", required = false, defaultValue = "") String renteeName,
-                                                                                    @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
-                                                                                    @RequestParam(value = "pageIndex") int pageIndex,
-                                                                                    @RequestParam(value = "pageSize") int pageSize
+    public ResponseEntity<BookManagementDto> searchBooks(HttpServletRequest request,
+                                                         @RequestParam(value = "renteeName", required = false, defaultValue = "") String renteeName,
+                                                         @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
+                                                         @RequestParam(value = "pageIndex") int pageIndex,
+                                                         @RequestParam(value = "pageSize") int pageSize
     ) {
         validateUserRole(request);
-        Long count = renteeService.countByBookNameContainingWithSort(renteeName, renteeSort);
-        List<BookManagementElementDto> bookManagementElementDtos = renteeService.getRenteeManagementInfoDtosByBookNameContainingWithSortAndPaging(renteeName, renteeSort, pageIndex, pageSize)
+        Long count = renteeService.countByRenteeTypeAndNameContainingWithSort(RenteeType.BOOK, renteeName, renteeSort);
+        List<BookManagementElementDto> bookManagementElementDtos = renteeService.getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging(RenteeType.BOOK, renteeName, renteeSort, pageIndex, pageSize)
                 .stream().map(BookManagementElementDto::new).collect(Collectors.toList());
 
         BookManagementDto bookManagementDto = new BookManagementDto(count, bookManagementElementDtos);
@@ -86,15 +87,15 @@ public class RenteeManagementController {
             description = "검색과 정렬 파라미터를 비우면, 필터가 적용되지 않는 상태로 조회한다."
     )
     @GetMapping("/api/management/devices")
-    public ResponseEntity<DeviceManagementDto> searchRenteesFromDevice(HttpServletRequest request,
-                                                                                                   @RequestParam(value = "renteeName", required = false, defaultValue = "") String renteeName,
-                                                                                                   @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
-                                                                                                   @RequestParam(value = "pageIndex") int pageIndex,
-                                                                                                   @RequestParam(value = "pageSize") int pageSize
+    public ResponseEntity<DeviceManagementDto> searchDevices(HttpServletRequest request,
+                                                             @RequestParam(value = "renteeName", required = false, defaultValue = "") String renteeName,
+                                                             @RequestParam(value = "sort", required = false, defaultValue = "NONE") RenteeSort renteeSort,
+                                                             @RequestParam(value = "pageIndex") int pageIndex,
+                                                             @RequestParam(value = "pageSize") int pageSize
     ) {
         validateUserRole(request);
-        Long count = renteeService.countByDeviceNameContainingWithSort(renteeName, renteeSort);
-        List<DeviceManagementElementDto> deviceManagementElementDtos = renteeService.getRenteeManagementInfoDtosByDeviceNameContainingWithSortAndPaging(renteeName, renteeSort, pageIndex, pageSize)
+        Long count = renteeService.countByRenteeTypeAndNameContainingWithSort(RenteeType.DEVICE, renteeName, renteeSort);
+        List<DeviceManagementElementDto> deviceManagementElementDtos = renteeService.getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging(RenteeType.DEVICE, renteeName, renteeSort, pageIndex, pageSize)
                 .stream().map(DeviceManagementElementDto::new).collect(Collectors.toList());
 
         DeviceManagementDto deviceManagementDto = new DeviceManagementDto(count, deviceManagementElementDtos);

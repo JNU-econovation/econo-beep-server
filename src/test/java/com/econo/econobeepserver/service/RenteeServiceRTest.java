@@ -193,17 +193,35 @@ class RenteeServiceRTest {
         assertEquals(device1SaveDto.getName(), renteeElementDtos.get(0).getName());
     }
 
-    //
-
     @Nested
-    @DisplayName("searchRenteeManagementInfoDtosByRenteeNameFromBookWithSortAndPaging 정상동작 테스트")
-    class SearchBookManagementInfoDtosByRenteeNameFromBookWithSortAndPaging_Test {
+    @DisplayName("getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging 정상동작 테스트")
+    class GetRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging_Test {
+
+        @DisplayName("타입 적용 테스트")
+        @Test
+        void test_renteeType_book() {
+            // when
+            List<RenteeManagementInfoDto> bookManagementElementDtos = renteeService.getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging(RenteeType.BOOK, "", RenteeSort.NONE, 0, 4);
+
+            // then
+            assertEquals(3, bookManagementElementDtos.size());
+        }
+
+        @DisplayName("타입 미적용 테스트")
+        @Test
+        void test_renteeType_any() {
+            // when
+            List<RenteeManagementInfoDto> renteeManagementElementDtos = renteeService.getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging(RenteeType.ANY, "", RenteeSort.NONE, 0, 4);
+
+            // then
+            assertEquals(4, renteeManagementElementDtos.size());
+        }
 
         @DisplayName("페이징 테스트")
         @Test
         void test_paging() {
             // when
-            List<RenteeManagementInfoDto> bookManagementElementDtos = renteeService.getRenteeManagementInfoDtosByBookNameContainingWithSortAndPaging("book", RenteeSort.NONE, 0, 2);
+            List<RenteeManagementInfoDto> bookManagementElementDtos = renteeService.getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging(RenteeType.BOOK, "book", RenteeSort.NONE, 0, 2);
 
             // then
             assertEquals(2, bookManagementElementDtos.size());
@@ -213,7 +231,7 @@ class RenteeServiceRTest {
         @Test
         void test_createdAscSort() {
             // when
-            List<RenteeManagementInfoDto> bookManagementElementDtos = renteeService.getRenteeManagementInfoDtosByBookNameContainingWithSortAndPaging("book", RenteeSort.CREATED_ASC, 0, 3);
+            List<RenteeManagementInfoDto> bookManagementElementDtos = renteeService.getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging(RenteeType.BOOK, "book", RenteeSort.CREATED_ASC, 0, 3);
 
             // then
             assertEquals(book1SaveDto.getName(), bookManagementElementDtos.get(0).getName());
@@ -225,7 +243,7 @@ class RenteeServiceRTest {
         @Test
         void test_createdDescSort() {
             // when
-            List<RenteeManagementInfoDto> bookManagementElementDtos = renteeService.getRenteeManagementInfoDtosByBookNameContainingWithSortAndPaging("book", RenteeSort.CREATED_DESC, 0, 3);
+            List<RenteeManagementInfoDto> bookManagementElementDtos = renteeService.getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging(RenteeType.BOOK, "book", RenteeSort.CREATED_DESC, 0, 3);
 
             // then
             assertEquals(book3SaveDto.getName(), bookManagementElementDtos.get(0).getName());
@@ -251,7 +269,7 @@ class RenteeServiceRTest {
 
 
             // when
-            List<RenteeManagementInfoDto> bookManagementElementDtos = renteeService.getRenteeManagementInfoDtosByBookNameContainingWithSortAndPaging("book", RenteeSort.OUTDATED_RENTAL, 0, 3);
+            List<RenteeManagementInfoDto> bookManagementElementDtos = renteeService.getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging(RenteeType.BOOK, "book", RenteeSort.OUTDATED_RENTAL, 0, 3);
 
             // then
             assertEquals(book2SaveDto.getName(), bookManagementElementDtos.get(0).getName());
@@ -276,7 +294,7 @@ class RenteeServiceRTest {
             rentalService.rentRenteeByRenteeIdAndUserId(book3Id, userId);
 
             // when
-            List<RenteeManagementInfoDto> bookManagementElementDtos = renteeService.getRenteeManagementInfoDtosByBookNameContainingWithSortAndPaging("book", RenteeSort.LATEST_RENTAL, 0, 3);
+            List<RenteeManagementInfoDto> bookManagementElementDtos = renteeService.getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging(RenteeType.BOOK, "book", RenteeSort.LATEST_RENTAL, 0, 3);
 
             // then
             assertEquals(book3SaveDto.getName(), bookManagementElementDtos.get(0).getName());

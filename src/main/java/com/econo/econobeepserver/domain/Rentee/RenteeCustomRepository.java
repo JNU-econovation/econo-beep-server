@@ -6,33 +6,18 @@ import java.util.List;
 
 public interface RenteeCustomRepository {
 
-    Long countByRenteeNameContainingFromBook(String RenteeName);
-    List<Rentee> findByRenteeNameContainingFromBookWithPaging(String RenteeName, Pageable pageable);
+    Long countByRenteeTypeAndRenteeNameContaining(RenteeType renteeType, String renteeName);
+    List<Rentee> findByRenteeTypeAndRenteeNameContainingWithPaging(RenteeType renteeType, String renteeName, Pageable pageable);
 
-    Long countByRenteeNameContainingFromBookOrderByCreatedAsc(String RenteeName);
-    List<Rentee> findByRenteeNameContainingFromBookOrderByCreatedAscWithPaging(String RenteeName, Pageable pageable);
+    Long countByRenteeTypeAndRenteeNameContainingOrderByCreatedAsc(RenteeType renteeType, String renteeName);
+    List<Rentee> findByRenteeTypeAndRenteeNameContainingOrderByCreatedAscWithPaging(RenteeType renteeType, String renteeName, Pageable pageable);
 
-    Long countByRenteeNameContainingFromBookOrderByCreatedDesc(String RenteeName);
-    List<Rentee> findByRenteeNameContainingFromBookOrderByCreatedDescWithPaging(String RenteeName, Pageable pageable);
+    Long countByRenteeTypeAndRenteeNameContainingOrderByCreatedDesc(RenteeType renteeType, String renteeName);
+    List<Rentee> findByRenteeTypeAndRenteeNameContainingOrderByCreatedDescWithPaging(RenteeType renteeType, String renteeName, Pageable pageable);
 
-    Long countByRenteeNameContainingFromBookOrderByLatestRental(String RenteeName);
-    List<Rentee> findByRenteeNameContainingFromBookOrderByLatestRentalWithPaging(String RenteeName, Pageable pageable);
+    Long countByRenteeTypeAndRenteeNameContainingOrderByLatestRental(RenteeType renteeType, String renteeName);
+    List<Rentee> findByRenteeTypeAndRenteeNameContainingOrderByLatestRentalWithPaging(RenteeType renteeType, String renteeName, Pageable pageable);
 
-    Long countByRenteeNameContainingFromBookOrderByOutdatedRental(String RenteeName);
-    List<Rentee> findByRenteeNameContainingFromBookOrderByOutdatedRentalWithPaging(String RenteeName, Pageable pageable);
-
-    Long countByRenteeNameContainingFromDevice(String RenteeName);
-    List<Rentee> findByRenteeNameContainingFromDeviceWithPaging(String RenteeName, Pageable pageable);
-
-    Long countByRenteeNameContainingFromDeviceOrderByCreatedAsc(String RenteeName);
-    List<Rentee> findByRenteeNameContainingFromDeviceOrderByCreatedAscWithPaging(String RenteeName, Pageable pageable);
-
-    Long countByRenteeNameContainingFromDeviceOrderByCreatedDesc(String RenteeName);
-    List<Rentee> findByRenteeNameContainingFromDeviceOrderByCreatedDescWithPaging(String RenteeName, Pageable pageable);
-
-    Long countByRenteeNameContainingFromDeviceOrderByLatestRental(String RenteeName);
-    List<Rentee> findByRenteeNameContainingFromDeviceOrderByLatestRentalWithPaging(String RenteeName, Pageable pageable);
-
-    Long countByRenteeNameContainingFromDeviceOrderByOutdatedRental(String RenteeName);
-    List<Rentee> findByRenteeNameContainingFromDeviceOrderByOutdatedRentalWithPaging(String RenteeName, Pageable pageable);
+    Long countByRenteeTypeAndRenteeNameContainingOrderByOutdatedRental(RenteeType renteeType, String renteeName);
+    List<Rentee> findByRenteeTypeAndRenteeNameContainingOrderByOutdatedRentalWithPaging(RenteeType renteeType, String renteeName, Pageable pageable);
 }
