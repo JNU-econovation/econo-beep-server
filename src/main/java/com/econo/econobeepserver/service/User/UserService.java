@@ -15,7 +15,7 @@ public class UserService {
     private EconoIDPAdapter econoIDPAdapter;
 
 
-    private User createUser(Long idpId) {
+    private User create(Long idpId) {
         return userRepository.save(
                 UserSaveDto.builder()
                         .idpId(idpId)
@@ -36,7 +36,7 @@ public class UserService {
         UserIdpTokenDto userIdpTokenDto = econoIDPAdapter.getUserIdpTokenDtoByIdpToken(idpToken);
 
         return userRepository.findByIdpId(userIdpTokenDto.getId())
-                .orElse(createUser(userIdpTokenDto.getId()));
+                .orElse(create(userIdpTokenDto.getId()));
     }
 
     public UserProfileDto getUserProfileDtoByUserId(Long userId) {

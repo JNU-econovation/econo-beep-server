@@ -40,7 +40,7 @@ public class RenteeManagementController {
     @PostMapping("/api/management/books")
     public ResponseEntity<Long> createBook(HttpServletRequest request, @Valid @ModelAttribute BookSaveDto bookSaveDto) {
         validateUserRole(request);
-        long bookId = renteeService.createRentee(new RenteeSaveDto(bookSaveDto)).getId();
+        long bookId = renteeService.create(new RenteeSaveDto(bookSaveDto)).getId();
 
         return ResponseEntity.ok(bookId);
     }
@@ -53,7 +53,7 @@ public class RenteeManagementController {
     @PostMapping("/api/management/devices")
     public ResponseEntity<Long> createDevice(HttpServletRequest request, @Valid @ModelAttribute DeviceSaveDto deviceSaveDto) {
         validateUserRole(request);
-        long deviceId = renteeService.createRentee(new RenteeSaveDto(deviceSaveDto)).getId();
+        long deviceId = renteeService.create(new RenteeSaveDto(deviceSaveDto)).getId();
 
         return ResponseEntity.ok(deviceId);
     }
@@ -71,8 +71,8 @@ public class RenteeManagementController {
                                                                                     @RequestParam(value = "pageSize") int pageSize
     ) {
         validateUserRole(request);
-        Long count = renteeService.countByRenteeNameContainingFromBookWithSort(renteeName, renteeSort);
-        List<BookManagementElementDto> bookManagementElementDtos = renteeService.searchRenteeManagementInfoDtosByRenteeNameContainingFromBookWithSortAndPaging(renteeName, renteeSort, pageIndex, pageSize)
+        Long count = renteeService.countByBookNameContainingWithSort(renteeName, renteeSort);
+        List<BookManagementElementDto> bookManagementElementDtos = renteeService.getRenteeManagementInfoDtosByBookNameContainingWithSortAndPaging(renteeName, renteeSort, pageIndex, pageSize)
                 .stream().map(BookManagementElementDto::new).collect(Collectors.toList());
 
         BookManagementDto bookManagementDto = new BookManagementDto(count, bookManagementElementDtos);
@@ -93,8 +93,8 @@ public class RenteeManagementController {
                                                                                                    @RequestParam(value = "pageSize") int pageSize
     ) {
         validateUserRole(request);
-        Long count = renteeService.countByRenteeNameContainingFromDeviceWithSort(renteeName, renteeSort);
-        List<DeviceManagementElementDto> deviceManagementElementDtos = renteeService.searchRenteeManagementInfoDtosByRenteeNameContainingFromDeviceWithSortAndPaging(renteeName, renteeSort, pageIndex, pageSize)
+        Long count = renteeService.countByDeviceNameContainingWithSort(renteeName, renteeSort);
+        List<DeviceManagementElementDto> deviceManagementElementDtos = renteeService.getRenteeManagementInfoDtosByDeviceNameContainingWithSortAndPaging(renteeName, renteeSort, pageIndex, pageSize)
                 .stream().map(DeviceManagementElementDto::new).collect(Collectors.toList());
 
         DeviceManagementDto deviceManagementDto = new DeviceManagementDto(count, deviceManagementElementDtos);
@@ -110,7 +110,7 @@ public class RenteeManagementController {
                                                    @Valid @ModelAttribute BookSaveDto bookSaveDto
     ) {
         validateUserRole(request);
-        renteeService.updateRenteeByRenteeId(bookId, new RenteeSaveDto(bookSaveDto));
+        renteeService.updateByRenteeId(bookId, new RenteeSaveDto(bookSaveDto));
 
         return ResponseEntity.ok().build();
     }
@@ -123,7 +123,7 @@ public class RenteeManagementController {
                                                        @Valid @ModelAttribute DeviceSaveDto deviceSaveDto
     ) {
         validateUserRole(request);
-        renteeService.updateRenteeByRenteeId(DeviceId, new RenteeSaveDto(deviceSaveDto));
+        renteeService.updateByRenteeId(DeviceId, new RenteeSaveDto(deviceSaveDto));
 
         return ResponseEntity.ok().build();
     }
@@ -134,7 +134,7 @@ public class RenteeManagementController {
     public ResponseEntity<Void> deleteBookByBookId(HttpServletRequest request,
                                                    @PathVariable(value = "id") Long bookId) {
         validateUserRole(request);
-        renteeService.deleteRenteeByRenteeId(bookId);
+        renteeService.deleteByRenteeId(bookId);
 
         return ResponseEntity.ok().build();
     }
@@ -145,7 +145,7 @@ public class RenteeManagementController {
     public ResponseEntity<Void> deleteDeviceByDeviceId(HttpServletRequest request,
                                                        @PathVariable(value = "id") Long deviceId) {
         validateUserRole(request);
-        renteeService.deleteRenteeByRenteeId(deviceId);
+        renteeService.deleteByRenteeId(deviceId);
 
         return ResponseEntity.ok().build();
     }

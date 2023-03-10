@@ -87,7 +87,7 @@ public class UserController {
     )
     @GetMapping("/api/user/{id}/bookmarks")
     public ResponseEntity<List<RenteeElementDto>> getBookmarksByUserId(@PathVariable(value = "id") Long userId) {
-        List<RenteeElementDto> renteeElementDtos = renteeService.getBookmarkedRenteeByUserId(userId);
+        List<RenteeElementDto> renteeElementDtos = renteeService.getRenteeElementDtosByBookmarkedAndUserId(userId);
 
         return ResponseEntity.ok(renteeElementDtos);
     }

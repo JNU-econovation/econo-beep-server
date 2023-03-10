@@ -63,11 +63,11 @@ public class RenteeController {
             description = "pageIndex: 페이지 번호 (0부터 시작)\n pageSize: 페이지 크기"
     )
     @GetMapping("/api/rentees")
-    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByRenteeNameWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String renteeName,
+    public ResponseEntity<List<RenteeElementDto>> getRenteeElementDtosByRenteeNameWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String renteeName,
                                                                                 @RequestParam(value = "pageIndex") int pageIndex,
                                                                                 @RequestParam(value = "pageSize") int pageSize
     ) {
-        List<RenteeElementDto> renteeElementDtos = renteeService.searchRenteeElementDtosByRenteeNameWithPaging(renteeName, pageIndex, pageSize);
+        List<RenteeElementDto> renteeElementDtos = renteeService.getRenteeElementDtosByRenteeNameContainingWithPaging(renteeName, pageIndex, pageSize);
 
         return ResponseEntity.ok(renteeElementDtos);
     }
@@ -78,11 +78,11 @@ public class RenteeController {
             description = "pageIndex: 페이지 번호 (0부터 시작)\n pageSize: 페이지 크기"
     )
     @GetMapping("/api/rentee/books")
-    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByRenteeNameFromBookWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String renteeName,
+    public ResponseEntity<List<RenteeElementDto>> getRenteeElementDtosByRenteeNameFromBookWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String renteeName,
                                                                                                   @RequestParam(value = "pageIndex") int pageIndex,
                                                                                                   @RequestParam(value = "pageSize") int pageSize
     ) {
-        List<RenteeElementDto> renteeElementDtos = renteeService.searchRenteeElementDtosByRenteeNameFromBookWithPaging(renteeName, pageIndex, pageSize);
+        List<RenteeElementDto> renteeElementDtos = renteeService.getRenteeElementDtosByBookNameWithPaging(renteeName, pageIndex, pageSize);
 
         return ResponseEntity.ok(renteeElementDtos);
     }
@@ -93,11 +93,11 @@ public class RenteeController {
             description = "pageIndex: 페이지 번호 (0부터 시작)\n pageSize: 페이지 크기"
     )
     @GetMapping("/api/rentee/devices")
-    public ResponseEntity<List<RenteeElementDto>> searchRenteeElementDtosByRenteeNameFromDeviceWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String renteeName,
+    public ResponseEntity<List<RenteeElementDto>> getRenteeElementDtosByRenteeNameFromDeviceWithPaging(@RequestParam(value = "name", required = false, defaultValue = "") String renteeName,
                                                                                                     @RequestParam(value = "pageIndex") int pageIndex,
                                                                                                     @RequestParam(value = "pageSize") int pageSize
     ) {
-        List<RenteeElementDto> renteeElementDtos = renteeService.searchRenteeElementDtosByRenteeNameFromDeviceWithPaging(renteeName, pageIndex, pageSize);
+        List<RenteeElementDto> renteeElementDtos = renteeService.getRenteeElementDtosByDeviceNameWithPaging(renteeName, pageIndex, pageSize);
 
         return ResponseEntity.ok(renteeElementDtos);
     }

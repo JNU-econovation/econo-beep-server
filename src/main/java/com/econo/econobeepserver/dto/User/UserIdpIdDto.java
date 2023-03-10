@@ -11,16 +11,16 @@ import lombok.Setter;
 public class UserIdpIdDto {
 
     private Long id;
-    private Integer year;
     private String username;
+    private Integer year;
     private String email;
     private String profileImageUrl;
 
     @Builder
-    public UserIdpIdDto(Long id, Integer year, String email, String username) {
+    public UserIdpIdDto(Long id, String username, Integer year, String email) {
         this.id = id;
-        this.year = year;
         this.username = username;
+        this.year = year;
         this.email = email;
         this.profileImageUrl = null;
     }

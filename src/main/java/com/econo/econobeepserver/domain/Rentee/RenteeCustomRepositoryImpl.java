@@ -29,7 +29,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByRenteeNameContainingFromBookWithPaging(String RenteeName, Pageable pageable) {
+    public List<Rentee> findByRenteeNameContainingFromBookWithPaging(String RenteeName, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
@@ -58,7 +58,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByRenteeNameContainingFromBookOrderByCreatedAscWithPaging(String RenteeName, Pageable pageable) {
+    public List<Rentee> findByRenteeNameContainingFromBookOrderByCreatedAscWithPaging(String RenteeName, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
@@ -90,7 +90,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByRenteeNameContainingFromBookOrderByCreatedDescWithPaging(String RenteeName, Pageable pageable) {
+    public List<Rentee> findByRenteeNameContainingFromBookOrderByCreatedDescWithPaging(String RenteeName, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
@@ -123,7 +123,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByRenteeNameContainingFromBookOrderByLatestRentalWithPaging(String RenteeName, Pageable pageable) {
+    public List<Rentee> findByRenteeNameContainingFromBookOrderByLatestRentalWithPaging(String RenteeName, Pageable pageable) {
         List<Long> latestRentedBookIds =
                 jpaQueryFactory
                         .select(rental.rentee.id)
@@ -171,7 +171,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByRenteeNameContainingFromBookOrderByOutdatedRentalWithPaging(String RenteeName, Pageable pageable) {
+    public List<Rentee> findByRenteeNameContainingFromBookOrderByOutdatedRentalWithPaging(String RenteeName, Pageable pageable) {
         List<Long> outdatedRentedBookIds =
                 jpaQueryFactory
                         .select(rental.rentee.id)
@@ -216,7 +216,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByRenteeNameContainingFromDeviceWithPaging(String RenteeName, Pageable pageable) {
+    public List<Rentee> findByRenteeNameContainingFromDeviceWithPaging(String RenteeName, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
@@ -245,7 +245,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByRenteeNameContainingFromDeviceOrderByCreatedAscWithPaging(String RenteeName, Pageable pageable) {
+    public List<Rentee> findByRenteeNameContainingFromDeviceOrderByCreatedAscWithPaging(String RenteeName, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
@@ -277,7 +277,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByRenteeNameContainingFromDeviceOrderByCreatedDescWithPaging(String RenteeName, Pageable pageable) {
+    public List<Rentee> findByRenteeNameContainingFromDeviceOrderByCreatedDescWithPaging(String RenteeName, Pageable pageable) {
         return jpaQueryFactory
                 .select(rentee)
                 .from(rentee)
@@ -310,7 +310,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByRenteeNameContainingFromDeviceOrderByLatestRentalWithPaging(String RenteeName, Pageable pageable) {
+    public List<Rentee> findByRenteeNameContainingFromDeviceOrderByLatestRentalWithPaging(String RenteeName, Pageable pageable) {
         List<Long> latestRentedDeviceIds =
                 jpaQueryFactory
                         .select(rental.rentee.id)
@@ -358,7 +358,7 @@ public class RenteeCustomRepositoryImpl implements RenteeCustomRepository {
     }
 
     @Override
-    public List<Rentee> findRenteesByRenteeNameContainingFromDeviceOrderByOutdatedRentalWithPaging(String RenteeName, Pageable pageable) {
+    public List<Rentee> findByRenteeNameContainingFromDeviceOrderByOutdatedRentalWithPaging(String RenteeName, Pageable pageable) {
         List<Long> outdatedRentedDeviceIds =
                 jpaQueryFactory
                         .select(rental.rentee.id)
