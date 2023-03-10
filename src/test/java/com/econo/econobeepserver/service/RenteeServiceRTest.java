@@ -36,8 +36,7 @@ class RenteeServiceRTest {
     // Target
     @Autowired
     private RenteeService renteeService;
-
-    // Essential Classes for R features of RenteeService /////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Autowired
     private RenteeRepository renteeRepository;
     @Autowired
@@ -46,7 +45,6 @@ class RenteeServiceRTest {
     private RentalRepository rentalRepository;
     @Autowired
     private UserService userService;
-
     // Mock class for UserService
     @MockBean(name = "econoIDPAdapter")
     private EconoIDPAdapter econoIDPAdapter;
@@ -194,6 +192,90 @@ class RenteeServiceRTest {
     }
 
     @Nested
+    @DisplayName("countByRenteeTypeAndNameContainingWithSort 정상동작 테스트")
+    class CountByRenteeTypeAndNameContainingWithSort_Test {
+
+        @DisplayName("타입 적용 테스트")
+        @Test
+        void test_renteeType_book() {
+            // when
+            Long count = renteeService.countByRenteeTypeAndNameContainingWithSort(RenteeType.BOOK, "", RenteeSort.NONE);
+
+            // then
+            assertEquals(3, count);
+        }
+
+        @DisplayName("타입 미적용 테스트")
+        @Test
+        void test_renteeType_any() {
+            // when
+            Long count = renteeService.countByRenteeTypeAndNameContainingWithSort(RenteeType.ANY, "", RenteeSort.NONE);
+
+            // then
+            assertEquals(6, count);
+        }
+
+        @DisplayName("오래전에 추가된순(CREATED_ASC) 정렬 테스트")
+        @Test
+        void test_createdAscSort() {
+            // when
+            Long count = renteeService.countByRenteeTypeAndNameContainingWithSort(RenteeType.BOOK, "book", RenteeSort.CREATED_ASC);
+
+            // then
+            assertEquals(3, count);
+        }
+
+        @DisplayName("최근에 추가된순(CREATED_DESC) 정렬 테스트")
+        @Test
+        void test_createdDescSort() {
+            // when
+            Long count = renteeService.countByRenteeTypeAndNameContainingWithSort(RenteeType.BOOK, "book", RenteeSort.CREATED_DESC);
+
+            // then
+            assertEquals(3, count);
+        }
+
+        @DisplayName("오래전에 대여된순(OUTDATED_RENTAL) 정렬 테스트")
+        @Test
+        void test_outdatedRentalSort() {
+            // given
+            given(econoIDPAdapter.getUserIdpTokenDtoByIdpToken("token")).willReturn(userIdpTokenDto);
+            long userId = userService.loadUserByIdpToken("token").getId();
+
+            long book1Id = renteeService.getRenteeByRenteeName(book1SaveDto.getName()).getId();
+
+            rentalService.rentRenteeByRenteeIdAndUserId(book1Id, userId);
+
+
+            // when
+            Long count = renteeService.countByRenteeTypeAndNameContainingWithSort(RenteeType.BOOK, "book", RenteeSort.OUTDATED_RENTAL);
+
+            // then
+            assertEquals(1, count);
+        }
+
+        @DisplayName("최근 대여된순(LATEST_RENTAL) 정렬 테스트")
+        @Test
+        void test_latestRentalSort() {
+            // given
+            given(econoIDPAdapter.getUserIdpTokenDtoByIdpToken("token")).willReturn(userIdpTokenDto);
+            long userId = userService.loadUserByIdpToken("token").getId();
+
+            long book1Id = renteeService.getRenteeByRenteeName(book1SaveDto.getName()).getId();
+            long book2Id = renteeService.getRenteeByRenteeName(book2SaveDto.getName()).getId();
+
+            rentalService.rentRenteeByRenteeIdAndUserId(book2Id, userId);
+            rentalService.rentRenteeByRenteeIdAndUserId(book1Id, userId);
+
+            // when
+            Long count = renteeService.countByRenteeTypeAndNameContainingWithSort(RenteeType.BOOK, "book", RenteeSort.LATEST_RENTAL);
+
+            // then
+            assertEquals(2, count);
+        }
+    }
+
+    @Nested
     @DisplayName("getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging 정상동작 테스트")
     class GetRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging_Test {
 
@@ -257,7 +339,7 @@ class RenteeServiceRTest {
             // given
             given(econoIDPAdapter.getUserIdpTokenDtoByIdpToken("token")).willReturn(userIdpTokenDto);
             given(econoIDPAdapter.getUserIdpIdDtoByIdpId(userIdpTokenDto.getId())).willReturn(userIdpIdDto);
-            long userId = userService.getUserByIdpToken("token").getId();
+            long userId = userService.loadUserByIdpToken("token").getId();
 
             long book1Id = renteeService.getRenteeByRenteeName(book1SaveDto.getName()).getId();
             long book2Id = renteeService.getRenteeByRenteeName(book2SaveDto.getName()).getId();
@@ -283,7 +365,7 @@ class RenteeServiceRTest {
             // given
             given(econoIDPAdapter.getUserIdpTokenDtoByIdpToken("token")).willReturn(userIdpTokenDto);
             given(econoIDPAdapter.getUserIdpIdDtoByIdpId(userIdpTokenDto.getId())).willReturn(userIdpIdDto);
-            long userId = userService.getUserByIdpToken("token").getId();
+            long userId = userService.loadUserByIdpToken("token").getId();
 
             long book1Id = renteeService.getRenteeByRenteeName(book1SaveDto.getName()).getId();
             long book2Id = renteeService.getRenteeByRenteeName(book2SaveDto.getName()).getId();

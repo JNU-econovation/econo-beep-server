@@ -46,7 +46,7 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        User user = userService.getUserByIdpToken(token);
+        User user = userService.loadUserByIdpToken(token);
         request.setAttribute(IDP_TOKEN, token);
         request.setAttribute(IDP_ID, user.getIdpId());
         request.setAttribute(USER_ID, user.getId());

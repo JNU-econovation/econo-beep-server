@@ -7,6 +7,8 @@ import com.econo.econobeepserver.exception.NotFoundUserException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -32,11 +34,11 @@ public class UserService {
         return userRepository.findByIdpId(idpId).orElseThrow(NotFoundUserException::new);
     }
 
-    public User getUserByIdpToken(String idpToken) {
+    public User loadUserByIdpToken(String idpToken) {
         UserIdpTokenDto userIdpTokenDto = econoIDPAdapter.getUserIdpTokenDtoByIdpToken(idpToken);
 
         return userRepository.findByIdpId(userIdpTokenDto.getId())
-                .orElse(create(userIdpTokenDto.getId()));
+                .orElseGet(() -> create(userIdpTokenDto.getId()));
     }
 
     public UserProfileDto getUserProfileDtoByUserId(Long userId) {

@@ -81,7 +81,7 @@ public class RenteeService {
                 .stream()
                 .map(rental -> {
                     long renterId = rental.getRenter().getId();
-                    UserRenterDto userRenterDto = userService.getUserRenterDtoByUserId(renteeId);
+                    UserRenterDto userRenterDto = userService.getUserRenterDtoByUserId(renterId);
 
                     return new RentalElementDto(rental, userRenterDto);
                 })
