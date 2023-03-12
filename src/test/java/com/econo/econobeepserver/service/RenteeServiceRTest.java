@@ -193,7 +193,7 @@ class RenteeServiceRTest {
 
     @Nested
     @DisplayName("countByRenteeTypeAndNameContainingWithSort 정상동작 테스트")
-    class CountByRenteeTypeAndNameContainingWithSort_Test {
+    class Test_CountByRenteeTypeAndNameContainingWithSort {
 
         @DisplayName("타입 적용 테스트")
         @Test
@@ -277,7 +277,7 @@ class RenteeServiceRTest {
 
     @Nested
     @DisplayName("getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging 정상동작 테스트")
-    class GetRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging_Test {
+    class Test_GetRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging {
 
         @DisplayName("타입 적용 테스트")
         @Test
