@@ -2,6 +2,7 @@ package com.econo.econobeepserver.config;
 
 import com.econo.econobeepserver.domain.User.Role;
 import com.econo.econobeepserver.domain.User.User;
+import com.econo.econobeepserver.exception.WrongAccessTokenException;
 import com.econo.econobeepserver.service.User.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -45,7 +46,7 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String token = extract(request, BEARER);
         if (StringUtils.isEmpty(token)) {
             return true;
@@ -56,11 +57,15 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        User user = userService.loadUserByIdpToken(token);
-        request.setAttribute(IDP_TOKEN, token);
-        request.setAttribute(IDP_ID, user.getIdpId());
-        request.setAttribute(USER_ID, user.getId());
-        request.setAttribute(USER_ROLE, user.getRole());
+        try {
+            User user = userService.loadUserByIdpToken(token);
+
+            request.setAttribute(IDP_TOKEN, token);
+            request.setAttribute(IDP_ID, user.getIdpId());
+            request.setAttribute(USER_ID, user.getId());
+            request.setAttribute(USER_ROLE, user.getRole());
+        } catch (WrongAccessTokenException ignored) {
+        }
 
         return true;
     }

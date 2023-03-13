@@ -4,6 +4,7 @@ import com.econo.econobeepserver.domain.Rentee.RenteeType;
 import com.econo.econobeepserver.domain.User.Role;
 import com.econo.econobeepserver.dto.Rentee.*;
 import com.econo.econobeepserver.exception.ForbiddenRoleException;
+import com.econo.econobeepserver.exception.WrongAccessTokenException;
 import com.econo.econobeepserver.service.Rentee.RenteeService;
 import com.econo.econobeepserver.service.Rentee.RenteeSort;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,7 +31,11 @@ public class RenteeManagementController {
 
     private void validateUserRole(HttpServletRequest request) {
         Role role = (Role) request.getAttribute(USER_ROLE);
-        if (!role.equals(Role.ADMIN)) {
+        if (role == null) {
+            throw new WrongAccessTokenException();
+        }
+
+        if (!Role.ADMIN.equals(role)) {
             throw new ForbiddenRoleException();
         }
     }
