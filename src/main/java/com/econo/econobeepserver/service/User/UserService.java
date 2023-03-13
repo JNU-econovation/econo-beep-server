@@ -3,6 +3,7 @@ package com.econo.econobeepserver.service.User;
 import com.econo.econobeepserver.domain.User.User;
 import com.econo.econobeepserver.domain.User.UserRepository;
 import com.econo.econobeepserver.dto.User.*;
+import com.econo.econobeepserver.exception.IDPServerErrorException;
 import com.econo.econobeepserver.exception.NotFoundUserException;
 import com.econo.econobeepserver.exception.WrongAccessTokenException;
 import lombok.AllArgsConstructor;
@@ -35,28 +36,28 @@ public class UserService {
         return userRepository.findByIdpId(idpId).orElseThrow(NotFoundUserException::new);
     }
 
-    public User loadUserByIdpToken(String idpToken) throws WrongAccessTokenException {
+    public User loadUserByIdpToken(String idpToken) throws WrongAccessTokenException, IDPServerErrorException {
         UserIdpTokenDto userIdpTokenDto = econoIDPAdapter.getUserIdpTokenDtoByIdpToken(idpToken);
 
         return userRepository.findByIdpId(userIdpTokenDto.getId())
                 .orElseGet(() -> create(userIdpTokenDto.getId()));
     }
 
-    public UserProfileDto getUserProfileDtoByUserId(Long userId) throws WrongAccessTokenException {
+    public UserProfileDto getUserProfileDtoByUserId(Long userId) throws WrongAccessTokenException, IDPServerErrorException {
         Long idpId = getUserByUserId(userId).getIdpId();
         UserIdpIdDto userIdpIdDto = econoIDPAdapter.getUserIdpIdDtoByIdpId(idpId);
 
         return new UserProfileDto(userId, userIdpIdDto);
     }
 
-    public UserProfileDto getUserProfileDtoByIdpId(Long idpId) throws WrongAccessTokenException {
+    public UserProfileDto getUserProfileDtoByIdpId(Long idpId) throws WrongAccessTokenException, IDPServerErrorException {
         Long userId = getUserByIdpId(idpId).getId();
         UserIdpIdDto userIdpIdDto = econoIDPAdapter.getUserIdpIdDtoByIdpId(idpId);
 
         return new UserProfileDto(userId, userIdpIdDto);
     }
 
-    public UserRenterDto getUserRenterDtoByUserId(Long userId) throws WrongAccessTokenException {
+    public UserRenterDto getUserRenterDtoByUserId(Long userId) throws WrongAccessTokenException, IDPServerErrorException {
         Long idpId = getUserByUserId(userId).getIdpId();
         UserIdpIdDto userIdpIdDto = econoIDPAdapter.getUserIdpIdDtoByIdpId(idpId);
 

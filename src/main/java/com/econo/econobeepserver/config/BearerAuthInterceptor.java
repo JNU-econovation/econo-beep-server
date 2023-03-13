@@ -2,6 +2,7 @@ package com.econo.econobeepserver.config;
 
 import com.econo.econobeepserver.domain.User.Role;
 import com.econo.econobeepserver.domain.User.User;
+import com.econo.econobeepserver.exception.IDPServerErrorException;
 import com.econo.econobeepserver.exception.WrongAccessTokenException;
 import com.econo.econobeepserver.service.User.UserService;
 import lombok.RequiredArgsConstructor;
@@ -64,7 +65,7 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
             request.setAttribute(IDP_ID, user.getIdpId());
             request.setAttribute(USER_ID, user.getId());
             request.setAttribute(USER_ROLE, user.getRole());
-        } catch (WrongAccessTokenException ignored) {
+        } catch (IDPServerErrorException | WrongAccessTokenException ignored) { // Ignoring WrongAccessTokenException is temporary
         }
 
         return true;
