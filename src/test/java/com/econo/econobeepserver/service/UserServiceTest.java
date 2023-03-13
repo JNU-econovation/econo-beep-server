@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Spy;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
@@ -26,13 +26,13 @@ import static org.mockito.BDDMockito.given;
 public class UserServiceTest {
 
     // Target
-    @Spy
+    @InjectMocks
     UserService userService;
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Mock objects injected into UserService
-    @InjectMocks
+    @Mock
     UserRepository userRepository;
-    @InjectMocks
+    @Mock
     EconoIDPAdapter econoIDPAdapter;
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

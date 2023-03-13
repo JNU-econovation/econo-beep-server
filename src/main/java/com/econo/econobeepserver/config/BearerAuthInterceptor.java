@@ -1,5 +1,6 @@
 package com.econo.econobeepserver.config;
 
+import com.econo.econobeepserver.domain.User.Role;
 import com.econo.econobeepserver.domain.User.User;
 import com.econo.econobeepserver.service.User.UserService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,9 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
     public static final String IDP_ID = "idpId";
     public static final String USER_ID = "userId";
     public static final String USER_ROLE = "userRole";
+    // TEMPORARY DEBUG TOKEN [deprecated]
+    @Value("${ADMIN_DEBUG_TOKEN}")
+    private String ADMIN_DEBUG_TOKEN;
 
     private final UserService userService;
 
@@ -44,7 +48,12 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = extract(request, BEARER);
         if (StringUtils.isEmpty(token)) {
-            return false;
+            return true;
+        }
+
+        if (ADMIN_DEBUG_TOKEN.equals(token)) {
+            request.setAttribute(USER_ROLE, Role.ADMIN);
+            return true;
         }
 
         User user = userService.loadUserByIdpToken(token);

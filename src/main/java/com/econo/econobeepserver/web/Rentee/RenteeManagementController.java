@@ -18,7 +18,6 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.econo.econobeepserver.config.BearerAuthInterceptor.IDP_TOKEN;
 import static com.econo.econobeepserver.config.BearerAuthInterceptor.USER_ROLE;
 
 @Tag(name = "대여품 관리 API", description = "대여품 추가, 수정, 삭제, 정렬 [Only Admin]")
@@ -28,14 +27,10 @@ public class RenteeManagementController {
 
     private final RenteeService renteeService;
 
-    // TEMPORARY DEBUG TOKEN [deprecated]
-    @Value("${ADMIN_DEBUG_TOKEN}")
-    private String ADMIN_DEBUG_TOKEN;
-
 
     private void validateUserRole(HttpServletRequest request) {
         Role role = (Role) request.getAttribute(USER_ROLE);
-        if (!role.equals(Role.ADMIN) || ADMIN_DEBUG_TOKEN.equals((String) request.getAttribute(IDP_TOKEN))) {
+        if (!role.equals(Role.ADMIN)) {
             throw new ForbiddenRoleException();
         }
     }
