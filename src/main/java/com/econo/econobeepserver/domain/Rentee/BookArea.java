@@ -1,11 +1,10 @@
 package com.econo.econobeepserver.domain.Rentee;
 
 public enum BookArea {
-    WEB,
-    APP,
-    LANGUAGE,
+    FRONTEND,
+    BACKEND,
     AI,
     GAME,
-    DEVELOPMENT,
-    MAJOR,
+    GENERAL_EDUCATION,
+    TEXTBOOK
 }
