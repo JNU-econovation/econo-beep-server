@@ -17,15 +17,14 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 
-@Component
 @RequiredArgsConstructor
-public class EconoIDP {
+public class UserEconoIdp implements UserIdp {
 
     @Value("${ECONO_IDP_API}")
     private String ECONO_IDP_API;
 
-
-    UserIdpIdDto findIdpUserByIdpId(Long idpId) throws WrongAccessTokenException, IDPServerErrorException {
+    @Override
+    public UserIdpIdDto getUserIdpIdDtoByIdpId(Long idpId) throws WrongAccessTokenException, IDPServerErrorException {
         URI uri = UriComponentsBuilder
                 .fromUriString(ECONO_IDP_API)
                 .path("/api/users/{userId}")
@@ -46,7 +45,8 @@ public class EconoIDP {
         }
     }
 
-    UserIdpTokenDto findIdpUserByIdpToken(String idpToken) throws WrongAccessTokenException, IDPServerErrorException {
+    @Override
+    public UserIdpTokenDto getUserIdpTokenDtoByIdpToken(String idpToken) throws WrongAccessTokenException, IDPServerErrorException {
         URI uri = UriComponentsBuilder
                 .fromUriString(ECONO_IDP_API)
                 .path("/api/users/token")

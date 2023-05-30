@@ -9,14 +9,12 @@ import com.econo.econobeepserver.exception.WrongAccessTokenException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @AllArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
-    private EconoIDPAdapter econoIDPAdapter;
+    private UserIdp userIdp;
 
 
     private User create(Long idpId) {
@@ -37,7 +35,7 @@ public class UserService {
     }
 
     public User loadUserByIdpToken(String idpToken) throws WrongAccessTokenException, IDPServerErrorException {
-        UserIdpTokenDto userIdpTokenDto = econoIDPAdapter.getUserIdpTokenDtoByIdpToken(idpToken);
+        UserIdpTokenDto userIdpTokenDto = userIdp.getUserIdpTokenDtoByIdpToken(idpToken);
 
         return userRepository.findByIdpId(userIdpTokenDto.getId())
                 .orElseGet(() -> create(userIdpTokenDto.getId()));
@@ -45,21 +43,21 @@ public class UserService {
 
     public UserProfileDto getUserProfileDtoByUserId(Long userId) throws WrongAccessTokenException, IDPServerErrorException {
         Long idpId = getUserByUserId(userId).getIdpId();
-        UserIdpIdDto userIdpIdDto = econoIDPAdapter.getUserIdpIdDtoByIdpId(idpId);
+        UserIdpIdDto userIdpIdDto = userIdp.getUserIdpIdDtoByIdpId(idpId);
 
         return new UserProfileDto(userId, userIdpIdDto);
     }
 
     public UserProfileDto getUserProfileDtoByIdpId(Long idpId) throws WrongAccessTokenException, IDPServerErrorException {
         Long userId = getUserByIdpId(idpId).getId();
-        UserIdpIdDto userIdpIdDto = econoIDPAdapter.getUserIdpIdDtoByIdpId(idpId);
+        UserIdpIdDto userIdpIdDto = userIdp.getUserIdpIdDtoByIdpId(idpId);
 
         return new UserProfileDto(userId, userIdpIdDto);
     }
 
     public UserRenterDto getUserRenterDtoByUserId(Long userId) throws WrongAccessTokenException, IDPServerErrorException {
         Long idpId = getUserByUserId(userId).getIdpId();
-        UserIdpIdDto userIdpIdDto = econoIDPAdapter.getUserIdpIdDtoByIdpId(idpId);
+        UserIdpIdDto userIdpIdDto = userIdp.getUserIdpIdDtoByIdpId(idpId);
 
         return new UserRenterDto(userId, userIdpIdDto);
     }

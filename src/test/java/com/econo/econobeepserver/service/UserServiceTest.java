@@ -6,7 +6,7 @@ import com.econo.econobeepserver.domain.User.UserRepository;
 import com.econo.econobeepserver.dto.User.UserIdpIdDto;
 import com.econo.econobeepserver.dto.User.UserIdpTokenDto;
 import com.econo.econobeepserver.exception.NotFoundUserException;
-import com.econo.econobeepserver.service.User.EconoIDPAdapter;
+import com.econo.econobeepserver.service.User.UserIdp;
 import com.econo.econobeepserver.service.User.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -33,7 +33,7 @@ public class UserServiceTest {
     @Mock
     UserRepository userRepository;
     @Mock
-    EconoIDPAdapter econoIDPAdapter;
+    UserIdp userIdp;
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // User for test //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

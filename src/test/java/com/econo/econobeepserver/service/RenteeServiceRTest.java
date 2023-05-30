@@ -12,7 +12,7 @@ import com.econo.econobeepserver.dto.User.UserIdpTokenDto;
 import com.econo.econobeepserver.service.Rentee.RentalService;
 import com.econo.econobeepserver.service.Rentee.RenteeService;
 import com.econo.econobeepserver.service.Rentee.RenteeSort;
-import com.econo.econobeepserver.service.User.EconoIDPAdapter;
+import com.econo.econobeepserver.service.User.UserIdp;
 import com.econo.econobeepserver.service.User.UserService;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ class RenteeServiceRTest {
     private UserService userService;
     // Mock class for UserService
     @MockBean(name = "econoIDPAdapter")
-    private EconoIDPAdapter econoIDPAdapter;
+    private UserIdp userIdp;
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -239,7 +239,7 @@ class RenteeServiceRTest {
         @Test
         void test_outdatedRentalSort() {
             // given
-            given(econoIDPAdapter.getUserIdpTokenDtoByIdpToken("token")).willReturn(userIdpTokenDto);
+            given(userIdp.getUserIdpTokenDtoByIdpToken("token")).willReturn(userIdpTokenDto);
             long userId = userService.loadUserByIdpToken("token").getId();
 
             long book1Id = renteeService.getRenteeByRenteeName(book1SaveDto.getName()).getId();
@@ -258,7 +258,7 @@ class RenteeServiceRTest {
         @Test
         void test_latestRentalSort() {
             // given
-            given(econoIDPAdapter.getUserIdpTokenDtoByIdpToken("token")).willReturn(userIdpTokenDto);
+            given(userIdp.getUserIdpTokenDtoByIdpToken("token")).willReturn(userIdpTokenDto);
             long userId = userService.loadUserByIdpToken("token").getId();
 
             long book1Id = renteeService.getRenteeByRenteeName(book1SaveDto.getName()).getId();
@@ -337,8 +337,8 @@ class RenteeServiceRTest {
         @Test
         void test_outdatedRentalSort() {
             // given
-            given(econoIDPAdapter.getUserIdpTokenDtoByIdpToken("token")).willReturn(userIdpTokenDto);
-            given(econoIDPAdapter.getUserIdpIdDtoByIdpId(userIdpTokenDto.getId())).willReturn(userIdpIdDto);
+            given(userIdp.getUserIdpTokenDtoByIdpToken("token")).willReturn(userIdpTokenDto);
+            given(userIdp.getUserIdpIdDtoByIdpId(userIdpTokenDto.getId())).willReturn(userIdpIdDto);
             long userId = userService.loadUserByIdpToken("token").getId();
 
             long book1Id = renteeService.getRenteeByRenteeName(book1SaveDto.getName()).getId();
@@ -363,8 +363,8 @@ class RenteeServiceRTest {
         @Test
         void test_latestRentalSort() {
             // given
-            given(econoIDPAdapter.getUserIdpTokenDtoByIdpToken("token")).willReturn(userIdpTokenDto);
-            given(econoIDPAdapter.getUserIdpIdDtoByIdpId(userIdpTokenDto.getId())).willReturn(userIdpIdDto);
+            given(userIdp.getUserIdpTokenDtoByIdpToken("token")).willReturn(userIdpTokenDto);
+            given(userIdp.getUserIdpIdDtoByIdpId(userIdpTokenDto.getId())).willReturn(userIdpIdDto);
             long userId = userService.loadUserByIdpToken("token").getId();
 
             long book1Id = renteeService.getRenteeByRenteeName(book1SaveDto.getName()).getId();
