@@ -6,12 +6,12 @@ import com.econo.econobeepserver.dto.User.UserIdpTokenDto;
 public class UserFakerIdp implements UserIdp {
 
     @Override
-    public UserIdpIdDto getUserIdpIdDtoByIdpId(Long idpId, String idpToken) {
+    public UserIdpIdDto getUserIdpIdDtoByIdpId(Long idpId) {
         return UserIdpIdDto.builder()
                 .id(99L)
                 .year(21)
                 .username("권순찬")
-                .email("sckwon770@gmail.com")
+                .userEmail("sckwon770@gmail.com")
                 .build();
     }
 
@@ -21,7 +21,7 @@ public class UserFakerIdp implements UserIdp {
                 .id(99L)
                 .year(21)
                 .username("권순찬")
-                .email("sckwon770@gmail.com")
+                .userEmail("sckwon770@gmail.com")
                 .build();
     }
 }

@@ -41,23 +41,23 @@ public class UserService {
                 .orElseGet(() -> create(userIdpTokenDto.getId()));
     }
 
-    public UserProfileDto getUserProfileDtoByUserId(Long userId, String idpToken) throws WrongAccessTokenException, IDPServerErrorException {
+    public UserProfileDto getUserProfileDtoByUserId(Long userId) throws WrongAccessTokenException, IDPServerErrorException {
         Long idpId = getUserByUserId(userId).getIdpId();
-        UserIdpIdDto userIdpIdDto = userIdp.getUserIdpIdDtoByIdpId(idpId, idpToken);
+        UserIdpIdDto userIdpIdDto = userIdp.getUserIdpIdDtoByIdpId(idpId);
 
         return new UserProfileDto(userId, userIdpIdDto);
     }
 
-    public UserProfileDto getUserProfileDtoByIdpId(Long idpId, String idpToken) throws WrongAccessTokenException, IDPServerErrorException {
+    public UserProfileDto getUserProfileDtoByIdpId(Long idpId) throws WrongAccessTokenException, IDPServerErrorException {
         Long userId = getUserByIdpId(idpId).getId();
-        UserIdpIdDto userIdpIdDto = userIdp.getUserIdpIdDtoByIdpId(idpId, idpToken);
+        UserIdpIdDto userIdpIdDto = userIdp.getUserIdpIdDtoByIdpId(idpId);
 
         return new UserProfileDto(userId, userIdpIdDto);
     }
 
-    public UserRenterDto getUserRenterDtoByUserId(Long userId, String idpToken) throws WrongAccessTokenException, IDPServerErrorException {
+    public UserRenterDto getUserRenterDtoByUserId(Long userId) throws WrongAccessTokenException, IDPServerErrorException {
         Long idpId = getUserByUserId(userId).getIdpId();
-        UserIdpIdDto userIdpIdDto = userIdp.getUserIdpIdDtoByIdpId(idpId, idpToken);
+        UserIdpIdDto userIdpIdDto = userIdp.getUserIdpIdDtoByIdpId(idpId);
 
         return new UserRenterDto(userId, userIdpIdDto);
     }

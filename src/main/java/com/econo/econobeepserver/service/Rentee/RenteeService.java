@@ -73,7 +73,7 @@ public class RenteeService {
         return renteeRepository.findByName(renteeName).orElseThrow(NotFoundRenteeException::new);
     }
 
-    public RenteeInfoDto getRenteeInfoDtoByIdWithUserId(Long renteeId, Long userId, String idpToken) {
+    public RenteeInfoDto getRenteeInfoDtoByIdWithUserId(Long renteeId, Long userId) {
         Rentee rentee = getRenteeByRenteeId(renteeId);
 
         List<RentalElementDto> rentalElementDtos = rentalRepository
@@ -81,7 +81,7 @@ public class RenteeService {
                 .stream()
                 .map(rental -> {
                     long renterId = rental.getRenter().getId();
-                    UserRenterDto userRenterDto = userService.getUserRenterDtoByUserId(renterId, idpToken);
+                    UserRenterDto userRenterDto = userService.getUserRenterDtoByUserId(renterId);
 
                     return new RentalElementDto(rental, userRenterDto);
                 })
@@ -118,14 +118,14 @@ public class RenteeService {
         return rentees.stream().map(RenteeElementDto::new).collect(Collectors.toList());
     }
 
-    private RenteeManagementInfoDto getRenteeManagementInfoDtoByRentee(final Rentee rentee, String idpToken) {
+    private RenteeManagementInfoDto getRenteeManagementInfoDtoByRentee(final Rentee rentee) {
         String recentRenterName = null;
         Long recentRentalEpochSecond = null;
 
         Optional<Rental> recentRental = rentalRepository.findFirstByRentee_IdOrderByCreatedDateDesc(rentee.getId());
         if (recentRental.isPresent()) {
             Long renterId = recentRental.get().getRenter().getId();
-            recentRenterName = userService.getUserRenterDtoByUserId(renterId, idpToken).getUsername();
+            recentRenterName = userService.getUserRenterDtoByUserId(renterId).getUsername();
             recentRentalEpochSecond = toEpochSecond(recentRental.get().getRentalDateTime());
         }
 
@@ -156,7 +156,7 @@ public class RenteeService {
         return count;
     }
 
-    public List<RenteeManagementInfoDto> getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging(RenteeType renteeType, String renteeName, RenteeSort renteeSort, int pageIndex, int pageSize, String idpToken) {
+    public List<RenteeManagementInfoDto> getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging(RenteeType renteeType, String renteeName, RenteeSort renteeSort, int pageIndex, int pageSize) {
         List<Rentee> rentees = Collections.emptyList();
         PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
 
@@ -179,7 +179,7 @@ public class RenteeService {
         }
 
         return rentees.stream()
-                .map(rentee -> getRenteeManagementInfoDtoByRentee(rentee, idpToken))
+                .map(this::getRenteeManagementInfoDtoByRentee)
                 .collect(Collectors.toList());
     }
 
