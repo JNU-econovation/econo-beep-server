@@ -20,6 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.econo.econobeepserver.config.BearerAuthInterceptor.IDP_TOKEN;
 import static com.econo.econobeepserver.config.BearerAuthInterceptor.USER_ROLE;
 
 @Tag(name = "대여품 관리 API", description = "대여품 추가, 수정, 삭제, 정렬 [Only Admin]")
@@ -79,8 +80,9 @@ public class RenteeManagementController {
                                                          @RequestParam(value = "pageSize") int pageSize
     ) {
         validateUserRole(request);
+        String idpToken = (String) request.getAttribute(IDP_TOKEN);
         Long count = renteeService.countByRenteeTypeAndNameContainingWithSort(RenteeType.BOOK, renteeName, renteeSort);
-        List<BookManagementElementDto> bookManagementElementDtos = renteeService.getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging(RenteeType.BOOK, renteeName, renteeSort, pageIndex, pageSize)
+        List<BookManagementElementDto> bookManagementElementDtos = renteeService.getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging(RenteeType.BOOK, renteeName, renteeSort, pageIndex, pageSize, idpToken)
                 .stream().map(BookManagementElementDto::new).collect(Collectors.toList());
 
         BookManagementDto bookManagementDto = new BookManagementDto(count, bookManagementElementDtos);
@@ -101,8 +103,9 @@ public class RenteeManagementController {
                                                              @RequestParam(value = "pageSize") int pageSize
     ) {
         validateUserRole(request);
+        String idpToken = (String) request.getAttribute(IDP_TOKEN);
         Long count = renteeService.countByRenteeTypeAndNameContainingWithSort(RenteeType.DEVICE, renteeName, renteeSort);
-        List<DeviceManagementElementDto> deviceManagementElementDtos = renteeService.getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging(RenteeType.DEVICE, renteeName, renteeSort, pageIndex, pageSize)
+        List<DeviceManagementElementDto> deviceManagementElementDtos = renteeService.getRenteeManagementInfoDtosByRenteeTypeAndNameContainingWithSortAndPaging(RenteeType.DEVICE, renteeName, renteeSort, pageIndex, pageSize, idpToken)
                 .stream().map(DeviceManagementElementDto::new).collect(Collectors.toList());
 
         DeviceManagementDto deviceManagementDto = new DeviceManagementDto(count, deviceManagementElementDtos);

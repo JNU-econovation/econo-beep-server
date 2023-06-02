@@ -1,6 +1,5 @@
 package com.econo.econobeepserver.dto.User;
 
-import com.econo.econobeepserver.domain.User.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +29,7 @@ public class UserProfileDto {
         this.id = id;
         this.username = userIdpIdDto.getUsername();
         this.year = userIdpIdDto.getYear();
-        this.email = userIdpIdDto.getEmail();
+        this.email = userIdpIdDto.getUserEmail();
         this.profileImageUrl = userIdpIdDto.getProfileImageUrl();
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+import static com.econo.econobeepserver.config.BearerAuthInterceptor.IDP_TOKEN;
 import static com.econo.econobeepserver.config.BearerAuthInterceptor.USER_ID;
 
 @Tag(name = "대여품 기본 정보 API", description = "대여품 조회, 검색, 즐겨찾기")
@@ -30,7 +31,8 @@ public class RenteeController {
     public ResponseEntity<RenteeInfoDto> getRenteeInfoDtoById(HttpServletRequest request,
                                                               @PathVariable(value = "id") Long renteeId) {
         Long userId = (Long) request.getAttribute(USER_ID);
-        RenteeInfoDto renteeInfoDto = renteeService.getRenteeInfoDtoByIdWithUserId(renteeId, userId);
+        String idpToken = (String) request.getAttribute(IDP_TOKEN);
+        RenteeInfoDto renteeInfoDto = renteeService.getRenteeInfoDtoByIdWithUserId(renteeId, userId, idpToken);
 
         return ResponseEntity.ok(renteeInfoDto);
     }

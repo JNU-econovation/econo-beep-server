@@ -13,15 +13,15 @@ public class UserIdpIdDto {
     private Long id;
     private String username;
     private Integer year;
-    private String email;
+    private String userEmail;
     private String profileImageUrl;
 
     @Builder
-    public UserIdpIdDto(Long id, String username, Integer year, String email) {
+    public UserIdpIdDto(Long id, String username, Integer year, String userEmail) {
         this.id = id;
         this.username = username;
         this.year = year;
-        this.email = email;
+        this.userEmail = userEmail;
         this.profileImageUrl = null;
     }
 }

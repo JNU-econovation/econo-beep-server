@@ -6,7 +6,7 @@ import com.econo.econobeepserver.dto.User.UserIdpTokenDto;
 public class UserFakerIdp implements UserIdp {
 
     @Override
-    public UserIdpIdDto getUserIdpIdDtoByIdpId(Long idpId) {
+    public UserIdpIdDto getUserIdpIdDtoByIdpId(Long idpId, String idpToken) {
         return UserIdpIdDto.builder()
                 .id(99L)
                 .year(21)

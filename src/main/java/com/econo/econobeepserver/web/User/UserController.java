@@ -34,15 +34,19 @@ public class UserController {
     @GetMapping("/api/user/my/profile")
     public ResponseEntity<UserProfileDto> getUserInfoDtoByAccessToken(HttpServletRequest request) {
         Long idpId = (Long) request.getAttribute(IDP_ID);
-        UserProfileDto userProfileDto = userService.getUserProfileDtoByIdpId(idpId);
+        String idpToken = (String) request.getAttribute(IDP_TOKEN);
+        UserProfileDto userProfileDto = userService.getUserProfileDtoByIdpId(idpToken, idpId);
 
         return ResponseEntity.ok(userProfileDto);
     }
 
     @Operation(summary = "유저 프로필 조회")
     @GetMapping("/api/user/{id}/profile")
-    public ResponseEntity<UserProfileDto> getUserInfoDtoByAccessToken(@PathVariable(value = "id") Long userId) {
-        UserProfileDto userProfileDto = userService.getUserProfileDtoByUserId(userId);
+    public ResponseEntity<UserProfileDto> getUserInfoDtoByAccessToken(@PathVariable(value = "id") Long userId,
+                                                                      HttpServletRequest request) {
+        String idpToken = (String) request.getAttribute(IDP_TOKEN);
+
+        UserProfileDto userProfileDto = userService.getUserProfileDtoByUserId(idpToken, userId);
 
         return ResponseEntity.ok(userProfileDto);
     }

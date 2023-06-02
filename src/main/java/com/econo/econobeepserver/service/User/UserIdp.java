@@ -5,6 +5,6 @@ import com.econo.econobeepserver.dto.User.UserIdpTokenDto;
 
 public interface UserIdp {
 
-    UserIdpIdDto getUserIdpIdDtoByIdpId(Long idpId);
+    UserIdpIdDto getUserIdpIdDtoByIdpId(Long idpId, String idpToken);
     UserIdpTokenDto getUserIdpTokenDtoByIdpToken(String idpToken);
 }

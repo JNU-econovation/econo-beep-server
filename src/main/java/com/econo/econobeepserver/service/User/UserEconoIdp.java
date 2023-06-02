@@ -17,6 +17,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 
+import static com.econo.econobeepserver.config.BearerAuthInterceptor.USER_ID;
+
 @RequiredArgsConstructor
 public class UserEconoIdp implements UserIdp {
 
@@ -24,7 +26,7 @@ public class UserEconoIdp implements UserIdp {
     private String ECONO_IDP_API;
 
     @Override
-    public UserIdpIdDto getUserIdpIdDtoByIdpId(Long idpId) throws WrongAccessTokenException, IDPServerErrorException {
+    public UserIdpIdDto getUserIdpIdDtoByIdpId(Long idpId, String idpToken) throws WrongAccessTokenException, IDPServerErrorException {
         URI uri = UriComponentsBuilder
                 .fromUriString(ECONO_IDP_API)
                 .path("/api/users/{userId}")
@@ -33,9 +35,13 @@ public class UserEconoIdp implements UserIdp {
                 .expand(idpId.toString())
                 .toUri();
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(idpToken);
+        HttpEntity<String> entity = new HttpEntity<>("body", headers);
+
         try {
             RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<UserIdpIdDto> response = restTemplate.getForEntity(uri, UserIdpIdDto.class);
+            ResponseEntity<UserIdpIdDto> response = restTemplate.exchange(uri.toString(), HttpMethod.GET, entity, UserIdpIdDto.class);
 
             return response.getBody();
         } catch (HttpServerErrorException.InternalServerError exception5xx) {

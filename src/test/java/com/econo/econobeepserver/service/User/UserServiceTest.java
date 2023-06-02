@@ -1,4 +1,4 @@
-package com.econo.econobeepserver.service;
+package com.econo.econobeepserver.service.User;
 
 import com.econo.econobeepserver.domain.User.Role;
 import com.econo.econobeepserver.domain.User.User;
