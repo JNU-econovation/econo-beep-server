@@ -4,6 +4,8 @@ import com.econo.econobeepserver.domain.User.Role;
 import com.econo.econobeepserver.domain.User.User;
 import com.econo.econobeepserver.exception.IDPServerErrorException;
 import com.econo.econobeepserver.exception.WrongAccessTokenException;
+import com.econo.econobeepserver.service.User.UserFakerIdp;
+import com.econo.econobeepserver.service.User.UserIdp;
 import com.econo.econobeepserver.service.User.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -21,15 +23,18 @@ import java.util.Iterator;
 @RequiredArgsConstructor
 public class BearerAuthInterceptor implements HandlerInterceptor {
 
+    // @deprecated : Debug token for UserFakerIdp
+    @Value("${ADMIN_DEBUG_TOKEN}")
+    private String ADMIN_DEBUG_TOKEN;
+
+
     private static final String AUTHORIZATION = "Authorization";
     private static final String BEARER = "Bearer";
     public static final String IDP_TOKEN = "idpToken";
     public static final String IDP_ID = "idpId";
     public static final String USER_ID = "userId";
     public static final String USER_ROLE = "userRole";
-    // TEMPORARY DEBUG TOKEN [deprecated]
-    @Value("${ADMIN_DEBUG_TOKEN}")
-    private String ADMIN_DEBUG_TOKEN;
+
 
     private final UserService userService;
 
@@ -46,6 +51,8 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
         return Strings.EMPTY;
     }
 
+    // TODO : Remove a deprecated debug code
+    // TODO : Add a exception catching code for a wrong token
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String token = extract(request, BEARER);
@@ -53,10 +60,15 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
             return true;
         }
 
+        // @deprecated : Debug token for UserFakerIdp
         if (ADMIN_DEBUG_TOKEN.equals(token)) {
+            request.setAttribute(IDP_TOKEN, ADMIN_DEBUG_TOKEN);
+            request.setAttribute(IDP_ID, UserFakerIdp.FAKE_USER_ID);
+            request.setAttribute(USER_ID, UserFakerIdp.FAKE_USER_ID);
             request.setAttribute(USER_ROLE, Role.ADMIN);
             return true;
         }
+
 
         try {
             User user = userService.loadUserByIdpToken(token);
@@ -65,7 +77,7 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
             request.setAttribute(IDP_ID, user.getIdpId());
             request.setAttribute(USER_ID, user.getId());
             request.setAttribute(USER_ROLE, user.getRole());
-        } catch (IDPServerErrorException | WrongAccessTokenException ignored) { // Ignoring WrongAccessTokenException is temporary
+        } catch (IDPServerErrorException | WrongAccessTokenException ignored) { // @deprecated Ignoring WrongAccessTokenException is temporary
         }
 
         return true;
