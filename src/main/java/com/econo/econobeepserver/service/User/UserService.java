@@ -34,11 +34,14 @@ public class UserService {
         return userRepository.findByIdpId(idpId).orElseThrow(NotFoundUserException::new);
     }
 
-    public User loadUserByIdpToken(String idpToken) throws WrongAccessTokenException, IDPServerErrorException {
+    public User getUserByIdpTokenAfterSyncingDBWithIdp(String idpToken) throws WrongAccessTokenException, IDPServerErrorException {
         UserIdpTokenDto userIdpTokenDto = userIdp.getUserIdpTokenDtoByIdpToken(idpToken);
 
-        return userRepository.findByIdpId(userIdpTokenDto.getId())
-                .orElseGet(() -> create(userIdpTokenDto.getId()));
+        if (userRepository.existsByIdpId(userIdpTokenDto.getId())) {
+            return getUserByIdpId(userIdpTokenDto.getId());
+        }
+
+        return create(userIdpTokenDto.getId());
     }
 
     public UserProfileDto getUserProfileDtoByUserId(Long userId) throws WrongAccessTokenException, IDPServerErrorException {

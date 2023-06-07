@@ -5,7 +5,6 @@ import com.econo.econobeepserver.domain.User.User;
 import com.econo.econobeepserver.exception.IDPServerErrorException;
 import com.econo.econobeepserver.exception.WrongAccessTokenException;
 import com.econo.econobeepserver.service.User.UserFakerIdp;
-import com.econo.econobeepserver.service.User.UserIdp;
 import com.econo.econobeepserver.service.User.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -71,7 +70,7 @@ public class BearerAuthInterceptor implements HandlerInterceptor {
 
 
         try {
-            User user = userService.loadUserByIdpToken(token);
+            User user = userService.getUserByIdpTokenAfterSyncingDBWithIdp(token);
 
             request.setAttribute(IDP_TOKEN, token);
             request.setAttribute(IDP_ID, user.getIdpId());

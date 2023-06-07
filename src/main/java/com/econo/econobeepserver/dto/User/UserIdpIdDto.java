@@ -22,6 +22,6 @@ public class UserIdpIdDto {
         this.username = username;
         this.year = year;
         this.userEmail = userEmail;
-        this.profileImageUrl = null;
+        this.profileImageUrl = "";
     }
 }
