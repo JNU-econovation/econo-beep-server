@@ -1,5 +1,7 @@
-package com.econo.econobeepserver.service.User;
+package com.econo.econobeepserver.config;
 
+import com.econo.econobeepserver.service.User.UserEconoIdp;
+import com.econo.econobeepserver.service.User.UserIdp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

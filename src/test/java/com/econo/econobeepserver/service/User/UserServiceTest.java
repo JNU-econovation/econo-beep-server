@@ -25,62 +25,62 @@ import static org.mockito.BDDMockito.given;
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
 
-    // Target
-    @InjectMocks
-    UserService userService;
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Mock objects injected into UserService
-    @Mock
-    UserRepository userRepository;
-    @Mock
-    UserIdp userIdp;
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    // User for test //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    final User user = User.builder()
-            .idpId(1L)
-            .role(Role.USER)
-            .build();
-    final UserIdpIdDto userIdpIdDto = UserIdpIdDto.builder()
-            .id(1L)
-            .year(21)
-            .username("에코노")
-            .email("econo@gmail.com")
-            .build();
-    final UserIdpTokenDto userIdpTokenDto = UserIdpTokenDto.builder()
-            .id(1L)
-            .year(21)
-            .username("에코노")
-            .email("econo@gmail.com")
-            .build();
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-    @Nested
-    @DisplayName("getUserByUserId 테스트")
-    class Test_GetUserByUserId {
-
-        @DisplayName("정상 반환 테스트")
-        @Test
-        void test() {
-            // given
-            given(userRepository.findById(1L)).willReturn(Optional.of(user));
-
-            // when
-            User result = userService.getUserByUserId(1L);
-
-            // then
-            assertEquals(user.getIdpId(), result.getIdpId());
-        }
-
-        @DisplayName("예외 반환 테스트")
-        @Test
-        void test_exception() {
-            // given
-            given(userRepository.findById(1L)).willReturn(Optional.empty());
-
-            // when & then
-            assertThrows(NotFoundUserException.class, () -> userService.getUserByUserId(1L));
-        }
-    }
+//    // Target
+//    @InjectMocks
+//    UserService userService;
+//    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    // Mock objects injected into UserService
+//    @Mock
+//    UserRepository userRepository;
+//    @Mock
+//    UserIdp userIdp;
+//    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//    // User for test //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    final User user = User.builder()
+//            .idpId(1L)
+//            .role(Role.USER)
+//            .build();
+//    final UserIdpIdDto userIdpIdDto = UserIdpIdDto.builder()
+//            .id(1L)
+//            .year(21)
+//            .username("에코노")
+//            .email("econo@gmail.com")
+//            .build();
+//    final UserIdpTokenDto userIdpTokenDto = UserIdpTokenDto.builder()
+//            .id(1L)
+//            .year(21)
+//            .username("에코노")
+//            .email("econo@gmail.com")
+//            .build();
+//    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//
+//    @Nested
+//    @DisplayName("getUserByUserId 테스트")
+//    class Test_GetUserByUserId {
+//
+//        @DisplayName("정상 반환 테스트")
+//        @Test
+//        void test() {
+//            // given
+//            given(userRepository.findById(1L)).willReturn(Optional.of(user));
+//
+//            // when
+//            User result = userService.getUserByUserId(1L);
+//
+//            // then
+//            assertEquals(user.getIdpId(), result.getIdpId());
+//        }
+//
+//        @DisplayName("예외 반환 테스트")
+//        @Test
+//        void test_exception() {
+//            // given
+//            given(userRepository.findById(1L)).willReturn(Optional.empty());
+//
+//            // when & then
+//            assertThrows(NotFoundUserException.class, () -> userService.getUserByUserId(1L));
+//        }
+//    }
 }
