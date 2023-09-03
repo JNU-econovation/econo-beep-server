@@ -1,4 +1,4 @@
-<div style="text-align: center;">
+<div align="center">
 
 <img src="./docs/econo-beep-logo.png" />
 <h3>에코노베이션 기자재 관리 플랫폼, 에코노 삡</h3>
@@ -58,13 +58,13 @@
 # 🛠️ 기술 스택
 ### Front-end
 
-<div style="text-align: center;">
+<div align="center">
 <img src="./docs/beep-fe-stack.png"/>
 </div>
 
 ### Back-end
 
-<div style="text-align: center;">
+<div align="center">
 <img src="./docs/beep-be-stack.png"/>
 </div>
 
