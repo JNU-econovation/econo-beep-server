@@ -1,0 +1,175 @@
+{
+  "main": {
+    "id": "311609de5fe9ba64",
+    "type": "split",
+    "children": [
+      {
+        "id": "e78ef7a3087f188a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "42e147824e5eff6e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "64a9f1e8b9471259",
+    "type": "split",
+    "children": [
+      {
+        "id": "72a4c6f586f31c0e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5c98f14cf205a95c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "8419ea5ee3f2b77b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "42e5af40db13800e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "8434f333974903f9",
+    "type": "split",
+    "children": [
+      {
+        "id": "d5ae95327764ea8f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e4bd71819604877e",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "README.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "12411d9234f3474d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "README.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "2c95ebecf167c313",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "471823d9b7ace379",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "README.md"
+              }
+            }
+          },
+          {
+            "id": "5b29d9c7e121d1fa",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
+    }
+  },
+  "active": "42e147824e5eff6e",
+  "lastOpenFiles": [
+    "docs/beep diagram.jpg",
+    "docs/beep-be-stack.png",
+    "README.md",
+    "docs/beep-fe-stack.png",
+    "docs/juwon-profile.jpg",
+    "docs/soonchan-profile.jpg",
+    "docs/beep-deployment.png",
+    "beep-deployment.png",
+    "backend-stack.png",
+    "docs/beep_user-mockup.png",
+    "docs/beep-user-2.png",
+    "docs/beep-user-1.png",
+    "docs",
+    "HELP.md"
+  ]
+}
