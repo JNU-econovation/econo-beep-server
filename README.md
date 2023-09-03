@@ -1,8 +1,10 @@
 <div align="center">
 
 <img src="./docs/econo-beep-logo.png" />
-<h3>에코노베이션 기자재 관리 플랫폼, 에코노 삡</h3>
+<h2>에코노베이션 기자재 관리 플랫폼, 에코노 삡</h2>
 <img width=50 height=50 src="./docs/Barcode_Scanner_icon.png" />
+
+[프론트 레포](https://github.com/JNU-econovation/econo-beep-2.0) / [백엔드 레포](https://github.com/JNU-econovation/econo-beep-server) 
 
 </div>
 
@@ -58,15 +60,11 @@
 # 🛠️ 기술 스택
 ### Front-end
 
-<div align="center">
 <img src="./docs/beep-fe-stack.png"/>
-</div>
 
 ### Back-end
 
-<div align="center">
 <img src="./docs/beep-be-stack.png"/>
-</div>
 
 
 ### Deployment pipeline
